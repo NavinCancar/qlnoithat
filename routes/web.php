@@ -66,6 +66,7 @@ Route::post('/update-tai-khoan', 'App\Http\Controllers\CostumerController@update
 //---------------------------------------------------
 
 
+
 //Backend
 Route::get('/admin', 'App\Http\Controllers\AdminController@index');
 Route::get('/dashboard', 'App\Http\Controllers\AdminController@show_dashboard');
