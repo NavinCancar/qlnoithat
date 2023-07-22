@@ -29,7 +29,7 @@
                                 </div>
 
                                 <div class="form-group"> 
-                                    <label for="exampleInputEmail1">Sách nhập</label>
+                                    <label for="exampleInputEmail1">Nội thất nhập</label>
                                       <select name="masach_product_name" class="form-control input-sm m-bot15" required="">
                                         @foreach($sach as $key => $masach)
                                             <option value="{{$masach->SACH_MA}}">{{$masach->SACH_TEN}}</option> 

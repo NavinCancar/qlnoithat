@@ -19,13 +19,13 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1"><b>Sách đặt:</b></label>
+                <label for="exampleInputEmail1"><b>Nội thất đặt:</b></label>
                 <section id="cart-container" class="container my-5">
             <table width="100%">
                 <thead>
                     <tr>
                         <td>Ảnh</td>
-                        <td>Sách</td>
+                        <td>Nội thất</td>
                         <td>Đơn giá</td>
                         <td>Số lượng</td>
                         <td>Tổng</td>
@@ -36,7 +36,7 @@
                 <?php $tong =0; ?>
                 @foreach($CTGH as $key => $cart_pro)
                 <tr>
-                    <td ><img src="../../qlchsach/public/frontend/img/sach/{{$cart_pro->HAS_DUONGDAN}}" alt=""></td>
+                    <td ><img src="../../qlchsach/public/frontend/img/noithat/{{$cart_pro->HAS_DUONGDAN}}" alt=""></td>
                     <td>
                         <h5 style='width: 100%;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'>{{$cart_pro->SACH_TEN}}</h5>
                     </td>

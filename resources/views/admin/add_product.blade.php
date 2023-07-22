@@ -4,7 +4,7 @@
             <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            Thêm sách
+                            Thêm nội thất
                         </header>
                         <div class="panel-body">
                             <?php
@@ -18,36 +18,36 @@
                                 <form role="form" action="{{URL::to('/save-product')}}" method="post">
                                     {{csrf_field() }}
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Tên sách</label>
-                                    <input type="text" name="SACH_TEN" class="form-control" id="exampleInputEmail1" placeholder="Tên sách" required="">
+                                    <label for="exampleInputEmail1">Tên nội thất</label>
+                                    <input type="text" name="SACH_TEN" class="form-control" id="exampleInputEmail1" placeholder="Tên nội thất" required="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Mô tả sách</label>
+                                    <label for="exampleInputPassword1">Mô tả nội thất</label>
                                     <textarea style="resize: none"  rows="8" class="form-control" name="SACH_MOTA" id="ckeditor1" placeholder="Mô tả sản phẩm" required=""></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Giá</label>
-                                    <input type="text" name="SACH_GIA" class="form-control" id="exampleInputEmail1" placeholder="Tên sách" required=""  pattern="[0-9]+">
+                                    <input type="text" name="SACH_GIA" class="form-control" id="exampleInputEmail1" placeholder="Tên nội thất" required=""  pattern="[0-9]+">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Chiết khấu</label>
-                                    <input type="text" name="SACH_CHIETKHAU" class="form-control" id="exampleInputEmail1" placeholder="Tên sách" required=""  pattern="[0-9]+">
+                                    <input type="text" name="SACH_CHIETKHAU" class="form-control" id="exampleInputEmail1" placeholder="Tên nội thất" required=""  pattern="[0-9]+">
                                 </div>
                                 <!--<div class="form-group">
                                     <label for="exampleInputEmail1">Ngày cập nhât</label>
-                                    <input type="date" name="product_name" class="form-control" id="exampleInputEmail1" placeholder="Tên sách">
+                                    <input type="date" name="product_name" class="form-control" id="exampleInputEmail1" placeholder="Tên nội thất">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Ngày tạo</label>
-                                    <input type="date" name="product_name" class="form-control" id="exampleInputEmail1" placeholder="Tên sách">
+                                    <input type="date" name="product_name" class="form-control" id="exampleInputEmail1" placeholder="Tên nội thất">
                                 </div>-->
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Số trang</label>
-                                    <input type="text" name="SACH_SOTRANG" class="form-control" id="exampleInputEmail1" placeholder="Tên sách" required=""  pattern="[0-9]+">
+                                    <input type="text" name="SACH_SOTRANG" class="form-control" id="exampleInputEmail1" placeholder="Tên nội thất" required=""  pattern="[0-9]+">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">ISBN</label>
-                                    <input type="text" name="SACH_ISBN" class="form-control" id="exampleInputEmail1" placeholder="Tên sách" required="" pattern="[0-9]+">
+                                    <input type="text" name="SACH_ISBN" class="form-control" id="exampleInputEmail1" placeholder="Tên nội thất" required="" pattern="[0-9]+">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Nhà xuất bản</label>
@@ -68,7 +68,7 @@
                                     </select>
                                 </div>
                                 
-                                <button type="submit" name="add_product" class="btn btn-info">Thêm sách</button>
+                                <button type="submit" name="add_product" class="btn btn-info">Thêm nội thất</button>
                             </form>
                             </div>
 

@@ -4,7 +4,7 @@
             <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            Cập nhật thể loại sách
+                            Cập nhật thể loại nội thất
                         </header>
                         <div class="panel-body">
                             @foreach($edit_category_product as $key => $edit_value)
@@ -24,7 +24,7 @@
                                 </div>-->
                                 
                                 
-                                <button type="submit" name="update_category_product" class="btn btn-info">Cập nhật thể loại sách</button>
+                                <button type="submit" name="update_category_product" class="btn btn-info">Cập nhật thể loại nội thất</button>
                             </form>
                             </div>
                             @endforeach

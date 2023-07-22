@@ -7,7 +7,7 @@
     <div class="row mt-1">
         @foreach($product_detail as $key => $value)
         <div class="col-lg-5 col-md-12 col-12">
-         <img class="img-fluid w-100 pb-1" id="MainImg" src="../public/frontend/img/sach/{{$value->HAS_DUONGDAN}}" alt="">
+         <img class="img-fluid w-100 pb-1" id="MainImg" src="../public/frontend/img/noithat/{{$value->HAS_DUONGDAN}}" alt="">
         </div>
             <div class="col-lg-7 col-md-12 col-12" style="text-align:justify">
                 <h2 class="py-4">{{$value->SACH_TEN}}</h2>
@@ -60,7 +60,7 @@
                                 Session::put('message',null);
                             }
                 ?>
-                <h3 class="mt-5 mb-3">Mô tả sách </h3>
+                <h3 class="mt-5 mb-3">Mô tả nội thất </h3>
                 <hr class="">
                 <p><span class="bold">Tác giả: </span>
                 @foreach($author_product as $key => $au)
@@ -269,14 +269,14 @@
     <!--Sach lien quan-->
     <section id="featured" class="my-5 pb-5">
         <div class="container text-center mt-5 py-5">
-            <h3>Sách liên quan</h3>
+            <h3>Nội thất liên quan</h3>
             <hr class="mx-auto">
         </div>
 
         <div class="row mx-auto container-fluid">
             @foreach($product_relate as $key => $relate)
             <div class="product text-center col-lg-3 col-md-4 col-12">
-                <img class="img-fluid mb-3" src="../public/frontend/img/sach/{{$relate->HAS_DUONGDAN}}" alt="">
+                <img class="img-fluid mb-3" src="../public/frontend/img/noithat/{{$relate->HAS_DUONGDAN}}" alt="">
                 <div class="star">
                     <?php
                         // Create connection

@@ -69,7 +69,7 @@
 
                 <section class="panel"> 
                     <header class="panel-sub-heading">
-                            Thống kê doanh số bán sách
+                            Thống kê doanh số bán nội thất
                     </header>
                     <div class="panel-body">                    
                         <div class="panel">
@@ -79,7 +79,7 @@
                 </section>
                 <section class="panel"> 
                     <header class="panel-sub-heading">
-                            Thống kê thể loại sách
+                            Thống kê thể loại nội thất
                     </header>
                     <div class="panel-body">                    
                         <div class="panel">
@@ -90,7 +90,7 @@
 
                 <section class="panel">
                     <header class="panel-sub-heading" >
-                            Sách bán nhiều nhất
+                        Nội thất bán nhiều nhất
                     </header><br>
                     <div class="row">
                     <?php
@@ -113,7 +113,7 @@
                         <div class="col-lg-4">
                         <section class="panel">
                             <div class="panel-body khung">
-                            <a href="chi-tiet-san-pham/'. $row["SACH_MA"].'"><img class="img-fluid mb-3 anh" src="public/frontend/img/sach/'.$row["HAS_DUONGDAN"].'" alt=""></a>
+                            <a href="chi-tiet-san-pham/'. $row["SACH_MA"].'"><img class="img-fluid mb-3 anh" src="public/frontend/img/noithat/'.$row["HAS_DUONGDAN"].'" alt=""></a>
                             <br>
                             <h4 class="text-center">'.$row["SACH_TEN"].'</h4>
                             <h4 class="text-center">'.number_format($row["SACH_GIA"]).' đ</h4>   
@@ -129,7 +129,7 @@
 
                 <section class="panel">
                     <header class="panel-sub-heading" >
-                            Sách bán ít nhất
+                        Nội thất bán ít nhất
                     </header><br>
                     <div class="row">
                     <?php
@@ -152,7 +152,7 @@
                         <div class="col-lg-4">
                         <section class="panel">
                             <div class="panel-body khung">
-                            <a href="chi-tiet-san-pham/'. $row["SACH_MA"].'"><img class="img-fluid mb-3 anh" src="public/frontend/img/sach/'.$row["HAS_DUONGDAN"].'" alt=""></a>
+                            <a href="chi-tiet-san-pham/'. $row["SACH_MA"].'"><img class="img-fluid mb-3 anh" src="public/frontend/img/noithat/'.$row["HAS_DUONGDAN"].'" alt=""></a>
                             <br>
                             <h4 class="text-center">'.$row["SACH_TEN"].'</h4>
                             <h4 class="text-center">'.number_format($row["SACH_GIA"]).' đ</h4>
@@ -168,7 +168,7 @@
             
                 <section class="panel">
                     <header class="panel-sub-heading" >
-                            Sách không bán được
+                        Nội thất không bán được
                     </header><br>
                     <div class="row">
                     <?php
@@ -190,7 +190,7 @@
                         <div class="col-lg-4">
                         <section class="panel">
                             <div class="panel-body khung">
-                            <a href="chi-tiet-san-pham/'. $row["SACH_MA"].'"><img class="img-fluid mb-3 anh" src="public/frontend/img/sach/'.$row["HAS_DUONGDAN"].'" alt=""></a>
+                            <a href="chi-tiet-san-pham/'. $row["SACH_MA"].'"><img class="img-fluid mb-3 anh" src="public/frontend/img/noithat/'.$row["HAS_DUONGDAN"].'" alt=""></a>
                             <br>
                             <h4 class="text-center">'.$row["SACH_TEN"].'</h4>
                             <h4 class="text-center">'.number_format($row["SACH_GIA"]).' đ</h4>

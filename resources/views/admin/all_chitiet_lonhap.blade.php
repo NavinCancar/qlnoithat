@@ -22,7 +22,7 @@
               </label>
             </th>
             <th>Mã lô nhập</th>
-            <th>Tên sách nhập</th>
+            <th>Tên nội thất nhập</th>
             <th>Số lượng</th>
             <th>Đơn giá</th>
             

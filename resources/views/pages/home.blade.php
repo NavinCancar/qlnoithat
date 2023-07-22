@@ -2,7 +2,7 @@
  @section('content')
  <div class="row mx-auto">
         <div style="background-color:#fff" class="center">
-            <img src="{{('public/frontend/img/banner/banner-faa.jpg')}}" id="top_banner_phone" alt="" />
+            <img src="{{('public/frontend/img/banner/bannertop.png')}}" id="top_banner_phone" alt="" height="100%"/>
         </div>
             <div class="col-sm-8 pt-2">
                 <!-- Carousel -->
@@ -18,15 +18,15 @@
                     <!-- The slideshow/carousel -->
                     <div class="carousel-inner ">
                         <div class="carousel-item active">
-                            <img src="{{('public/frontend/img/banner/banner-1.png')}}"
+                            <img src="{{('public/frontend/img/banner/banner1.png')}}"
                                 class="d-block w-100 rounded-2 ">
                         </div>
                         <div class="carousel-item">
-                            <img src="{{('public/frontend/img/banner/banner-2.jpg')}}"
+                            <img src="{{('public/frontend/img/banner/banner2.png')}}"
                                 class="d-block w-100 rounded-2 ">
                         </div>
                         <div class="carousel-item">
-                            <img src="{{('public/frontend/img/banner/banner-3.jpg')}}"
+                            <img src="{{('public/frontend/img/banner/banner3.png')}}"
                                 class="d-block w-100 rounded-2 ">
                         </div>
                     </div>
@@ -47,13 +47,13 @@
                 <div class="pt-2">
                     <a href="#">
                         <img class="border_radius_normal rounded-2" style="width: 100%;"
-                            src="{{('public/frontend/img/banner/banner-4.jpg')}}" />
+                            src="{{('public/frontend/img/banner/banner4.png')}}" />
                     </a>
                 </div>
                 <div class="pt-2">
                     <a href="#">
                         <img class="border_radius_normal rounded-2" style="width: 100%;"
-                            src="{{('public/frontend/img/banner/banner-5.jpg')}}" />
+                            src="{{('public/frontend/img/banner/banner5.png')}}" />
                     </a>
                 </div>
             </div>
@@ -61,14 +61,14 @@
  <!-- Mat hang -->
         <section id="clothes" class="my-5">
             <div class="container text-center mt-5 py-5">
-                <h3>SÁCH MỚI</h3>
+                <h3>NỘI THẤT MỚI</h3>
                 <hr class="mx-auto">
             </div>    
                
             <div class="row mx-auto container-fluid">
                 @foreach($all_product as $key => $product)
                 <div class="product text-center col-lg-3 col-md-4 col-12">
-                    <img class="img-fluid mb-3" src="public/frontend/img/sach/{{$product->HAS_DUONGDAN}}" alt="">
+                    <img class="img-fluid mb-3" src="public/frontend/img/noithat/{{$product->HAS_DUONGDAN}}" alt="">
 
                     <div class="star">
                         <?php
@@ -102,8 +102,6 @@
             <div class="banner-nho">
                 <section id="banner" class="my-5 py-5">
                     <div class="container-fluid">
-                        <h4>Ngày hội manga</h4>
-                        <h1>SIÊU ƯU ĐÃI<br>LÊN ĐẾN 30%</h1>
                     </div>
                 </section>
             </div>
@@ -116,19 +114,19 @@
                 }
             </style>
             <button class ="btn btn-dark" id="toggle-btn">
-            <i class="fa-solid fa-filter"></i> XEM SÁCH ĐẮT/RẺ NHẤT
+            <i class="fa-solid fa-filter"></i> XEM NỘI THẤT ĐẮT/RẺ NHẤT
             </button>
             <div id ="re">
             <section id="clothes" class="my-5">
             <div class="container text-center mt-5 py-1">
-                <h3>SÁCH RẺ NHẤT</h3>
+                <h3>NỘI THẤT RẺ NHẤT</h3>
                 <hr class="mx-auto">
             </div>    
                
             <div class="row mx-auto container-fluid">
                 @foreach($cheap_product as $key => $product)
                 <div class="product text-center col-lg-3 col-md-4 col-12">
-                    <img class="img-fluid mb-3" src="public/frontend/img/sach/{{$product->HAS_DUONGDAN}}" alt="">
+                    <img class="img-fluid mb-3" src="public/frontend/img/noithat/{{$product->HAS_DUONGDAN}}" alt="">
 
                     <div class="star">
                         <?php
@@ -164,14 +162,14 @@
             <div id ="dat" >
             <section id="clothes" class="my-5">
             <div class="container text-center mt-5 py-1">
-                <h3>SÁCH ĐẮT NHẤT</h3>
+                <h3>NỘI THẤT ĐẮT NHẤT</h3>
                 <hr class="mx-auto">
             </div>    
                
             <div class="row mx-auto container-fluid">
                 @foreach($exp_product as $key => $product)
                 <div class="product text-center col-lg-3 col-md-4 col-12">
-                    <img class="img-fluid mb-3" src="public/frontend/img/sach/{{$product->HAS_DUONGDAN}}" alt="">
+                    <img class="img-fluid mb-3" src="public/frontend/img/noithat/{{$product->HAS_DUONGDAN}}" alt="">
 
                     <div class="star">
                         <?php

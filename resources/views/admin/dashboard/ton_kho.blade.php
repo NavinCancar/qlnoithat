@@ -3,7 +3,7 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Liệt kê sách tồn kho
+      Liệt kê nội thất tồn kho
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
@@ -22,13 +22,13 @@
         ?>
       </div>
       <div class="col-sm-4">
-        <p style="text-align: right;">Tìm sách:</p>
+        <p style="text-align: right;">Tìm nội thất:</p>
       </div>
       <div class="col-sm-3">
         <div class="input-group">
         <form class="d-flex" action="{{ URL::to('/search-product') }}" method="POST">
           {{ csrf_field() }}
-            <input type="text" class="input-sm form-control" name="keywords_submit" style="width: 70%; margin: 0 10px" placeholder="Nhập sách cần tìm...">
+            <input type="text" class="input-sm form-control" name="keywords_submit" style="width: 70%; margin: 0 10px" placeholder="Nhập nội thất cần tìm...">
             <button type="submit" class="btn btn-sm btn-default"><i class="fa fa-search icon-white"></i></a></button>
           </form>
         </div>
@@ -43,9 +43,9 @@
                 <input type="checkbox"><i></i>
               </label>
             </th>
-            <th>Mã sách</th>
-            <th>Tên sách</th>
-            <th>Giá sách</th>
+            <th>Mã nội thất</th>
+            <th>Tên nội thất</th>
+            <th>Giá nội thất</th>
             <th>Số trang</th>
             <th>Mã ISBN</th>
             <th>Nhà xuất bản</th>

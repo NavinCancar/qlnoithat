@@ -4,7 +4,7 @@
             <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            Cập nhật thể loại của sách
+                            Cập nhật thể loại của nội thất
                         </header>
                         <div class="panel-body">
                         @foreach($edit_cttheloai_cuasach as $key => $edit_value)
@@ -19,7 +19,7 @@
                                 <form role="form" action="{{URL::to('/update-cttheloai-cuasach/sach='.$edit_value->SACH_MA.'&theloai='.$edit_value->TLS_MA)}}" method="post">
                                 {{csrf_field() }}
                                 <div class="form-group"> 
-                                    <label for="exampleInputEmail1">Tên sách</label>
+                                    <label for="exampleInputEmail1">Tên nội thất</label>
                                     <select name="sach" class="form-control input-sm m-bot15" required="">
                                         @foreach($sach as $key => $MS)
                                             
@@ -48,7 +48,7 @@
                                 </div>
                                 
                                 
-                                <button type="submit" name="update_cttheloai_cuasach" class="btn btn-info">Cập nhật thể loại của sách</button>
+                                <button type="submit" name="update_cttheloai_cuasach" class="btn btn-info">Cập nhật thể loại của nội thất</button>
                             </form>
                             </div>
                             @endforeach

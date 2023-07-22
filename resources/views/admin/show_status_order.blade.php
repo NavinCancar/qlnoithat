@@ -61,7 +61,7 @@
             </th>
                     <td>Mã</td>
                     <td>Ngày đặt</td>
-                    <td>Sách</td>
+                    <td>Nội thất</td>
                     <td>Số lượng</td>
                     <td>Tổng tiền</td>
                     <td> </td>

@@ -4,7 +4,7 @@
             <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            Thêm tác giả của sách
+                            Thêm tác giả của nội thất
                         </header>
                         <div class="panel-body">
                             <?php
@@ -23,7 +23,7 @@
                                 </div>-->
                                 
                                 <div class="form-group"> 
-                                    <label for="exampleInputEmail1">Sách</label>
+                                    <label for="exampleInputEmail1">Nội thất</label>
                                       <select name="sach" class="form-control input-sm m-bot15" required="">
                                         @foreach($sach as $key => $MS)
                                             <option value="{{$MS->SACH_MA}}">{{$MS->SACH_TEN}}</option> 
@@ -43,7 +43,7 @@
                                     </select>
                                 </div>
                                 
-                                <button type="submit" name="add-tacgia-cuasach" class="btn btn-info">Thêm tác giả của sách</button>
+                                <button type="submit" name="add-tacgia-cuasach" class="btn btn-info">Thêm tác giả của nội thất</button>
                             </form>
                             </div>
 

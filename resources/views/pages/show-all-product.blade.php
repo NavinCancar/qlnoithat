@@ -9,7 +9,7 @@
             @foreach($all_product as $key => $product)
             <div class="product text-center col-lg-3 col-md-4 col-12">
 
-                    <img class="img-fluid mb-3" src="../public/frontend/img/sach/{{$product->HAS_DUONGDAN}}" alt="">
+                    <img class="img-fluid mb-3" src="../public/frontend/img/noithat/{{$product->HAS_DUONGDAN}}" alt="">
 
                     <div class="star">
                         <?php

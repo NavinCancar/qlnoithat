@@ -38,7 +38,7 @@
                                 </div>
 
                                 <div class="form-group"> 
-                                    <label for="exampleInputEmail1">Tên sách xuất</label>
+                                    <label for="exampleInputEmail1">Tên nội thất xuất</label>
                                       <select disabled name="masach_product_name" class="form-control input-sm m-bot15" required="">
                                         @foreach($sach as $key => $masach)
                                             

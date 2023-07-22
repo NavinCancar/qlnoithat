@@ -22,7 +22,7 @@
               </label>
             </th>
             <th>Mã lô xuất</th>
-            <th>Tên sách xuất</th>
+            <th>Tên nội thất xuất</th>
             <th>Số lượng</th>
             <th>Đơn giá</th>
             

@@ -7,8 +7,8 @@ https://fontawesome.com/v4/icons/
 -->
 <!DOCTYPE html>
 <head>
-<title>FAA - Trang quản trị bán sách</title>
-<link rel="shortcut icon" href="{{('public/frontend/img/logo.png')}}" type="image/x-icon" />
+<title>Relax - Trang quản trị bán nội thất</title>
+<link rel="shortcut icon" href="{{('public/frontend/img/logo1.png')}}" type="image/x-icon" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -41,7 +41,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--logo start-->
 <div class="brand">
     <a href="{{URL::to('/dashboard')}}" class="logo">
-        FAA
+        RELAX
     </a>
     <div class="sidebar-toggle-box">
         <div class="fa fa-bars"></div>
@@ -127,41 +127,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
-                        <span>Quản lý sách</span>
+                        <span>Quản lý nội thất</span>
                     </a>
                     <ul class="sub">
 						<!-- sach -->
-						<li><a href="{{URL::to('/add-product')}}">Thêm sách</a></li>
-						<li><a href="{{URL::to('/all-product')}}">Liệt kê sách</a></li>
+						<li><a href="{{URL::to('/add-product')}}">Thêm nội thất</a></li>
+						<li><a href="{{URL::to('/all-product')}}">Liệt kê nội thất</a></li>
 						<!-- hinh_anh_sach -->
-						<li><a href="{{URL::to('/add-product-image')}}">Thêm ảnh sách</a></li>
-						<li><a href="{{URL::to('/all-product-image')}}">Liệt kê ảnh sách</a></li>
+						<li><a href="{{URL::to('/add-product-image')}}">Thêm ảnh nội thất</a></li>
+						<li><a href="{{URL::to('/all-product-image')}}">Liệt kê ảnh nội thất</a></li>
 						<!-- tac_gia --> 
 						<li><a href="{{URL::to('/add-tacgia-product')}}">Thêm tác giả</a></li> 
 						<li><a href="{{URL::to('/all-tacgia-product')}}">Liệt kê tác giả</a></li>
 						<!-- co_tac_gia --> 
-						<li><a href="{{URL::to('/add-tacgia-cuasach')}}">Thêm tác giả của sách</a></li>
-						<li><a href="{{URL::to('/all-tacgia-cuasach')}}">Liệt kê tác giả của sách</a></li>
+						<li><a href="{{URL::to('/add-tacgia-cuasach')}}">Thêm tác giả của nội thất</a></li>
+						<li><a href="{{URL::to('/all-tacgia-cuasach')}}">Liệt kê tác giả của nội thất</a></li>
                     </ul>  
                 </li>
 				<li class="sub-menu">
                     <a href="javascript:;">
 						<i class="fa fa-th-list"></i>
-                        <span>Quản lý thể loại sách</span>
+                        <span>Quản lý thể loại nội thất</span>
                     </a>
                     <ul class="sub">
 						<!-- the_loai_sach -->
-						<li><a href="{{URL::to('/add-category-product')}}">Thêm thể loại sách</a></li>
-						<li><a href="{{URL::to('/all-category-product')}}">Liệt kê thể loại sách</a></li>
+						<li><a href="{{URL::to('/add-category-product')}}">Thêm thể loại nội thất</a></li>
+						<li><a href="{{URL::to('/all-category-product')}}">Liệt kê thể loại nội thất</a></li>
 						<!-- cua_sach -->
-						<li><a href="{{URL::to('/add-cttheloai-cuasach')}}">Thêm chi tiết thể loại sách</a></li>
-						<li><a href="{{URL::to('/all-cttheloai-cuasach')}}">Liệt kê chi tiết thể loại sách</a></li>
+						<li><a href="{{URL::to('/add-cttheloai-cuasach')}}">Thêm chi tiết thể loại nội thất</a></li>
+						<li><a href="{{URL::to('/all-cttheloai-cuasach')}}">Liệt kê chi tiết thể loại nội thất</a></li>
                     </ul>
                 </li>
 				<li class="sub-menu">
                     <a href="javascript:;">
 						<i class="fa fa-archive"></i>
-                        <span>Quản lý nhà xuất bản sách</span>
+                        <span>Quản lý nhà xuất bản nội thất</span>
                     </a>
                     <ul class="sub">
 						<!-- nha_xuat_ban -->
@@ -175,7 +175,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>Quản lý đơn đặt hàng</span>
                     </a>
                     <ul class="sub">
-						<li><a href="{{URL::to('/trang-thai/tat-ca')}}">Liệt kê các đơn đặt hàng</a></li> <!-- in cả sách? số lượng? đơn giá? -->
+						<li><a href="{{URL::to('/trang-thai/tat-ca')}}">Liệt kê các đơn đặt hàng</a></li> <!-- in cả nội thất? số lượng? đơn giá? -->
 						<li><a href="{{URL::to('/all-lktt-trangthaiddh')}}">Liệt kê thông tin sửa đổi trạng thái đơn đặt hàng</a></li><!-- duoc_quan_ly_boi--> 
 						<li><a href="{{URL::to('/all-nguoixuly')}}">Liệt kê người xử lý đơn hàng</a></li><!-- duoc_xu_ly--> 
 
@@ -190,7 +190,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>Quản lý lô</span>
                     </a>
                     <ul class="sub">
-						<li><a href="{{URL::to('/ton-kho')}}">Danh sách tồn kho</a></li> 
+						<li><a href="{{URL::to('/ton-kho')}}">Danh nội thất tồn kho</a></li> 
 						<!-- lo_nhap -->
 						<li><a href="{{URL::to('/add-lonhap')}}">Thêm lô nhập</a></li> 
 						<li><a href="{{URL::to('/all-lonhap')}}">Liệt kê lô nhập</a></li>
@@ -245,7 +245,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
  <!-- footer 
 		  <div class="footer">
 			<div class="wthree-copyright text-center">
-			Faa Ⓒ All Rights Recieved
+			Relax Ⓒ All Rights Recieved
 			</div>
 		  </div>-->
   <!-- / footer -->

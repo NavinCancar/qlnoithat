@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faa - Cửa hàng bán sách trực tuyến</title>
-    <link rel="shortcut icon" href="{{('public/frontend/img/logo.png')}}" type="image/x-icon" />
+    <title>Relax - Cửa hàng nội thất trực tuyến</title>
+    <link rel="shortcut icon" href="{{('public/frontend/img/logo1.png')}}" type="image/x-icon" />
 
     <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">-->
     <link rel="stylesheet" href="{{asset('public/frontend/bootstrap/css/bootstrap.min.css')}}" >
@@ -40,10 +40,6 @@
     </script>
 
     <header>
-        <div id="top_banner" style="background-color:#DFC8FF">
-            <img src="{{('public/frontend/img/banner/banner-top.jpg')}}"
-                alt="" />
-        </div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light py-3 sticky-top">
             <div class="container">
 
@@ -53,13 +49,13 @@
                     <span id="bar" class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <a href="{{URL::to('/trang-chu')}}"><img src="{{('public/frontend/img/Faa-basic.png')}}" alt=""></a>
+                    <a href="{{URL::to('/trang-chu')}}"><img src="{{('public/frontend/img/logo2.png')}}" alt=""></a>
 
                     <ul class="navbar-nav ml-auto text-right">
                         <li class="nav-item">
                             <form class="d-flex" action="{{ URL::to('/tim-kiem') }}" method="POST">
                                 {{ csrf_field() }}
-                                <input class="form-control me-2" type="text" name="keywords_submit" placeholder="Nhập sách cần tìm...">
+                                <input class="form-control me-2" type="text" name="keywords_submit" placeholder="Nhập nội thất cần tìm...">
                                 <button class="btn btn-link" type="submit"><i class="fa fa-search icon-white"></i></a></button>
                             </form>
                         </li>
@@ -138,11 +134,11 @@
     <footer class="mt-5 py-5">
         <div class="row container-fluid mx-auto pt-5">
             <div class="footer-one col-lg-3 col-md-6 col-12 center mb-3">
-                <img src="{{('public/frontend/img/Faa-color.png')}}" alt="">
+                <img src="{{('public/frontend/img/logo3.png')}}" alt="">
                 <p class="pt-3">................................................</p>
                 <div class="copyright mt-1 mb-5">
                     <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
                     <a href="#"><i class="fa-brands fa-instagram"></i></a>
                     <a href="#"><i class="fa-brands fa-twitter"></i></a>
                     <a href="#"><i class="fa-brands fa-pinterest"></i></a>
@@ -154,8 +150,8 @@
                     <li><a href="#">Điều khoản sử dụng</a></li>
                     <li><a href="#">Chính sách bảo mật thông tin cá nhân</a></li>
                     <li><a href="#">Chính sách bảo mật thanh toán</a></li>
-                    <li><a href="#">Giới thiệu Fahasa</a></li>
-                    <li><a href="#">Hệ thống trung tâm - nhà sách</a></li>
+                    <li><a href="#">Giới thiệu Relax</a></li>
+                    <li><a href="#">Liên hệ tư vấn trực tuyến</a></li>
                 </ul>
             </div>
             <div class=" footer-one col-lg-3 col-md-6 col-12 mb-3">
@@ -169,7 +165,7 @@
                 </ul>
             </div>
             <div class=" footer-one col-lg-3 col-md-6 col-12 mb-3">
-                <h5 class="pb-2">LIÊN HỆ NHÓM 1</h5>
+                <h5 class="pb-2">LIÊN HỆ</h5>
                 <ul class="list-unstyled">
                     <li>
                         <p><i class="fa-solid fa-user"></i> Nguyễn Phương Hiếu</p>
@@ -177,23 +173,14 @@
                     <li>
                         <p><i class="fa-solid fa-envelope"></i> hieub2003737@student.ctu.edu.vn</p>
                     </li>
-                    <li>
-                        <p><i class="fa-solid fa-user"></i> Nguyễn Thị Ngọc Hương</p>
-                    </li>
-                    <li>
-                        <p><i class="fa-solid fa-user"></i> Trịnh Ngọc Ngân</p>
-                    </li>
-                    <li>
-                        <p><i class="fa-solid fa-user"></i> Nguyễn Hồng Diễm</p>
-                    </li>
                 </ul>
             </div>
         </div>
         <div class="center">
-            <p>Faa Ⓒ All Rights Recieved</p>
+            <p>Relax Ⓒ All Rights Recieved</p>
         </div>
         <div id='top-buttom_image'>
-        <a href='#' title='Lên đầu trang'><img style='opacity: 0.2; position:fixed; bottom:3%; right:3%; clip:inherit; width:6%;' alt='Lên đầu trang' src="{{('public/frontend/img/back-top.jpg')}}"/></a><br/>
+            <a href='#' title='Lên đầu trang'><img style='opacity: 0.2; position:fixed; bottom:3%; right:3%; clip:inherit; width:6%;' alt='Lên đầu trang' src="{{('public/frontend/img/back-top.jpg')}}"/></a><br/>
         </div>
     </footer>
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>

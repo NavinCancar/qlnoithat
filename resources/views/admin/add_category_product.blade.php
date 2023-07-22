@@ -4,7 +4,7 @@
             <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            Thêm thể loại sách
+                            Thêm thể loại nội thất
                         </header>
                         <div class="panel-body">
                             <?php
@@ -24,11 +24,11 @@
                                 <!--
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Mã thể loại</label>
-                                    <input class="form-control" name="category_product_desc" id="exampleInputPassword1" placeholder="Mã thể loại sách">
+                                    <input class="form-control" name="category_product_desc" id="exampleInputPassword1" placeholder="Mã thể loại nội thất">
                                 </div>
                                 -->
                                 
-                                <button type="submit" name="add_category_product" class="btn btn-info">Thêm thể loại sách</button>
+                                <button type="submit" name="add_category_product" class="btn btn-info">Thêm thể loại nội thất</button>
                             </form>
                             </div>
 

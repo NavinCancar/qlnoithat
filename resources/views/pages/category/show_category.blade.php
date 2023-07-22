@@ -14,7 +14,7 @@
         <div class="row mx-auto container-fluid col-lg-9 col-md-12 col-12">
             @foreach($category_by_id as $key => $product)
             <div class="product text-center col-lg-3 col-md-4 col-12">
-                    <img class="img-fluid mb-3" src="../public/frontend/img/sach/{{$product->HAS_DUONGDAN}}" alt="">
+                    <img class="img-fluid mb-3" src="../public/frontend/img/noithat/{{$product->HAS_DUONGDAN}}" alt="">
 
                     <div class="star">
                         <?php

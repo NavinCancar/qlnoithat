@@ -4,7 +4,7 @@
             <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            Thêm hình ảnh sách
+                            Thêm hình ảnh nội thất
                         </header>
                         <div class="panel-body">
                             <?php
@@ -18,15 +18,15 @@
                                 <form role="form" action="{{URL::to('/save-product-image')}}" method="post" enctype= "multipart/form-data">
                                     {{csrf_field() }}
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Tên hình ảnh sách</label>
-                                    <input type="text" name="HAS_TEN" class="form-control" id="exampleInputEmail1" placeholder="Tên hình ảnh sách" required="">
+                                    <label for="exampleInputEmail1">Tên hình ảnh nội thất</label>
+                                    <input type="text" name="HAS_TEN" class="form-control" id="exampleInputEmail1" placeholder="Tên hình ảnh nội thất" required="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Đường dẫn hình ảnh sách</label>
-                                    <input type="file" name="HAS_DUONGDAN" class="form-control" id="exampleInputEmail1" placeholder="Tên hình ảnh sách" required="">
+                                    <label for="exampleInputEmail1">Đường dẫn hình ảnh nội thất</label>
+                                    <input type="file" name="HAS_DUONGDAN" class="form-control" id="exampleInputEmail1" placeholder="Tên hình ảnh nội thất" required="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Hình ảnh của sách</label>
+                                    <label for="exampleInputPassword1">Hình ảnh của nội thất</label>
                                       <select name="SACH_MA" class="form-control input-sm m-bot15" required="">
                                         @foreach($product as $key => $prod)
                                             <option value="{{$prod->SACH_MA}}">{{$prod->SACH_TEN}}</option>
@@ -36,7 +36,7 @@
                                 </div>
                         
                                 
-                                <button type="submit" name="add_product_image" class="btn btn-info">Thêm hình ảnh sách</button>
+                                <button type="submit" name="add_product_image" class="btn btn-info">Thêm hình ảnh nội thất</button>
                             </form>
                             </div>
 

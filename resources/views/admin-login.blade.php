@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
-<title>FAA - Trang quản trị bán sách</title>
-<link rel="shortcut icon" href="{{('public/frontend/img/logo.png')}}" type="image/x-icon" />
+<title>Relax - Trang quản trị bán nội thất</title>
+<link rel="shortcut icon" href="{{('public/frontend/img/logo1.png')}}" type="image/x-icon" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -24,7 +24,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <div class="log-w3">
 <div class="w3layouts-main">
-	<h1 class="text-center">FAA</h1>
+	<h1 class="text-center">RELAX</h1>
 	<h2>Đăng nhập</h2>
 		<form action="{{URL::to('/admin-dashboard')}}" method="post">
 			{{csrf_field()}}

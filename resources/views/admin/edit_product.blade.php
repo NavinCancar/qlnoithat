@@ -4,7 +4,7 @@
             <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            Cập nhật sách
+                            Cập nhật nội thất
                         </header>
                         <div class="panel-body">
                         @foreach($edit_product as $key => $edit_value)
@@ -19,11 +19,11 @@
                                 <form role="form" action="{{URL::to('/update-product/'.$edit_value->SACH_MA)}}" method="post">
                                     {{csrf_field() }}
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Tên sách</label>
+                                    <label for="exampleInputEmail1">Tên nội thất</label>
                                     <input type="text" name="SACH_TEN" class="form-control" id="exampleInputEmail1" value="{{$edit_value->SACH_TEN}}" required="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Mô tả sách</label>
+                                    <label for="exampleInputPassword1">Mô tả nội thất</label>
                                     <textarea style="resize: none"  rows="8" class="form-control" name="SACH_MOTA" id="ckeditor1" required="">"{{$edit_value->SACH_MOTA}}"</textarea>
                                 </div>
                                 <div class="form-group">
@@ -79,7 +79,7 @@
                                     </select>
                                 </div>
                                 
-                                <button type="submit" name="add_product" class="btn btn-info">Cập nhật sách</button>
+                                <button type="submit" name="add_product" class="btn btn-info">Cập nhật nội thất</button>
                             </form>
                             </div>
                             @endforeach

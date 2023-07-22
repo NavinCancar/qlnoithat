@@ -3,7 +3,7 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Liệt kê chi tiết thể loại sách
+      Liệt kê chi tiết thể loại nội thất
     </div>
     <?php
       $message = Session::get('message');
@@ -21,8 +21,8 @@
                 <input type="checkbox"><i></i>
               </label>
             </th>
-            <th>Mã sách</th>
-            <th>Tên sách</th>
+            <th>Mã nội thất</th>
+            <th>Tên nội thất</th>
             <th>Mã thể loại</th>
             <th>Tên thể loại</th>
             <th style="width:50px;"></th>

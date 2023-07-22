@@ -3,7 +3,7 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Liệt kê thể loại sách
+      Liệt kê thể loại nội thất
     </div>
     <?php
       $message = Session::get('message');

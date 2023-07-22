@@ -6,7 +6,7 @@
             <form class="d-flex" action="{{ URL::to('/search-in-order') }}" method="POST">
                 {{ csrf_field() }}
                 <div style="width:30%">Tìm các đơn đặt hàng cũ:</div>
-                <input class="form-control me-2" type="text" name="keywords_submit" placeholder="Nhập sách cần tìm...">
+                <input class="form-control me-2" type="text" name="keywords_submit" placeholder="Nhập nội thất cần tìm...">
                 <button class="btn btn-link" type="submit"><i class="fa fa-search icon-white"></i></a></button>
             </form>
         <?php
@@ -29,7 +29,7 @@
                     <tr>
                         <td>Mã</td>
                         <td>Ngày đặt</td>
-                        <td>Sách</td>
+                        <td>Nội thất</td>
                         <td>Tổng tiền</td>
                         <td>Trạng thái</td>
                         <td></td>
