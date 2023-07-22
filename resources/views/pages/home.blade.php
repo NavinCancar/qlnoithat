@@ -68,17 +68,17 @@
             <div class="row mx-auto container-fluid">
                 @foreach($all_product as $key => $product)
                 <div class="product text-center col-lg-3 col-md-4 col-12">
-                    <img class="img-fluid mb-3" src="public/frontend/img/noithat/{{$product->HAS_DUONGDAN}}" alt="">
+                    <img class="img-fluid mb-3" src="public/frontend/img/noithat/{{$product->HANT_DUONGDAN}}" alt="">
 
                     <div class="star">
                         <?php
                         // Create connection
-                        $conn = new mysqli('localhost', 'root', '', 'qlchsach');
+                        $conn = new mysqli('localhost', 'root', '', 'qlnoithat');
                         // Check connection
                         if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                         }
-                        $point = "select ROUND(AVG(DG_DIEM)) dg, COUNT('DG_MA') sl from Danh_gia group by SACH_MA having SACH_MA ='".$product->SACH_MA."'";
+                        $point = "select ROUND(AVG(DG_DIEM)) dg, COUNT('DG_MA') sl from Danh_gia group by NT_MA having NT_MA ='".$product->NT_MA."'";
                         $result = $conn->query($point);
                         $dg=0; $sl=0;
                         while ($row = $result->fetch_assoc()) {
@@ -92,9 +92,9 @@
                         echo '<i> ('.$sl.')</i>';
                         ?>
                     </div>
-                    <h5 class="p-name">{{$product->SACH_TEN}}</h5>
-                    <h4 class="p-price">{{number_format($product->SACH_GIA)}} đ</h4>
-                    <a href="{{ URL::to('/chi-tiet-san-pham/'. $product->SACH_MA) }}"><button class="buy-btn">XEM NGAY</button></a>
+                    <h5 class="p-name">{{$product->NT_TEN}}</h5>
+                    <h4 class="p-price">{{number_format($product->NT_GIA)}} đ</h4>
+                    <a href="{{ URL::to('/chi-tiet-san-pham/'. $product->NT_MA) }}"><button class="buy-btn">XEM NGAY</button></a>
                 </div>
                 @endforeach
             </div>
@@ -114,7 +114,7 @@
                 }
             </style>
             <button class ="btn btn-dark" id="toggle-btn">
-            <i class="fa-solid fa-filter"></i> XEM NỘI THẤT ĐẮT/RẺ NHẤT
+            <i class="fa-solid fa-filter"></i> TOP NỘI THẤT ĐẮT/RẺ NHẤT
             </button>
             <div id ="re">
             <section id="clothes" class="my-5">
@@ -126,17 +126,17 @@
             <div class="row mx-auto container-fluid">
                 @foreach($cheap_product as $key => $product)
                 <div class="product text-center col-lg-3 col-md-4 col-12">
-                    <img class="img-fluid mb-3" src="public/frontend/img/noithat/{{$product->HAS_DUONGDAN}}" alt="">
+                    <img class="img-fluid mb-3" src="public/frontend/img/noithat/{{$product->HANT_DUONGDAN}}" alt="">
 
                     <div class="star">
                         <?php
                         // Create connection
-                        $conn = new mysqli('localhost', 'root', '', 'qlchsach');
+                        $conn = new mysqli('localhost', 'root', '', 'qlnoithat');
                         // Check connection
                         if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                         }
-                        $point = "select ROUND(AVG(DG_DIEM)) dg, COUNT('DG_MA') sl  from Danh_gia group by SACH_MA having SACH_MA ='".$product->SACH_MA."'";
+                        $point = "select ROUND(AVG(DG_DIEM)) dg, COUNT('DG_MA') sl  from Danh_gia group by NT_MA having NT_MA ='".$product->NT_MA."'";
                         $result = $conn->query($point);
                         $dg=0; $sl=0;
                         while ($row = $result->fetch_assoc()) {
@@ -151,9 +151,9 @@
                         
                         ?>
                     </div>
-                    <h5 class="p-name">{{$product->SACH_TEN}}</h5>
-                    <h4 class="p-price">{{number_format($product->SACH_GIA)}} đ</h4>
-                    <a href="{{ URL::to('/chi-tiet-san-pham/'. $product->SACH_MA) }}"><button class="buy-btn">XEM NGAY</button></a>
+                    <h5 class="p-name">{{$product->NT_TEN}}</h5>
+                    <h4 class="p-price">{{number_format($product->NT_GIA)}} đ</h4>
+                    <a href="{{ URL::to('/chi-tiet-san-pham/'. $product->NT_MA) }}"><button class="buy-btn">XEM NGAY</button></a>
                 </div>
                 @endforeach
             </div>
@@ -169,17 +169,17 @@
             <div class="row mx-auto container-fluid">
                 @foreach($exp_product as $key => $product)
                 <div class="product text-center col-lg-3 col-md-4 col-12">
-                    <img class="img-fluid mb-3" src="public/frontend/img/noithat/{{$product->HAS_DUONGDAN}}" alt="">
+                    <img class="img-fluid mb-3" src="public/frontend/img/noithat/{{$product->HANT_DUONGDAN}}" alt="">
 
                     <div class="star">
                         <?php
                         // Create connection
-                        $conn = new mysqli('localhost', 'root', '', 'qlchsach');
+                        $conn = new mysqli('localhost', 'root', '', 'qlnoithat');
                         // Check connection
                         if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                         }
-                        $point = "select ROUND(AVG(DG_DIEM)) dg, COUNT('DG_MA') sl  from Danh_gia group by SACH_MA having SACH_MA ='".$product->SACH_MA."'";
+                        $point = "select ROUND(AVG(DG_DIEM)) dg, COUNT('DG_MA') sl  from Danh_gia group by NT_MA having NT_MA ='".$product->NT_MA."'";
                         $result = $conn->query($point);
                         $dg=0; $sl=0;
                         while ($row = $result->fetch_assoc()) {
@@ -194,9 +194,9 @@
                         
                         ?>
                     </div>
-                    <h5 class="p-name">{{$product->SACH_TEN}}</h5>
-                    <h4 class="p-price">{{number_format($product->SACH_GIA)}} đ</h4>
-                    <a href="{{ URL::to('/chi-tiet-san-pham/'. $product->SACH_MA) }}"><button class="buy-btn">XEM NGAY</button></a>
+                    <h5 class="p-name">{{$product->NT_TEN}}</h5>
+                    <h4 class="p-price">{{number_format($product->NT_GIA)}} đ</h4>
+                    <a href="{{ URL::to('/chi-tiet-san-pham/'. $product->NT_MA) }}"><button class="buy-btn">XEM NGAY</button></a>
                 </div>
                 @endforeach
             </div>

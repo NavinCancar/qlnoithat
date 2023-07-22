@@ -70,7 +70,7 @@
 
                                     @foreach($category as $key => $cate)
 
-                                    <li><a class="dropdown-item" href="{{ URL::to('/danh-muc-san-pham/'. $cate->TLS_MA) }}">{{ $cate->TLS_TEN }}</a></li>
+                                    <li><a class="dropdown-item" href="{{ URL::to('/danh-muc-san-pham/'. $cate->LNT_MA) }}">{{ $cate->LNT_TEN }}</a></li>
 
                                     @endforeach
                                 </ul>

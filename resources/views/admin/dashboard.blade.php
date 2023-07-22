@@ -233,7 +233,7 @@
                             <td class="view-message  inbox-small-cells">
 							<?php
                                 // Create connection
-                                $conn = new mysqli('localhost', 'root', '', 'qlchsach');
+                                $conn = new mysqli('localhost', 'root', '', 'qlnoithat');
                                 // Check connection
                                 if ($conn->connect_error) {
                                 die("Connection failed: " . $conn->connect_error);

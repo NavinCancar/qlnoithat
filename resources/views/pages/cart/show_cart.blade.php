@@ -35,7 +35,7 @@
                 @foreach($all_cart_product as $key => $cart_pro)
                 <tr>
                     <td><a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-cart/'.$cart_pro->SACH_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fas fa-trash-alt"></i></a></td>
-                    <td ><img src="../qlchsach/public/frontend/img/noithat/{{$cart_pro->HAS_DUONGDAN}}" alt=""></td>
+                    <td ><img src="../qlnoithat/public/frontend/img/noithat/{{$cart_pro->HAS_DUONGDAN}}" alt=""></td>
                     <td>
                         <h5 style='width: 100%;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'>{{$cart_pro->SACH_TEN}}</h5>
                     </td>
@@ -62,7 +62,7 @@
 
                    <!--<tr>
                         <td><a href="#"><i class="fas fa-trash-alt"></i></a></td>
-                        <td><img src="{{('../qlchsach/public/frontend/img/noithat/BLLK.jpg')}}" alt=""></td>
+                        <td><img src="{{('../qlnoithat/public/frontend/img/noithat/BLLK.jpg')}}" alt=""></td>
                         <td>
                             <h5>Blue Lock - Tập 1</h5>
                         </td>

@@ -1,42 +1,61 @@
 @extends('all-product')
 @section('content')
+<style>
+.small-img-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.small-img-group img {
+  width: 100%;
+}
+</style>
 
 <!--Chi tiet sach-->
 <section class="container sproduct my-2 pt-1">
 
     <div class="row mt-1">
         @foreach($product_detail as $key => $value)
-        <div class="col-lg-5 col-md-12 col-12">
-         <img class="img-fluid w-100 pb-1" id="MainImg" src="../public/frontend/img/noithat/{{$value->HAS_DUONGDAN}}" alt="">
+        <div class="col-lg-5 col-md-12 col-12 hover-group">
+            <img class="img-fluid w-100 pb-1" id="MainImg" src="../public/frontend/img/noithat/{{$value->HANT_DUONGDAN}}" alt="">
+            <div class="small-img-group row justify-content-start">
+                @foreach($another_img as $key => $another)
+                    <div class="col-lg-4 col-md-4 col-4">
+                        <img  src="../public/frontend/img/noithat/{{$another->HANT_DUONGDAN}}" alt="" class="img-fluid w-100" onmouseover="changeMainImage(this)" onmouseleave="restoreMainImage()">
+                    </div>
+                @endforeach
+            </div>
         </div>
-            <div class="col-lg-7 col-md-12 col-12" style="text-align:justify">
-                <h2 class="py-4">{{$value->SACH_TEN}}</h2>
+            <div class="col-lg-7 col-md-12 col-12">
+                <h2 class="pt-4">{{$value->NT_TEN}}</h2>
                 <div class="star">
                     <?php
                         // Create connection
-                        $conn = new mysqli('localhost', 'root', '', 'qlchsach');
+                        $conn = new mysqli('localhost', 'root', '', 'qlnoithat');
                         // Check connection
                         if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                         }
-                        $point = "select ROUND(AVG(DG_DIEM)) dg from Danh_gia group by SACH_MA having SACH_MA ='".$value->SACH_MA."'";
+                        $point = "select ROUND(AVG(DG_DIEM)) dg, COUNT('DG_MA') sl  from Danh_gia group by NT_MA having NT_MA ='".$value->NT_MA."'";
                         $result = $conn->query($point);
-                        $dg=0;
+                        $dg=0; $sl=0;
                         while ($row = $result->fetch_assoc()) {
                             $dg= $row['dg']."<br>";
+                            $sl= $row['sl'];
                         }
                         $x = 1;
                         for ($x = 1; $x <= $dg; $x++) {
-                        echo '<i class="fas fa-star" ></i>';
-                        }
-                        ?>
-                    </div>
+                        echo '<i class="fas fa-star"></i>';
+                        } 
+                        echo '<i> ('.$sl.')</i>';
+                    ?>
+                </div>
                 <form action="{{URL::to('/save-cart')}}" method="POST">
                     {{ csrf_field() }}
                     <?php
                     $ton = Session::get('ton');
                     ?>
-                    <h2>{{number_format($value->SACH_GIA)}} đ</h2>
+                    <h3>{{number_format($value->NT_GIA)}} VNĐ</h3>
                     <p>Số lượng: <input name="qty" type="number" min="1" max="<?php echo $ton; ?>" value="1"> |
                     Số lượng tồn: 
                         <?php
@@ -50,7 +69,7 @@
                             Session::put('ban',null);
                         ?> |
                     </p>
-					<input name="productid_hidden" type="hidden"  value="{{$value->SACH_MA}}" />
+					<input name="productid_hidden" type="hidden"  value="{{$value->NT_MA}}" />
                     <button type = "submit" class="buy-btn">THÊM GIỎ HÀNG</button>
                 </form>
                 <?php
@@ -61,24 +80,12 @@
                             }
                 ?>
                 <h3 class="mt-5 mb-3">Mô tả nội thất </h3>
-                <hr class="">
-                <p><span class="bold">Tác giả: </span>
-                @foreach($author_product as $key => $au)
-                {{$au->TG_HOTEN}} |
-                @endforeach
-                </p>
-
-                <p><span class="bold">Thể loại: </span>
-                @foreach($category_product as $key => $cate)
-                {{$cate->TLS_TEN}} |
-                @endforeach
-                </p>
-
-                <p><span class="bold">Nội dung: </span>{{$value->SACH_MOTA}}</p>
-                <p><span class="bold">Ngôn ngữ: </span>{{$value->NN_TEN}}</p>
-                <p><span class="bold">Nhà xuất bản: </span>{{$value->NXB_TEN}}</p>
-                <p><span class="bold">Số trang: </span>{{$value->SACH_SOTRANG}}</p>
-                <p><span class="bold">ISBN: </span>{{$value->SACH_ISBN}}</p>
+                <hr>
+                <p><span class="bold">Kích cỡ:</span> Dài: {{$value->NT_CHIEUDAI}} mm | Rộng: {{$value->NT_CHIEURONG}} mm | Cao: {{$value->NT_CHIEUCAO}} mm |</p>
+                <p><span class="bold">Chất liệu: </span>{{$value->NT_MOTACHATLIEU}}</p>
+                <p><span class="bold">Loại nội thất: </span>{{$value->LNT_TEN}}</p>
+                <p><span class="bold">Nhà cung cấp: </span>{{$value->NCC_TEN}}</p>
+                
             </div>
         @endforeach
     </div>
@@ -197,7 +204,7 @@
                 ?>
                 @foreach($binh_luan as $key => $bl)
                 @if($bl->KH_MA==$KH_MA)
-                <form  role="form"  action="{{URL::to('/danh-gia/'.$bl->SACH_MA)}}" method="POST" >
+                <form  role="form"  action="{{URL::to('/danh-gia/'.$bl->NT_MA)}}" method="POST" >
                     {{ csrf_field() }}
                     <fieldset>
                             <div class="form-group">
@@ -239,7 +246,7 @@
                         <div class="star">
                             <?php
                                 // Create connection
-                                $conn = new mysqli('localhost', 'root', '', 'qlchsach');
+                                $conn = new mysqli('localhost', 'root', '', 'qlnoithat');
                                 // Check connection
                                 if ($conn->connect_error) {
                                 die("Connection failed: " . $conn->connect_error);
@@ -276,34 +283,48 @@
         <div class="row mx-auto container-fluid">
             @foreach($product_relate as $key => $relate)
             <div class="product text-center col-lg-3 col-md-4 col-12">
-                <img class="img-fluid mb-3" src="../public/frontend/img/noithat/{{$relate->HAS_DUONGDAN}}" alt="">
+                <img class="img-fluid mb-3" src="../public/frontend/img/noithat/{{$relate->HANT_DUONGDAN}}" alt="">
                 <div class="star">
                     <?php
                         // Create connection
-                        $conn = new mysqli('localhost', 'root', '', 'qlchsach');
+                        $conn = new mysqli('localhost', 'root', '', 'qlnoithat');
                         // Check connection
                         if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                         }
-                        $point = "select ROUND(AVG(DG_DIEM)) dg from Danh_gia group by SACH_MA having SACH_MA ='".$relate->SACH_MA."'";
+                        $point = "select ROUND(AVG(DG_DIEM)) dg, COUNT('DG_MA') sl  from Danh_gia group by NT_MA having NT_MA ='".$relate->NT_MA."'";
                         $result = $conn->query($point);
-                        $dg=0;
+                        $dg=0; $sl=0;
                         while ($row = $result->fetch_assoc()) {
                             $dg= $row['dg']."<br>";
+                            $sl= $row['sl'];
                         }
                         $x = 1;
                         for ($x = 1; $x <= $dg; $x++) {
                         echo '<i class="fas fa-star"></i>';
-                        }
-                        ?>
+                        } 
+                        echo '<i> ('.$sl.')</i>';
+                    ?>
                     </div>
-                <h5 class="p-name">{{$relate->SACH_TEN}}</h5>
-                <h4 class="p-price">{{number_format($relate->SACH_GIA)}}</h4>
-                <a href="{{ URL::to('/chi-tiet-san-pham/'. $relate->SACH_MA) }}"><button class="buy-btn">XEM NGAY</button></a>
+                <h5 class="p-name">{{$relate->NT_TEN}}</h5>
+                <h4 class="p-price">{{number_format($relate->NT_GIA)}}</h4>
+                <a href="{{ URL::to('/chi-tiet-san-pham/'. $relate->NT_MA) }}"><button class="buy-btn">XEM NGAY</button></a>
             </div>
             @endforeach
         </div>
     </section>
 
+<script>
+    var initialMainImage = document.getElementById('MainImg').src;
 
+    function changeMainImage(image) {
+    var mainImage = document.getElementById('MainImg');
+    mainImage.src = image.src;
+    }
+
+    function restoreMainImage() {
+    var mainImage = document.getElementById('MainImg');
+    mainImage.src = initialMainImage;
+    }
+</script>
 @endsection

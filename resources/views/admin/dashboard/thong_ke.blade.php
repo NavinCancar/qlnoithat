@@ -39,7 +39,7 @@
                     <header class="panel-heading">
                                 Bảng thống kê (
                                     <?php
-                                    $connect = mysqli_connect("localhost", "root", "", "qlchsach");
+                                    $connect = mysqli_connect("localhost", "root", "", "qlnoithat");
                                     $TGBDau = Session::get('TGBDau');
                                     $TGKThuc= Session::get('TGKThuc');
                                     echo (date('d/m/Y', strtotime($TGBDau)). ' - '.date('d/m/Y', strtotime($TGKThuc)))
@@ -208,7 +208,7 @@
 
 
 <?php 
-/*$connect = mysqli_connect("localhost", "root", "", "qlchsach");
+/*$connect = mysqli_connect("localhost", "root", "", "qlnoithat");
 $query = "SELECT * FROM DON_DAT_HANG ORDER BY DDH_NGAYDAT";
     if (Session::get('TGBDau') && Session::get('TGKThuc')) {
         $TGBDau = Session::get('TGBDau');

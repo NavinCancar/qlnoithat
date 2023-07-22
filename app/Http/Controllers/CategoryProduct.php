@@ -1,5 +1,5 @@
 <?php
-//Thể loại sách
+//Loại nội thất
 namespace App\Http\Controllers;
 
 use DB;
@@ -29,68 +29,66 @@ class CategoryProduct extends Controller
 
     public function all_category_product(){ //Hien thi tat ca
         $this->AuthLogin();
-        $all_category_product = DB::table('the_loai_sach')->get();
+        $all_category_product = DB::table('loai_noi_that')->get();
         $manager_category_product = view('admin.all_category_product')->with('all_category_product', $all_category_product);
                 
-        $count_category_product = DB::table('the_loai_sach')->count('TLS_MA');
+        $count_category_product = DB::table('loai_noi_that')->count('LNT_MA');
         Session::put('count_category_product',$count_category_product);
         return view('admin-layout')->with('admin.all_category_product', $manager_category_product);
     }
 
-    public function save_category_product(Request $request){//thêm thể loại sách
+    public function save_category_product(Request $request){//Thêm loại nội thất
         $this->AuthLogin();
         $data = array();
-        //$data['TLS_MA'] = $request->category_product_desc;
-        $data['TLS_TEN'] = $request->category_product_name;
+        //$data['LNT_MA'] = $request->category_product_desc;
+        $data['LNT_TEN'] = $request->category_product_name;
 
-        DB::table('the_loai_sach')->insert($data);
-        Session::put('message','Thêm thể loại sách thành công');
+        DB::table('loai_noi_that')->insert($data);
+        Session::put('message','Thêm loại nội thất thành công');
         return Redirect::to('add-category-product');
 
 
     }
 
-    public function edit_category_product($TLS_MA){
+    public function edit_category_product($LNT_MA){
         $this->AuthLogin();
-        $edit_category_product = DB::table('the_loai_sach')->where('TLS_MA',$TLS_MA)->get();
+        $edit_category_product = DB::table('loai_noi_that')->where('LNT_MA',$LNT_MA)->get();
         $manager_category_product = view('admin.edit_category_product')->with('edit_category_product', $edit_category_product);
         return view('admin-layout')->with('admin.edit_category_product', $manager_category_product);
     }
 
-    public function update_category_product(Request $request, $TLS_MA){
+    public function update_category_product(Request $request, $LNT_MA){
         $this->AuthLogin();
         $data = array();
-        //$data['TLS_MA'] = $request->category_product_desc;
-        $data['TLS_TEN'] = $request->category_product_name;
-        DB::table('the_loai_sach')->where('TLS_MA',$TLS_MA)->update($data);
-        Session::put('message','Cập nhật thể loại sách thành công');
+        //$data['LNT_MA'] = $request->category_product_desc;
+        $data['LNT_TEN'] = $request->category_product_name;
+        DB::table('loai_noi_that')->where('LNT_MA',$LNT_MA)->update($data);
+        Session::put('message','Cập nhật loại nội thất thành công');
         return Redirect::to('all-category-product');
 
     }
 
-    public function delete_category_product($TLS_MA){
+    public function delete_category_product($LNT_MA){
         $this->AuthLogin();
-        DB::table('the_loai_sach')->where('TLS_MA',$TLS_MA)->delete();
-        Session::put('message','Xóa thể loại sách thành công');
+        DB::table('loai_noi_that')->where('LNT_MA',$LNT_MA)->delete();
+        Session::put('message','Xóa loại nội thất thành công');
         return Redirect::to('all-category-product');
 
     }
 
     // Danh mục sản phẩm trang chủ
-    public function show_category_home($TLS_MA){
-        $all_category_product = DB::table('the_loai_sach')->get();
+    public function show_category_home($LNT_MA){
+        $all_category_product = DB::table('loai_noi_that')->get();
 
-        $category_by_id = DB::table('sach')
-
-        ->join('hinh_anh_sach','sach.SACH_MA','=','hinh_anh_sach.SACH_MA')
-        ->join('cua_sach', 'sach.SACH_MA', '=', 'cua_sach.SACH_MA')
-        ->join('the_loai_sach', 'the_loai_sach.TLS_MA', '=', 'cua_sach.TLS_MA')
-
-        ->orderby('sach.SACH_NGAYTAO','desc')
-        ->where('the_loai_sach.TLS_MA', $TLS_MA)
+        $category_by_id = DB::table('noi_that')
+        ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
+        ->join('loai_noi_that', 'loai_noi_that.LNT_MA', '=', 'noi_that.LNT_MA')
+        ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
+        ->where('loai_noi_that.LNT_MA', $LNT_MA)
+        ->orderby('noi_that.NT_NGAYTAO','desc')
         ->get();
 
-        $category_name = DB::table('the_loai_sach')->where('the_loai_sach.TLS_MA', $TLS_MA )->get();
+        $category_name = DB::table('loai_noi_that')->where('loai_noi_that.LNT_MA', $LNT_MA )->get();
        /* echo '<pre>';
         print_r ($category_by_id);
         echo '</pre>';*/

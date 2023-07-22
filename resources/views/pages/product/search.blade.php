@@ -9,33 +9,34 @@
             @foreach($search_product as $key => $product)
             <div class="product text-center col-lg-3 col-md-4 col-12">
                 
-                    <img class="img-fluid mb-3" src="public/frontend/img/noithat/{{$product->HAS_DUONGDAN}}" alt="">
+                    <img class="img-fluid mb-3" src="public/frontend/img/noithat/{{$product->HANT_DUONGDAN}}" alt="">
 
                     <div class="star">
                         <?php
-                          // Create connection
-                          $conn = new mysqli('localhost', 'root', '', 'qlchsach');
-                          // Check connection
-                          if ($conn->connect_error) {
-                            die("Connection failed: " . $conn->connect_error);
-                          }
-                          $point = "select ROUND(AVG(DG_DIEM)) dg from Danh_gia group by SACH_MA having SACH_MA ='".$product->SACH_MA."'";
-                          $result = $conn->query($point);
-                          //$dg='';
-                          $dg=0;
-                          while ($row = $result->fetch_assoc()) {
-                              $dg= $row['dg']."<br>";
-                          }
-                          $x = 1;
-                          for ($x = 1; $x <= $dg; $x++) {
-                          echo '<i class="fas fa-star"></i>';
-                          }
+                        // Create connection
+                        $conn = new mysqli('localhost', 'root', '', 'qlnoithat');
+                        // Check connection
+                        if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                        }
+                        $point = "select ROUND(AVG(DG_DIEM)) dg, COUNT('DG_MA') sl  from Danh_gia group by NT_MA having NT_MA ='".$product->NT_MA."'";
+                        $result = $conn->query($point);
+                        $dg=0; $sl=0;
+                        while ($row = $result->fetch_assoc()) {
+                            $dg= $row['dg']."<br>";
+                            $sl= $row['sl'];
+                        }
+                        $x = 1;
+                        for ($x = 1; $x <= $dg; $x++) {
+                        echo '<i class="fas fa-star"></i>';
+                        } 
+                        echo '<i> ('.$sl.')</i>';
                         ?>
                     </div>
-                    <h5 class="p-name">{{$product->SACH_TEN}}</h5>
-                    <h4 class="p-price">{{number_format($product->SACH_GIA)}} đ</h4>
+                    <h5 class="p-name">{{$product->NT_TEN}}</h5>
+                    <h4 class="p-price">{{number_format($product->NT_GIA)}} đ</h4>
 
-                    <a href="{{ URL::to('/chi-tiet-san-pham/'. $product->SACH_MA) }}"><button class="buy-btn">MUA NGAY</button></a>
+                    <a href="{{ URL::to('/chi-tiet-san-pham/'. $product->NT_MA) }}"><button class="buy-btn">MUA NGAY</button></a>
                 </div>
             
             @endforeach

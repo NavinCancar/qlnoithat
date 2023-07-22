@@ -36,7 +36,7 @@
                 <?php $tong =0; ?>
                 @foreach($CTGH as $key => $cart_pro)
                 <tr>
-                    <td ><img src="../../qlchsach/public/frontend/img/noithat/{{$cart_pro->HAS_DUONGDAN}}" alt=""></td>
+                    <td ><img src="../../qlnoithat/public/frontend/img/noithat/{{$cart_pro->HAS_DUONGDAN}}" alt=""></td>
                     <td>
                         <h5 style='width: 100%;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'>{{$cart_pro->SACH_TEN}}</h5>
                     </td>
