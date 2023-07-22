@@ -28,7 +28,7 @@
     margin: 0 10% 5%;
 }
 .khung{
-    height: 25em;
+    height: 17em;
     text-decoration: none;
 }
 </style>
