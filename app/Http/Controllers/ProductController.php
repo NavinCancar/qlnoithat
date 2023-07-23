@@ -202,7 +202,7 @@ class ProductController extends Controller
             $data['DG_DIEM'] = $request->DG_DIEM;
             $data['DG_THOIGIAN'] =  Carbon::now('Asia/Ho_Chi_Minh');
             DB::table('danh_gia')->insert($data);
-            Session::put('message','Cập nhật sách thành công');
+            Session::put('message','Gửi đánh giá thành công');
             return Redirect::to('chi-tiet-san-pham/'.$NT_MA);
 
             /*echo '<pre>';

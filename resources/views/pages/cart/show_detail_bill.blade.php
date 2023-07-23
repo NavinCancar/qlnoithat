@@ -10,28 +10,44 @@
     @foreach($all_DDH as $key => $all_DDH)
         <form role="form" action="#"  method="post" enctype= "multipart/form-data">
             {{ csrf_field() }}
-            <div class="form-group">
-                <label for="exampleInputEmail1"><b>Mã đơn đặt hàng:</b></label>
-                <input type="text" name="DDH_MA" disabled value="{{$all_DDH->DDH_MA}}" class="form-control" id="exampleInputEmail1">
+            <div class="row">
+                <div class="col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1"><b>Mã đơn đặt hàng:</b></label>
+                        <input type="text" name="DDH_MA" disabled value="{{$all_DDH->DDH_MA}}" class="form-control" id="exampleInputEmail1">
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1"><b>Ngày đặt:</b></label>
+                        <input type="text" name="DDH_MA" disabled value="{{$all_DDH->DDH_NGAYDAT}}" class="form-control" id="exampleInputEmail1">
+                    </div>
+                </div>
+                <div class="col-md-5 col-sm-12">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1"><b>Trạng thái đơn hàng:</b></label>
+                        <input type="text" name="DDH_MA" disabled value="{{$all_DDH->TT_TEN}}" class="form-control" id="exampleInputEmail1">
+                    </div>
+                </div>
             </div>
-            
-            <div class="form-group">
-                <label for="exampleInputEmail1"><b>Trạng thái đơn hàng:</b></label>
-                <input type="text" name="DDH_MA" disabled value="{{$all_DDH->TT_TEN}}" class="form-control" id="exampleInputEmail1">
-            </div>
-
-            <div class="form-group">
-                <label for="exampleInputEmail1"><b>Họ tên người nhận:</b></label>
-                <input type="text" name="DDH_MA" disabled value="{{$all_DDH->DCGH_HOTENNGUOINHAN}}" class="form-control" id="exampleInputEmail1">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1"><b>Địa chỉ giao:</b></label>
-                <input type="text" name="DDH_MA" disabled value="{{$all_DDH->DCGH_SONHA}}, {{$all_DDH->XP_TEN}}, {{$all_DDH->HQ_TEN}}, {{$all_DDH->TTP_TEN}}" 
-                class="form-control" id="exampleInputEmail1">
+            <div class="row">
+                <div class="col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1"><b>Họ tên người nhận:</b></label>
+                        <input type="text" name="DDH_MA" disabled value="{{$all_DDH->DCGH_HOTENNGUOINHAN}}" class="form-control" id="exampleInputEmail1">
+                    </div>
+                </div>
+                <div class="col-md-9 col-sm-12">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1"><b>Địa chỉ giao:</b></label>
+                        <input type="text" name="DDH_MA" disabled value="{{$all_DDH->DCGH_VITRICUTHE}}, {{$all_DDH->TTP_TEN}}" 
+                        class="form-control" id="exampleInputEmail1">
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1"><b>Nội thất đặt:</b></label>
-                <section id="cart-container" class="container my-5">
+                <section id="cart-container" class="container my-2">
             <table width="100%">
                 <thead>
                     <tr>
@@ -46,9 +62,9 @@
                 <tbody>
                 @foreach($group_DDH as $key => $cart_pro)
                 <tr>
-                    <td ><img src="../../qlnoithat/public/frontend/img/noithat/{{$cart_pro->HAS_DUONGDAN}}" alt=""></td>
+                    <td ><img src="../../qlnoithat/public/frontend/img/noithat/{{$cart_pro->HANT_DUONGDAN}}" alt=""></td>
                     <td>
-                        <h5 style='width: 100%;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'>{{$cart_pro->SACH_TEN}}</h5>
+                        <h5 style='width: 100%;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'>{{$cart_pro->NT_TEN}}</h5>
                     </td>
                     <td>
                         <h5><span id="donGia1">{{number_format($cart_pro->CTDDH_DONGIA)}}</span> đ</h5>
@@ -65,44 +81,44 @@
                     </td>
                 </tr>
                 @endforeach
-
-
                     </tbody>
                 </table>
             </section>
             </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1"><b>Ngày đặt:</b></label>
-                <input type="text" name="DDH_MA" disabled value="{{$all_DDH->DDH_NGAYDAT}}" class="form-control" id="exampleInputEmail1">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1"><b>Phí ship:</b></label>
-                <input type="text" name="DDH_MA" disabled value="{{$all_DDH->DDH_PHISHIPTHUCTE}}" class="form-control" id="exampleInputEmail1">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1"><b>Thuế VAT:</b></label>
-                <input type="text" name="DDH_MA" disabled value="{{$all_DDH->DDH_THUEVAT}}" class="form-control" id="exampleInputEmail1">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1"><b>Tổng tiền:</b></label>
-                <input type="text" name="DDH_MA" disabled value="{{number_format($all_DDH->DDH_TONGTIEN)}}" class="form-control" id="exampleInputEmail1">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1"><b>Hình thức thanh toán:</b></label>
-                <input type="text" name="DDH_MA" disabled value="{{$all_DDH->HTTT_TEN}}" class="form-control" id="exampleInputEmail1">
-            </div>
-            @if($all_DDH->HTTT_MA!=1)
-            <div class="form-group">
-                <label for="exampleInputEmail1"><b>Hình ảnh chuyển khoản:</b></label>
-                <input type="text" name="DDH_MA" disabled value="{{$all_DDH->DDH_DUONGDANHINHANHCHUYENKHOAN}}" class="form-control" id="exampleInputEmail1">
-                <img src="../public/frontend/img/minhchung/{{$all_DDH->DDH_DUONGDANHINHANHCHUYENKHOAN}}">
-            </div>
-            @endif
 
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1"><b>Hình thức thanh toán:</b></label>
+                        <input type="text" name="DDH_MA" disabled value="{{$all_DDH->HTTT_TEN}}" class="form-control" id="exampleInputEmail1">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1"><b>Phí ship:</b></label>
+                        <input type="text" name="DDH_MA" disabled value="{{$all_DDH->DDH_PHISHIPTHUCTE}}" class="form-control" id="exampleInputEmail1">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1"><b>Thuế VAT:</b></label>
+                        <input type="text" name="DDH_MA" disabled value="{{$all_DDH->DDH_THUEVAT}}" class="form-control" id="exampleInputEmail1">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1"><b>Tổng tiền:</b></label>
+                        <input type="text" name="DDH_MA" disabled value="{{number_format($all_DDH->DDH_TONGTIEN)}}" class="form-control" id="exampleInputEmail1">
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    @if($all_DDH->HTTT_MA!=1)
+                    <div class="form-group center">
+                        <label for="exampleInputEmail1"><b>Hình ảnh chuyển khoản:</b></label><br>
+                        <input type="text" name="DDH_MA" hidden value="{{$all_DDH->DDH_DUONGDANHINHANHCHUYENKHOAN}}" class="form-control" id="exampleInputEmail1">
+                        <img src="../../qlnoithat/public/frontend/img/minhchung/{{$all_DDH->DDH_DUONGDANHINHANHCHUYENKHOAN}}" height="250px">
+                    </div>
+                    @endif
+                    <a href="{{URL::to('/show-all-bill')}}"><button type="button" style="width:100%;" class="btn btn-dark btn-sm">Quay về</button></a>
+                </div>
+            </div>
         </form>
     @endforeach
     </div>
-    <a href="{{URL::to('/show-all-bill')}}"><button type="button" style="width:100%" class="btn btn-dark btn-sm">Quay về</button></a>
   </div>
 </div>
 

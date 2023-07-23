@@ -11,10 +11,10 @@
         <form role="form" action="{{URL::to('/order')}}"  method="post" enctype= "multipart/form-data">
             {{ csrf_field() }}
             <div class="form-group">
-                <label for="exampleInputEmail1"><b>Họ tên người nhận, địa chỉ giao:</b></label>
+                <label for="exampleInputEmail1"><b>Phí vận chuyển - Họ tên người nhận - Địa chỉ giao:</b></label>
                 <select name="DCGH_MA" class="form-control input-sm m-bot15">
                     @foreach($DCGH as $key => $DCGH)
-                        <option value="{{$DCGH->DCGH_MA}}">{{number_format($DCGH->XP_CHIPHIGIAOHANG)}} đ, {{$DCGH->DCGH_HOTENNGUOINHAN}}, {{$DCGH->DCGH_SONHA}}, {{$DCGH->XP_TEN}}, {{$DCGH->HQ_TEN}}, {{$DCGH->TTP_TEN}}</option>
+                        <option value="{{$DCGH->DCGH_MA}}">{{number_format($DCGH->TTP_CHIPHIGIAOHANG)}} VNĐ - {{$DCGH->DCGH_HOTENNGUOINHAN}} - {{$DCGH->DCGH_VITRICUTHE}}, {{$DCGH->TTP_TEN}}</option>
                     @endforeach 
                 </select>
             </div>
@@ -36,21 +36,21 @@
                 <?php $tong =0; ?>
                 @foreach($CTGH as $key => $cart_pro)
                 <tr>
-                    <td ><img src="../../qlnoithat/public/frontend/img/noithat/{{$cart_pro->HAS_DUONGDAN}}" alt=""></td>
+                    <td ><img src="../../qlnoithat/public/frontend/img/noithat/{{$cart_pro->HANT_DUONGDAN}}" alt=""></td>
                     <td>
-                        <h5 style='width: 100%;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'>{{$cart_pro->SACH_TEN}}</h5>
+                        <h5 style='width: 100%;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'>{{$cart_pro->NT_TEN}}</h5>
                     </td>
                     <td>
-                        <h5><span id="donGia1">{{number_format($cart_pro->SACH_GIA)}}</span> đ</h5>
+                        <h5><span id="donGia1">{{number_format($cart_pro->NT_GIA)}}</span> đ</h5>
                     </td>
                     <td>            
-                        <input disabled class="w-25 pl-1" disabled name="qty" value="{{$cart_pro->CTGH_SOLUONGSACH}}" type="number" min="1" id="amount1">
+                        <input disabled class="w-25 pl-1" disabled name="qty" value="{{$cart_pro->CTGH_SOLUONG}}" type="number" min="1" id="amount1">
                     </td>
                     <td>
-                        <h5><span id="tongGia1"></span> {{number_format($cart_pro->CTGH_SOLUONGSACH*$cart_pro->SACH_GIA)}} đ</h5>
+                        <h5><span id="tongGia1"></span> {{number_format($cart_pro->CTGH_SOLUONG*$cart_pro->NT_GIA)}} đ</h5>
                     </td>
                     <?php
-                        $tong = $tong + $cart_pro->CTGH_SOLUONGSACH*$cart_pro->SACH_GIA;
+                        $tong = $tong + $cart_pro->CTGH_SOLUONG*$cart_pro->NT_GIA;
                     ?>
                 </tr>
                 @endforeach
@@ -60,35 +60,40 @@
                 </table>
             </section>
             </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1"><b>Thuế VAT (%):</b></label>
-                <input type="text" name="DDH_THUEVAT" readonly value="8" class="form-control" id="exampleInputEmail1">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1"><b>Tổng tiền (Sách + Thuế):</b></label>
-                <input type="text" name="" readonly value="<?php echo number_format($tong+$tong*0.08);?>" class="form-control" id="exampleInputEmail1">
-                <input name="DDH_TONGTIEN" type="hidden" value="<?php echo $tong+$tong*0.08;?>" class="form-control" id="exampleInputEmail1">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1"><b>Họ tên người nhận, địa chỉ giao:</b></label>
-                <select name="HTTT_MA" class="form-control input-sm m-bot15">
-                    @foreach($HTTT as $key => $HTTT)
-                        <option value="{{$HTTT->HTTT_MA}}">{{$HTTT->HTTT_TEN}}</option>
-                    @endforeach 
-                </select>
-            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1"><b>Thuế VAT (%):</b></label>
+                        <input type="text" name="DDH_THUEVAT" readonly value="8" class="form-control" id="exampleInputEmail1">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1"><b>Tổng tiền (Nội thất + Thuế):</b></label>
+                        <input type="text" name="" readonly value="<?php echo number_format($tong+$tong*0.08);?>" class="form-control" id="exampleInputEmail1">
+                        <input name="DDH_TONGTIEN" type="hidden" value="<?php echo $tong+$tong*0.08;?>" class="form-control" id="exampleInputEmail1">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1"><b>Hình thức thanh toán:</b></label>
+                        <select name="HTTT_MA" class="form-control input-sm m-bot15">
+                            @foreach($HTTT as $key => $HTTT)
+                                <option value="{{$HTTT->HTTT_MA}}">{{$HTTT->HTTT_TEN}}</option>
+                            @endforeach 
+                        </select>
+                    </div>
 
-
-            <div class="form-group">
-                <label for="exampleInputEmail1"><b>Hình ảnh chuyển khoản (trừ phương thức thanh toán trực tiếp):</b></label>
-                <input type="file" name="DDH_DUONGDANHINHANHCHUYENKHOAN" class="form-control" id="exampleInputEmail1" >
+                    <div class="form-group">
+                        <label for="exampleInputEmail1"><b>Hình ảnh chuyển khoản (trừ phương thức thanh toán trực tiếp):</b></label>
+                        <input type="file" name="DDH_DUONGDANHINHANHCHUYENKHOAN" class="form-control" id="exampleInputEmail1" >
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-3 col-sm-12 pt-4" >
+                    <button type="submit" style="width:100%" class="btn btn-info btn-sm">Xác nhận đặt hàng</button>
+                    <br><a href="{{URL::to('/show-cart')}}"><button type="button" style="width:100%" class="btn btn-dark btn-sm">Quay về</button></a>
+                </div>
             </div>
-          <button type="submit" style="width:100%" class="btn btn-info btn-sm">Xác nhận đặt hàng</button></a>
-            <br>
         </form>
     </div>
-    
-    <a href="{{URL::to('/show-cart')}}"><button type="button" style="width:100%" class="btn btn-dark btn-sm">Quay về</button></a>
   </div>
 </div>
 

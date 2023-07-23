@@ -23,7 +23,7 @@ Route::post('/tim-kiem', 'App\Http\Controllers\HomeController@search'); ///
 Route::get('/danh-muc-san-pham/{LNT_MA}', 'App\Http\Controllers\CategoryProduct@show_category_home'); ///
 Route::get('/chi-tiet-san-pham/{NT_MA}', 'App\Http\Controllers\ProductController@detail_product'); ///
 
-Route::post('/danh-gia/{NT_MA}', 'App\Http\Controllers\ProductController@danh_gia');
+Route::post('/danh-gia/{NT_MA}', 'App\Http\Controllers\ProductController@danh_gia');///
 
 //Login
 Route::get('/dang-nhap','App\Http\Controllers\CostumerController@dang_nhap'); ///
@@ -36,10 +36,10 @@ Route::post('/dang-ky', 'App\Http\Controllers\CostumerController@signup'); ///
 //Cart
 //Route::post('/update-cart-quantity','App\Http\Controllers\CartController@update_cart_quantity');
 //Route::post('/update-cart','App\Http\Controllers\CartController@update_cart');
-Route::post('/save-cart','App\Http\Controllers\CartController@save_cart');
-Route::get('/show-cart','App\Http\Controllers\CartController@show_cart'); //
-Route::post('/update-cart', 'App\Http\Controllers\CartController@update_cart');
-Route::get('/delete-cart/{NT_MA}', 'App\Http\Controllers\CartController@delete_cart');
+Route::post('/save-cart','App\Http\Controllers\CartController@save_cart'); ///
+Route::get('/show-cart','App\Http\Controllers\CartController@show_cart'); ///
+Route::post('/update-cart', 'App\Http\Controllers\CartController@update_cart'); ///
+Route::get('/delete-cart/{NT_MA}', 'App\Http\Controllers\CartController@delete_cart'); ///
 
 //Location: Địa chỉ giao hàng
 Route::get('/dia-chi-giao-hang','App\Http\Controllers\CostumerController@all_location'); ///
@@ -52,11 +52,11 @@ Route::post('/save-location', 'App\Http\Controllers\CostumerController@save_loca
 Route::post('/update-location/{DCGH_MA}', 'App\Http\Controllers\CostumerController@update_location'); ///
 
 //Don dat hang
-Route::get('/show-all-bill','App\Http\Controllers\CartController@show_all_bill');
-Route::get('/show-detail-bill/{DDH_MA}','App\Http\Controllers\CartController@show_detail_bill');
-Route::get('/show-detail-order','App\Http\Controllers\CartController@show_detail_order');
-Route::post('/order','App\Http\Controllers\CartController@order');
-Route::post('/search-in-order', 'App\Http\Controllers\CartController@search_in_order');
+Route::get('/show-all-bill','App\Http\Controllers\CartController@show_all_bill'); ///
+Route::get('/show-detail-bill/{DDH_MA}','App\Http\Controllers\CartController@show_detail_bill'); ///
+Route::get('/show-detail-order','App\Http\Controllers\CartController@show_detail_order'); ///
+Route::post('/order','App\Http\Controllers\CartController@order'); ///
+Route::post('/search-in-order', 'App\Http\Controllers\CartController@search_in_order'); ///
 
 //Account
 Route::get('/tai-khoan', 'App\Http\Controllers\CostumerController@show_account'); ///
