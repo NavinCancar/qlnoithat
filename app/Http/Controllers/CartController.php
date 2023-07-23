@@ -21,7 +21,8 @@ class CartController extends Controller
         }else{
             //return Redirect::to('trang-chu')->send();
             $alert='Đăng nhập để có thể sử dụng chức năng này!';
-            return Redirect::to('trang-chu')->send()->with('alert',$alert);
+            //return Redirect::to('trang-chu')->send()->with('alert',$alert);
+            return Redirect::back()->send()->with('alert', $alert);
         }
     }
 
@@ -66,7 +67,6 @@ class CartController extends Controller
         ->orderby('GH_NGAYCAPNHATLANCUOI','desc')->get();
         
         return view('pages.cart.show_cart')->with('category', $all_category_product)->with('all_cart_product', $all_cart_product);
-
     }
 
     public function update_cart(Request $request){

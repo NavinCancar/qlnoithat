@@ -119,16 +119,12 @@ class CostumerController extends Controller
         $KH_MA = Session::get('KH_MA');
         $all_category_product = DB::table('loai_noi_that')->get();
         $all_DCGH = DB::table('dia_chi_giao_hang')
-        ->join('xa_phuong','dia_chi_giao_hang.XP_MA','=','xa_phuong.XP_MA')
-        ->join('huyen_quan','huyen_quan.HQ_MA','=','xa_phuong.HQ_MA')
-        ->join('tinh_thanh_pho','huyen_quan.TTP_MA','=','tinh_thanh_pho.TTP_MA')
-        ->join('co_dia_chi_giao_hang','dia_chi_giao_hang.DCGH_MA','=','co_dia_chi_giao_hang.DCGH_MA')
-        ->where('co_dia_chi_giao_hang.KH_MA',$KH_MA)
-        ->orderby('dia_chi_giao_hang.DCGH_MA','desc')->get();
+        ->join('tinh_thanh_pho','dia_chi_giao_hang.TTP_MA','=','tinh_thanh_pho.TTP_MA')
+        ->where('dia_chi_giao_hang.KH_MA',$KH_MA)
+        ->orderby('dia_chi_giao_hang.DCGH_MA')->get();
         
         $count_DCGH = DB::table('dia_chi_giao_hang')
-        ->join('co_dia_chi_giao_hang','dia_chi_giao_hang.DCGH_MA','=','co_dia_chi_giao_hang.DCGH_MA')
-        ->where('co_dia_chi_giao_hang.KH_MA',$KH_MA)
+        ->where('dia_chi_giao_hang.KH_MA',$KH_MA)
         ->count('dia_chi_giao_hang.DCGH_MA');
         Session::put('count_DCGH',$count_DCGH);
         return view('pages.location.all-location')->with('category', $all_category_product)
@@ -141,8 +137,6 @@ class CostumerController extends Controller
         $all_category_product = DB::table('loai_noi_that')->get();
 
         $ttp= DB::table('tinh_thanh_pho')->orderby('TTP_TEN')->get();
-        //$hq= DB::table('huyen_quan')->orderby('HQ_MA')->get();
-        //$xp= DB::table('xa_phuong')->orderby('XP_MA')->get();
         
         return view('pages.location.add-location')->with('category', $all_category_product)
         //->with('ttp', $ttp)->with('hq', $hq)->with('xp', $xp);
@@ -173,28 +167,19 @@ class CostumerController extends Controller
     }
 
     public function save_location(Request $request){
-        
         $this->AuthLogin();
         $data = array();
         $data['DCGH_HOTENNGUOINHAN'] = $request->DCGH_HOTENNGUOINHAN;
-        $data['XP_MA'] = $request->XP_MA;
-        $data['DCGH_SONHA'] = $request->DCGH_SONHA;
+        $data['TTP_MA'] = $request->TTP_MA;
+        $data['DCGH_VITRICUTHE'] = $request->DCGH_VITRICUTHE;
         if ($request->DCGH_GHICHU == NULL) $request->DCGH_GHICHU = "Không";
         $data['DCGH_GHICHU'] = $request->DCGH_GHICHU;
 
-        DB::table('dia_chi_giao_hang')->insert($data);
-
-        $data2 = array();
         $KH_MA = Session::get('KH_MA');
-        $DCGH_MA=DB::table('dia_chi_giao_hang')
-        ->orderby('dia_chi_giao_hang.DCGH_MA','desc')->first();
-        $data2['DCGH_MA'] = $DCGH_MA->DCGH_MA;
-        $data2['KH_MA'] = $KH_MA;
-
-        DB::table('co_dia_chi_giao_hang')->insert($data2);
-
+        $data['KH_MA'] = $KH_MA;
+        DB::table('dia_chi_giao_hang')->insert($data);
         Session::put('message','Thêm địa chỉ giao hàng mới thành công');
-        return Redirect::to('them-dia-chi-giao-hang');
+        return Redirect::to('dia-chi-giao-hang');
         
     }
 
@@ -204,22 +189,18 @@ class CostumerController extends Controller
         $all_category_product = DB::table('loai_noi_that')->get();
 
         $ttp= DB::table('tinh_thanh_pho')->orderby('TTP_TEN')->get();
-        $hq= DB::table('huyen_quan')->orderby('HQ_TEN')->get();
-        $xp= DB::table('xa_phuong')->orderby('XP_TEN')->get();
         $edit_location = DB::table('dia_chi_giao_hang')
-        ->join('xa_phuong','dia_chi_giao_hang.XP_MA','=','xa_phuong.XP_MA')
-        ->join('huyen_quan','huyen_quan.HQ_MA','=','xa_phuong.HQ_MA')
         ->where('dia_chi_giao_hang.DCGH_MA',$DCGH_MA)->get();
         return view('pages.location.edit-location')->with('category', $all_category_product)
-        ->with('ttp', $ttp)->with('hq', $hq)->with('xp', $xp)->with(compact('ttp'))->with('edit_location', $edit_location);
+        ->with('ttp', $ttp)->with(compact('ttp'))->with('edit_location', $edit_location);
     }
 
     public function update_location(Request $request, $DCGH_MA){
         $this->AuthLogin();
         $data = array();
         $data['DCGH_HOTENNGUOINHAN'] = $request->DCGH_HOTENNGUOINHAN;
-        $data['XP_MA'] = $request->XP_MA;
-        $data['DCGH_SONHA'] = $request->DCGH_SONHA;
+        $data['TTP_MA'] = $request->TTP_MA;
+        $data['DCGH_VITRICUTHE'] = $request->DCGH_VITRICUTHE;
         if ($request->DCGH_GHICHU == NULL) $request->DCGH_GHICHU = "Không";
         $data['DCGH_GHICHU'] = $request->DCGH_GHICHU;
 
@@ -227,17 +208,14 @@ class CostumerController extends Controller
 
         Session::put('message','Cập nhật địa chỉ giao hàng thành công');
         return Redirect::to('dia-chi-giao-hang');
-
     }
 
     public function delete_location($DCGH_MA){
         $this->AuthLogin();
-        DB::table('co_dia_chi_giao_hang')->where('DCGH_MA',$DCGH_MA)->delete();
         DB::table('dia_chi_giao_hang')->where('DCGH_MA',$DCGH_MA)->delete();
         
-        Session::put('message','Xóa sách thành công');
+        Session::put('message','Xóa địa chỉ giao hàng thành công');
         return Redirect::to('dia-chi-giao-hang');
-
     }
 
     //Account

@@ -37,19 +37,19 @@ Route::post('/dang-ky', 'App\Http\Controllers\CostumerController@signup'); ///
 //Route::post('/update-cart-quantity','App\Http\Controllers\CartController@update_cart_quantity');
 //Route::post('/update-cart','App\Http\Controllers\CartController@update_cart');
 Route::post('/save-cart','App\Http\Controllers\CartController@save_cart');
-Route::get('/show-cart','App\Http\Controllers\CartController@show_cart');
+Route::get('/show-cart','App\Http\Controllers\CartController@show_cart'); //
 Route::post('/update-cart', 'App\Http\Controllers\CartController@update_cart');
 Route::get('/delete-cart/{NT_MA}', 'App\Http\Controllers\CartController@delete_cart');
 
 //Location: Địa chỉ giao hàng
-Route::get('/dia-chi-giao-hang','App\Http\Controllers\CostumerController@all_location');
-Route::get('/them-dia-chi-giao-hang','App\Http\Controllers\CostumerController@add_location');
-Route::get('/sua-dia-chi-giao-hang/{DCGH_MA}', 'App\Http\Controllers\CostumerController@edit_location');
-Route::get('/xoa-dia-chi-giao-hang/{DCGH_MA}', 'App\Http\Controllers\CostumerController@delete_location');
+Route::get('/dia-chi-giao-hang','App\Http\Controllers\CostumerController@all_location'); ///
+Route::get('/them-dia-chi-giao-hang','App\Http\Controllers\CostumerController@add_location'); ///
+Route::get('/sua-dia-chi-giao-hang/{DCGH_MA}', 'App\Http\Controllers\CostumerController@edit_location'); ///
+Route::get('/xoa-dia-chi-giao-hang/{DCGH_MA}', 'App\Http\Controllers\CostumerController@delete_location'); ///
 
 Route::post('/select-location', 'App\Http\Controllers\CostumerController@select_location');
-Route::post('/save-location', 'App\Http\Controllers\CostumerController@save_location');
-Route::post('/update-location/{DCGH_MA}', 'App\Http\Controllers\CostumerController@update_location');
+Route::post('/save-location', 'App\Http\Controllers\CostumerController@save_location'); ///
+Route::post('/update-location/{DCGH_MA}', 'App\Http\Controllers\CostumerController@update_location'); ///
 
 //Don dat hang
 Route::get('/show-all-bill','App\Http\Controllers\CartController@show_all_bill');

@@ -3,7 +3,7 @@
 
 <div class="table-agile-info">
   <div class="panel panel-default">
-            <h2 class="text-center font-weight-bold pt-3">TÀI KHOẢN</h2>
+            <h2 class="text-center font-weight-bold pt-3">Tài khoản</h2>
             <hr class="mx-auto">
             <?php
                 $message= Session::get('message');
