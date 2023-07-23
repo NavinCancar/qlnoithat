@@ -7,6 +7,14 @@
                         <div class="login-form"><!--login form-->
                             <h2 class="font-weight-bold">Đăng nhập</h2>
                             <hr>
+                            <?php
+                                $message= Session::get('message');
+                                if($message){
+                                    echo '<div class="text-danger mb-3">'. $message .'</div>';
+                                    Session::put('message', null);
+                                }
+                            ?>
+                            
                             <form action="{{URL::to('/costumer-check')}}" method="post">
                                 {{ csrf_field() }}
                                 <input type="text" class="ggg" name="sdt" placeholder="Nhập số điện thoại" required="">
@@ -18,13 +26,6 @@
                                 <button type="submit" class="btn btn-default">Đăng nhập</button>
                             </form>
                         </div><!--/login form-->
-                        <?php
-                            $message= Session::get('message');
-                            if($message){
-                                echo '<span class="">'. $message .'</span>';
-                                Session::put('message', null);
-                            }
-                            ?>
                     </div>
 
                     <div class="col-sm-2">
@@ -35,14 +36,37 @@
                         <div class="signup-form"><!--sign up form-->
                             <h2 class="font-weight-bold">Đăng ký</h2>
                             <hr>
+                            <?php
+                                $message2= Session::get('message2');
+                                if($message2){
+                                    echo '<div class="text-danger mb-3">'. $message2 .'</div>';
+                                    Session::put('message2', null);
+                                }
+                            ?>
                             <form action="{{URL::to('/dang-ky')}}" method="post" enctype= "multipart/form-data">
                                 {{ csrf_field() }}
                                 <input type="text" class="ggg" name="KH_SODIENTHOAI" placeholder="Nhập số điện thoại" required="" pattern="[0-9]{10,11}">
 			                    <input type="password" class="ggg" name="KH_MATKHAU" placeholder="Nhập password" required="">
                                 <input type="text" class="ggg" name="KH_HOTEN" placeholder="Nhập họ tên" required="">
-                                <input type="date" class="ggg" name="KH_NGAYSINH" placeholder="Nhập ngày sinh" max="<?php echo date('Y-m-d', strtotime('-12 years')); ?>" required="">
-			                    <input type="text" class="ggg" name="KH_GIOITINH" placeholder="Nhập giới tính" required="">
-                                <input type="text" class="ggg" name="KH_DIACHI" placeholder="Nhập địa chỉ" required="">
+                                <input type="date" class="ggg" name="KH_NGAYSINH" placeholder="Nhập ngày sinh" max="<?php echo date('Y-m-d', strtotime('-15 years')); ?>" required="">
+			                    
+                                <style>
+                                    input[type="radio"] {
+                                        transform: scale(0.5); /* Điều chỉnh kích thước */
+                                        height: 20px;
+                                    }
+                                </style>
+                                <div class="row">
+                                    <div class="col-6" style="display: flex; align-items: center; flex-wrap: nowrap;">
+                                        <input type="radio" id="nam" name="KH_GIOITINH" value="Nam" required="" style="width: 50px; margin-left: 30%;">
+                                        <label for="nam" >Nam</label>
+                                    </div>
+                                    <div class="col-6" style="display: flex; align-items: center; flex-wrap: nowrap;">
+                                        <input type="radio" id="nu" name="KH_GIOITINH" value="Nữ" required="" style="width: 50px; margin-left: 20%;">
+                                        <label for="nu">Nữ</label>
+                                    </div>
+                                </div>
+
                                 <input type="text" class="ggg" name="KH_EMAIL" placeholder="Nhập email"  required="" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
 			                    <input type="file" class="ggg" name="KH_DUONGDANANHDAIDIEN" placeholder="Chọn ảnh đại diện">
                                 <button type="submit" class="btn btn-default">Đăng ký</button>

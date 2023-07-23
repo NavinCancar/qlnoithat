@@ -20,18 +20,18 @@ Route::get('/danh-muc-san-pham/tat-ca', 'App\Http\Controllers\HomeController@all
 Route::post('/tim-kiem', 'App\Http\Controllers\HomeController@search'); ///
 
 //Home Product Categories
-Route::get('/danh-muc-san-pham/{LNT_MA}', 'App\Http\Controllers\CategoryProduct@show_category_home');///
-Route::get('/chi-tiet-san-pham/{NT_MA}', 'App\Http\Controllers\ProductController@detail_product');///
+Route::get('/danh-muc-san-pham/{LNT_MA}', 'App\Http\Controllers\CategoryProduct@show_category_home'); ///
+Route::get('/chi-tiet-san-pham/{NT_MA}', 'App\Http\Controllers\ProductController@detail_product'); ///
 
 Route::post('/danh-gia/{NT_MA}', 'App\Http\Controllers\ProductController@danh_gia');
 
 //Login
-Route::get('/dang-nhap','App\Http\Controllers\CostumerController@dang_nhap');
-Route::get('/logout', 'App\Http\Controllers\CostumerController@logout');
-Route::post('/costumer-check', 'App\Http\Controllers\CostumerController@trang_chu');
+Route::get('/dang-nhap','App\Http\Controllers\CostumerController@dang_nhap'); ///
+Route::get('/logout', 'App\Http\Controllers\CostumerController@logout'); ///
+Route::post('/costumer-check', 'App\Http\Controllers\CostumerController@trang_chu'); ///
 
 //Sign up
-Route::post('/dang-ky', 'App\Http\Controllers\CostumerController@signup');
+Route::post('/dang-ky', 'App\Http\Controllers\CostumerController@signup'); ///
 
 //Cart
 //Route::post('/update-cart-quantity','App\Http\Controllers\CartController@update_cart_quantity');
@@ -59,10 +59,10 @@ Route::post('/order','App\Http\Controllers\CartController@order');
 Route::post('/search-in-order', 'App\Http\Controllers\CartController@search_in_order');
 
 //Account
-Route::get('/tai-khoan', 'App\Http\Controllers\CostumerController@show_account');
-Route::get('/cap-nhat-tai-khoan', 'App\Http\Controllers\CostumerController@edit_account');
+Route::get('/tai-khoan', 'App\Http\Controllers\CostumerController@show_account'); ///
+Route::get('/cap-nhat-tai-khoan', 'App\Http\Controllers\CostumerController@edit_account'); ///
 
-Route::post('/update-tai-khoan', 'App\Http\Controllers\CostumerController@update_account');
+Route::post('/update-tai-khoan', 'App\Http\Controllers\CostumerController@update_account'); ///
 //---------------------------------------------------
 
 
