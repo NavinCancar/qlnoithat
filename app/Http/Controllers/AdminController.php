@@ -47,42 +47,7 @@ class AdminController extends Controller
         Session::put('SO_DDH',$ddh);
 
         //Đơn hàng chưa xử lý
-        /*SELECT c.*, t.*
-        from trang_thai t JOIN (SELECT c1.DDH_MA ddh, c1.TT_MA tt
-                                from chi_tiet_trang_thai c1 join (SELECT ddh_ma, max(cttt_ngaycapnhat)cap_nhat
-                                                                    from chi_tiet_trang_thai GROUP BY ddh_ma) c2 on c1.ddh_ma = c2.ddh_ma
-                                WHERE c1.CTTT_NGAYCAPNHAT = c2.cap_nhat) c on t.TT_MA = c.tt
-        WHERE t.TT_TEN='Da dat hang nhung chua xu ly';
-        $ddh_cxl1 = DB::table('chi_tiet_trang_thai')
-        ->select('ddh_ma', 'max(cttt_ngaycapnhat) cap_nhat')
-        ->groupby('ddh_ma')->get();
-
-        $ddh_cxl2 = DB::table('chi_tiet_trang_thai c1')
-        ->select('c1.DDH_MA ddh', 'c1.TT_MA tt')
-        ->join(DB::raw('(' . $ddh_cxl1->toSql() . ') c2'), 'c1.ddh_ma', '=', 'c2.ddh_ma')
-        ->where('c1.CTTT_NGAYCAPNHAT', '=', 'c2.cap_nhat');
-
-        $ddh_cxl = DB::table('trang_thai t')
-        ->select('c.*', 't.*')
-        ->join(DB::raw('(' . $ddh_cxl2->toSql() . ') c'), 't.TT_MA', '=', 'c.tt')
-        ->where('t.TT_TEN', '=', 'Da dat hang nhung chua xu ly')->count();
-
-        $query = DB::table('trang_thai as t') ->select('c.', 't.')
-        ->join(DB::raw('(SELECT c1.DDH_MA ddh, c1.TT_MA tt from chi_tiet_trang_thai c1 join (SELECT ddh_ma, max(cttt_ngaycapnhat) cap_nhat from chi_tiet_trang_thai GROUP BY ddh_ma) c2 on c1.ddh_ma = c2.ddh_ma
-        WHERE c1.CTTT_NGAYCAPNHAT = c2.cap_nhat) c'),'t.TT_MA', '=', 'c.tt')
-        ->where('t.TT_TEN', 'Da dat hang nhung chua xu ly') ->get();
-
-        $ddh_cxl = DB::table('trang_thai as t') ->select('c.*', 't.*')
-        ->join(DB::raw('(SELECT c1.DDH_MA ddh, c1.TT_MA tt from chi_tiet_trang_thai c1
-                        join (SELECT ddh_ma, max(cttt_ngaycapnhat) cap_nhat from chi_tiet_trang_thai
-                        GROUP BY ddh_ma) c2 on c1.ddh_ma = c2.ddh_ma
-                        WHERE c1.CTTT_NGAYCAPNHAT = c2.cap_nhat) c'),'t.TT_MA', '=', 'c.tt')
-        ->where('t.TT_TEN', 'Đã đặt hàng nhưng chưa xử lý')->count();*/
-
-        $ddh_cxl = DB::table('don_dat_hang')
-        ->join('chi_tiet_trang_thai','don_dat_hang.DDH_MA','=','chi_tiet_trang_thai.DDH_MA')
-        ->where('chi_tiet_trang_thai.TT_MA', 1)->count();
-
+        $ddh_cxl = DB::table('don_dat_hang')->where('TT_MA', 1)->count();
         Session::put('SO_DDH_CXL',$ddh_cxl);
 
         //Số người dùng
@@ -90,50 +55,26 @@ class AdminController extends Controller
         Session::put('SO_NGUOI_DUNG',$users);
 
         //Số nhân viên
-        $emp = DB::table('nhanvien')->count();
+        $emp = DB::table('nhan_vien')->count();
         Session::put('SO_NHAN_VIEN',$emp);
 
         //Doanh thu
-        /*$result = DB::table('don_dat_hang as d')
-            ->join(DB::raw('(SELECT c.*, t.*
-                            FROM trang_thai t
-                            JOIN (SELECT c1.DDH_MA ddh, c1.TT_MA tt
-                                  FROM chi_tiet_trang_thai c1
-                                  JOIN (SELECT ddh_ma, max(cttt_ngaycapnhat)cap_nhat
-                                        FROM chi_tiet_trang_thai
-                                        GROUP BY ddh_ma) c2
-                                  ON c1.ddh_ma = c2.ddh_ma
-                                  WHERE c1.CTTT_NGAYCAPNHAT = c2.cap_nhat) c
-                            ON t.TT_MA = c.tt
-                            WHERE t.TT_TEN = "Da thanh toan") c'), 'd.DDH_MA', '=', 'c.ddh')
-            ->select(DB::raw('SUM(d.ddh_tongtien)'))
-            ->get(); 
+        $ddh_dtt = DB::table('don_dat_hang')
+        ->where('TT_MA', 4)->sum('ddh_tongtien');
 
-            $ddh_dtt = DB::table('don_dat_hang as d')
-            ->join(DB::raw('(SELECT c.*, t.*
-                            from trang_thai t JOIN (SELECT c1.DDH_MA ddh, c1.TT_MA tt
-                                    from chi_tiet_trang_thai c1 join (SELECT ddh_ma, max(cttt_ngaycapnhat)cap_nhat
-                            from chi_tiet_trang_thai GROUP BY ddh_ma) c2 on c1.ddh_ma = c2.ddh_ma
-                            WHERE c1.CTTT_NGAYCAPNHAT = c2.cap_nhat) c on t.TT_MA = c.tt
-                            WHERE t.TT_TEN="Đã thanh toán") c'), 'd.ddh_ma', '=', 'c.ddh')->sum('ddh_tongtien');*/
+        $ctlx = DB::table('chi_tiet_lo_xuat')->sum('CTLX_GIA');
 
-            $ddh_dtt = DB::table('don_dat_hang')
-            ->join('chi_tiet_trang_thai','don_dat_hang.DDH_MA','=','chi_tiet_trang_thai.DDH_MA')
-            ->where('chi_tiet_trang_thai.TT_MA', 5)->sum('ddh_tongtien');
+        Session::put('DOANH_THU_L',$ctlx);
+        Session::put('DOANH_THU_S',$ddh_dtt);
 
-            $ctlx = DB::table('chi_tiet_lo_xuat')->sum('CTLX_GIA');
+        $danh_gia = DB::table('danh_gia')
+        ->join('khach_hang','khach_hang.KH_MA','=','danh_gia.KH_MA')
+        ->orderby('DG_MA','desc')->get();
 
-            Session::put('DOANH_THU_L',$ctlx);
-            Session::put('DOANH_THU_S',$ddh_dtt);
-
-            $danh_gia = DB::table('danh_gia')
-            ->join('khach_hang','khach_hang.KH_MA','=','danh_gia.KH_MA')
-            ->orderby('DG_MA','desc')->get();
-
-            $countdg = DB::table('danh_gia')
-            ->join('khach_hang','khach_hang.KH_MA','=','danh_gia.KH_MA')->count();
+        $countdg = DB::table('danh_gia')
+        ->join('khach_hang','khach_hang.KH_MA','=','danh_gia.KH_MA')->count();
     
-            Session::put('countdg',$countdg);
+        Session::put('countdg',$countdg);
             
     	return view('admin.dashboard')->with('danh_gia',$danh_gia);
     }
@@ -142,18 +83,12 @@ class AdminController extends Controller
     	$admin_email = $request->admin_email;
         $admin_password = $request->admin_password;
 
-        $result = DB::table('nhanvien')->where('NV_EMAIL', $admin_email)->where('NV_MATKHAU', $admin_password)->first();
+        $result = DB::table('nhan_vien')->where('NV_EMAIL', $admin_email)->where('NV_MATKHAU', $admin_password)->first();
         /*echo '<pre>';
         print_r ($result);
         echo '</pre>';
         return view('admin.dashboard'); */
          if($result){
-          /* $login_count = $login->count();
-            if($login_count>0){
-                Session::put('admin_name',$login->admin_name);
-                Session::put('admin_id',$login->admin_id);
-                return Redirect::to('/dashboard');
-            }*/
             Session::put('NV_HOTEN',$result->NV_HOTEN);
             Session::put('NV_MA',$result->NV_MA);
             Session::put('NV_DUONGDANANHDAIDIEN',$result->NV_DUONGDANANHDAIDIEN);

@@ -35,7 +35,10 @@ class ProductController extends Controller
 
         $all_product = DB::table('noi_that')
         ->join('nha_cung_cap','nha_cung_cap.NCC_MA','=','noi_that.NCC_MA')
-        ->orderby('NT_MA','desc')->get();
+        ->join('loai_noi_that','loai_noi_that.LNT_MA','=','noi_that.LNT_MA')
+        ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
+        ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
+        ->orderby('noi_that.NT_MA','desc')->get();
         $manager_product = view('admin.all_product')->with('all_product', $all_product);
                 
         $count_product = DB::table('noi_that')->count('NT_MA');
@@ -169,23 +172,19 @@ class ProductController extends Controller
             $keywords = $request ->keywords_submit;
     
             $all_category_product = DB::table('loai_noi_that')->get();
-    
-            $all_product = DB::table('noi_that')
-            ->join('nha_cung_cap','nha_cung_cap.NCC_MA','=','noi_that.NCC_MA')
-            ->orderby('NT_MA','desc')->get();
-    
+
             $search_product = DB::table('noi_that')
             ->join('nha_cung_cap','nha_cung_cap.NCC_MA','=','noi_that.NCC_MA')
+            ->join('loai_noi_that','loai_noi_that.LNT_MA','=','noi_that.LNT_MA')
             ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
             ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
             ->where('noi_that.NT_TEN', 'like', '%'.$keywords.'%')
             ->orWhere('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
             ->where('nha_cung_cap.NCC_TEN', 'like', '%'.$keywords.'%')
-            ->get();
+            ->orderby('noi_that.NT_MA','desc')->get();
     
             return view('admin.search_product')->with('category', $all_category_product)
-            ->with('search_product', $search_product)
-            ->with('all_product', $all_product);
+            ->with('search_product', $search_product);
         }
 
         public function danh_gia(Request $request, $NT_MA){

@@ -25,7 +25,7 @@ class Loxuat extends Controller
 
     public function add_loxuat(){ 
         $this->AuthLogin(); 
-        $nvien = DB::table('nhanvien')->orderby('NV_MA')->get(); 
+        $nvien = DB::table('nhan_vien')->orderby('NV_MA')->get(); 
         return view('admin.add_loxuat')->with('nvien', $nvien);
 
     }
@@ -33,7 +33,7 @@ class Loxuat extends Controller
         $this->AuthLogin(); 
 
         $all_loxuat = DB::table('lo_xuat')
-        ->join('nhanvien','nhanvien.NV_MA','=','lo_xuat.NV_MA')
+        ->join('nhan_vien','nhanvien.NV_MA','=','lo_xuat.NV_MA')
         //->join('ngon_ngu','ngon_ngu.NN_MA','=','sach.NN_MA')
         ->orderby('LX_MA','desc')->get();
         $manager_loxuat = view('admin.all_loxuat')->with('all_loxuat', $all_loxuat);
@@ -65,7 +65,7 @@ class Loxuat extends Controller
     public function edit_loxuat($LX_MA){
         $this->AuthLogin();
         
-        $nvien = DB::table('nhanvien')->orderby('NV_MA')->get();
+        $nvien = DB::table('nhan_vien')->orderby('NV_MA')->get();
         $edit_loxuat = DB::table('lo_xuat')->where('LX_MA',$LX_MA)->get();       
         $manager_loxuat = view('admin.edit_loxuat')->with('nvien', $nvien)->with('edit_loxuat',$edit_loxuat);
         //->with('nvien_product',$nvien_product);

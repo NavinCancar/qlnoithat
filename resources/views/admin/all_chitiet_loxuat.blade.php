@@ -34,12 +34,12 @@
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td>{{$pro->LX_MA }}</td>
-            <td>{{$pro->SACH_TEN}}</td>
+            <td>{{$pro->NT_TEN}}</td>
             <td>{{$pro->CTLX_SOLUONG}}</td>  
             <td>{{number_format($pro->CTLX_GIA)}} đ</td>
             <td>
-              <a href="{{URL::to('/edit-chitiet-loxuat/lo='.$pro->LX_MA.'&sach='.$pro->SACH_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
-              <a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-chitiet-loxuat/lo='.$pro->LX_MA.'&sach='.$pro->SACH_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
+              <a href="{{URL::to('/edit-chitiet-loxuat/lo='.$pro->LX_MA.'&sach='.$pro->NT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
+              <a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-chitiet-loxuat/lo='.$pro->LX_MA.'&sach='.$pro->NT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
             </td>
           </tr>
          @endforeach

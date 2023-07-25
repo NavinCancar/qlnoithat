@@ -6,7 +6,7 @@
       Liệt kê nội thất
     </div>
     <div class="row w3-res-tb">
-      <div class="col-sm-5 m-b-xs">
+      <div class="col-sm-7 m-b-xs">
         <?php
           $message = Session::get('message');
           if($message){
@@ -21,8 +21,8 @@
                   }
         ?>
       </div>
-      <div class="col-sm-4">
-        <p style="text-align: right;">Tìm nội thất:</p>
+      <div class="col-sm-2">
+        <p>Tìm nội thất:</p>
       </div>
       <div class="col-sm-3">
         <div class="input-group">
@@ -38,44 +38,32 @@
       <table class="table table-striped b-t b-light">
               <thead>
                 <tr>
-                  <th style="width:20px;">
-                    <label class="i-checks m-b-none">
-                      <input type="checkbox"><i></i>
-                    </label>
-                  </th>
-                  <th>Mã nội thất</th>
+                  <th>Mã</th>
                   <th>Tên nội thất</th>
-                  <th>Mô tả nội thất</th>
+                  <th>Ảnh nội thất</th>
+                  <th>Loại nội thất</th>
+                  <th>Nhà cung cấp</th>
                   <th>Giá nội thất</th>
-                  <th>Chiết khấu</th>
-                  <th>Ngày cập nhật</th>
                   <th>Ngày tạo</th>
-                  <th>Số trang</th>
-                  <th>Mã ISBN</th>
-                  <th>Nhà xuất bản</th>
-                  <th>Ngôn ngữ</th>
-
+                  <th>Ngày cập nhật</th>
                   <th style="width:30px;"></th>
                 </tr>
               </thead>
               <tbody>
               @foreach($search_product as $key => $search)
                 <tr>
-                  <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-                  <td>{{$search->SACH_MA }}</td>
-                  <td>{{$search->SACH_TEN}}</td>
-                  <td>{{$search->SACH_MOTA}}</td>
-                  <td>{{$search->SACH_GIA}}</td>
-                  <td>{{$search->SACH_CHIETKHAU}}</td>
-                  <td>{{$search->SACH_NGAYCAPNHAT}}</td>
-                  <td>{{$search->SACH_NGAYTAO}}</td>
-                  <td>{{$search->SACH_SOTRANG}}</td>
-                  <td>{{$search->SACH_ISBN}}</td>
-                  <td>{{$search->NXB_TEN }}</td>
-                  <td>{{$search->NN_TEN }}</td>
+                  <td>{{$search->NT_MA }}</td>
+                  <td>{{$search->NT_TEN}}</td>
+                  <td><img src="public/frontend/img/noithat/{{$search->HANT_DUONGDAN}}" width="100"></td>
+                  <td>{{$search->LNT_TEN }}</td>
+                  <td>{{$search->NCC_TEN }}</td>
+                  <td>{{number_format($search->NT_GIA)}} VNĐ</td>
+                  <td>{{$search->NT_NGAYTAO}}</td>
+                  <td>{{$search->NT_NGAYCAPNHAT}}</td>
                   <td>
-                    <a href="{{URL::to('/edit-product/'.$search -> SACH_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
-                    <a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-product/'.$search -> SACH_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
+                    <a href="{{URL::to('/chi-tiet-san-pham/'.$search -> NT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-info-circle text-primary text-active"></i></a>
+                    <a href="{{URL::to('/edit-product/'.$search -> NT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
+                    <a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-product/'.$search -> NT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
                   </td>
                 </tr>
                @endforeach

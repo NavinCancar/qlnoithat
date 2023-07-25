@@ -27,9 +27,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Hình ảnh của nội thất</label>
-                                      <select name="SACH_MA" class="form-control input-sm m-bot15" required="">
+                                      <select name="NT_MA" class="form-control input-sm m-bot15" required="">
                                         @foreach($product as $key => $prod)
-                                            <option value="{{$prod->SACH_MA}}">{{$prod->SACH_TEN}}</option>
+                                            <option value="{{$prod->NT_MA}}">{{$prod->NT_TEN}}</option>
                                         @endforeach
                                             
                                     </select>

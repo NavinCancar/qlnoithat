@@ -40,12 +40,12 @@ class EmployeeController extends Controller
     public function all_employee(){ //Hien thi tat ca
         $this->AuthLoginChu();
 
-        $all_employee = DB::table('nhanvien')
+        $all_employee = DB::table('nhan_vien')
         ->join('chuc_vu','nhanvien.CV_MA','=','chuc_vu.CV_MA')
         ->orderby('NV_MA','desc')->get();
         $manager_employee = view('admin.dashboard.all_employee')->with('all_employee', $all_employee);
                 
-        $count_employee = DB::table('nhanvien')->count('NV_MA');
+        $count_employee = DB::table('nhan_vien')->count('NV_MA');
         Session::put('count_employee',$count_employee);
         return view('admin-layout')->with('admin.dashboard.all_employee', $manager_employee);
     }
@@ -88,7 +88,7 @@ class EmployeeController extends Controller
         //print_r ($data);
         //echo '</pre>';
 
-        DB::table('nhanvien')->insert($data);
+        DB::table('nhan_vien')->insert($data);
         Session::put('message','Thêm nhân viên thành công');
         return Redirect::to('add-employee');
     }
@@ -100,7 +100,7 @@ class EmployeeController extends Controller
             return Redirect::to('dashboard')->send();  
         }else{
             $position = DB::table('CHUC_VU')->orderby('CV_MA')->get(); 
-            $edit_employee = DB::table('nhanvien')->where('NV_MA',$NV_MA)->get();
+            $edit_employee = DB::table('nhan_vien')->where('NV_MA',$NV_MA)->get();
             Session::put('NV_MA_get',$NV_MA_get);
             $manager_employee = view('admin.dashboard.edit_employee')->with('edit_employee', $edit_employee)->with('position',$position);
             return view('admin-layout')->with('admin.dashboard.edit_employee', $manager_employee);
@@ -136,7 +136,7 @@ class EmployeeController extends Controller
         print_r ($get_image);
         echo '</pre>';*/
 
-        DB::table('nhanvien')->where('NV_MA',$NV_MA)->update($data);
+        DB::table('nhan_vien')->where('NV_MA',$NV_MA)->update($data);
         Session::put('message','Cập nhật nhân viên thành công');
         return Redirect::to('all-employee');
 
@@ -144,7 +144,7 @@ class EmployeeController extends Controller
 
     public function delete_employee($NV_MA){
         $this->AuthLogin();
-        DB::table('nhanvien')->where('NV_MA',$NV_MA)->delete();
+        DB::table('nhan_vien')->where('NV_MA',$NV_MA)->delete();
         Session::put('message','Xóa nhân viên thành công');
         return Redirect::to('all-employee');
 
@@ -154,7 +154,7 @@ class EmployeeController extends Controller
         $this->AuthLogin();
         $NV_MA = Session::get('NV_MA');
         $position = DB::table('CHUC_VU')->orderby('CV_MA')->get(); 
-        $edit_employee = DB::table('nhanvien')->where('NV_MA',$NV_MA)->get();
+        $edit_employee = DB::table('nhan_vien')->where('NV_MA',$NV_MA)->get();
         $manager_employee = view('admin.dashboard.show_employee')->with('edit_employee', $edit_employee)->with('position',$position);
         return view('admin-layout')->with('admin.dashboard.show_employee', $manager_employee);
     }

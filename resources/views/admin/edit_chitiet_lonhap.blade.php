@@ -16,7 +16,7 @@
                             }
                             ?>
                             <div class="position-center">
-                                <form role="form" action="{{URL::to('/update-chitiet-lonhap/lo='.$edit_value->LN_MA.'&sach='.$edit_value->SACH_MA)}}" method="post">
+                                <form role="form" action="{{URL::to('/update-chitiet-lonhap/lo='.$edit_value->LN_MA.'&sach='.$edit_value->NT_MA)}}" method="post">
                                     {{csrf_field() }}
                                     <div class="form-group"> 
                                     <label for="exampleInputEmail1">Mã lô nhập</label>
@@ -39,14 +39,14 @@
 
                                 <div class="form-group"> 
                                     <label for="exampleInputEmail1">Tên nội thất nhập</label>
-                                      <select  disabled name="masach_product_name" class="form-control input-sm m-bot15" required="">
+                                      <select  disabled name="maNT_product_name" class="form-control input-sm m-bot15" required="">
                                         @foreach($sach as $key => $masach)
                                             
                                                
-                                            @if($masach->SACH_MA==$edit_value->SACH_MA)
-                                            <option selected value="{{$masach->SACH_MA}}">{{$masach->SACH_TEN}}</option>
+                                            @if($masach->NT_MA==$edit_value->NT_MA)
+                                            <option selected value="{{$masach->NT_MA}}">{{$masach->NT_TEN}}</option>
                                             @else
-                                            <option value="{{$masach->SACH_MA}}">{{$masach->SACH_TEN}}</option>
+                                            <option value="{{$masach->NT_MA}}">{{$masach->NT_TEN}}</option>
                                             @endif
                                         @endforeach
                                             

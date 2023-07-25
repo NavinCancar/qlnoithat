@@ -16,23 +16,23 @@
                             }
                             ?>
                             <div class="position-center">
-                                <form role="form" action="{{URL::to('/update-product/'.$edit_value->SACH_MA)}}" method="post">
+                                <form role="form" action="{{URL::to('/update-product/'.$edit_value->NT_MA)}}" method="post">
                                     {{csrf_field() }}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên nội thất</label>
-                                    <input type="text" name="SACH_TEN" class="form-control" id="exampleInputEmail1" value="{{$edit_value->SACH_TEN}}" required="">
+                                    <input type="text" name="NT_TEN" class="form-control" id="exampleInputEmail1" value="{{$edit_value->NT_TEN}}" required="">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Mô tả nội thất</label>
-                                    <textarea style="resize: none"  rows="8" class="form-control" name="SACH_MOTA" id="ckeditor1" required="">"{{$edit_value->SACH_MOTA}}"</textarea>
+                                    <textarea style="resize: none"  rows="8" class="form-control" name="NT_MOTA" id="ckeditor1" required="">"{{$edit_value->NT_MOTA}}"</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Giá</label>
-                                    <input type="text" name="SACH_GIA" class="form-control" id="exampleInputEmail1" value="{{$edit_value->SACH_GIA}}" required=""  pattern="[0-9]+">
+                                    <input type="text" name="NT_GIA" class="form-control" id="exampleInputEmail1" value="{{$edit_value->NT_GIA}}" required=""  pattern="[0-9]+">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Chiết khấu</label>
-                                    <input type="text" name="SACH_CHIETKHAU" class="form-control" id="exampleInputEmail1" value="{{$edit_value->SACH_CHIETKHAU}}" required=""  pattern="[0-9]+">
+                                    <input type="text" name="NT_CHIETKHAU" class="form-control" id="exampleInputEmail1" value="{{$edit_value->NT_CHIETKHAU}}" required=""  pattern="[0-9]+">
                                 </div>
                                 <!--<div class="form-group">
                                     <label for="exampleInputEmail1">Ngày cập nhât</label>
@@ -44,11 +44,11 @@
                                 </div>-->
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Số trang</label>
-                                    <input type="text" name="SACH_SOTRANG" class="form-control" id="exampleInputEmail1" value="{{$edit_value->SACH_SOTRANG}}" required=""  pattern="[0-9]+">
+                                    <input type="text" name="NT_SOTRANG" class="form-control" id="exampleInputEmail1" value="{{$edit_value->NT_SOTRANG}}" required=""  pattern="[0-9]+">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">ISBN</label>
-                                    <input type="text" name="SACH_ISBN" class="form-control" id="exampleInputEmail1" value="{{$edit_value->SACH_ISBN}}" required=""  pattern="[0-9]+">
+                                    <input type="text" name="NT_ISBN" class="form-control" id="exampleInputEmail1" value="{{$edit_value->NT_ISBN}}" required=""  pattern="[0-9]+">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Nhà xuất bản</label>

@@ -57,22 +57,22 @@
         @foreach($all_product as $key => $pro)
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-            <td>{{$pro->SACH_MA }}</td>
-            <td>{{$pro->SACH_TEN}}</td>
-            <td>{{$pro->SACH_GIA}}</td>
-            <td>{{$pro->SACH_SOTRANG}}</td>
-            <td>{{$pro->SACH_ISBN}}</td>
+            <td>{{$pro->NT_MA }}</td>
+            <td>{{$pro->NT_TEN}}</td>
+            <td>{{$pro->NT_GIA}}</td>
+            <td>{{$pro->NT_SOTRANG}}</td>
+            <td>{{$pro->NT_ISBN}}</td>
             <td>{{$pro->NXB_TEN }}</td>
             <td>{{$pro->NN_TEN }}</td>
             <td>
                   <?php
                   //Số lượng tồn
                     $ddh = DB::table('chi_tiet_don_dat_hang')
-                    ->where('SACH_MA', $pro->SACH_MA)->sum('CTDDH_SOLUONG');
+                    ->where('NT_MA', $pro->NT_MA)->sum('CTDDH_SOLUONG');
                     $nhap = DB::table('chi_tiet_lo_nhap')
-                    ->where('SACH_MA', $pro->SACH_MA)->sum('CTLN_SOLUONG');
+                    ->where('NT_MA', $pro->NT_MA)->sum('CTLN_SOLUONG');
                     $xuat = DB::table('chi_tiet_lo_xuat')
-                    ->where('SACH_MA', $pro->SACH_MA)->sum('CTLX_SOLUONG');
+                    ->where('NT_MA', $pro->NT_MA)->sum('CTLX_SOLUONG');
 
                     echo($nhap-$xuat-$ddh);
                   ?>

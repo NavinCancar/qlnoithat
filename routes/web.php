@@ -68,10 +68,10 @@ Route::post('/update-tai-khoan', 'App\Http\Controllers\CostumerController@update
 
 
 //Backend
-Route::get('/admin', 'App\Http\Controllers\AdminController@index');
-Route::get('/dashboard', 'App\Http\Controllers\AdminController@show_dashboard');
-Route::get('/log-out', 'App\Http\Controllers\AdminController@logout');
-Route::post('/admin-dashboard', 'App\Http\Controllers\AdminController@dashboard');
+Route::get('/admin', 'App\Http\Controllers\AdminController@index'); ///
+Route::get('/dashboard', 'App\Http\Controllers\AdminController@show_dashboard'); ///
+Route::get('/log-out', 'App\Http\Controllers\AdminController@logout');///
+Route::post('/admin-dashboard', 'App\Http\Controllers\AdminController@dashboard'); ///
 
 //Category Product
 Route::get('/add-category-product', 'App\Http\Controllers\CategoryProduct@add_category_product');
@@ -84,22 +84,22 @@ Route::post('/update-category-product/{LNT_MA}', 'App\Http\Controllers\CategoryP
 
 //Brand Product
 Route::get('/add-brand-product', 'App\Http\Controllers\BrandProduct@add_brand_product');
-Route::get('/edit-brand-product/{NXB_MA}', 'App\Http\Controllers\BrandProduct@edit_brand_product');
-Route::get('/delete-brand-product/{NXB_MA}', 'App\Http\Controllers\BrandProduct@delete_brand_product');
+Route::get('/edit-brand-product/{NCC_MA}', 'App\Http\Controllers\BrandProduct@edit_brand_product');
+Route::get('/delete-brand-product/{NCC_MA}', 'App\Http\Controllers\BrandProduct@delete_brand_product');
 Route::get('/all-brand-product', 'App\Http\Controllers\BrandProduct@all_brand_product');
 
 Route::post('/save-brand-product', 'App\Http\Controllers\BrandProduct@save_brand_product');
-Route::post('/update-brand-product/{NXB_MA}', 'App\Http\Controllers\BrandProduct@update_brand_product');
+Route::post('/update-brand-product/{NCC_MA}', 'App\Http\Controllers\BrandProduct@update_brand_product');
 
 //Product
 Route::get('/add-product', 'App\Http\Controllers\ProductController@add_product');
 Route::get('/edit-product/{NT_MA}', 'App\Http\Controllers\ProductController@edit_product');
 Route::get('/delete-product/{NT_MA}', 'App\Http\Controllers\ProductController@delete_product');
-Route::get('/all-product', 'App\Http\Controllers\ProductController@all_product');
+Route::get('/all-product', 'App\Http\Controllers\ProductController@all_product'); ///
 
 Route::post('/save-product', 'App\Http\Controllers\ProductController@save_product');
 Route::post('/update-product/{NT_MA}', 'App\Http\Controllers\ProductController@update_product');
-Route::post('/search-product', 'App\Http\Controllers\ProductController@search_product');
+Route::post('/search-product', 'App\Http\Controllers\ProductController@search_product'); ///
 
 //Product Image
 Route::get('/add-product-image', 'App\Http\Controllers\ImageProductController@add_product_image');
@@ -112,13 +112,13 @@ Route::post('/update-product-image/{HAS_MA}', 'App\Http\Controllers\ImageProduct
 
 
 //Product tacgia
-Route::get('/add-tacgia-product', 'App\Http\Controllers\TacgiaProduct@add_tacgia_product');
+/*Route::get('/add-tacgia-product', 'App\Http\Controllers\TacgiaProduct@add_tacgia_product');
 Route::get('/edit-tacgia-product/{TG_MA}', 'App\Http\Controllers\TacgiaProduct@edit_tacgia_product');
 Route::get('/delete-tacgia-product/{TG_MA}', 'App\Http\Controllers\TacgiaProduct@delete_tacgia_product');
 Route::get('/all-tacgia-product', 'App\Http\Controllers\TacgiaProduct@all_tacgia_product');
 
 Route::post('/save-tacgia-product', 'App\Http\Controllers\TacgiaProduct@save_tacgia_product');
-Route::post('/update-tacgia-product/{TG_MA}', 'App\Http\Controllers\TacgiaProduct@update_tacgia_product');
+Route::post('/update-tacgia-product/{TG_MA}', 'App\Http\Controllers\TacgiaProduct@update_tacgia_product');*/
 
 //Employee
 Route::get('/show-employee', 'App\Http\Controllers\EmployeeController@show_employee');
@@ -182,8 +182,8 @@ Route::get('/update-status-order/{DDH_MA}', 'App\Http\Controllers\OrderControlle
 Route::post('/update_status/ddh={DDH_MA}&tt={TT_MA}', 'App\Http\Controllers\OrderController@update_status');
 
 //Liet ke thong tin trang thai ddh
-Route::get('/all-lktt-trangthaiddh', 'App\Http\Controllers\OrderController@all_lktt_trangthaiddh');
-Route::get('/all-nguoixuly', 'App\Http\Controllers\OrderController@all_nguoixuly');
+/*Route::get('/all-lktt-trangthaiddh', 'App\Http\Controllers\OrderController@all_lktt_trangthaiddh');
+Route::get('/all-nguoixuly', 'App\Http\Controllers\OrderController@all_nguoixuly');*/
 
 //Phí ship
 Route::get('/show_feeship', 'App\Http\Controllers\AdminController@show_feeship');
@@ -216,22 +216,22 @@ Route::get('/all-khachhang', 'App\Http\Controllers\Khachhang@all_khachhang');
 
 //tacgia cuasach
 
-Route::get('/add-tacgia-cuasach', 'App\Http\Controllers\TacGiaCuaSach@add_tacgia_cuasach');
+/*Route::get('/add-tacgia-cuasach', 'App\Http\Controllers\TacGiaCuaSach@add_tacgia_cuasach');
 Route::get('/edit-tacgia-cuasach/sach={NT_MA}&tacgia={TG_MA}', 'App\Http\Controllers\TacGiaCuaSach@edit_tacgia_cuasach');
 Route::get('/delete-tacgia-cuasach/sach={NT_MA}&tacgia={TG_MA}', 'App\Http\Controllers\TacGiaCuaSach@delete_tacgia_cuasach');
 Route::get('/all-tacgia-cuasach', 'App\Http\Controllers\TacGiaCuaSach@all_tacgia_cuasach');
 
 Route::post('/save-tacgia-cuasach', 'App\Http\Controllers\TacGiaCuaSach@save_tacgia_cuasach');
-Route::post('/update-tacgia-cuasach/sach={NT_MA}&tacgia={TG_MA}', 'App\Http\Controllers\TacGiaCuaSach@update_tacgia_cuasach');
+Route::post('/update-tacgia-cuasach/sach={NT_MA}&tacgia={TG_MA}', 'App\Http\Controllers\TacGiaCuaSach@update_tacgia_cuasach');*/
 
 //theloai cuasach
-Route::get('/add-cttheloai-cuasach', 'App\Http\Controllers\ChiTietTLSach@add_cttheloai_cuasach');
+/*Route::get('/add-cttheloai-cuasach', 'App\Http\Controllers\ChiTietTLSach@add_cttheloai_cuasach');
 Route::get('/edit-cttheloai-cuasach/sach={NT_MA}&theloai={LNT_MA}', 'App\Http\Controllers\ChiTietTLSach@edit_cttheloai_cuasach');
 Route::get('/delete-cttheloai-cuasach/sach={NT_MA}&theloai={LNT_MA}', 'App\Http\Controllers\ChiTietTLSach@delete_cttheloai_cuasach');
 Route::get('/all-cttheloai-cuasach', 'App\Http\Controllers\ChiTietTLSach@all_cttheloai_cuasach');
 
 Route::post('/save-cttheloai-cuasach', 'App\Http\Controllers\ChiTietTLSach@save_cttheloai_cuasach');
-Route::post('/update-cttheloai-cuasach/sach={NT_MA}&theloai={LNT_MA}', 'App\Http\Controllers\ChiTietTLSach@update_cttheloai_cuasach');
+Route::post('/update-cttheloai-cuasach/sach={NT_MA}&theloai={LNT_MA}', 'App\Http\Controllers\ChiTietTLSach@update_cttheloai_cuasach');*/
 
 //ton kho
 Route::get('/ton-kho', 'App\Http\Controllers\ProductController@ton_kho');

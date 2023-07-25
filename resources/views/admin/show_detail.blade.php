@@ -51,7 +51,7 @@
                         <tr>
                             <td ><img src="../../qlnoithat/public/frontend/img/noithat/{{$cart_pro->HAS_DUONGDAN}}" height="105" width="105" alt=""></td>
                             <td>
-                                <h5 style='width: 100%;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'>{{$cart_pro->SACH_TEN}}</h5>
+                                <h5 style='width: 100%;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'>{{$cart_pro->NT_TEN}}</h5>
                             </td>
                             <td>
                                 <h5><span id="donGia1">{{number_format($cart_pro->CTDDH_DONGIA)}}</span> đ</h5>

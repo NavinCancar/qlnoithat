@@ -132,17 +132,17 @@
 								}
 							?>
 						VNĐ</h3>
-						<h4>(Bán nội thất:
+						<h4>- Bán nội thất:
 							<?php
 								if ($dts) {
 									echo number_format($dts);
 								}
-							?> VNĐ |  Bán lại nội thất:
+							?> VNĐ <br>- Bán lại nội thất:
 							<?php
 								if ($dtl) {
 									echo number_format($dtl);
 								} 
-							?> VNĐ)
+							?> VNĐ
 						</h4>
 					</div>
 				  <div class="clearfix"> </div>

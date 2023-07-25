@@ -78,7 +78,7 @@
                   <td>
                       @foreach($group_DDH as $key => $nhom_DDH)
                           @if($nhom_DDH->DDH_MA==$all_DDH->DDH_MA)
-                              <p style='width: 100%;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'>{{$nhom_DDH->SACH_TEN}}</p>
+                              <p style='width: 100%;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'>{{$nhom_DDH->NT_TEN}}</p>
                           @endif
                       @endforeach
                   </td>

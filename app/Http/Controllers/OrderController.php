@@ -27,7 +27,7 @@ class OrderController extends Controller
         $NV_MA_get = Session::get('NV_MA');
 
         $trangthai = DB::table('TRANG_THAI')->get(); 
-        $nhanvienxl = DB::table('NHANVIEN')-> orderby('NV_MA','desc')->get(); 
+        $nhanvienxl = DB::table('nhan_vien')-> orderby('NV_MA','desc')->get(); 
         $edit_order = DB::table('chi_tiet_trang_thai')->where('DDH_MA',$DDH_MA)->get();
         Session::put('NV_MA_get',$NV_MA_get);
         $manager_order = view('admin.dashboard.update_status_order')->with('edit_order', $edit_order)
@@ -78,7 +78,7 @@ class OrderController extends Controller
         $this->AuthLogin(); 
 
         $all_lktt_trangthaiddh = DB::table('duoc_quan_ly_boi')
-        ->join('nhanvien','nhanvien.NV_MA','=','duoc_quan_ly_boi.NV_MA')
+        ->join('nhan_vien','nhanvien.NV_MA','=','duoc_quan_ly_boi.NV_MA')
         ->join('trang_thai','trang_thai.TT_MA','=','duoc_quan_ly_boi.TT_MA')
         ->orderby('nhanvien.NV_MA')->get();
 
@@ -92,7 +92,7 @@ class OrderController extends Controller
         $this->AuthLogin(); 
 
         $all_nguoixuly = DB::table('duoc_xu_ly')
-        ->join('nhanvien','nhanvien.NV_MA','=','duoc_xu_ly.NV_MA')
+        ->join('nhan_vien','nhanvien.NV_MA','=','duoc_xu_ly.NV_MA')
         
         ->orderby('nhanvien.NV_MA')->get();
 

@@ -126,47 +126,47 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 
                 <li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-book"></i>
+                        <i class="fa fa-university"></i>
                         <span>Quản lý nội thất</span>
                     </a>
                     <ul class="sub">
-						<!-- sach -->
+						<!-- noi_that -->
 						<li><a href="{{URL::to('/add-product')}}">Thêm nội thất</a></li>
 						<li><a href="{{URL::to('/all-product')}}">Liệt kê nội thất</a></li>
-						<!-- hinh_anh_sach -->
+						<!-- hinh_anh_noi_that -->
 						<li><a href="{{URL::to('/add-product-image')}}">Thêm ảnh nội thất</a></li>
 						<li><a href="{{URL::to('/all-product-image')}}">Liệt kê ảnh nội thất</a></li>
-						<!-- tac_gia --> 
+						<!-- tac_gia  
 						<li><a href="{{URL::to('/add-tacgia-product')}}">Thêm tác giả</a></li> 
-						<li><a href="{{URL::to('/all-tacgia-product')}}">Liệt kê tác giả</a></li>
-						<!-- co_tac_gia --> 
+						<li><a href="{{URL::to('/all-tacgia-product')}}">Liệt kê tác giả</a></li>-->
+						<!-- co_tac_gia  
 						<li><a href="{{URL::to('/add-tacgia-cuasach')}}">Thêm tác giả của nội thất</a></li>
-						<li><a href="{{URL::to('/all-tacgia-cuasach')}}">Liệt kê tác giả của nội thất</a></li>
+						<li><a href="{{URL::to('/all-tacgia-cuasach')}}">Liệt kê tác giả của nội thất</a></li>-->
                     </ul>  
                 </li>
 				<li class="sub-menu">
                     <a href="javascript:;">
 						<i class="fa fa-th-list"></i>
-                        <span>Quản lý thể loại nội thất</span>
+                        <span>Quản lý loại nội thất</span>
                     </a>
                     <ul class="sub">
-						<!-- the_loai_sach -->
-						<li><a href="{{URL::to('/add-category-product')}}">Thêm thể loại nội thất</a></li>
-						<li><a href="{{URL::to('/all-category-product')}}">Liệt kê thể loại nội thất</a></li>
-						<!-- cua_sach -->
-						<li><a href="{{URL::to('/add-cttheloai-cuasach')}}">Thêm chi tiết thể loại nội thất</a></li>
-						<li><a href="{{URL::to('/all-cttheloai-cuasach')}}">Liệt kê chi tiết thể loại nội thất</a></li>
+						<!-- loai_noi_that -->
+						<li><a href="{{URL::to('/add-category-product')}}">Thêm loại nội thất</a></li>
+						<li><a href="{{URL::to('/all-category-product')}}">Liệt kê loại nội thất</a></li>
+						<!-- cua_sach 
+						<li><a href="{{URL::to('/add-cttheloai-cuasach')}}">Thêm chi tiết loại nội thất</a></li>
+						<li><a href="{{URL::to('/all-cttheloai-cuasach')}}">Liệt kê chi tiết loại nội thất</a></li>-->
                     </ul>
                 </li>
 				<li class="sub-menu">
                     <a href="javascript:;">
 						<i class="fa fa-archive"></i>
-                        <span>Quản lý nhà xuất bản nội thất</span>
+                        <span>Quản lý nhà cung cấp nội thất</span>
                     </a>
                     <ul class="sub">
-						<!-- nha_xuat_ban -->
-						<li><a href="{{URL::to('/add-brand-product')}}">Thêm nhà xuất bản</a></li>
-						<li><a href="{{URL::to('/all-brand-product')}}">Liệt kê nhà xuất bản</a></li>
+						<!-- nha_cung_cap -->
+						<li><a href="{{URL::to('/add-brand-product')}}">Thêm nhà cung cấp</a></li>
+						<li><a href="{{URL::to('/all-brand-product')}}">Liệt kê nhà cung cấp</a></li>
                     </ul>
                 </li>
 				<li class="sub-menu">
@@ -176,18 +176,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </a>
                     <ul class="sub">
 						<li><a href="{{URL::to('/trang-thai/tat-ca')}}">Liệt kê các đơn đặt hàng</a></li> <!-- in cả nội thất? số lượng? đơn giá? -->
-						<li><a href="{{URL::to('/all-lktt-trangthaiddh')}}">Liệt kê thông tin sửa đổi trạng thái đơn đặt hàng</a></li><!-- duoc_quan_ly_boi--> 
-						<li><a href="{{URL::to('/all-nguoixuly')}}">Liệt kê người xử lý đơn hàng</a></li><!-- duoc_xu_ly--> 
-
-						<!-- hinh_thuc_thanh_toan --> 
-						<li><a href="{{URL::to('/add-hinhthu-thanhtoan')}}">Thêm hình thức thanh toán đơn đặt hàng</a></li>
-						<li><a href="{{URL::to('/all-hinhthu-thanhtoan')}}">Liệt kê hình thức thanh toán đơn đặt hàng</a></li>
+						<!--<li><a href="{{URL::to('/all-lktt-trangthaiddh')}}">Liệt kê thông tin sửa đổi trạng thái đơn đặt hàng</a></li> duoc_quan_ly_boi--> 
+						<!--<li><a href="{{URL::to('/all-nguoixuly')}}">Liệt kê người xử lý đơn hàng</a></li> duoc_xu_ly--> 
                     </ul>
                 </li>
 				<li class="sub-menu">
                     <a href="javascript:;">
-						<i class="fa fa-cubes"></i>
-                        <span>Quản lý lô</span>
+						<i class="fa fa-truck"></i>
+                        <span>Quản lý kho</span>
                     </a>
                     <ul class="sub">
 						<li><a href="{{URL::to('/ton-kho')}}">Danh nội thất tồn kho</a></li> 
@@ -219,10 +215,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </ul>
                 </li>
 				<li class="sub-menu">
-                    <a href="{{URL::to('/show_feeship')}}"> 
-						<i class="fa fa-truck"></i> 
-                        <span>Quản lý phí ship</span> 
+                    <a href="javascript:;">
+                        <i class="fa fa-credit-card-alt"></i>
+                        <span>Phí ship và thanh toán</span>
                     </a>
+                    <ul class="sub">
+						<li><a href="{{URL::to('/show_feeship')}}">Quản lý phí ship</a></li>
+
+						<!-- hinh_thuc_thanh_toan --> 
+						<li><a href="{{URL::to('/add-hinhthu-thanhtoan')}}">Thêm hình thức thanh toán đơn đặt hàng</a></li>
+						<li><a href="{{URL::to('/all-hinhthu-thanhtoan')}}">Liệt kê hình thức thanh toán đơn đặt hàng</a></li>
+                    </ul>
                 </li>
 				<li class="sub-menu">
                     <a href="{{URL::to('/thong-ke')}}">

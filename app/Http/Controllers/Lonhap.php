@@ -25,7 +25,7 @@ class Lonhap extends Controller
 
     public function add_lonhap(){ 
         $this->AuthLogin(); 
-        $nvien = DB::table('nhanvien')->orderby('NV_MA')->get(); 
+        $nvien = DB::table('nhan_vien')->orderby('NV_MA')->get(); 
         //$lang_product = DB::table('ngon_ngu')->orderby('NN_MA')->get(); 
         return view('admin.add_lonhap')->with('nvien', $nvien);
         //->with('nvien_product', $nvien_product); 
@@ -35,7 +35,7 @@ class Lonhap extends Controller
         $this->AuthLogin(); 
 
         $all_lonhap = DB::table('lo_nhap')
-        ->join('nhanvien','nhanvien.NV_MA','=','lo_nhap.NV_MA')
+        ->join('nhan_vien','nhanvien.NV_MA','=','lo_nhap.NV_MA')
         //->join('ngon_ngu','ngon_ngu.NN_MA','=','sach.NN_MA')
         ->orderby('LN_MA','desc')->get();
         $manager_lonhap = view('admin.all_lonhap')->with('all_lonhap', $all_lonhap);
@@ -68,7 +68,7 @@ class Lonhap extends Controller
     public function edit_lonhap($LN_MA){
         $this->AuthLogin();
         
-        $nvien = DB::table('nhanvien')->orderby('NV_MA')->get();
+        $nvien = DB::table('nhan_vien')->orderby('NV_MA')->get();
         $edit_lonhap = DB::table('lo_nhap')->where('LN_MA',$LN_MA)->get();       
         $manager_lonhap = view('admin.edit_lonhap')->with('nvien', $nvien)->with('edit_lonhap', $edit_lonhap);
         //->with('nvien_product',$nvien_product);

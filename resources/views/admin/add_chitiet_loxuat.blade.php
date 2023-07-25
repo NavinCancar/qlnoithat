@@ -30,9 +30,9 @@
 
                                 <div class="form-group"> 
                                     <label for="exampleInputEmail1">Nội thất xuất</label>
-                                      <select name="masach_product_name" class="form-control input-sm m-bot15" required="">
+                                      <select name="maNT_product_name" class="form-control input-sm m-bot15" required="">
                                         @foreach($sach as $key => $masach)
-                                            <option value="{{$masach->SACH_MA}}">{{$masach->SACH_TEN}}</option> 
+                                            <option value="{{$masach->NT_MA}}">{{$masach->NT_TEN}}</option> 
                                             
                                         @endforeach
                                             

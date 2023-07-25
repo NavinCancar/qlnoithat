@@ -44,7 +44,7 @@
             <td>{{$prod->HAS_TEN}}</td>
             <td>{{$prod->HAS_DUONGDAN}}</td>
             <td><img src="public/frontend/img/noithat/{{$prod->HAS_DUONGDAN}}" height="100" width="100"></td>
-            <td>{{$prod->SACH_TEN}}</td>
+            <td>{{$prod->NT_TEN}}</td>
             <td>
               <a href="{{URL::to('/edit-product-image/'.$prod -> HAS_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
               <a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-product-image/'.$prod -> HAS_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>

@@ -38,19 +38,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<?php
 		$message= Session::get('message');
 		if($message){
-			echo '<p class="text-bg-danger">'. $message .'</p>';
+			echo '<p style="color:red;">'. $message .'</p>';
 			Session::put('message', null);
 		}
 		?>
 </div>
 
-<?php
-		$message= Session::get('message');
-		if($message){
-			echo '<span class="">'. $message .'</span>';
-			Session::put('message', null);
-		}
-		?>
 </div>
 <script src="{{asset('public/backend/js/bootstrap.js')}}"></script>
 <script src="{{asset('public/backend/js/jquery.dcjqaccordion.2.7.js')}}"></script>
