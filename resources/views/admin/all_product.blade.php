@@ -10,15 +10,15 @@
         <?php
           $message = Session::get('message');
           if($message){
-              echo '<span class="text-alert">'.$message.'</span></br>';
+              echo '<span class="text-alert text-warning">'.$message.'</span></br>';
               Session::put('message',null);
           }
         ?>
         <?php
             $count= Session::get('count_product');
-                  if ($count) {
-                    echo "Tổng số dòng dữ liệu: ".$count;
-                  }
+            if ($count) {
+              echo "Tổng số dòng dữ liệu: ".$count;
+              }
         ?>
       </div>
       <div class="col-sm-2">
@@ -34,6 +34,7 @@
         </div>
       </div>
     </div>
+    <i>Chú ý: Nếu nội thất có có ảnh trên danh sách sẽ không dược hiển thị trên hệ thống!</i>
     <div class="table-responsive">
       <table class="table table-striped b-t b-light">
         <thead>
@@ -54,14 +55,20 @@
           <tr>
             <td>{{$pro->NT_MA }}</td>
             <td>{{$pro->NT_TEN}}</td>
-            <td><img src="public/frontend/img/noithat/{{$pro->HANT_DUONGDAN}}" width="100"></td>
+            <td>
+              @foreach($img_product as $key => $img)
+                @if ($pro->NT_MA == $img->NT_MA)
+                  <img src="public/frontend/img/noithat/{{$img->HANT_DUONGDAN}}" width="100">
+                @endif
+              @endforeach
+            </td>
             <td>{{$pro->LNT_TEN }}</td>
             <td>{{$pro->NCC_TEN }}</td>
             <td>{{number_format($pro->NT_GIA)}} VNĐ</td>
             <td>{{$pro->NT_NGAYTAO}}</td>
             <td>{{$pro->NT_NGAYCAPNHAT}}</td>
             <td>
-              <a href="{{URL::to('/chi-tiet-san-pham/'.$pro -> NT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-info-circle text-primary text-active"></i></a>
+              <a href="{{URL::to('/product-detail/'.$pro -> NT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-info-circle text-primary text-active"></i></a>
               <a href="{{URL::to('/chi-tiet-san-pham/'.$pro -> NT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-google text-warning text-active"></i></a>
               <a href="{{URL::to('/edit-product/'.$pro -> NT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
               <a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-product/'.$pro -> NT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>

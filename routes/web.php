@@ -92,13 +92,14 @@ Route::post('/save-brand-product', 'App\Http\Controllers\BrandProduct@save_brand
 Route::post('/update-brand-product/{NCC_MA}', 'App\Http\Controllers\BrandProduct@update_brand_product');
 
 //Product
-Route::get('/add-product', 'App\Http\Controllers\ProductController@add_product');
-Route::get('/edit-product/{NT_MA}', 'App\Http\Controllers\ProductController@edit_product');
-Route::get('/delete-product/{NT_MA}', 'App\Http\Controllers\ProductController@delete_product');
+Route::get('/add-product', 'App\Http\Controllers\ProductController@add_product'); ///
+Route::get('/edit-product/{NT_MA}', 'App\Http\Controllers\ProductController@edit_product'); ///
+Route::get('/delete-product/{NT_MA}', 'App\Http\Controllers\ProductController@delete_product'); ///
 Route::get('/all-product', 'App\Http\Controllers\ProductController@all_product'); ///
+Route::get('/product-detail/{NT_MA}', 'App\Http\Controllers\ProductController@product_detail'); //
 
-Route::post('/save-product', 'App\Http\Controllers\ProductController@save_product');
-Route::post('/update-product/{NT_MA}', 'App\Http\Controllers\ProductController@update_product');
+Route::post('/save-product', 'App\Http\Controllers\ProductController@save_product'); ///
+Route::post('/update-product/{NT_MA}', 'App\Http\Controllers\ProductController@update_product'); ///
 Route::post('/search-product', 'App\Http\Controllers\ProductController@search_product'); ///
 
 //Product Image

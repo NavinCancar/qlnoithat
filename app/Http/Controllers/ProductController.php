@@ -28,18 +28,47 @@ class ProductController extends Controller
         $brand_product = DB::table('nha_cung_cap')->orderby('NCC_MA')->get();
         $type_product = DB::table('loai_noi_that')->orderby('LNT_MA')->get();
         return view('admin.add_product')->with('brand_product', $brand_product)->with('type_product', $type_product);
-
     }
+
+    public function product_detail($NT_MA){
+        $this->AuthLogin();
+        $brand_product = DB::table('nha_cung_cap')->orderby('NCC_MA')->get();
+        $type_product = DB::table('loai_noi_that')->orderby('LNT_MA')->get();
+        $edit_product = DB::table('noi_that')->where('NT_MA',$NT_MA)->get();
+
+        $cover_img = DB::table('noi_that')
+        ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
+        ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')->where('noi_that.NT_MA',$NT_MA)->get();
+
+        $cover_img_check = DB::table('noi_that')
+        ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
+        ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')->where('noi_that.NT_MA',$NT_MA)->count();
+        Session::put('cover_img_check',$cover_img_check);
+
+        $another_img = DB::table('noi_that')
+        ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
+        ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'not like', '%-1%')->where('noi_that.NT_MA',$NT_MA)
+        ->orderby('HANT_DUONGDAN')->get();
+
+        $manager_product = view('admin.product_detail')->with('edit_product', $edit_product)
+        ->with('brand_product',$brand_product)->with('type_product',$type_product)
+        ->with('cover_img',$cover_img)->with('another_img',$another_img);
+        return view('admin-layout')->with('admin.edit_product', $manager_product);
+    }
+
     public function all_product(){ //Hien thi tat ca
         $this->AuthLogin();
 
         $all_product = DB::table('noi_that')
         ->join('nha_cung_cap','nha_cung_cap.NCC_MA','=','noi_that.NCC_MA')
         ->join('loai_noi_that','loai_noi_that.LNT_MA','=','noi_that.LNT_MA')
-        ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
-        ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
         ->orderby('noi_that.NT_MA','desc')->get();
-        $manager_product = view('admin.all_product')->with('all_product', $all_product);
+
+        $img_product = DB::table('noi_that')
+        ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
+        ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')->get();
+
+        $manager_product = view('admin.all_product')->with('all_product', $all_product)->with('img_product', $img_product);
                 
         $count_product = DB::table('noi_that')->count('NT_MA');
         Session::put('count_product',$count_product);
@@ -50,26 +79,28 @@ class ProductController extends Controller
         $this->AuthLogin();
         $data = array();
         //$data['NT_MA'] = $request->product_desc;
+        $data['NCC_MA'] = $request->NCC_MA;
+        $data['LNT_MA'] = $request->LNT_MA;
         $data['NT_TEN'] = $request->NT_TEN;
+        $data['NT_CHIEUDAI'] = $request->NT_CHIEUDAI;
+        $data['NT_CHIEURONG'] = $request->NT_CHIEURONG;
+        $data['NT_CHIEUCAO'] = $request->NT_CHIEUCAO;
+        $data['NT_MOTACHATLIEU'] = $request->NT_MOTACHATLIEU;
         $data['NT_GIA'] = $request->NT_GIA;
         $data['NT_NGAYCAPNHAT'] =  Carbon::now('Asia/Ho_Chi_Minh');
         $data['NT_NGAYTAO'] =  Carbon::now('Asia/Ho_Chi_Minh');
-        $data['NCC_MA'] = $request->NCC_MA;
-        $data['NN_MA'] = $request->NN_MA;
-
+        
         DB::table('noi_that')->insert($data);
-        Session::put('message','Thêm sách thành công');
+        Session::put('message','Thêm nội thất thành công');
         return Redirect::to('add-product');
-
-
     }
 
     public function edit_product($NT_MA){
         $this->AuthLogin();
         $brand_product = DB::table('nha_cung_cap')->orderby('NCC_MA')->get();
-        $lang_product = DB::table('ngon_ngu')->orderby('NN_MA')->get();
+        $type_product = DB::table('loai_noi_that')->orderby('LNT_MA')->get();
         $edit_product = DB::table('noi_that')->where('NT_MA',$NT_MA)->get();
-        $manager_product = view('admin.edit_product')->with('edit_product', $edit_product)->with('brand_product',$brand_product)->with('lang_product',$lang_product);
+        $manager_product = view('admin.edit_product')->with('edit_product', $edit_product)->with('brand_product',$brand_product)->with('type_product',$type_product);
         return view('admin-layout')->with('admin.edit_product', $manager_product);
     }
 
@@ -77,13 +108,18 @@ class ProductController extends Controller
         $this->AuthLogin();
         $data = array();
         //$data['NT_MA'] = $request->product_desc;
+        $data['NCC_MA'] = $request->NCC_MA;
+        $data['LNT_MA'] = $request->LNT_MA;
         $data['NT_TEN'] = $request->NT_TEN;
+        $data['NT_CHIEUDAI'] = $request->NT_CHIEUDAI;
+        $data['NT_CHIEURONG'] = $request->NT_CHIEURONG;
+        $data['NT_CHIEUCAO'] = $request->NT_CHIEUCAO;
+        $data['NT_MOTACHATLIEU'] = $request->NT_MOTACHATLIEU;
         $data['NT_GIA'] = $request->NT_GIA;
         $data['NT_NGAYCAPNHAT'] =  Carbon::now('Asia/Ho_Chi_Minh');
-        $data['NCC_MA'] = $request->NCC_MA;
-        $data['NN_MA'] = $request->NN_MA;
+
         DB::table('noi_that')->where('NT_MA',$NT_MA)->update($data);
-        Session::put('message','Cập nhật sách thành công');
+        Session::put('message','Cập nhật nội thất thành công');
         return Redirect::to('all-product');
 
     }
@@ -91,7 +127,7 @@ class ProductController extends Controller
     public function delete_product($NT_MA){
         $this->AuthLogin();
         DB::table('noi_that')->where('NT_MA',$NT_MA)->delete();
-        Session::put('message','Xóa sách thành công');
+        Session::put('message','Xóa nội thất thành công');
         return Redirect::to('all-product');
 
     }
@@ -176,15 +212,16 @@ class ProductController extends Controller
             $search_product = DB::table('noi_that')
             ->join('nha_cung_cap','nha_cung_cap.NCC_MA','=','noi_that.NCC_MA')
             ->join('loai_noi_that','loai_noi_that.LNT_MA','=','noi_that.LNT_MA')
-            ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
-            ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
             ->where('noi_that.NT_TEN', 'like', '%'.$keywords.'%')
-            ->orWhere('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
-            ->where('nha_cung_cap.NCC_TEN', 'like', '%'.$keywords.'%')
+            ->orWhere('nha_cung_cap.NCC_TEN', 'like', '%'.$keywords.'%')
             ->orderby('noi_that.NT_MA','desc')->get();
+
+            $img_product = DB::table('noi_that')
+            ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
+            ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')->get();
     
             return view('admin.search_product')->with('category', $all_category_product)
-            ->with('search_product', $search_product);
+            ->with('search_product', $search_product)->with('img_product', $img_product);
         }
 
         public function danh_gia(Request $request, $NT_MA){

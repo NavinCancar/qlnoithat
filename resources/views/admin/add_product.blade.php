@@ -10,7 +10,7 @@
                             <?php
                             $message = Session::get('message');
                             if($message){
-                                echo '<span class="text-alert">'.$message.'</span>';
+                                echo '<span class="text-alert text-warning">'.$message.'</span>';
                                 Session::put('message',null);
                             }
                             ?>
@@ -19,56 +19,66 @@
                                     {{csrf_field() }}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên nội thất</label>
-                                    <input type="text" name="NT_TEN" class="form-control" id="exampleInputEmail1" placeholder="Tên nội thất" required="">
+                                    <input type="text" name="NT_TEN" class="form-control" id="exampleInputEmail1" required="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Mô tả nội thất</label>
-                                    <textarea style="resize: none"  rows="8" class="form-control" name="NT_MOTA" id="ckeditor1" placeholder="Mô tả sản phẩm" required=""></textarea>
+                                    <label for="exampleInputEmail1">Chiều dài</label>
+                                    <div style="display: flex; align-items: baseline;">
+                                        <input type="number" name="NT_CHIEUDAI" class="form-control" id="exampleInputEmail1" required="">
+                                        <span style="margin-left: 15px;">mm</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Chiều rộng</label>
+                                    <div style="display: flex; align-items: baseline;">
+                                        <input type="number" name="NT_CHIEURONG" class="form-control"id="exampleInputEmail1" required="">
+                                        <span style="margin-left: 15px;">mm</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Chiều cao</label>
+                                    <div style="display: flex; align-items: baseline;">
+                                        <input type="number" name="NT_CHIEUCAO" class="form-control" id="exampleInputEmail1" required="">
+                                        <span style="margin-left: 15px;">mm</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Mô tả chất liệu</label>
+                                    <textarea style="resize: none"  rows="8" class="form-control" name="NT_MOTACHATLIEU" id="ckeditor1" required=""></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Giá</label>
-                                    <input type="text" name="NT_GIA" class="form-control" id="exampleInputEmail1" placeholder="Tên nội thất" required=""  pattern="[0-9]+">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Chiết khấu</label>
-                                    <input type="text" name="NT_CHIETKHAU" class="form-control" id="exampleInputEmail1" placeholder="Tên nội thất" required=""  pattern="[0-9]+">
+                                    <div style="display: flex; align-items: baseline;">
+                                        <input type="text" name="NT_GIA" class="form-control" id="exampleInputEmail1" required=""  pattern="[0-9]+">
+                                        <span style="margin-left: 10px;">VNĐ</span>
+                                    </div>
                                 </div>
                                 <!--<div class="form-group">
                                     <label for="exampleInputEmail1">Ngày cập nhât</label>
-                                    <input type="date" name="product_name" class="form-control" id="exampleInputEmail1" placeholder="Tên nội thất">
+                                    <input type="date" name="product_name" class="form-control" id="exampleInputEmail1">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Ngày tạo</label>
-                                    <input type="date" name="product_name" class="form-control" id="exampleInputEmail1" placeholder="Tên nội thất">
+                                    <input type="date" name="product_name" class="form-control" id="exampleInputEmail1">
                                 </div>-->
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Số trang</label>
-                                    <input type="text" name="NT_SOTRANG" class="form-control" id="exampleInputEmail1" placeholder="Tên nội thất" required=""  pattern="[0-9]+">
+                                    <label for="exampleInputPassword1">Loại nội thất</label>
+                                      <select name="LNT_MA" class="form-control input-sm m-bot15">
+                                        @foreach($type_product as $key => $type)
+                                            <option value="{{$type->LNT_MA}}">{{$type->LNT_TEN}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">ISBN</label>
-                                    <input type="text" name="NT_ISBN" class="form-control" id="exampleInputEmail1" placeholder="Tên nội thất" required="" pattern="[0-9]+">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Nhà xuất bản</label>
-                                      <select name="NXB_MA" class="form-control input-sm m-bot15">
+                                    <label for="exampleInputPassword1">Nhà cung cấp</label>
+                                      <select name="NCC_MA" class="form-control input-sm m-bot15">
                                         @foreach($brand_product as $key => $brand)
-                                            <option value="{{$brand->NXB_MA}}">{{$brand->NXB_TEN}}</option>
+                                            <option value="{{$brand->NCC_MA}}">{{$brand->NCC_TEN}}</option>
                                         @endforeach
-                                            
                                     </select>
                                 </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Ngôn ngữ</label>
-                                      <select name="NN_MA" class="form-control input-sm m-bot15">
-                                        @foreach($lang_product as $key => $lang)
-                                            <option value="{{$lang->NN_MA}}">{{$lang->NN_TEN}}</option>
-                                        @endforeach
-                                            
-                                    </select>
-                                </div>
-                                
-                                <button type="submit" name="add_product" class="btn btn-info">Thêm nội thất</button>
+
+                                <button type="submit" style="width:100%" class="btn btn-success" name="add_product">Thêm nội thất</button>
                             </form>
                             </div>
 
