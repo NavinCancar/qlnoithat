@@ -19,7 +19,6 @@ class AdminController extends Controller
             if($NV_MA != 1){
                 return Redirect::to('dashboard')->send();
             }
-            
         }else{
             return Redirect::to('admin')->send();
         }
@@ -107,56 +106,6 @@ class AdminController extends Controller
         return Redirect::to('/admin');
     }
 
-    //Thống kê
-    public function thong_ke(){
-        $this->AuthLogin();
-
-        $dayprev=Carbon::now('Asia/Ho_Chi_Minh')->subMonths(3);
-        $daynow=Carbon::now('Asia/Ho_Chi_Minh');
-        //echo $dayprev .";". $daynow;
-
-        Session::put('TGBDau', $dayprev);
-        Session::put('TGKThuc', $daynow);
-
-        /*
-        SELECT s.*, c.* FROM sach s JOIN chi_tiet_don_dat_hang c on s.SACH_MA = c.SACH_MA 
-        JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA
-        WHERE d.DDH_NGAYDAT BETWEEN '2023-02-01' AND '2023-03-21' 
-        GROUP by s.SACH_MA HAVING SUM(ctddh_soluong) = (SELECT max(tongsoluong) FROM (SELECT c.SACH_MA, SUM(ctddh_soluong) tongsoluong FROM chi_tiet_don_dat_hang c JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA WHERE d.DDH_NGAYDAT BETWEEN '2023-02-01' AND '2023-03-21' GROUP BY (c.SACH_MA)) sum_sach);
-
-        $query = DB::table('sach as s')
-           ->join('chi_tiet_don_dat_hang as c', 's.SACH_MA', '=', 'c.SACH_MA')
-           ->join('don_dat_hang as d', 'c.DDH_MA', '=', 'd.DDH_MA')
-           ->select('s.*', 'c.*')
-           ->whereBetween('d.DDH_NGAYDAT', ['2023-02-01', '2023-03-21'])
-           ->groupBy('s.SACH_MA')
-           ->havingRaw('SUM(ctddh_soluong) = (SELECT max(tongsoluong) FROM (SELECT c.SACH_MA, SUM(ctddh_soluong) tongsoluong FROM chi_tiet_don_dat_hang c JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA WHERE d.DDH_NGAYDAT BETWEEN '2023-02-01' AND '2023-03-21' GROUP BY (c.SACH_MA)) sum_sach)')
-           ->get();
-        
-        $sachbannhieu = DB::table('sach as s')
-        ->join('chi_tiet_don_dat_hang as c', 's.SACH_MA', '=', 'c.SACH_MA')
-        ->join('don_dat_hang as d', 'c.DDH_MA', '=', 'd.DDH_MA')
-        ->select('s.*', 'c.*')
-        ->whereBetween('d.DDH_NGAYDAT', [$dayprev, $dayprev])
-        ->groupBy('s.SACH_MA')
-        ->havingRaw("SUM(ctddh_soluong) = (SELECT max(tongsoluong) FROM (SELECT c.SACH_MA, SUM(ctddh_soluong) tongsoluong FROM chi_tiet_don_dat_hang c JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA WHERE d.DDH_NGAYDAT BETWEEN '".$dayprev."' AND '".$daynow."' GROUP BY (c.SACH_MA)) sum_sach)")
-        ->get();
-
-        $sachbannhieu = DB::table('sach as s')
-        ->join('chi_tiet_don_dat_hang as c', 's.SACH_MA', '=', 'c.SACH_MA')
-        ->join('don_dat_hang as d', 'c.DDH_MA', '=', 'd.DDH_MA')
-        ->select('s.*', 'c.*')
-        ->whereBetween('d.DDH_NGAYDAT', ['2023-02-01', '2023-03-21'])
-        ->groupBy('s.SACH_MA')
-        ->havingRaw('SUM(ctddh_soluong) = (SELECT max(tongsoluong) FROM (SELECT c.SACH_MA, SUM(ctddh_soluong) tongsoluong FROM chi_tiet_don_dat_hang c JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA WHERE d.DDH_NGAYDAT BETWEEN "2023-02-01" AND "2023-03-21" GROUP BY (c.SACH_MA)) sum_sach)')
-        ->get();
-
-        echo '<pre>';
-        print_r ($sachbannhieu);
-        echo '</pre>';*/
-        return view('admin.dashboard.thong_ke');
-    }
-
     //Liệt kê các đơn hàng
 
     public function all_order(){
@@ -164,7 +113,7 @@ class AdminController extends Controller
 
         $all_DDH = DB::table('don_dat_hang')
         ->join('chi_tiet_don_dat_hang','don_dat_hang.DDH_MA','=','chi_tiet_don_dat_hang.DDH_MA')
-        ->join('sach','sach.SACH_MA','=','chi_tiet_don_dat_hang.SACH_MA')
+        ->join('noi_that','noi_that.NT_MA','=','chi_tiet_don_dat_hang.NT_MA')
         ->orderby('don_dat_hang.DDH_MA','desc')->get();
         $manager_order = view('admin.all_order')->with('all_DDH', $all_DDH);
 
@@ -179,14 +128,13 @@ class AdminController extends Controller
         $all_status = DB::table('trang_thai')->get();
 
         $all_DDH=  DB::table('don_dat_hang')
-        ->join('chi_tiet_trang_thai', 'don_dat_hang.DDH_MA', '=', 'chi_tiet_trang_thai.DDH_MA')
-        ->join('trang_thai', 'trang_thai.TT_MA', '=', 'chi_tiet_trang_thai.TT_MA')
+        ->join('trang_thai', 'trang_thai.TT_MA', '=', 'don_dat_hang.TT_MA')
         ->orderby('don_dat_hang.DDH_MA','desc')->get();
 
 
         $group_DDH = DB::table('don_dat_hang')
         ->join('chi_tiet_don_dat_hang','don_dat_hang.DDH_MA','=','chi_tiet_don_dat_hang.DDH_MA')
-        ->join('sach','sach.SACH_MA','=','chi_tiet_don_dat_hang.SACH_MA')->get();
+        ->join('noi_that','noi_that.NT_MA','=','chi_tiet_don_dat_hang.NT_MA')->get();
 
         $count_order = DB::table('don_dat_hang')->count('DDH_MA');
         Session::put('count_order',$count_order);
@@ -202,14 +150,12 @@ class AdminController extends Controller
         $all_status = DB::table('trang_thai')->get();
 
         $status_by_id = DB::table('don_dat_hang')
-        ->join('chi_tiet_trang_thai', 'don_dat_hang.DDH_MA', '=', 'chi_tiet_trang_thai.DDH_MA')
-        ->join('trang_thai', 'trang_thai.TT_MA', '=', 'chi_tiet_trang_thai.TT_MA')
+        ->join('trang_thai', 'trang_thai.TT_MA', '=', 'don_dat_hang.TT_MA')
         ->orderby('don_dat_hang.DDH_MA','desc')
         ->where('trang_thai.TT_MA', $TT_MA)->get();
 
         $status_count = DB::table('don_dat_hang')
-        ->join('chi_tiet_trang_thai', 'don_dat_hang.DDH_MA', '=', 'chi_tiet_trang_thai.DDH_MA')
-        ->join('trang_thai', 'trang_thai.TT_MA', '=', 'chi_tiet_trang_thai.TT_MA')
+        ->join('trang_thai', 'trang_thai.TT_MA', '=', 'don_dat_hang.TT_MA')
         ->orderby('don_dat_hang.DDH_MA','desc')
         ->where('trang_thai.TT_MA', $TT_MA)->count();
         Session::put('status_count',$status_count);
@@ -221,7 +167,7 @@ class AdminController extends Controller
 
         $group_DDH = DB::table('don_dat_hang')
         ->join('chi_tiet_don_dat_hang','don_dat_hang.DDH_MA','=','chi_tiet_don_dat_hang.DDH_MA')
-        ->join('sach','sach.SACH_MA','=','chi_tiet_don_dat_hang.SACH_MA')->get();
+        ->join('noi_that','noi_that.NT_MA','=','chi_tiet_don_dat_hang.NT_MA')->get();
 
 
         return view('admin.show_status_order')
@@ -242,16 +188,15 @@ class AdminController extends Controller
 
         $all_DDH=  DB::table('don_dat_hang')
         //->join('chi_tiet_don_dat_hang','don_dat_hang.DDH_MA','=','chi_tiet_don_dat_hang.DDH_MA')
-        //->join('sach','sach.SACH_MA','=','chi_tiet_don_dat_hang.SACH_MA')
-        ->join('chi_tiet_trang_thai', 'don_dat_hang.DDH_MA', '=', 'chi_tiet_trang_thai.DDH_MA')
-        ->join('trang_thai', 'trang_thai.TT_MA', '=', 'chi_tiet_trang_thai.TT_MA')
-        //->where('sach.SACH_MA', 'like', '%'.$keywords.'%')
+        //->join('noi_that','noi_that.NT_MA','=','chi_tiet_don_dat_hang.NT_MA')
+        ->join('trang_thai', 'trang_thai.TT_MA', '=', 'don_dat_hang.TT_MA')
+        //->where('noi_that.NT_MA', 'like', '%'.$keywords.'%')
         ->where('don_dat_hang.DDH_MA', '=', $keywords)
         ->orderby('don_dat_hang.DDH_MA','desc')->get();
 
         $group_DDH = DB::table('don_dat_hang')
         ->join('chi_tiet_don_dat_hang','don_dat_hang.DDH_MA','=','chi_tiet_don_dat_hang.DDH_MA')
-        ->join('sach','sach.SACH_MA','=','chi_tiet_don_dat_hang.SACH_MA')->get();
+        ->join('noi_that','noi_that.NT_MA','=','chi_tiet_don_dat_hang.NT_MA')->get();
 
         return view('admin.search_all_order')
         ->with('all_status', $all_status)
@@ -260,20 +205,19 @@ class AdminController extends Controller
 
     //Xem chi tiết đơn hàng
     public function show_detail($DDH_MA){
-        $all_category_product = DB::table('the_loai_sach')->get();
+        $all_category_product = DB::table('loai_noi_that')->get();
         $all_DDH=  DB::table('don_dat_hang')
         ->join('khach_hang','khach_hang.KH_MA','=','don_dat_hang.KH_MA')
         ->join('dia_chi_giao_hang','dia_chi_giao_hang.DCGH_MA','=','don_dat_hang.DCGH_MA')
         ->join('hinh_thuc_thanh_toan','hinh_thuc_thanh_toan.HTTT_MA','=','don_dat_hang.HTTT_MA')
-        ->join('xa_phuong','dia_chi_giao_hang.XP_MA','=','xa_phuong.XP_MA')
-        ->join('huyen_quan','huyen_quan.HQ_MA','=','xa_phuong.HQ_MA')
-        ->join('tinh_thanh_pho','huyen_quan.TTP_MA','=','tinh_thanh_pho.TTP_MA')
+        ->join('tinh_thanh_pho','dia_chi_giao_hang.TTP_MA','=','tinh_thanh_pho.TTP_MA')
         ->where('don_dat_hang.DDH_MA', $DDH_MA)->get();
 
 
         $group_DDH = DB::table('chi_tiet_don_dat_hang')
-        ->join('sach','sach.SACH_MA','=','chi_tiet_don_dat_hang.SACH_MA')
-        ->join('hinh_anh_sach','sach.SACH_MA','=','hinh_anh_sach.SACH_MA')
+        ->join('noi_that','noi_that.NT_MA','=','chi_tiet_don_dat_hang.NT_MA')
+        ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
+        ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
         ->where('chi_tiet_don_dat_hang.DDH_MA', $DDH_MA)->get();
 
         $TT_MA = Session::get('TT_MA');
@@ -287,7 +231,20 @@ class AdminController extends Controller
         ->with('all_status', $all_status);
 
     }
-    
+    //Thống kê
+    public function thong_ke(){
+        $this->AuthLogin();
+
+        $dayprev=Carbon::now('Asia/Ho_Chi_Minh')->subMonths(3);
+        $daynow=Carbon::now('Asia/Ho_Chi_Minh');
+        //echo $dayprev .";". $daynow;
+
+        Session::put('TGBDau', $dayprev);
+        Session::put('TGKThuc', $daynow);
+
+        return view('admin.dashboard.thong_ke');
+    }
+
     public function thong_ke_tg(Request $request){
         $this->AuthLogin();
         $homnay=Carbon::now('Asia/Ho_Chi_Minh');
@@ -304,28 +261,23 @@ class AdminController extends Controller
     //Phí ship (select_location nằm ở CostumerController)
     public function show_feeship(){
         $this->AuthLoginChu();
-        $count_feeship = DB::table('xa_phuong')->count('XP_MA');
+        $count_feeship = DB::table('tinh_thanh_pho')->count('TTP_MA');
         Session::put('count_feeship',$count_feeship);
-        $dc = DB::table('tinh_thanh_pho')
-        ->join('huyen_quan','tinh_thanh_pho.TTP_MA','=','huyen_quan.TTP_MA')
-        ->join('xa_phuong','xa_phuong.HQ_MA','=','huyen_quan.HQ_MA')->get();
+        $dc = DB::table('tinh_thanh_pho')-> orderby('TTP_TEN') ->get();
         return view('admin.dashboard.show_feeship')->with('dc',$dc);
     }
     
-    public function edit_feeship($XP_MA){
+    public function edit_feeship($TTP_MA){
         $this->AuthLoginChu();
-        $dc = DB::table('tinh_thanh_pho')
-        ->join('huyen_quan','tinh_thanh_pho.TTP_MA','=','huyen_quan.TTP_MA')
-        ->join('xa_phuong','xa_phuong.HQ_MA','=','huyen_quan.HQ_MA')
-        ->where('xa_phuong.XP_MA','=',$XP_MA)->get();
+        $dc = DB::table('tinh_thanh_pho')->where('TTP_MA','=',$TTP_MA)->get();
         return view('admin.dashboard.edit_feeship')->with('dc',$dc);
     }
 
-    public function update_feeship(Request $request, $XP_MA){
+    public function update_feeship(Request $request, $TTP_MA){
         $this->AuthLoginChu();
         $data = array();
-        $data['XP_CHIPHIGIAOHANG'] = $request->XP_CHIPHIGIAOHANG;
-        DB::table('xa_phuong')->where('XP_MA',$XP_MA)->update($data);
+        $data['TTP_CHIPHIGIAOHANG'] = $request->TTP_CHIPHIGIAOHANG;
+        DB::table('tinh_thanh_pho')->where('TTP_MA',$TTP_MA)->update($data);
         Session::put('message','Cập nhật phí ship thành công');
         return Redirect::to('show_feeship');
     }

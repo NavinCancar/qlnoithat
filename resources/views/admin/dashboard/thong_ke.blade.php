@@ -10,7 +10,7 @@
     position: relative;
     height: 40px;
     line-height: 40px;
-    width: 30%;
+    width: 40%;
     letter-spacing: 0.2px;
     color: #000;
     font-size: 18px;
@@ -95,12 +95,13 @@
                     <div class="row">
                     <?php
             
-                    $query ="SELECT s.*, c.*, h.*, SUM(ctddh_soluong) tong FROM sach s 
-                    JOIN hinh_anh_sach h on s.NT_MA = h.NT_MA
-                    JOIN chi_tiet_don_dat_hang c on s.NT_MA = c.NT_MA 
+                    $query ="SELECT n.*, c.*, h.*, SUM(ctddh_soluong) tong FROM noi_that n 
+                    JOIN hinh_anh_noi_that h on n.NT_MA = h.NT_MA
+                    JOIN chi_tiet_don_dat_hang c on n.NT_MA = c.NT_MA 
                     JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA
-                    WHERE d.DDH_NGAYDAT BETWEEN '".$TGBDau."' AND '".$TGKThuc."'
-                    GROUP by s.NT_MA HAVING SUM(ctddh_soluong) = (SELECT max(tongsoluong) FROM (SELECT c.NT_MA, SUM(ctddh_soluong) tongsoluong FROM chi_tiet_don_dat_hang c JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA WHERE d.DDH_NGAYDAT BETWEEN '"
+                    WHERE h.HANT_DUONGDAN LIKE '%-1%'
+                    AND d.DDH_NGAYDAT BETWEEN '".$TGBDau."' AND '".$TGKThuc."'
+                    GROUP by n.NT_MA HAVING SUM(ctddh_soluong) = (SELECT max(tongsoluong) FROM (SELECT c.NT_MA, SUM(ctddh_soluong) tongsoluong FROM chi_tiet_don_dat_hang c JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA WHERE d.DDH_NGAYDAT BETWEEN '"
                     .$TGBDau."' AND '".$TGKThuc."' GROUP BY (c.NT_MA)) sum_sach)";
                     $result = mysqli_query($connect, $query);
                     /*$row = mysqli_fetch_array($result);
@@ -113,7 +114,7 @@
                         <div class="col-lg-4">
                         <section class="panel">
                             <div class="panel-body khung">
-                            <a href="chi-tiet-san-pham/'. $row["NT_MA"].'"><img class="img-fluid mb-3 anh" src="public/frontend/img/noithat/'.$row["HAS_DUONGDAN"].'" alt=""></a>
+                            <a href="chi-tiet-san-pham/'. $row["NT_MA"].'"><img class="img-fluid mb-3 anh" src="public/frontend/img/noithat/'.$row["HANT_DUONGDAN"].'" alt=""></a>
                             <br>
                             <h4 class="text-center">'.$row["NT_TEN"].'</h4>
                             <h4 class="text-center">'.number_format($row["NT_GIA"]).' đ</h4>   
@@ -134,12 +135,13 @@
                     <div class="row">
                     <?php
             
-                    $query ="SELECT s.*, c.*, h.*, SUM(ctddh_soluong) as tong FROM sach s 
-                    JOIN hinh_anh_sach h on s.NT_MA = h.NT_MA
-                    JOIN chi_tiet_don_dat_hang c on s.NT_MA = c.NT_MA 
+                    $query ="SELECT n.*, c.*, h.*, SUM(ctddh_soluong) as tong FROM noi_that n 
+                    JOIN hinh_anh_noi_that h on n.NT_MA = h.NT_MA
+                    JOIN chi_tiet_don_dat_hang c on n.NT_MA = c.NT_MA 
                     JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA
-                    WHERE d.DDH_NGAYDAT BETWEEN '".$TGBDau."' AND '".$TGKThuc."'
-                    GROUP by s.NT_MA HAVING SUM(ctddh_soluong) = (SELECT min(tongsoluong) FROM (SELECT c.NT_MA, SUM(ctddh_soluong) tongsoluong FROM chi_tiet_don_dat_hang c JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA WHERE d.DDH_NGAYDAT BETWEEN '"
+                    WHERE h.HANT_DUONGDAN LIKE '%-1%'
+                    AND d.DDH_NGAYDAT BETWEEN '".$TGBDau."' AND '".$TGKThuc."'
+                    GROUP by n.NT_MA HAVING SUM(ctddh_soluong) = (SELECT min(tongsoluong) FROM (SELECT c.NT_MA, SUM(ctddh_soluong) tongsoluong FROM chi_tiet_don_dat_hang c JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA WHERE d.DDH_NGAYDAT BETWEEN '"
                     .$TGBDau."' AND '".$TGKThuc."' GROUP BY (c.NT_MA)) sum_sach)";
                     $result = mysqli_query($connect, $query);
                     /*$row = mysqli_fetch_array($result);
@@ -152,7 +154,7 @@
                         <div class="col-lg-4">
                         <section class="panel">
                             <div class="panel-body khung">
-                            <a href="chi-tiet-san-pham/'. $row["NT_MA"].'"><img class="img-fluid mb-3 anh" src="public/frontend/img/noithat/'.$row["HAS_DUONGDAN"].'" alt=""></a>
+                            <a href="chi-tiet-san-pham/'. $row["NT_MA"].'"><img class="img-fluid mb-3 anh" src="public/frontend/img/noithat/'.$row["HANT_DUONGDAN"].'" alt=""></a>
                             <br>
                             <h4 class="text-center">'.$row["NT_TEN"].'</h4>
                             <h4 class="text-center">'.number_format($row["NT_GIA"]).' đ</h4>
@@ -173,12 +175,13 @@
                     <div class="row">
                     <?php
             
-                    $query ="SELECT s.*, h.* FROM sach s JOIN hinh_anh_sach h on s.NT_MA = h.NT_MA
-                    WHERE s.NT_MA NOT IN (SELECT s.NT_ma FROM sach s 
-                                        JOIN chi_tiet_don_dat_hang c on s.NT_MA = c.NT_MA 
+                    $query ="SELECT n.*, h.* FROM noi_that n JOIN hinh_anh_noi_that h on n.NT_MA = h.NT_MA
+                    WHERE h.HANT_DUONGDAN LIKE '%-1%'
+                    AND n.NT_MA NOT IN (SELECT n.NT_ma FROM noi_that n 
+                                        JOIN chi_tiet_don_dat_hang c on n.NT_MA = c.NT_MA 
                                         JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA
                                         WHERE d.DDH_NGAYDAT BETWEEN '".$TGBDau."' AND '".$TGKThuc."'
-                                        GROUP by s.NT_MA)";
+                                        GROUP by n.NT_MA)";
                     $result = mysqli_query($connect, $query);
                     /*$row = mysqli_fetch_array($result);
                     echo '<pre>';
@@ -190,7 +193,7 @@
                         <div class="col-lg-4">
                         <section class="panel">
                             <div class="panel-body khung">
-                            <a href="chi-tiet-san-pham/'. $row["NT_MA"].'"><img class="img-fluid mb-3 anh" src="public/frontend/img/noithat/'.$row["HAS_DUONGDAN"].'" alt=""></a>
+                            <a href="chi-tiet-san-pham/'. $row["NT_MA"].'"><img class="img-fluid mb-3 anh" src="public/frontend/img/noithat/'.$row["HANT_DUONGDAN"].'" alt=""></a>
                             <br>
                             <h4 class="text-center">'.$row["NT_TEN"].'</h4>
                             <h4 class="text-center">'.number_format($row["NT_GIA"]).' đ</h4>
@@ -240,12 +243,12 @@ Morris.Donut({
   data: [
     <?php
             
-        $query ="SELECT t.*, SUM(ctddh_soluong) tong FROM the_loai_sach t
-        JOIN cua_sach s on s.TLS_MA = t.TLS_MA 
-        JOIN chi_tiet_don_dat_hang c on s.NT_MA = c.NT_MA 
+        $query ="SELECT l.*, SUM(ctddh_soluong) tong FROM loai_noi_that l
+        JOIN noi_that n on n.LNT_MA = l.LNT_MA 
+        JOIN chi_tiet_don_dat_hang c on n.NT_MA = c.NT_MA 
         JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA
         WHERE d.DDH_NGAYDAT BETWEEN '".$TGBDau."' AND '".$TGKThuc."'
-        GROUP by t.TLS_MA ORDER BY tong;";
+        GROUP by l.LNT_MA ORDER BY tong;";
         $result = mysqli_query($connect, $query);
             /*$row = mysqli_fetch_array($result);
             echo '<pre>';
@@ -253,7 +256,7 @@ Morris.Donut({
             echo '</pre>';*/
 
         while($row = mysqli_fetch_array($result)){
-            echo '{label: "'. $row["TLS_TEN"].'", value: '. $row["tong"].'},';
+            echo '{label: "'. $row["LNT_TEN"].'", value: '. $row["tong"].'},';
         }
         ?>
   ]

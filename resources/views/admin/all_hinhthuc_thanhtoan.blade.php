@@ -22,26 +22,19 @@
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-            <th style="width:20px;">
-              <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
-              </label>
-            </th>
             <th>Mã hình thức</th>
             <th>Tên hình thức</th>
-            
-            <th style="width:30px;"></th>
+            <th style="width:60px;"></th>
           </tr>
         </thead>
         <tbody>
         @foreach($all_hinhthuc_thanhtoan as $key => $httt_pro)
           <tr>
-            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td>{{$httt_pro->HTTT_MA}}</td>
             <td>{{$httt_pro->HTTT_TEN}}</td>
             <td>
-              <a href="{{URL::to('/edit-hinhthu-thanhtoan/'.$httt_pro -> HTTT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
-              <a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-hinhthu-thanhtoan/'.$httt_pro -> HTTT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
+              <a href="{{URL::to('/edit-hinhthuc-thanhtoan/'.$httt_pro -> HTTT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
+              <a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-hinhthuc-thanhtoan/'.$httt_pro -> HTTT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
             </td>
           </tr>
          @endforeach

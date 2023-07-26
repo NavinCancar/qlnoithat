@@ -16,26 +16,18 @@
                 ?>
                 <div class="position-center">
     @foreach($dc as $key => $edit_value)
-        <form role="form" action="{{URL::to('/update_feeship/'.$edit_value -> XP_MA)}}"  method="post" enctype= "multipart/form-data">
+        <form role="form" action="{{URL::to('/update_feeship/'.$edit_value -> TTP_MA)}}"  method="post" enctype= "multipart/form-data">
             {{ csrf_field() }}
             <div class="form-group">
                 <label for="exampleInputEmail1"><b>Tên tỉnh/thành phố:</b></label>
                 <input type="text" disabled name="TTP_MA" value="{{$edit_value->TTP_TEN}}" class="form-control" id="exampleInputEmail1" required="">
             </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1"><b>Tên huyện/quận:</b></label>
-                <input type="text" disabled name="HQ_MA" value="{{$edit_value->HQ_TEN}}" class="form-control" id="exampleInputEmail1" required="">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1"><b>Tên xã/phường:</b></label>
-                <input type="text" disabled name="XP_MA" value="{{$edit_value->XP_TEN}}" class="form-control" id="exampleInputEmail1" required="">
-            </div>
             
             <div class="form-group">
                 <label for="exampleInputEmail1"><b>Phí ship:</b></label>
-                <input type="text" name="XP_CHIPHIGIAOHANG" value="{{$edit_value->XP_CHIPHIGIAOHANG}}" class="form-control" placeholder="Số nhà" required=""  pattern="[0-9]+">
+                <input type="text" name="TTP_CHIPHIGIAOHANG" value="{{$edit_value->TTP_CHIPHIGIAOHANG}}" class="form-control" placeholder="Số nhà" required=""  pattern="[0-9]+">
             </div>                
-            <button type="submit" name="save_location" class="btn btn-info ">Cập nhật phí ship</button>
+            <button type="submit" name="save_location"  style="width:100%" class="btn btn-success">Cập nhật phí ship</button>
         </form>
         @endforeach
     </div>

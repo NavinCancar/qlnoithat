@@ -134,8 +134,8 @@ class ProductController extends Controller
         return Redirect::to('all-product');
     }
 
-    //Chi Tiet San Pham
-    public function detail_product($NT_MA){ //GD khách
+    //Khách
+    public function detail_product($NT_MA){
         $all_category_product = DB::table('loai_noi_that')->get();
 
         $another_img = DB::table('hinh_anh_noi_that')
@@ -293,6 +293,7 @@ class ProductController extends Controller
     
             $all_product = DB::table('noi_that')
             ->join('nha_cung_cap','nha_cung_cap.NCC_MA','=','noi_that.NCC_MA')
+            ->join('loai_noi_that','loai_noi_that.LNT_MA','=','noi_that.LNT_MA')
             ->orderby('NT_MA','desc')->get();
             $manager_product = view('admin.dashboard.ton_kho')->with('all_product', $all_product);
 

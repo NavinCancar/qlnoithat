@@ -35,7 +35,7 @@ class Lonhap extends Controller
         $this->AuthLogin(); 
 
         $all_lonhap = DB::table('lo_nhap')
-        ->join('nhan_vien','nhanvien.NV_MA','=','lo_nhap.NV_MA')
+        ->join('nhan_vien','nhan_vien.NV_MA','=','lo_nhap.NV_MA')
         //->join('ngon_ngu','ngon_ngu.NN_MA','=','sach.NN_MA')
         ->orderby('LN_MA','desc')->get();
         $manager_lonhap = view('admin.all_lonhap')->with('all_lonhap', $all_lonhap);

@@ -22,14 +22,7 @@
                 <table class="table table-striped b-t b-light">
                     <thead>
                     <tr>
-                        <th style="width:20px;">
-                        <label class="i-checks m-b-none">
-                            <input type="checkbox"><i></i>
-                        </label>
-                        </th>
                         <th>Tên tỉnh/thành phố</th>
-                        <th>Tên huyện/quận</th>
-                        <th>Tên xã/phường</th>
                         <th>Phí ship</th>
                         <th style="width:30px;"></th>
                     </tr>
@@ -37,13 +30,10 @@
                     <tbody>
                     @foreach($dc as $key => $dchi)
                     <tr>
-                        <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
                         <td>{{$dchi->TTP_TEN }}</td>
-                        <td>{{$dchi->HQ_TEN}}</td>
-                        <td>{{$dchi->XP_TEN }}</td>
-                        <td>{{number_format($dchi->XP_CHIPHIGIAOHANG)}} đ</td>
+                        <td>{{number_format($dchi->TTP_CHIPHIGIAOHANG)}} đ</td>
                         <td>
-                        <a href="{{URL::to('/edit_feeship/'.$dchi -> XP_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
+                        <a href="{{URL::to('/edit_feeship/'.$dchi -> TTP_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
                         </td>
                     </tr>
                     @endforeach

@@ -45,7 +45,7 @@ class Hinhthucthanhtoan extends Controller
 
         DB::table('hinh_thuc_thanh_toan')->insert($data);
         Session::put('message','Thêm hình thức thanh toán đơn đặt hàng thành công');
-        return Redirect::to('add-hinhthu-thanhtoan');
+        return Redirect::to('add-hinhthuc-thanhtoan');
 
 
     }
@@ -64,7 +64,7 @@ class Hinhthucthanhtoan extends Controller
         $data['HTTT_TEN'] = $request->hinhthuc_thanhtoan_name;
         DB::table('hinh_thuc_thanh_toan')->where('HTTT_MA',$HTTT_MA)->update($data);
         Session::put('message','Cập nhật hình thức thanh toán thành công');
-        return Redirect::to('all-hinhthu-thanhtoan');
+        return Redirect::to('all-hinhthuc-thanhtoan');
 
     }
 
@@ -72,7 +72,7 @@ class Hinhthucthanhtoan extends Controller
         $this->AuthLogin();
         DB::table('hinh_thuc_thanh_toan')->where('HTTT_MA',$HTTT_MA)->delete();
         Session::put('message','Xóa hình thức thanh toán thành công');
-        return Redirect::to('all-hinhthu-thanhtoan');
+        return Redirect::to('all-hinhthuc-thanhtoan');
 
     }
 

@@ -40,13 +40,13 @@
                                 <div class="form-group"> 
                                     <label for="exampleInputEmail1">Tên nội thất nhập</label>
                                       <select  disabled name="maNT_product_name" class="form-control input-sm m-bot15" required="">
-                                        @foreach($sach as $key => $masach)
+                                        @foreach($noithat as $key => $nt)
                                             
                                                
-                                            @if($masach->NT_MA==$edit_value->NT_MA)
-                                            <option selected value="{{$masach->NT_MA}}">{{$masach->NT_TEN}}</option>
+                                            @if($nt->NT_MA==$edit_value->NT_MA)
+                                            <option selected value="{{$nt->NT_MA}}">{{$nt->NT_TEN}}</option>
                                             @else
-                                            <option value="{{$masach->NT_MA}}">{{$masach->NT_TEN}}</option>
+                                            <option value="{{$nt->NT_MA}}">{{$nt->NT_TEN}}</option>
                                             @endif
                                         @endforeach
                                             

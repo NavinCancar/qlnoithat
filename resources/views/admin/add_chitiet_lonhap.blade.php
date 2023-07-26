@@ -31,8 +31,8 @@
                                 <div class="form-group"> 
                                     <label for="exampleInputEmail1">Nội thất nhập</label>
                                       <select name="maNT_product_name" class="form-control input-sm m-bot15" required="">
-                                        @foreach($sach as $key => $masach)
-                                            <option value="{{$masach->NT_MA}}">{{$masach->NT_TEN}}</option> 
+                                        @foreach($noithat as $key => $nt)
+                                            <option value="{{$nt->NT_MA}}">{{$nt->NT_TEN}}</option> 
                                             
                                         @endforeach
                                             

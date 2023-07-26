@@ -186,7 +186,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>Quản lý kho</span>
                     </a>
                     <ul class="sub">
-						<li><a href="{{URL::to('/ton-kho')}}">Danh nội thất tồn kho</a></li> 
+						<li><a href="{{URL::to('/ton-kho')}}">Quản lý tồn kho</a></li> 
 						<!-- lo_nhap -->
 						<li><a href="{{URL::to('/add-lonhap')}}">Thêm lô nhập</a></li> 
 						<li><a href="{{URL::to('/all-lonhap')}}">Liệt kê lô nhập</a></li>
@@ -223,8 +223,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="{{URL::to('/show_feeship')}}">Quản lý phí ship</a></li>
 
 						<!-- hinh_thuc_thanh_toan --> 
-						<li><a href="{{URL::to('/add-hinhthu-thanhtoan')}}">Thêm hình thức thanh toán đơn đặt hàng</a></li>
-						<li><a href="{{URL::to('/all-hinhthu-thanhtoan')}}">Liệt kê hình thức thanh toán đơn đặt hàng</a></li>
+						<li><a href="{{URL::to('/add-hinhthuc-thanhtoan')}}">Thêm hình thức thanh toán</a></li>
+						<li><a href="{{URL::to('/all-hinhthuc-thanhtoan')}}">Liệt kê hình thức thanh toán</a></li>
                     </ul>
                 </li>
 				<li class="sub-menu">

@@ -25,34 +25,14 @@
                                             
                                             @if($tt->TT_MA==$edit_value->TT_MA)
                                             <option selected value="{{$tt->TT_MA}}">{{$tt->TT_TEN}}</option>
+                                            @elseif($tt->TT_MA<$edit_value->TT_MA)
+
                                             @else
                                             <option value="{{$tt->TT_MA}}">{{$tt->TT_TEN}}</option>
                                             @endif
                                         @endforeach
                                     </select>
                                 </div>
-
-                                <input type="hidden" value="{{$edit_value->TT_MA}}" name="TT_MABD" class="form-control" id="exampleInputEmail1">
-                                @if($edit_value->TT_MA==1)
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Nhân viên xử lý</label>
-                                      <select name="NVXL_MA" class="form-control input-sm m-bot15" required="">
-
-                                        @foreach($nhanvienxl as $key => $nv)
-                                            <option selected value="{{$nv->NV_MA}}">{{$nv->NV_HOTEN}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                @endif
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Ngày cập nhật</label>
-                                    <input type="text" disabled  value="{{$edit_value->CTTT_NGAYCAPNHAT}}" name="CTTT_NGAYCAPNHAT" class="form-control" id="exampleInputEmail1" required="">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Ghi chú</label>
-                                    <input type="text" value="{{$edit_value->CTTT_GHICHU}}" name="CTTT_GHICHU" class="form-control" id="exampleInputEmail1" required="">
-                                </div>
-
                                 
                                 <button type="submit" name="add_employee"  style="width:100%" class="btn btn-success">Cập nhật trạng thái đơn đặt hàng</button>
                             </form>

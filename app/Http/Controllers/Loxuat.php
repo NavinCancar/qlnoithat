@@ -33,7 +33,7 @@ class Loxuat extends Controller
         $this->AuthLogin(); 
 
         $all_loxuat = DB::table('lo_xuat')
-        ->join('nhan_vien','nhanvien.NV_MA','=','lo_xuat.NV_MA')
+        ->join('nhan_vien','nhan_vien.NV_MA','=','lo_xuat.NV_MA')
         //->join('ngon_ngu','ngon_ngu.NN_MA','=','sach.NN_MA')
         ->orderby('LX_MA','desc')->get();
         $manager_loxuat = view('admin.all_loxuat')->with('all_loxuat', $all_loxuat);

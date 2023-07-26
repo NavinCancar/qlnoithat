@@ -38,32 +38,20 @@
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-            <th style="width:20px;">
-              <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
-              </label>
-            </th>
             <th>Mã nội thất</th>
             <th>Tên nội thất</th>
-            <th>Giá nội thất</th>
-            <th>Số trang</th>
-            <th>Mã ISBN</th>
-            <th>Nhà xuất bản</th>
-            <th>Ngôn ngữ</th>
+            <th>Nhà cung cấp</th>
+            <th>Loại nội thất</th>
             <th>Số lượng tồn</th>
           </tr>
         </thead>
         <tbody>
         @foreach($all_product as $key => $pro)
           <tr>
-            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td>{{$pro->NT_MA }}</td>
             <td>{{$pro->NT_TEN}}</td>
-            <td>{{$pro->NT_GIA}}</td>
-            <td>{{$pro->NT_SOTRANG}}</td>
-            <td>{{$pro->NT_ISBN}}</td>
-            <td>{{$pro->NXB_TEN }}</td>
-            <td>{{$pro->NN_TEN }}</td>
+            <td>{{$pro->NCC_TEN }}</td>
+            <td>{{$pro->LNT_TEN }}</td>
             <td>
                   <?php
                   //Số lượng tồn

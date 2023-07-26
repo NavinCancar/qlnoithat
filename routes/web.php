@@ -135,64 +135,64 @@ Route::post('/save-employee', 'App\Http\Controllers\EmployeeController@save_empl
 Route::post('/update-employee/{NV_MA}', 'App\Http\Controllers\EmployeeController@update_employee'); ///
 
 //lonhap
-Route::get('/add-lonhap', 'App\Http\Controllers\Lonhap@add_lonhap');
-Route::get('/edit-lonhap/{LN_MA}', 'App\Http\Controllers\Lonhap@edit_lonhap');
-Route::get('/delete-lonhap/{LN_MA}', 'App\Http\Controllers\Lonhap@delete_lonhap');
-Route::get('/all-lonhap', 'App\Http\Controllers\Lonhap@all_lonhap');
+Route::get('/add-lonhap', 'App\Http\Controllers\Lonhap@add_lonhap'); ///
+Route::get('/edit-lonhap/{LN_MA}', 'App\Http\Controllers\Lonhap@edit_lonhap'); ///
+Route::get('/delete-lonhap/{LN_MA}', 'App\Http\Controllers\Lonhap@delete_lonhap'); ///
+Route::get('/all-lonhap', 'App\Http\Controllers\Lonhap@all_lonhap'); ///
 
-Route::post('/save-lonhap', 'App\Http\Controllers\Lonhap@save_lonhap');
-Route::post('/update-lonhap/{LN_MA}', 'App\Http\Controllers\Lonhap@update_lonhap');
+Route::post('/save-lonhap', 'App\Http\Controllers\Lonhap@save_lonhap'); ///
+Route::post('/update-lonhap/{LN_MA}', 'App\Http\Controllers\Lonhap@update_lonhap'); ///
 
 //chitiet lonhap
-Route::get('/add-chitiet-lonhap', 'App\Http\Controllers\Chitietlonhap@add_chitiet_lonhap');
-Route::get('/edit-chitiet-lonhap/lo={LN_MA}&sach={NT_MA}', 'App\Http\Controllers\Chitietlonhap@edit_chitiet_lonhap');
-Route::get('/delete-chitiet-lonhap/lo={LN_MA}&sach={NT_MA}', 'App\Http\Controllers\Chitietlonhap@delete_chitiet_lonhap');
-Route::get('/all-chitiet-lonhap', 'App\Http\Controllers\Chitietlonhap@all_chitiet_lonhap');
+Route::get('/add-chitiet-lonhap', 'App\Http\Controllers\Chitietlonhap@add_chitiet_lonhap'); ///
+Route::get('/edit-chitiet-lonhap/lo={LN_MA}&sach={NT_MA}', 'App\Http\Controllers\Chitietlonhap@edit_chitiet_lonhap'); ///
+Route::get('/delete-chitiet-lonhap/lo={LN_MA}&sach={NT_MA}', 'App\Http\Controllers\Chitietlonhap@delete_chitiet_lonhap'); ///
+Route::get('/all-chitiet-lonhap', 'App\Http\Controllers\Chitietlonhap@all_chitiet_lonhap'); ///
 
-Route::post('/save-chitiet-lonhap', 'App\Http\Controllers\Chitietlonhap@save_chitiet_lonhap');
-Route::post('/update-chitiet-lonhap/lo={LN_MA}&sach={NT_MA}', 'App\Http\Controllers\Chitietlonhap@update_chitiet_lonhap');
+Route::post('/save-chitiet-lonhap', 'App\Http\Controllers\Chitietlonhap@save_chitiet_lonhap'); ///
+Route::post('/update-chitiet-lonhap/lo={LN_MA}&sach={NT_MA}', 'App\Http\Controllers\Chitietlonhap@update_chitiet_lonhap'); ///
 
 //lonxuat
-Route::get('/add-loxuat', 'App\Http\Controllers\Loxuat@add_loxuat');
-Route::get('/edit-loxuat/{LX_MA}', 'App\Http\Controllers\Loxuat@edit_loxuat');
-Route::get('/delete-loxuat/{LX_MA}', 'App\Http\Controllers\Loxuat@delete_loxuat');
-Route::get('/all-loxuat', 'App\Http\Controllers\Loxuat@all_loxuat');
+Route::get('/add-loxuat', 'App\Http\Controllers\Loxuat@add_loxuat'); ///
+Route::get('/edit-loxuat/{LX_MA}', 'App\Http\Controllers\Loxuat@edit_loxuat'); ///
+Route::get('/delete-loxuat/{LX_MA}', 'App\Http\Controllers\Loxuat@delete_loxuat'); ///
+Route::get('/all-loxuat', 'App\Http\Controllers\Loxuat@all_loxuat'); ///
 
-Route::post('/save-loxuat', 'App\Http\Controllers\Loxuat@save_loxuat');
-Route::post('/update-loxuat/{LX_MA}', 'App\Http\Controllers\Loxuat@update_loxuat');
+Route::post('/save-loxuat', 'App\Http\Controllers\Loxuat@save_loxuat'); ///
+Route::post('/update-loxuat/{LX_MA}', 'App\Http\Controllers\Loxuat@update_loxuat'); ///
 
 //chitiet loxuat
-Route::get('/add-chitiet-loxuat', 'App\Http\Controllers\Chitietloxuat@add_chitiet_loxuat');
-Route::get('/edit-chitiet-loxuat/lo={LX_MA}&sach={NT_MA}', 'App\Http\Controllers\Chitietloxuat@edit_chitiet_loxuat');
-Route::get('/delete-chitiet-loxuat/lo={LX_MA}&sach={NT_MA}', 'App\Http\Controllers\Chitietloxuat@delete_chitiet_loxuat');
-Route::get('/all-chitiet-loxuat', 'App\Http\Controllers\Chitietloxuat@all_chitiet_loxuat');
+Route::get('/add-chitiet-loxuat', 'App\Http\Controllers\Chitietloxuat@add_chitiet_loxuat'); ///
+Route::get('/edit-chitiet-loxuat/lo={LX_MA}&sach={NT_MA}', 'App\Http\Controllers\Chitietloxuat@edit_chitiet_loxuat'); ///
+Route::get('/delete-chitiet-loxuat/lo={LX_MA}&sach={NT_MA}', 'App\Http\Controllers\Chitietloxuat@delete_chitiet_loxuat'); ///
+Route::get('/all-chitiet-loxuat', 'App\Http\Controllers\Chitietloxuat@all_chitiet_loxuat'); ///
 
-Route::post('/save-chitiet-loxuat', 'App\Http\Controllers\Chitietloxuat@save_chitiet_loxuat');
-Route::post('/update-chitiet-loxuat/lo={LX_MA}&sach={NT_MA}', 'App\Http\Controllers\Chitietloxuat@update_chitiet_loxuat');
+Route::post('/save-chitiet-loxuat', 'App\Http\Controllers\Chitietloxuat@save_chitiet_loxuat'); ///
+Route::post('/update-chitiet-loxuat/lo={LX_MA}&sach={NT_MA}', 'App\Http\Controllers\Chitietloxuat@update_chitiet_loxuat'); ///
 
 //Thống kê
-Route::get('/thong-ke', 'App\Http\Controllers\AdminController@thong_ke');
-Route::post('/thong-ke-thoi-gian', 'App\Http\Controllers\AdminController@thong_ke_tg');
+Route::get('/thong-ke', 'App\Http\Controllers\AdminController@thong_ke'); ///
+Route::post('/thong-ke-thoi-gian', 'App\Http\Controllers\AdminController@thong_ke_tg'); ///
 
 //Đơn đặt hàng
 //Route::get('/liet-ke-don-hang', 'App\Http\Controllers\AdminController@liet_ke_dh');
-Route::get('/trang-thai/tat-ca', 'App\Http\Controllers\AdminController@all_status');
-Route::get('/danh-muc-trang-thai/{TT_MA}', 'App\Http\Controllers\AdminController@show_status_order');
-Route::post('/search-all-order', 'App\Http\Controllers\AdminController@search_all_order');
-Route::get('/show-detail/{DDH_MA}','App\Http\Controllers\AdminController@show_detail');
+Route::get('/trang-thai/tat-ca', 'App\Http\Controllers\AdminController@all_status'); ///
+Route::get('/danh-muc-trang-thai/{TT_MA}', 'App\Http\Controllers\AdminController@show_status_order'); ///
+Route::post('/search-all-order', 'App\Http\Controllers\AdminController@search_all_order'); ///
+Route::get('/show-detail/{DDH_MA}','App\Http\Controllers\AdminController@show_detail'); ///
 
 //Trạng thái đơn đặt hàng
-Route::get('/update-status-order/{DDH_MA}', 'App\Http\Controllers\OrderController@update_status_order');
-Route::post('/update_status/ddh={DDH_MA}&tt={TT_MA}', 'App\Http\Controllers\OrderController@update_status');
+Route::get('/update-status-order/{DDH_MA}', 'App\Http\Controllers\OrderController@update_status_order'); ///
+Route::post('/update_status/ddh={DDH_MA}&tt={TT_MA}', 'App\Http\Controllers\OrderController@update_status'); ///
 
 //Liet ke thong tin trang thai ddh
 /*Route::get('/all-lktt-trangthaiddh', 'App\Http\Controllers\OrderController@all_lktt_trangthaiddh');
 Route::get('/all-nguoixuly', 'App\Http\Controllers\OrderController@all_nguoixuly');*/
 
 //Phí ship
-Route::get('/show_feeship', 'App\Http\Controllers\AdminController@show_feeship');
-Route::get('/edit_feeship/{XP_MA}', 'App\Http\Controllers\AdminController@edit_feeship');
-Route::post('/update_feeship/{XP_MA}', 'App\Http\Controllers\AdminController@update_feeship');
+Route::get('/show_feeship', 'App\Http\Controllers\AdminController@show_feeship'); ///
+Route::get('/edit_feeship/{TTP_MA}', 'App\Http\Controllers\AdminController@edit_feeship'); ///
+Route::post('/update_feeship/{TTP_MA}', 'App\Http\Controllers\AdminController@update_feeship'); ///
 
 // chuc vu 
 Route::get('/add-chucvu', 'App\Http\Controllers\Chucvu@add_chucvu'); ///
@@ -204,13 +204,13 @@ Route::post('/save-chucvu', 'App\Http\Controllers\Chucvu@save_chucvu'); ///
 Route::post('/update-chucvu/{CV_MA}', 'App\Http\Controllers\Chucvu@update_chucvu'); ///
 
 // hinh thuc thanh toan
-Route::get('/add-hinhthu-thanhtoan', 'App\Http\Controllers\Hinhthucthanhtoan@add_hinhthuc_thanhtoan');
-Route::get('/edit-hinhthu-thanhtoan/{HTTT_MA}', 'App\Http\Controllers\Hinhthucthanhtoan@edit_hinhthuc_thanhtoan');
-Route::get('/delete-hinhthu-thanhtoan/{HTTT_MA}', 'App\Http\Controllers\Hinhthucthanhtoan@delete_hinhthuc_thanhtoan');
-Route::get('/all-hinhthu-thanhtoan', 'App\Http\Controllers\Hinhthucthanhtoan@all_hinhthuc_thanhtoan');
+Route::get('/add-hinhthuc-thanhtoan', 'App\Http\Controllers\Hinhthucthanhtoan@add_hinhthuc_thanhtoan'); ///
+Route::get('/edit-hinhthuc-thanhtoan/{HTTT_MA}', 'App\Http\Controllers\Hinhthucthanhtoan@edit_hinhthuc_thanhtoan'); ///
+Route::get('/delete-hinhthuc-thanhtoan/{HTTT_MA}', 'App\Http\Controllers\Hinhthucthanhtoan@delete_hinhthuc_thanhtoan'); ///
+Route::get('/all-hinhthuc-thanhtoan', 'App\Http\Controllers\Hinhthucthanhtoan@all_hinhthuc_thanhtoan'); ///
 
-Route::post('/save-hinhthu-thanhtoan', 'App\Http\Controllers\Hinhthucthanhtoan@save_hinhthuc_thanhtoan');
-Route::post('/update-hinhthu-thanhtoan/{HTTT_MA}', 'App\Http\Controllers\Hinhthucthanhtoan@update_hinhthuc_thanhtoan');
+Route::post('/save-hinhthuc-thanhtoan', 'App\Http\Controllers\Hinhthucthanhtoan@save_hinhthuc_thanhtoan'); ///
+Route::post('/update-hinhthuc-thanhtoan/{HTTT_MA}', 'App\Http\Controllers\Hinhthucthanhtoan@update_hinhthuc_thanhtoan'); ///
 
 //khachhang
 Route::get('/all-khachhang', 'App\Http\Controllers\CostumerController@all_khachhang'); ///
@@ -235,9 +235,12 @@ Route::post('/save-cttheloai-cuasach', 'App\Http\Controllers\ChiTietTLSach@save_
 Route::post('/update-cttheloai-cuasach/sach={NT_MA}&theloai={LNT_MA}', 'App\Http\Controllers\ChiTietTLSach@update_cttheloai_cuasach');*/
 
 //ton kho
-Route::get('/ton-kho', 'App\Http\Controllers\ProductController@ton_kho');
+Route::get('/ton-kho', 'App\Http\Controllers\ProductController@ton_kho'); ///
 
 //Cart k hiển thị vì bị tắt ảnh bìa => mua trúng vẫn bị duyệt?
 //Bộ lọc
 //Đổi mật khẩu
 //Xoá khách
+//Check controller
+//Cho phép khách huỷ đơn
+//Báo đỏ nội thất thiếu hàng

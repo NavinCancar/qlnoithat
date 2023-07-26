@@ -10,7 +10,7 @@
                             @foreach($edit_hinhthuc_thanhtoan as $key => $edit_value)
                            
                             <div class="position-center">
-                                <form role="form" action="{{URL::to('/update-hinhthu-thanhtoan/'.$edit_value->HTTT_MA)}}" method="post">
+                                <form role="form" action="{{URL::to('/update-hinhthuc-thanhtoan/'.$edit_value->HTTT_MA)}}" method="post">
                                     {{csrf_field() }}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên hình thức thanh toán</label>

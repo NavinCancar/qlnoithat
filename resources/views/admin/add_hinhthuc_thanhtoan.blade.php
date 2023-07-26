@@ -15,7 +15,7 @@
                             }
                             ?>
                             <div class="position-center">
-                                <form role="form" action="{{URL::to('/save-hinhthu-thanhtoan')}}" method="post">
+                                <form role="form" action="{{URL::to('/save-hinhthuc-thanhtoan')}}" method="post">
                                     {{csrf_field() }}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên hình thức thanh toán</label>
