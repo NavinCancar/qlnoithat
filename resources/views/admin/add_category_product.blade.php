@@ -4,13 +4,13 @@
             <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            Thêm thể loại nội thất
+                            Thêm loại nội thất
                         </header>
                         <div class="panel-body">
                             <?php
                             $message = Session::get('message');
                             if($message){
-                                echo '<span class="text-alert">'.$message.'</span>';
+                                echo '<span class="text-alert text-warning">'.$message.'</span>';
                                 Session::put('message',null);
                             }
                             ?>
@@ -18,17 +18,11 @@
                                 <form role="form" action="{{URL::to('/save-category-product')}}" method="post">
                                     {{csrf_field() }}
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Tên thể loại</label>
-                                    <input type="text" name="category_product_name" class="form-control" id="exampleInputEmail1" placeholder="Tên thể loại" required="">
+                                    <label for="exampleInputEmail1">Tên loại nội thất</label>
+                                    <input type="text" name="category_product_name" class="form-control" id="exampleInputEmail1" placeholder="Tên loại nội thất" required="">
                                 </div>
-                                <!--
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Mã thể loại</label>
-                                    <input class="form-control" name="category_product_desc" id="exampleInputPassword1" placeholder="Mã thể loại nội thất">
-                                </div>
-                                -->
                                 
-                                <button type="submit" name="add_category_product" class="btn btn-info">Thêm thể loại nội thất</button>
+                                <button type="submit" name="add_category_product"  style="width:100%" class="btn btn-success">Thêm loại nội thất</button>
                             </form>
                             </div>
 

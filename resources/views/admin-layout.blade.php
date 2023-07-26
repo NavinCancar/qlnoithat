@@ -133,9 +133,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<!-- noi_that -->
 						<li><a href="{{URL::to('/add-product')}}">Thêm nội thất</a></li>
 						<li><a href="{{URL::to('/all-product')}}">Liệt kê nội thất</a></li>
-						<!-- hinh_anh_noi_that -->
+						<!-- hinh_anh_noi_that 
 						<li><a href="{{URL::to('/add-product-image')}}">Thêm ảnh nội thất</a></li>
-						<li><a href="{{URL::to('/all-product-image')}}">Liệt kê ảnh nội thất</a></li>
+						<li><a href="{{URL::to('/all-product-image')}}">Liệt kê ảnh nội thất</a></li>-->
 						<!-- tac_gia  
 						<li><a href="{{URL::to('/add-tacgia-product')}}">Thêm tác giả</a></li> 
 						<li><a href="{{URL::to('/all-tacgia-product')}}">Liệt kê tác giả</a></li>-->

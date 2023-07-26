@@ -44,7 +44,7 @@
       <?php
       $message = Session::get('message');
       if($message){
-          echo '<br><span class="text-alert">'.$message.'</span>';
+          echo '<br><span class="text-alert text-warning">'.$message.'</span>';
           Session::put('message',null);
       }
     ?>

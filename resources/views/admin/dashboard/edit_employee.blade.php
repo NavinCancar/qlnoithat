@@ -11,7 +11,7 @@
                             <?php
                             $message = Session::get('message');
                             if($message){
-                                echo '<span class="text-alert">'.$message.'</span>';
+                                echo '<span class="text-alert text-warning">'.$message.'</span>';
                                 Session::put('message',null);
                             }
                             ?>
@@ -25,14 +25,13 @@
                                 </div>
                                 <?php
                                     $NV_MA_get = Session::get('NV_MA_get');
+                                    $CV_MA_get = Session::get('CV_MA_get');
                                 ?>
-                                @if($NV_MA_get==1)
+                                @if($CV_MA_get==1)
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Chức vụ</label>
                                       <select name="CV_MA" class="form-control input-sm m-bot15" required="">
-
                                         @foreach($position as $key => $pos)
-                                            
                                             @if($pos->CV_MA==$edit_value->CV_MA)
                                             <option selected value="{{$pos->CV_MA}}">{{$pos->CV_TEN}}</option>
                                             @else
@@ -40,6 +39,10 @@
                                             @endif
                                         @endforeach
                                     </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Mật khẩu</label>
+                                    <input type="text" value="{{$edit_value->NV_MATKHAU}}" name="NV_MATKHAU" class="form-control" id="exampleInputEmail1" placeholder="Mật khẩu nhân viên" required="">
                                 </div>
                                 @endif
                                 
@@ -66,7 +69,6 @@
 
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Ảnh đại diện</label>
-                
                                     <style>
                                         #file-input-f {
                                         display: none;
@@ -96,18 +98,14 @@
                                     </style>
                     
                                     <div class="container">
-                                    <label for="file-input-f" >
-                                        <img class="circle" src="{{URL::to('public/backend/images/nhanvien/'.$edit_value->NV_DUONGDANANHDAIDIEN)}}" height="200" width="200" id="img-preview" src="" alt="Image Preview">
-                                        <input type="file" name="NV_DUONGDANANHDAIDIEN" class="form-control" id="file-input-f">
+                                        <label for="file-input-f" >
+                                            <img class="circle" src="{{URL::to('public/backend/images/nhanvien/'.$edit_value->NV_DUONGDANANHDAIDIEN)}}" height="200" width="200" id="img-preview" src="" alt="Image Preview">
+                                            <input type="file" name="NV_DUONGDANANHDAIDIEN" class="form-control" id="file-input-f">
 
-                                    </label>
-
+                                        </label>
                                     </div>
-                            
-                                    
                                 </div>
-                                
-                                <button type="submit" name="add_employee" class="btn btn-info">Cập nhật nhân viên</button>
+                                <button type="submit" name="add_employee"  style="width:100%" class="btn btn-success">Cập nhật nhân viên</button>
                             </form>
                             </div>
                             @endforeach

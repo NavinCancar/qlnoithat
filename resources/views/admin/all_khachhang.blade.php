@@ -8,7 +8,7 @@
     <?php
       $message = Session::get('message');
       if($message){
-          echo '<span class="text-alert">'.$message.'</span>';
+          echo '<span class="text-alert text-warning">'.$message.'</span>';
           Session::put('message',null);
       }
     ?>
@@ -22,10 +22,8 @@
               </label>
             </th>
             <th>Mã khách hàng</th>
-            <th>Mã giỏ hàng</th>
             <th>Họ tên</th>
             <th>Số điện thoại</th>
-            <th>Địa chỉ</th>
             <th>Ngày sinh</th>
             <th>Giới tính</th>
             <th>Email</th>
@@ -38,10 +36,8 @@
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td>{{$pro->KH_MA }}</td>
-            <td>{{$pro->GH_MA}}</td>
             <td>{{$pro->KH_HOTEN}}</td> 
             <td>{{$pro->KH_SODIENTHOAI}}</td>
-            <td>{{$pro->KH_DIACHI}}</td>
             <td>{{$pro->KH_NGAYSINH}}</td>
             <td>{{$pro->KH_GIOITINH}}</td>
             <td>{{$pro->KH_EMAIL}}</td>

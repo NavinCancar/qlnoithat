@@ -46,8 +46,6 @@ class CategoryProduct extends Controller
         DB::table('loai_noi_that')->insert($data);
         Session::put('message','Thêm loại nội thất thành công');
         return Redirect::to('add-category-product');
-
-
     }
 
     public function edit_category_product($LNT_MA){
@@ -65,7 +63,6 @@ class CategoryProduct extends Controller
         DB::table('loai_noi_that')->where('LNT_MA',$LNT_MA)->update($data);
         Session::put('message','Cập nhật loại nội thất thành công');
         return Redirect::to('all-category-product');
-
     }
 
     public function delete_category_product($LNT_MA){

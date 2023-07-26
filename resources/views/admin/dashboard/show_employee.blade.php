@@ -11,7 +11,7 @@
                             <?php
                             $message = Session::get('message');
                             if($message){
-                                echo '<span class="text-alert">'.$message.'</span>';
+                                echo '<span class="text-alert text-warning">'.$message.'</span>';
                                 Session::put('message',null);
                             }
                             ?>
@@ -69,7 +69,7 @@
                                     
                                 </div>
 
-                                <a href="{{URL::to('/edit-employee/'.$edit_value -> NV_MA)}}"><button type="button" name="add_employee" class="btn btn-info">Cập nhật tài khoản nhân viên</button></a>
+                                <a href="{{URL::to('/edit-employee/'.$edit_value -> NV_MA)}}"><button type="button" name="add_employee"  style="width:100%" class="btn btn-success">Cập nhật tài khoản nhân viên</button></a>
                                 
                             </form>
                             

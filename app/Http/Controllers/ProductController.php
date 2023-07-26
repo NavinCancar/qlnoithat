@@ -92,7 +92,10 @@ class ProductController extends Controller
         
         DB::table('noi_that')->insert($data);
         Session::put('message','Thêm nội thất thành công');
-        return Redirect::to('add-product');
+
+        $NT=DB::table('noi_that')-> where('NT_TEN',$request->NT_TEN)->orderby('NT_MA','desc')->first();
+        $NT_MA=$NT->NT_MA;
+        return Redirect::to('product-detail/'.$NT_MA);
     }
 
     public function edit_product($NT_MA){
@@ -129,10 +132,10 @@ class ProductController extends Controller
         DB::table('noi_that')->where('NT_MA',$NT_MA)->delete();
         Session::put('message','Xóa nội thất thành công');
         return Redirect::to('all-product');
-
     }
+
     //Chi Tiet San Pham
-    public function detail_product($NT_MA){
+    public function detail_product($NT_MA){ //GD khách
         $all_category_product = DB::table('loai_noi_that')->get();
 
         $another_img = DB::table('hinh_anh_noi_that')
@@ -195,34 +198,73 @@ class ProductController extends Controller
         return view('pages.product.show_details_product')->with('category', $all_category_product)
         ->with('product_detail', $details_product)->with('another_img', $another_img)
         ->with('product_relate', $related_product)->with('binh_luan', $binh_luan)->with('danh_gia', $danh_gia);
-
-
         /*echo '<pre>';
         print_r ($binh_luan);
         echo '</pre>';*/
     }
 
-        //Tìm kiếm sản phẩm
-        public function search_product(Request $request){
+    //Tìm kiếm sản phẩm
+    public function search_product(Request $request){
 
-            $keywords = $request ->keywords_submit;
+        $keywords = $request ->keywords_submit;
     
-            $all_category_product = DB::table('loai_noi_that')->get();
+        $all_category_product = DB::table('loai_noi_that')->get();
 
-            $search_product = DB::table('noi_that')
-            ->join('nha_cung_cap','nha_cung_cap.NCC_MA','=','noi_that.NCC_MA')
-            ->join('loai_noi_that','loai_noi_that.LNT_MA','=','noi_that.LNT_MA')
-            ->where('noi_that.NT_TEN', 'like', '%'.$keywords.'%')
-            ->orWhere('nha_cung_cap.NCC_TEN', 'like', '%'.$keywords.'%')
-            ->orderby('noi_that.NT_MA','desc')->get();
+        $search_product = DB::table('noi_that')
+        ->join('nha_cung_cap','nha_cung_cap.NCC_MA','=','noi_that.NCC_MA')
+        ->join('loai_noi_that','loai_noi_that.LNT_MA','=','noi_that.LNT_MA')
+        ->where('noi_that.NT_TEN', 'like', '%'.$keywords.'%')
+        ->orWhere('nha_cung_cap.NCC_TEN', 'like', '%'.$keywords.'%')
+        ->orderby('noi_that.NT_MA','desc')->get();
 
-            $img_product = DB::table('noi_that')
-            ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
-            ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')->get();
+        $img_product = DB::table('noi_that')
+        ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
+        ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')->get();
     
-            return view('admin.search_product')->with('category', $all_category_product)
-            ->with('search_product', $search_product)->with('img_product', $img_product);
+        return view('admin.search_product')->with('category', $all_category_product)
+        ->with('search_product', $search_product)->with('img_product', $img_product);
+    }
+
+    public function update_image(Request $request, $NT_MA){
+        $this->AuthLogin();
+        $data = array();
+        $data = array();
+        $data['HANT_TEN'] = $request->HANT_TEN;
+        //$data['HAS_DUONGDAN'] = $request->HAS_DUONGDAN;
+        $data['NT_MA'] = $request->NT_MA;
+
+        $get_image= $request->file('HANT_DUONGDAN');
+
+        if ($get_image){
+            $name_image = $request->HANT_TEN;
+            $new_image =  $name_image.'.'.$get_image->getClientOriginalExtension();
+            $get_image->move('public/frontend/img/noithat',$new_image);
+            $data['HANT_DUONGDAN'] = $new_image;
         }
+
+        $check_ten=DB::table('hinh_anh_noi_that')->where('HANT_TEN',$request->HANT_TEN)->count();
+        if($check_ten==0){
+            DB::table('hinh_anh_noi_that')->insert($data);
+            Session::put('message','Thêm hình ảnh nội thất thành công');
+            return Redirect::to('product-detail/'.$NT_MA);
+        }
+        /*echo '<pre>';
+        print_r ($data);
+        echo '</pre>';*/
+
+        DB::table('hinh_anh_noi_that')->where('NT_MA',$NT_MA)->where('HANT_TEN',$request->HANT_TEN)->update($data);
+        Session::put('message','Cập nhật hình ảnh nội thất thành công');
+        return Redirect::to('product-detail/'.$NT_MA);
+    }
+
+    public function delete_image($HANT_MA){
+        $this->AuthLogin();
+        $NT=DB::table('hinh_anh_noi_that')->where('HANT_MA',$HANT_MA)->first();
+        $NT_MA=$NT->NT_MA;
+        DB::table('hinh_anh_noi_that')->where('HANT_MA',$HANT_MA)->delete();
+        Session::put('message','Xóa hình ảnh nội thất thành công');
+        return Redirect::to('product-detail/'.$NT_MA);
+    }
 
         public function danh_gia(Request $request, $NT_MA){
 

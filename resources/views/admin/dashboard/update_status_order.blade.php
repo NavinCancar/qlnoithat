@@ -54,7 +54,7 @@
                                 </div>
 
                                 
-                                <button type="submit" name="add_employee" class="btn btn-info">Cập nhật trạng thái đơn đặt hàng</button>
+                                <button type="submit" name="add_employee"  style="width:100%" class="btn btn-success">Cập nhật trạng thái đơn đặt hàng</button>
                             </form>
                             </div>
                             @endforeach

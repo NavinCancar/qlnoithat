@@ -24,7 +24,7 @@
                                 </div>-->
                                 
                                 
-                                <button type="submit" name="update_hinhthuc_thanhtoan" class="btn btn-info">Cập nhật hình thức thanh toán đơn đặt hàng</button>
+                                <button type="submit" name="update_hinhthuc_thanhtoan"  style="width:100%" class="btn btn-success">Cập nhật hình thức thanh toán đơn đặt hàng</button>
                             </form>
                             </div>
                             @endforeach

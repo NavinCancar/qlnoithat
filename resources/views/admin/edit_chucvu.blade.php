@@ -18,7 +18,7 @@
                                 </div>
                                 
                                 
-                                <button type="submit" name="update_category_product" class="btn btn-info">Cập nhật chức vụ</button>
+                                <button type="submit" name="update_category_product"  style="width:100%" class="btn btn-success">Cập nhật chức vụ</button>
                             </form>
                             </div>
                             @endforeach

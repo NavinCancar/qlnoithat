@@ -73,43 +73,46 @@ Route::get('/dashboard', 'App\Http\Controllers\AdminController@show_dashboard');
 Route::get('/log-out', 'App\Http\Controllers\AdminController@logout');///
 Route::post('/admin-dashboard', 'App\Http\Controllers\AdminController@dashboard'); ///
 
-//Category Product
-Route::get('/add-category-product', 'App\Http\Controllers\CategoryProduct@add_category_product');
-Route::get('/edit-category-product/{LNT_MA}', 'App\Http\Controllers\CategoryProduct@edit_category_product');
-Route::get('/delete-category-product/{LNT_MA}', 'App\Http\Controllers\CategoryProduct@delete_category_product');
-Route::get('/all-category-product', 'App\Http\Controllers\CategoryProduct@all_category_product');
+//Category Product: Loại nội thất
+Route::get('/add-category-product', 'App\Http\Controllers\CategoryProduct@add_category_product'); ///
+Route::get('/edit-category-product/{LNT_MA}', 'App\Http\Controllers\CategoryProduct@edit_category_product'); ///
+Route::get('/delete-category-product/{LNT_MA}', 'App\Http\Controllers\CategoryProduct@delete_category_product'); ///
+Route::get('/all-category-product', 'App\Http\Controllers\CategoryProduct@all_category_product'); /// 
 
-Route::post('/save-category-product', 'App\Http\Controllers\CategoryProduct@save_category_product');
-Route::post('/update-category-product/{LNT_MA}', 'App\Http\Controllers\CategoryProduct@update_category_product');
+Route::post('/save-category-product', 'App\Http\Controllers\CategoryProduct@save_category_product'); ///
+Route::post('/update-category-product/{LNT_MA}', 'App\Http\Controllers\CategoryProduct@update_category_product'); ///
 
-//Brand Product
-Route::get('/add-brand-product', 'App\Http\Controllers\BrandProduct@add_brand_product');
-Route::get('/edit-brand-product/{NCC_MA}', 'App\Http\Controllers\BrandProduct@edit_brand_product');
-Route::get('/delete-brand-product/{NCC_MA}', 'App\Http\Controllers\BrandProduct@delete_brand_product');
-Route::get('/all-brand-product', 'App\Http\Controllers\BrandProduct@all_brand_product');
+//Brand Product: Nhà cung cấp
+Route::get('/add-brand-product', 'App\Http\Controllers\BrandProduct@add_brand_product'); ///
+Route::get('/edit-brand-product/{NCC_MA}', 'App\Http\Controllers\BrandProduct@edit_brand_product'); ///
+Route::get('/delete-brand-product/{NCC_MA}', 'App\Http\Controllers\BrandProduct@delete_brand_product'); ///
+Route::get('/all-brand-product', 'App\Http\Controllers\BrandProduct@all_brand_product'); ///
 
-Route::post('/save-brand-product', 'App\Http\Controllers\BrandProduct@save_brand_product');
-Route::post('/update-brand-product/{NCC_MA}', 'App\Http\Controllers\BrandProduct@update_brand_product');
+Route::post('/save-brand-product', 'App\Http\Controllers\BrandProduct@save_brand_product'); ///
+Route::post('/update-brand-product/{NCC_MA}', 'App\Http\Controllers\BrandProduct@update_brand_product'); ///
 
 //Product
 Route::get('/add-product', 'App\Http\Controllers\ProductController@add_product'); ///
 Route::get('/edit-product/{NT_MA}', 'App\Http\Controllers\ProductController@edit_product'); ///
 Route::get('/delete-product/{NT_MA}', 'App\Http\Controllers\ProductController@delete_product'); ///
 Route::get('/all-product', 'App\Http\Controllers\ProductController@all_product'); ///
-Route::get('/product-detail/{NT_MA}', 'App\Http\Controllers\ProductController@product_detail'); //
+Route::get('/product-detail/{NT_MA}', 'App\Http\Controllers\ProductController@product_detail'); ///
+Route::get('/delete-image/{HANT_MA}', 'App\Http\Controllers\ProductController@delete_image'); ///
 
 Route::post('/save-product', 'App\Http\Controllers\ProductController@save_product'); ///
 Route::post('/update-product/{NT_MA}', 'App\Http\Controllers\ProductController@update_product'); ///
 Route::post('/search-product', 'App\Http\Controllers\ProductController@search_product'); ///
+Route::post('/update-image/{NT_MA}', 'App\Http\Controllers\ProductController@update_image'); ///
 
 //Product Image
+/*
 Route::get('/add-product-image', 'App\Http\Controllers\ImageProductController@add_product_image');
 Route::get('/edit-product-image/{HAS_MA}', 'App\Http\Controllers\ImageProductController@edit_product_image');
 Route::get('/delete-product-image/{HAS_MA}', 'App\Http\Controllers\ImageProductController@delete_product_image');
 Route::get('/all-product-image', 'App\Http\Controllers\ImageProductController@all_product_image');
 
 Route::post('/save-product-image', 'App\Http\Controllers\ImageProductController@save_product_image');
-Route::post('/update-product-image/{HAS_MA}', 'App\Http\Controllers\ImageProductController@update_product_image');
+Route::post('/update-product-image/{HAS_MA}', 'App\Http\Controllers\ImageProductController@update_product_image');*/
 
 
 //Product tacgia
@@ -122,14 +125,14 @@ Route::post('/save-tacgia-product', 'App\Http\Controllers\TacgiaProduct@save_tac
 Route::post('/update-tacgia-product/{TG_MA}', 'App\Http\Controllers\TacgiaProduct@update_tacgia_product');*/
 
 //Employee
-Route::get('/show-employee', 'App\Http\Controllers\EmployeeController@show_employee');
-Route::get('/add-employee', 'App\Http\Controllers\EmployeeController@add_employee');
-Route::get('/edit-employee/{NV_MA}', 'App\Http\Controllers\EmployeeController@edit_employee');
-Route::get('/delete-employee/{NV_MA}', 'App\Http\Controllers\EmployeeController@delete_employee');
-Route::get('/all-employee', 'App\Http\Controllers\EmployeeController@all_employee');
+Route::get('/show-employee', 'App\Http\Controllers\EmployeeController@show_employee'); ///
+Route::get('/add-employee', 'App\Http\Controllers\EmployeeController@add_employee'); ///
+Route::get('/edit-employee/{NV_MA}', 'App\Http\Controllers\EmployeeController@edit_employee'); ///
+Route::get('/delete-employee/{NV_MA}', 'App\Http\Controllers\EmployeeController@delete_employee'); ///
+Route::get('/all-employee', 'App\Http\Controllers\EmployeeController@all_employee'); ///
 
-Route::post('/save-employee', 'App\Http\Controllers\EmployeeController@save_employee');
-Route::post('/update-employee/{NV_MA}', 'App\Http\Controllers\EmployeeController@update_employee');
+Route::post('/save-employee', 'App\Http\Controllers\EmployeeController@save_employee'); ///
+Route::post('/update-employee/{NV_MA}', 'App\Http\Controllers\EmployeeController@update_employee'); ///
 
 //lonhap
 Route::get('/add-lonhap', 'App\Http\Controllers\Lonhap@add_lonhap');
@@ -192,13 +195,13 @@ Route::get('/edit_feeship/{XP_MA}', 'App\Http\Controllers\AdminController@edit_f
 Route::post('/update_feeship/{XP_MA}', 'App\Http\Controllers\AdminController@update_feeship');
 
 // chuc vu 
-Route::get('/add-chucvu', 'App\Http\Controllers\Chucvu@add_chucvu');
-Route::get('/edit-chucvu/{CV_MA}', 'App\Http\Controllers\Chucvu@edit_chucvu');
-Route::get('/delete-chucvu/{CV_MA}', 'App\Http\Controllers\Chucvu@delete_chucvu');
-Route::get('/all-chucvu', 'App\Http\Controllers\Chucvu@all_chucvu');
+Route::get('/add-chucvu', 'App\Http\Controllers\Chucvu@add_chucvu'); ///
+Route::get('/edit-chucvu/{CV_MA}', 'App\Http\Controllers\Chucvu@edit_chucvu'); ///
+Route::get('/delete-chucvu/{CV_MA}', 'App\Http\Controllers\Chucvu@delete_chucvu'); ///
+Route::get('/all-chucvu', 'App\Http\Controllers\Chucvu@all_chucvu'); ///
 
-Route::post('/save-chucvu', 'App\Http\Controllers\Chucvu@save_chucvu');
-Route::post('/update-chucvu/{CV_MA}', 'App\Http\Controllers\Chucvu@update_chucvu');
+Route::post('/save-chucvu', 'App\Http\Controllers\Chucvu@save_chucvu'); ///
+Route::post('/update-chucvu/{CV_MA}', 'App\Http\Controllers\Chucvu@update_chucvu'); ///
 
 // hinh thuc thanh toan
 Route::get('/add-hinhthu-thanhtoan', 'App\Http\Controllers\Hinhthucthanhtoan@add_hinhthuc_thanhtoan');
@@ -210,10 +213,7 @@ Route::post('/save-hinhthu-thanhtoan', 'App\Http\Controllers\Hinhthucthanhtoan@s
 Route::post('/update-hinhthu-thanhtoan/{HTTT_MA}', 'App\Http\Controllers\Hinhthucthanhtoan@update_hinhthuc_thanhtoan');
 
 //khachhang
-Route::get('/add-khachhang', 'App\Http\Controllers\Khachhang@add_khachhang');
-Route::get('/edit-khachhang/{KH_MA}', 'App\Http\Controllers\Khachhang@edit_khachhang');
-Route::get('/delete-khachhang/{KH_MA}', 'App\Http\Controllers\Khachhang@delete_khachhang');
-Route::get('/all-khachhang', 'App\Http\Controllers\Khachhang@all_khachhang');
+Route::get('/all-khachhang', 'App\Http\Controllers\CostumerController@all_khachhang'); ///
 
 //tacgia cuasach
 
@@ -236,3 +236,8 @@ Route::post('/update-cttheloai-cuasach/sach={NT_MA}&theloai={LNT_MA}', 'App\Http
 
 //ton kho
 Route::get('/ton-kho', 'App\Http\Controllers\ProductController@ton_kho');
+
+//Cart k hiển thị vì bị tắt ảnh bìa => mua trúng vẫn bị duyệt?
+//Bộ lọc
+//Đổi mật khẩu
+//Xoá khách

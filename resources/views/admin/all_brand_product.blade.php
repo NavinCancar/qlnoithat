@@ -3,12 +3,12 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Liệt kê nhà xuất bản
+      Liệt kê nhà cung cấp
     </div>
     <?php
       $message = Session::get('message');
       if($message){
-          echo '<span class="text-alert">'.$message.'</span></br>';
+          echo '<span class="text-alert text-warning">'.$message.'</span></br>';
           Session::put('message',null);
       }
     ?>
@@ -27,8 +27,8 @@
                 <input type="checkbox"><i></i>
               </label>
             </th>
-            <th>Mã nhà xuất bản</th>
-            <th>Tên nhà xuất bản</th>
+            <th>Mã</th>
+            <th>Tên nhà cung cấp</th>
             <th>Số điện thoại</th>
             <th>Địa chỉ</th>
             <th>Email</th>
@@ -40,14 +40,14 @@
         @foreach($all_brand_product as $key => $brand_pro)
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-            <td>{{$brand_pro->NXB_MA}}</td>
-            <td>{{$brand_pro->NXB_TEN}}</td>
-            <td>{{$brand_pro->NXB_SODIENTHOAI}}</td>
-            <td>{{$brand_pro->NXB_DIACHI}}</td>
-            <td>{{$brand_pro->NXB_EMAIL}}</td>
+            <td>{{$brand_pro->NCC_MA}}</td>
+            <td>{{$brand_pro->NCC_TEN}}</td>
+            <td>{{$brand_pro->NCC_SODIENTHOAI}}</td>
+            <td>{{$brand_pro->NCC_DIACHI}}</td>
+            <td>{{$brand_pro->NCC_EMAIL}}</td>
             <td>
-              <a href="{{URL::to('/edit-brand-product/'.$brand_pro -> NXB_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
-              <a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-brand-product/'.$brand_pro -> NXB_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
+              <a href="{{URL::to('/edit-brand-product/'.$brand_pro -> NCC_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
+              <a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-brand-product/'.$brand_pro -> NCC_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
             </td>
           </tr>
          @endforeach

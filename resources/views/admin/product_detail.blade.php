@@ -11,7 +11,7 @@
                             <?php
                             $message = Session::get('message');
                             if($message){
-                                echo '<span class="text-alert">'.$message.'</span>';
+                                echo '<span class="text-alert text-warning">'.$message.'</span>';
                                 Session::put('message',null);
                             }
                             $NT_MA= $edit_value->NT_MA;
@@ -93,7 +93,7 @@
                             <hr>
 
                             <style>
-                                #file-input {
+                                #file-input, #file-input2 {
                                 display: none;
                                 }
 
@@ -123,34 +123,41 @@
                                 <?php
                                     $cover_img_check = Session::get('cover_img_check');
                                 ?>
-                                @if($cover_img_check != 0)
-                                    @foreach($cover_img as $key => $cover)
-                                    (Mã: {{$cover->HANT_MA}}, đường dẫn: {{$cover->HANT_DUONGDAN}} )
-                                    <input type="hidden" name="HANT_DUONGDAN" disabled value="{{$cover->HANT_DUONGDAN}}" class="form-control" id="exampleInputEmail1">
-                                    <div class="container">
-                                        <label for="file-input">
-                                            <img class="frame" src="../public/frontend/img/noithat/{{$cover->HANT_DUONGDAN}}" id="img-preview" src="" alt="Image Preview">
-                                            <input type="file" name="HANT_DUONGDAN" class="form-control"  id="file-input">
-                                        </label>
+                                <form role="form" action="{{URL::to('/update-image/'.$NT_MA)}}" method="post" enctype= "multipart/form-data">
+                                    {{csrf_field() }}
+                                    <input type="hidden" name="HANT_TEN" id="exampleInputEmail1" required="" value="<?php echo $NT_MA.'-1' ?>">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            @if($cover_img_check != 0)
+                                                @foreach($cover_img as $key => $cover)
+                                                <input required=""  type="hidden" name="HANT_DUONGDAN" disabled value="{{$cover->HANT_DUONGDAN}}" class="form-control" id="exampleInputEmail1">
+                                                <div class="container">
+                                                    <label for="file-input">
+                                                        <img class="frame" src="../public/frontend/img/noithat/{{$cover->HANT_DUONGDAN}}" id="img-preview" src="" alt="Image Preview">
+                                                        <input required=""  type="file" name="HANT_DUONGDAN" class="form-control"  id="file-input">
+                                                    </label>
+                                                </div>
+                                                @endforeach  
+                                            @else
+                                                <input required=""  type="hidden" name="HANT_DUONGDAN" disabled value="" class="form-control" id="exampleInputEmail1">
+                                                <div class="container">
+                                                    <label for="file-input">
+                                                        <img class="frame" src="../public/backend/images/add.png" id="img-preview" src="" alt="Image Preview">
+                                                        <input required="" type="file" name="HANT_DUONGDAN" class="form-control"  id="file-input">
+                                                    </label>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <button type="submit" name="update_cover_img" style="width:100%" class="btn btn-success btn-sm">Thêm/cập nhật ảnh bìa</button>
+                                            @if($cover_img_check != 0)
+                                            <a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-image/'.$cover->HANT_MA)}}" class="active styling-edit" ui-toggle-class="">
+                                                <button type="button" style="width:100%;margin-top: 10px;margin-bottom: 10px" class="btn btn-danger btn-sm">Xóa ảnh bìa</button></a>
+                                                <span> (Mã: {{$cover->HANT_MA}}, đường dẫn: {{$cover->HANT_DUONGDAN}}) </span>
+                                            @endif
+                                        </div>
                                     </div>
-                                    @endforeach  
-                                @else
-                                <input type="hidden" name="HANT_DUONGDAN" disabled value="" class="form-control" id="exampleInputEmail1">
-                                    <div class="container">
-                                        <label for="file-input">
-                                            <img class="frame" src="../public/backend/images/add.png" id="img-preview" src="" alt="Image Preview">
-                                            <input type="file" name="HANT_DUONGDAN" class="form-control"  id="file-input">
-                                        </label>
-                                    </div>
-                                @endif
-                                <div class="row">
-                                    <a href="{{URL::to('/update-cover-img/'.$NT_MA)}}" class="col-sm-6"><button type="button" style="width:100%" class="btn btn-success btn-sm">Thêm/Thay đổi ảnh bìa</button></a>
-                                    @if($cover_img_check != 0)
-                                    <a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" class="col-sm-6" href="{{URL::to('/delete-cover-img/'.$NT_MA)}}" class="active styling-edit" ui-toggle-class="">
-                                        <button type="button" style="width:100%" class="btn btn-danger btn-sm">Xóa ảnh bìa</button></a>
-                                    @endif
-                                </div>
-                                
+                                </form> 
                             </div>
                             <hr>
                             <div class="position-center">
@@ -172,14 +179,39 @@
                                             <td>{{$another->HANT_DUONGDAN}}</td>
                                             <td><img src="../public/frontend/img/noithat/{{$another->HANT_DUONGDAN}}" width="150"></td>
                                             <td>
-                                            <a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-product-image/'.$another -> HANT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
+                                            <a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-image/'.$another -> HANT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach
                                         </tbody>
                                     </table>
+                                </div>
+                            
+                                <form role="form" action="{{URL::to('/update-image/'.$NT_MA)}}" method="post" enctype= "multipart/form-data">
+                                    {{csrf_field() }}
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Đường dẫn hình ảnh nội thất</label>
+                                                <input required="" type="hidden" name="HANT_DUONGDAN" disabled value="" class="form-control" id="exampleInputEmail1">
+                                                <div class="container">
+                                                    <label for="file-input2">
+                                                        <img class="frame" src="../public/backend/images/add.png" id="img-preview2" src="" alt="Image Preview">
+                                                        <input required="" type="file" name="HANT_DUONGDAN" class="form-control" id="file-input2" required="">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Tên hình ảnh nội thất</label>
+                                                <input type="text" name="HANT_TEN" class="form-control" id="exampleInputEmail1" required=""  value="<?php echo $NT_MA.'-' ?>" pattern = "^(?!.*-1)\d+-\d+$">
+                                            </div>
+                                            
+                                            <button type="submit" name="update_another_img" style="width:100%" class="btn btn-info btn-sm">Thêm/cập nhật ảnh khác</button>
+                                        </div>
                                     </div>
-                                <a href="{{URL::to('/update-another-img')}}"><button type="button" style="width:100%" class="btn btn-info btn-sm">Thêm/cập nhật ảnh khác</button></a> 
+                                </form>
                             </div>
                         </div>
                     </section>
@@ -198,6 +230,21 @@
 
     reader.readAsDataURL(file);
     }); 
+    //------
+    const fileInput2 = document.getElementById('file-input2');
+    const imgPreview2 = document.getElementById('img-preview2');
+
+    fileInput2.addEventListener('change', (event) => {
+    const file2 = event.target.files[0];
+    const reader2 = new FileReader();
+
+    reader2.addEventListener('load', (event) => {
+        imgPreview2.src = event.target.result;
+    });
+
+    reader2.readAsDataURL(file2);
+    });
+
 </script>
 @endsection
             

@@ -1,5 +1,5 @@
 <?php
-//Nhà xuất bản
+//nhà cung cấp
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -28,10 +28,10 @@ class BrandProduct extends Controller
 
     public function all_brand_product(){
         $this->AuthLogin();
-        $all_brand_product = DB::table('nha_xuat_ban')->get();
+        $all_brand_product = DB::table('nha_cung_cap')->get();
         $manager_brand_product = view('admin.all_brand_product')->with('all_brand_product', $all_brand_product);
         
-        $count_brand_product = DB::table('nha_xuat_ban')->count('NXB_MA');
+        $count_brand_product = DB::table('nha_cung_cap')->count('NCC_MA');
         Session::put('count_brand_product',$count_brand_product);
         return view('admin-layout')->with('admin.all_brand_product', $manager_brand_product);
     }
@@ -39,47 +39,46 @@ class BrandProduct extends Controller
     public function save_brand_product(Request $request){
         $this->AuthLogin();
         $data = array();
-        //$data['NXB_MA'] = $request->brand_product_id;
-        $data['NXB_TEN'] = $request->brand_product_name;
-        $data['NXB_SODIENTHOAI'] = $request->brand_product_phone;
-        $data['NXB_DIACHI'] = $request->brand_product_address;
-        $data['NXB_EMAIL'] = $request->brand_product_email;
+        //$data['NCC_MA'] = $request->brand_product_id;
+        $data['NCC_TEN'] = $request->brand_product_name;
+        $data['NCC_SODIENTHOAI'] = $request->brand_product_phone;
+        $data['NCC_DIACHI'] = $request->brand_product_address;
+        $data['NCC_EMAIL'] = $request->brand_product_email;
         
 
-        DB::table('nha_xuat_ban')->insert($data);
-        Session::put('message','Thêm nhà xuất bản thành công');
+        DB::table('nha_cung_cap')->insert($data);
+        Session::put('message','Thêm nhà cung cấp thành công');
         return Redirect::to('add-brand-product');
 
 
     }
 
-    public function edit_brand_product($NXB_MA){
+    public function edit_brand_product($NCC_MA){
         $this->AuthLogin();
-        $edit_brand_product = DB::table('nha_xuat_ban')->where('NXB_MA',$NXB_MA)->get();
+        $edit_brand_product = DB::table('nha_cung_cap')->where('NCC_MA',$NCC_MA)->get();
         $manager_brand_product = view('admin.edit_brand_product')->with('edit_brand_product', $edit_brand_product);
         return view('admin-layout')->with('admin.edit_brand_product', $manager_brand_product);
     }
 
-    public function update_brand_product(Request $request, $NXB_MA){
+    public function update_brand_product(Request $request, $NCC_MA){
         $this->AuthLogin();
         $data = array();
         //$data['tên trong csdl'] = $request->phần name trong form nhập;
 
-        //$data['NXB_MA'] = $request->brand_product_id;
-        $data['NXB_TEN'] = $request->brand_product_name; 
-        $data['NXB_SODIENTHOAI'] = $request->brand_product_phone;
-        $data['NXB_DIACHI'] = $request->brand_product_address;
-        $data['NXB_EMAIL'] = $request->brand_product_email;
-        DB::table('nha_xuat_ban')->where('NXB_MA',$NXB_MA)->update($data);
-        Session::put('message','Cập nhật nhà xuất bản thành công');
+        //$data['NCC_MA'] = $request->brand_product_id;
+        $data['NCC_TEN'] = $request->brand_product_name; 
+        $data['NCC_SODIENTHOAI'] = $request->brand_product_phone;
+        $data['NCC_DIACHI'] = $request->brand_product_address;
+        $data['NCC_EMAIL'] = $request->brand_product_email;
+        DB::table('nha_cung_cap')->where('NCC_MA',$NCC_MA)->update($data);
+        Session::put('message','Cập nhật nhà cung cấp thành công');
         return Redirect::to('all-brand-product');
-
     }
 
-    public function delete_brand_product($NXB_MA){
+    public function delete_brand_product($NCC_MA){
         $this->AuthLogin();
-        DB::table('nha_xuat_ban')->where('NXB_MA',$NXB_MA)->delete();
-        Session::put('message','Xóa nhà xuất bản thành công');
+        DB::table('nha_cung_cap')->where('NCC_MA',$NCC_MA)->delete();
+        Session::put('message','Xóa nhà cung cấp thành công');
         return Redirect::to('all-brand-product');
 
     }

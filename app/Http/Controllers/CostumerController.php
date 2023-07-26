@@ -275,4 +275,22 @@ class CostumerController extends Controller
         Session::put('message','Cập nhật thông tin thành công');
         return Redirect::to('tai-khoan');
     }
+
+    //Admin
+    public function AuthLoginInAdmin(){
+        $NV_MA = Session::get('NV_MA');
+        if($NV_MA){
+            return Redirect::to('dashboard');
+        }else{
+            return Redirect::to('admin')->send();
+        }
+    }
+    
+    public function all_khachhang(){ //Hien thi tat ca khach hang
+        $this->AuthLoginInAdmin(); 
+        $all_khachhang = DB::table('khach_hang')
+        ->orderby('khach_hang.KH_MA','desc')->get();
+        $manager_khachhang = view('admin.all_khachhang')->with('all_khachhang', $all_khachhang);
+        return view('admin-layout')->with('admin.all_khachhang', $manager_khachhang); 
+    }
 }

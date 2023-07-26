@@ -10,7 +10,7 @@
                             <?php
                             $message = Session::get('message');
                             if($message){
-                                echo '<span class="text-alert">'.$message.'</span>';
+                                echo '<span class="text-alert text-warning">'.$message.'</span>';
                                 Session::put('message',null); 
                             }
                             ?>
@@ -40,7 +40,7 @@
                                     </select>
                                 </div>
                                 
-                                <button type="submit" name="add_lonhap" class="btn btn-info">Thêm lô nhập</button>
+                                <button type="submit" name="add_lonhap"  style="width:100%" class="btn btn-success">Thêm lô nhập</button>
                             </form>
                             </div>
 

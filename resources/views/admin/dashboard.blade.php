@@ -1,10 +1,10 @@
 @extends('admin-layout')
- @section('admin-content')
+@section('admin-content')
 <!-- //market-->
 <div  style="box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); background: RGB(189, 140, 153); text-align: center; color: #fff; font-family: Arial, sans-serif; font-weight: bold;">
       <br><h1>Trang quản trị bán nội thất</h1><br>
 </div>
-<div class="market-updates">
+		<div class="market-updates">
 			<div class="col-md-3 market-update-gd">
 				<div class="market-update-block clr-block-1">
 					<div class="col-md-4 market-update-right">
@@ -12,7 +12,6 @@
 					</div>
 					 <div class="col-md-8 market-update-left">
 					 <h4>Tổng số đơn hàng đã đặt</h4>
-
 					<h3>
 						<?php
 							$ddh= Session::get('SO_DDH');
@@ -26,6 +25,7 @@
 				  <div class="clearfix"> </div>
 				</div>
 			</div>
+
 			<div class="col-md-3 market-update-gd">
 				<div class="market-update-block clr-block-2">
 					<div class="col-md-4 market-update-right">
@@ -44,6 +44,7 @@
 				  <div class="clearfix"> </div>
 				</div>
 			</div>
+
 			<div class="col-md-3 market-update-gd">
 				<div class="market-update-block clr-block-3">
 					<div class="col-md-4 market-update-right">
@@ -64,6 +65,7 @@
 				  <div class="clearfix"> </div>
 				</div>
 			</div>
+
 			<style>
 				.market-update-right i.fa.fa-user {
 					font-size:3em;
@@ -91,11 +93,8 @@
 				  <div class="clearfix"> </div>
 				</div>
 			</div>
-		   <div class="clearfix"> </div>
-		</div>	
 
-
-		<style>
+			<style>
 			.market-update-block.clr-block-5 {
 				margin: 0 0 1.5em ;
 				background: #e6c81c;
@@ -114,13 +113,12 @@
 			-o-transition: 0.5s all;
 			}
 		</style>
-
-		<div class="col-md-12 market-update-gd">
-				<div class="market-update-block clr-block-5">
-					<div class="col-md-4 market-update-right">
+		<div class="col-md-12 market-update-gd" style="width:100%">
+				<div class="market-update-block clr-block-5" style="margin-top: 1.5em;">
+					<div class="col-md-2 market-update-right">
 						<i class="fa fa-usd"></i>
 					</div>
-					<div class="col-md-8 market-update-left">
+					<div class="col-md-10 market-update-left">
 						<h4>Tổng doanh thu</h4>
 						<h3>
 							<?php
@@ -147,8 +145,13 @@
 					</div>
 				  <div class="clearfix"> </div>
 				</div>
-
 		</div>
+
+		   <div class="clearfix"> </div>
+		</div>	
+	
+
+
 		<!-- //market-->
 
 		<div class="col-sm-12 mail-w3agile ">

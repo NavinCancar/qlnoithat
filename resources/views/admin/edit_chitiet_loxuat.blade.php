@@ -11,7 +11,7 @@
                             <?php
                             $message = Session::get('message');
                             if($message){
-                                echo '<span class="text-alert">'.$message.'</span>';
+                                echo '<span class="text-alert text-warning">'.$message.'</span>';
                                 Session::put('message',null); 
                             }
                             ?>
@@ -62,7 +62,7 @@
                                     <input type="text" value="{{$edit_value->CTLX_GIA}}" name="gia_product_name" class="form-control" id="exampleInputEmail1" placeholder="Giá" required=""  pattern="[0-9]+">
                                 </div>
                                 
-                                <button type="submit" name="add_chitiet_loxuat" class="btn btn-info">Cập nhật chi tiết lô xuất</button>
+                                <button type="submit" name="add_chitiet_loxuat"  style="width:100%" class="btn btn-success">Cập nhật chi tiết lô xuất</button>
                             </form>
                             </div>
                             @endforeach

@@ -10,7 +10,7 @@
         <?php
           $message = Session::get('message');
           if($message){
-              echo '<span class="text-alert">'.$message.'</span></br>';
+              echo '<span class="text-alert text-warning">'.$message.'</span></br>';
               Session::put('message',null);
           }
         ?>
