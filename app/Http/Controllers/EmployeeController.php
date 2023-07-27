@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
-{
+{//Backend-------------------------------------------------------
+
     public function AuthLoginChu(){
         $NV_MA = Session::get('NV_MA');
         $CV_MA = DB::table('nhan_vien')->where('NV_MA',$NV_MA)->first();
@@ -18,66 +19,29 @@ class EmployeeController extends Controller
             if($CV_MA->CV_MA != 1){
                 return Redirect::to('dashboard')->send();
             }
-            
         }else{
             return Redirect::to('admin')->send();
         }
     }
+
     public function AuthLogin(){
         $NV_MA = Session::get('NV_MA');
         if($NV_MA){
-        
+
         }else{
             return Redirect::to('admin')->send();
         }
     }
 
-    public function add_employee(){
-        $this->AuthLoginChu();
+    //--All
+
+    public function show_employee(){
+        $this->AuthLogin();
+        $NV_MA = Session::get('NV_MA');
         $position = DB::table('CHUC_VU')->orderby('CV_MA')->get(); 
-        return view('admin.dashboard.add_employee')->with('position', $position);
-
-    }
-    public function all_employee(){ //Hien thi tat ca
-        $this->AuthLoginChu();
-
-        $all_employee = DB::table('nhan_vien')
-        ->join('chuc_vu','nhan_vien.CV_MA','=','chuc_vu.CV_MA')
-        ->orderby('NV_MA','desc')->get();
-        $manager_employee = view('admin.dashboard.all_employee')->with('all_employee', $all_employee);
-                
-        $count_employee = DB::table('nhan_vien')->count('NV_MA');
-        Session::put('count_employee',$count_employee);
-        return view('admin-layout')->with('admin.dashboard.all_employee', $manager_employee);
-    }
-
-    public function save_employee(Request $request){//thêm nhân viên
-        $this->AuthLoginChu();
-        $data = array();
-        $data['NV_HOTEN'] = $request->NV_HOTEN;
-        //$data['NV_DUONGDAN'] = $request->NV_DUONGDAN;  
-        $data['CV_MA'] = $request->CV_MA;
-        $data['NV_SODIENTHOAI'] = $request->NV_SODIENTHOAI;
-        $data['NV_DIACHI'] = $request->NV_DIACHI;
-        $data['NV_MATKHAU'] = rand(1000,1999);
-        $data['NV_NGAYSINH'] = $request->NV_NGAYSINH;
-        $data['NV_GIOITINH'] = $request->NV_GIOITINH;
-        $data['NV_EMAIL'] = $request->NV_EMAIL;
-        $data['NV_DUONGDANANHDAIDIEN'] = 'macdinh.png';
-        DB::table('nhan_vien')->insert($data);
-
-        $NV=DB::table('nhan_vien')->where('NV_SODIENTHOAI', $request->NV_SODIENTHOAI)->orderby('NV_MA', 'desc')->first();
-        $ma_nv=$NV->NV_MA;
-        $get_image= $request->file('NV_DUONGDANANHDAIDIEN');
-        if($get_image){
-            $new_image =  $ma_nv.'.'.$get_image->getClientOriginalExtension();
-            $get_image->move('public/backend/images/nhanvien',$new_image);
-            $data['NV_DUONGDANANHDAIDIEN'] = $new_image;
-            DB::table('nhan_vien')->where('NV_MA', $ma_nv)->update($data);
-        }
-        
-        Session::put('message','Thêm nhân viên thành công');
-        return Redirect::to('add-employee');
+        $edit_employee = DB::table('nhan_vien')->where('NV_MA',$NV_MA)->get();
+        $manager_employee = view('admin.dashboard.show_employee')->with('edit_employee', $edit_employee)->with('position',$position);
+        return view('admin-layout')->with('admin.dashboard.show_employee', $manager_employee);
     }
 
     public function edit_employee($NV_MA){
@@ -126,21 +90,61 @@ class EmployeeController extends Controller
         return Redirect::to('all-employee');
     }
 
+
+    //--Only chủ cửa hàng
+
+    public function add_employee(){
+        $this->AuthLoginChu();
+        $position = DB::table('CHUC_VU')->orderby('CV_MA')->get(); 
+        return view('admin.dashboard.add_employee')->with('position', $position);
+    }
+
+    public function all_employee(){
+        $this->AuthLoginChu();
+
+        $all_employee = DB::table('nhan_vien')
+        ->join('chuc_vu','nhan_vien.CV_MA','=','chuc_vu.CV_MA')
+        ->orderby('NV_MA','desc')->get();
+        $manager_employee = view('admin.dashboard.all_employee')->with('all_employee', $all_employee);
+                
+        $count_employee = DB::table('nhan_vien')->count('NV_MA');
+        Session::put('count_employee',$count_employee);
+        return view('admin-layout')->with('admin.dashboard.all_employee', $manager_employee);
+    }
+
+    public function save_employee(Request $request){
+        $this->AuthLoginChu();
+        $data = array();
+        $data['NV_HOTEN'] = $request->NV_HOTEN;
+        //$data['NV_DUONGDAN'] = $request->NV_DUONGDAN;  
+        $data['CV_MA'] = $request->CV_MA;
+        $data['NV_SODIENTHOAI'] = $request->NV_SODIENTHOAI;
+        $data['NV_DIACHI'] = $request->NV_DIACHI;
+        $data['NV_MATKHAU'] = rand(1000,1999);
+        $data['NV_NGAYSINH'] = $request->NV_NGAYSINH;
+        $data['NV_GIOITINH'] = $request->NV_GIOITINH;
+        $data['NV_EMAIL'] = $request->NV_EMAIL;
+        $data['NV_DUONGDANANHDAIDIEN'] = 'macdinh.png';
+        DB::table('nhan_vien')->insert($data);
+
+        $NV=DB::table('nhan_vien')->where('NV_SODIENTHOAI', $request->NV_SODIENTHOAI)->orderby('NV_MA', 'desc')->first();
+        $ma_nv=$NV->NV_MA;
+        $get_image= $request->file('NV_DUONGDANANHDAIDIEN');
+        if($get_image){
+            $new_image =  $ma_nv.'.'.$get_image->getClientOriginalExtension();
+            $get_image->move('public/backend/images/nhanvien',$new_image);
+            $data['NV_DUONGDANANHDAIDIEN'] = $new_image;
+            DB::table('nhan_vien')->where('NV_MA', $ma_nv)->update($data);
+        }
+        
+        Session::put('message','Thêm nhân viên thành công');
+        return Redirect::to('add-employee');
+    }
+
     public function delete_employee($NV_MA){
         $this->AuthLoginChu();
         DB::table('nhan_vien')->where('NV_MA',$NV_MA)->delete();
         Session::put('message','Xóa nhân viên thành công');
         return Redirect::to('all-employee');
-
     }
-
-    public function show_employee(){
-        $this->AuthLogin();
-        $NV_MA = Session::get('NV_MA');
-        $position = DB::table('CHUC_VU')->orderby('CV_MA')->get(); 
-        $edit_employee = DB::table('nhan_vien')->where('NV_MA',$NV_MA)->get();
-        $manager_employee = view('admin.dashboard.show_employee')->with('edit_employee', $edit_employee)->with('position',$position);
-        return view('admin-layout')->with('admin.dashboard.show_employee', $manager_employee);
-    }
-
 }

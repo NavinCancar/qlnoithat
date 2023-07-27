@@ -37,26 +37,7 @@
                     <h4 class="p-price">{{number_format($product->NT_GIA)}} đ</h4>
                     <a href="{{ URL::to('/chi-tiet-san-pham/'. $product->NT_MA) }}"><button class="buy-btn">XEM NGAY</button></a>
                 </div>
-            
             @endforeach
-            <!--<div onclick="window.location.href='sproduct.html';" class="product text-center col-lg-3 col-md-4 col-12">
-
-            </div>
-            <div class="product text-center col-lg-3 col-md-4 col-12">
-                <img class="img-fluid mb-3" src="img/sach/BLUE.jpg" alt="">
-                <div class="star">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <h5 class="p-name">Sport Boots</h5>
-                <h4 class="p-price">$92.00</h4>
-                <button class="buy-btn">XEM NGAY</button>
-            </div>
-            -->
-
         </div>
         <div class=" col-lg-3 col-md-12 col-12">
             <ul class="list-group rounded-2">

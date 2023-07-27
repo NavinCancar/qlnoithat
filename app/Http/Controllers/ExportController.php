@@ -12,12 +12,16 @@ session_start();
 
 use Illuminate\Http\Request;
 
-class Loxuat extends Controller 
-{
+class ExportController extends Controller 
+{//Backend--Chủ cửa hàng + Kiểm kho-------------------------------------------------------
+    
     public function AuthLogin(){
         $NV_MA = Session::get('NV_MA');
+        $CV_MA = DB::table('nhan_vien')->where('NV_MA',$NV_MA)->first();
         if($NV_MA){
-            return Redirect::to('dashboard');
+            if($CV_MA->CV_MA != 1 && $CV_MA->CV_MA != 2){
+                return Redirect::to('dashboard')->send();
+            }
         }else{
             return Redirect::to('admin')->send();
         }
@@ -29,37 +33,26 @@ class Loxuat extends Controller
         return view('admin.add_loxuat')->with('nvien', $nvien);
 
     }
-    public function all_loxuat(){ //Hien thi tat ca lo xuat
+    public function all_loxuat(){
         $this->AuthLogin(); 
 
         $all_loxuat = DB::table('lo_xuat')
         ->join('nhan_vien','nhan_vien.NV_MA','=','lo_xuat.NV_MA')
-        //->join('ngon_ngu','ngon_ngu.NN_MA','=','sach.NN_MA')
         ->orderby('LX_MA','desc')->get();
         $manager_loxuat = view('admin.all_loxuat')->with('all_loxuat', $all_loxuat);
         return view('admin-layout')->with('admin.all_loxuat', $manager_loxuat); 
     }
 
-    public function save_loxuat(Request $request){//thêm lô xuất 
+    public function save_loxuat(Request $request){
         $this->AuthLogin();
         $data = array();
-        //$data['LX_MA'] = $request->product_desc; 
-        //$data['LX_MA'] = $request->malx_product_name; 
         $data['NV_MA'] = $request->manv_product_name; 
         $data['LX_NGAYXUAT'] = $request->ngayxuat_product_name; 
         $data['LX_NOIDUNG'] = $request->noidung_product_name; 
-        //$data['SACH_NGAYCAPNHAT'] =  Carbon::now('Asia/Ho_Chi_Minh');
-        //$data['SACH_NGAYTAO'] =  Carbon::now('Asia/Ho_Chi_Minh');
-        //$data['SACH_SOTRANG'] = $request->SACH_SOTRANG;
-        //$data['SACH_ISBN'] = $request->SACH_ISBN;
-        //$data['NXB_MA'] = $request->NXB_MA;
-        //$data['NN_MA'] = $request->NN_MA;
 
         DB::table('lo_xuat')->insert($data);
         Session::put('message','Thêm lô thành công');
         return Redirect::to('add-loxuat');
-
-
     }
 
     public function edit_loxuat($LX_MA){
@@ -68,9 +61,7 @@ class Loxuat extends Controller
         $nvien = DB::table('nhan_vien')->orderby('NV_MA')->get();
         $edit_loxuat = DB::table('lo_xuat')->where('LX_MA',$LX_MA)->get();       
         $manager_loxuat = view('admin.edit_loxuat')->with('nvien', $nvien)->with('edit_loxuat',$edit_loxuat);
-        //->with('nvien_product',$nvien_product);
         return view('admin-layout')->with('admin.edit_loxuat', $manager_loxuat);
-
     }
 
     public function update_loxuat(Request $request, $LX_MA){
@@ -83,15 +74,15 @@ class Loxuat extends Controller
         DB::table('lo_xuat')->where('LX_MA',$LX_MA)->update($data);
         Session::put('message','Cập nhật lô xuất thành công');
         return Redirect::to('all-loxuat');
-
     }
 
     public function delete_loxuat($LX_MA){
         $this->AuthLogin();
+        DB::table('chi_tiet_lo_xuat')->where('LX_MA',$LX_MA)->delete();
         DB::table('lo_xuat')->where('LX_MA',$LX_MA)->delete();
+        
         Session::put('message','Xóa lô xuất thành công');
         return Redirect::to('all-loxuat');
-
     }
 
     //Chi tiết
@@ -117,7 +108,6 @@ class Loxuat extends Controller
     public function add_chitiet_loxuat($LX_MA){ 
         $this->AuthLogin(); 
         $lo=DB::table('lo_xuat')->where('LX_MA',$LX_MA)->get();
-    
         return view('admin.add_chitiet_loxuat')->with('lo', $lo); 
     }
 
@@ -143,6 +133,7 @@ class Loxuat extends Controller
     }
 
     public function edit_chitiet_loxuat($LX_MA, $NT_MA){
+        $this->AuthLogin();
         $noithat = DB::table('noi_that')->orderby('NT_MA')->get(); 
         $loxuat_product = DB::table('lo_xuat')->orderby('LX_MA')->get(); 
         $edit_loxuat = DB::table('chi_tiet_lo_xuat')->where('LX_MA',$LX_MA)->where('NT_MA',$NT_MA)->get();

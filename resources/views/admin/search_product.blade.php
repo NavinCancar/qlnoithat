@@ -34,7 +34,7 @@
         </div>
       </div>
     </div>
-    <i>Chú ý: Nếu nội thất có có ảnh trên danh sách sẽ không dược hiển thị trên hệ thống!</i>
+    <i>Chú ý: Nếu nội thất chưa được gắn ảnh bìa trên danh sách sẽ không dược hiển thị trên hệ thống!</i>
     <div class="table-responsive">
       <table class="table table-striped b-t b-light">
               <thead>

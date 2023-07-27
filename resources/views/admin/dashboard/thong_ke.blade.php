@@ -102,7 +102,7 @@
                     WHERE h.HANT_DUONGDAN LIKE '%-1%'
                     AND d.DDH_NGAYDAT BETWEEN '".$TGBDau."' AND '".$TGKThuc."'
                     GROUP by n.NT_MA HAVING SUM(ctddh_soluong) = (SELECT max(tongsoluong) FROM (SELECT c.NT_MA, SUM(ctddh_soluong) tongsoluong FROM chi_tiet_don_dat_hang c JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA WHERE d.DDH_NGAYDAT BETWEEN '"
-                    .$TGBDau."' AND '".$TGKThuc."' GROUP BY (c.NT_MA)) sum_sach)";
+                    .$TGBDau."' AND '".$TGKThuc."' GROUP BY (c.NT_MA)) sum_nt)";
                     $result = mysqli_query($connect, $query);
                     /*$row = mysqli_fetch_array($result);
                     echo '<pre>';
@@ -142,7 +142,7 @@
                     WHERE h.HANT_DUONGDAN LIKE '%-1%'
                     AND d.DDH_NGAYDAT BETWEEN '".$TGBDau."' AND '".$TGKThuc."'
                     GROUP by n.NT_MA HAVING SUM(ctddh_soluong) = (SELECT min(tongsoluong) FROM (SELECT c.NT_MA, SUM(ctddh_soluong) tongsoluong FROM chi_tiet_don_dat_hang c JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA WHERE d.DDH_NGAYDAT BETWEEN '"
-                    .$TGBDau."' AND '".$TGKThuc."' GROUP BY (c.NT_MA)) sum_sach)";
+                    .$TGBDau."' AND '".$TGKThuc."' GROUP BY (c.NT_MA)) sum_nt)";
                     $result = mysqli_query($connect, $query);
                     /*$row = mysqli_fetch_array($result);
                     echo '<pre>';

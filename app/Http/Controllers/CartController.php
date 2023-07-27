@@ -13,7 +13,8 @@ use Illuminate\Http\Request;
 session_start();
 
 class CartController extends Controller
-{
+{//Frontend--Only khách hàng thành viên--------------------------------------
+
     public function AuthLogin(){
         $KH_MA = Session::get('KH_MA');
         if($KH_MA){
@@ -26,6 +27,7 @@ class CartController extends Controller
         }
     }
 
+    //Cart
     public function save_cart(Request $request){
         $this->AuthLogin();
         $KH_MA = Session::get('KH_MA');
@@ -55,12 +57,8 @@ class CartController extends Controller
             ->update($data);
         }
         else{ DB::table('chi_tiet_gio_hang')->insert($data);}
-        Session::put('message','Thêm sách vào giỏ hàng thành công');
+        Session::put('message','Thêm nội thất vào giỏ hàng thành công');
         
-        //$NT_MA = $request->productid_hidden;
-        //$quantity = $request->qty;
-        //$product_info = DB::table('noi_that')->where('NT_MA',$NT_MA)->first(); 
-        //------------------------
         return Redirect::to('chi-tiet-san-pham/'.$request->productid_hidden);
     }
     public function show_cart(){
@@ -86,8 +84,8 @@ class CartController extends Controller
         $all_cart_product = DB::table('gio_hang')
         ->join('khach_hang','gio_hang.KH_MA','=','khach_hang.KH_MA')
         ->where('khach_hang.KH_MA', $KH_MA)->first();
-        /*
-        $data = array();
+        
+        /*$data = array();
         $data['GH_MA'] = $all_cart_product->GH_MA;
         $data['NT_MA'] = $request->productid_hidden;
         $data['CTGH_SOLUONG'] = $request->qty;
@@ -106,9 +104,6 @@ class CartController extends Controller
             ->where('NT_MA', $request->productid_hidden)->sum('CTLX_SOLUONG');
 
         if ($nhap-$xuat-$ddh>=$request->qty){
-            /*echo $nhap-$xuat-$ddh;
-            echo ' ';
-            echo $request->qty;*/
             DB::table('gio_hang')->where('GH_MA', $all_cart_product->GH_MA)->update(['GH_NGAYCAPNHATLANCUOI' => Carbon::now('Asia/Ho_Chi_Minh')]);
             DB::table('chi_tiet_gio_hang')->where('GH_MA', $all_cart_product->GH_MA)->where('NT_MA', $request->productid_hidden)->update(['CTGH_SOLUONG' => $request->qty]);
         }
@@ -132,7 +127,8 @@ class CartController extends Controller
         
         return Redirect::to('show-cart');
     }
-    //Don dat hang
+
+    //Đơn đặt hàng
     public function show_all_bill(){
         $this->AuthLogin();
         $KH_MA = Session::get('KH_MA');
@@ -148,6 +144,7 @@ class CartController extends Controller
         return view('pages.cart.show_all_bill')->with('category', $all_category_product)
         ->with('all_DDH', $all_DDH)->with('group_DDH', $group_DDH);
     }
+
     public function show_detail_bill($DDH_MA){
         $this->AuthLogin();
         $KH_MA = Session::get('KH_MA');
@@ -168,6 +165,7 @@ class CartController extends Controller
         return view('pages.cart.show_detail_bill')->with('category', $all_category_product)
         ->with('all_DDH', $all_DDH)->with('group_DDH', $group_DDH);
     }
+    
     //Đặt hàng
     public function show_detail_order(){
         $this->AuthLogin();
@@ -265,7 +263,7 @@ class CartController extends Controller
         return Redirect::to('show-cart');
     }
 
-    //TTìm kiếm sách trong đơn đặt hàng
+    //TTìm kiếm nội thất trong đơn đặt hàng
     public function search_in_order(Request $request){
         $this->AuthLogin();
         $KH_MA = Session::get('KH_MA');

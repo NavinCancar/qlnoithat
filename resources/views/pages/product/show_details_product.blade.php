@@ -11,7 +11,7 @@
 }
 </style>
 
-<!--Chi tiet sach-->
+<!--Chi tiet noi that-->
 <section class="container sproduct my-2 pt-1">
 
     <div class="row mt-1">
@@ -273,7 +273,7 @@
     </div>
 </section>
 
-    <!--Sach lien quan-->
+    <!--Gợi ý liên quan-->
     <section id="featured" class="my-5 pb-5">
         <div class="container text-center mt-5 py-5">
             <h3>Nội thất liên quan</h3>

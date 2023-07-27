@@ -14,6 +14,8 @@ session_start();
 
 class CostumerController extends Controller
 {
+    //Frontend------------------------------------------------------
+
     public function AuthLogin(){
         $KH_MA = Session::get('KH_MA');
         if($KH_MA){
@@ -22,10 +24,10 @@ class CostumerController extends Controller
             return Redirect::to('trang-chu')->send();
         }
     }
+
     //Dang nhap/xuat khach hang
     public function dang_nhap(){
         $all_category_product = DB::table('loai_noi_that')->get();
-
     	return view('login')->with('category', $all_category_product);
     }
 
@@ -45,9 +47,9 @@ class CostumerController extends Controller
             Session::put('KH_DUONGDANANHDAIDIEN',$result->KH_DUONGDANANHDAIDIEN);
             return Redirect::to('/trang-chu');
         }else{
-                Session::put('message','Mật khẩu hoặc tài khoản sai. Vui lòng nhập lại!');
-                //Session::put('message',$request->password);
-                return Redirect::to('/dang-nhap');
+            Session::put('message','Mật khẩu hoặc tài khoản sai. Vui lòng nhập lại!');
+            //Session::put('message',$request->password);
+            return Redirect::to('/dang-nhap');
         } 
     }
 
@@ -113,6 +115,8 @@ class CostumerController extends Controller
         return Redirect::to('/dang-nhap');
     }
 
+    //--Only khách hàng thành viên
+
     //Địa chỉ giao hàng
     public function all_location(){
         $this->AuthLogin();
@@ -127,8 +131,7 @@ class CostumerController extends Controller
         ->where('dia_chi_giao_hang.KH_MA',$KH_MA)
         ->count('dia_chi_giao_hang.DCGH_MA');
         Session::put('count_DCGH',$count_DCGH);
-        return view('pages.location.all-location')->with('category', $all_category_product)
-        ->with('all_DCGH', $all_DCGH);
+        return view('pages.location.all-location')->with('category', $all_category_product)->with('all_DCGH', $all_DCGH);
     }
 
     public function add_location(){
@@ -138,32 +141,7 @@ class CostumerController extends Controller
 
         $ttp= DB::table('tinh_thanh_pho')->orderby('TTP_TEN')->get();
         
-        return view('pages.location.add-location')->with('category', $all_category_product)
-        //->with('ttp', $ttp)->with('hq', $hq)->with('xp', $xp);
-        ->with(compact('ttp'));
-    }
-
-    public function select_location(Request $request){
-    	$data = $request->all();
-    	if($data['action']){
-    		$output = '';
-    		if($data['action']=="TTP_MA"){
-    			$select_HQ = DB::table('huyen_quan')->where('TTP_MA',$data['ma_id'])->orderby('HQ_TEN')->get();
-    			$output.='<option value="">-- Chọn huyện / quận --</option>';
-    			foreach($select_HQ as $key => $hq){
-    				$output.='<option value="'.$hq->HQ_MA.'">'.$hq->HQ_TEN.'</option>';
-    			}
-    		}
-            else{
-
-                $select_XP = DB::table('xa_phuong')->where('HQ_MA',$data['ma_id'])->orderby('XP_TEN')->get();
-    			$output.='<option value="">-- Chọn xã / phường --</option>';
-    			foreach($select_XP as $key => $xp){
-    				$output.='<option value="'.$xp->XP_MA.'">'.$xp->XP_TEN.'</option>';
-    			}
-    		}
-    		echo $output;
-    	}
+        return view('pages.location.add-location')->with('category', $all_category_product)->with(compact('ttp'));
     }
 
     public function save_location(Request $request){
@@ -180,7 +158,6 @@ class CostumerController extends Controller
         DB::table('dia_chi_giao_hang')->insert($data);
         Session::put('message','Thêm địa chỉ giao hàng mới thành công');
         return Redirect::to('dia-chi-giao-hang');
-        
     }
 
     public function edit_location($DCGH_MA){
@@ -276,18 +253,21 @@ class CostumerController extends Controller
         return Redirect::to('tai-khoan');
     }
 
-    //Admin
-    public function AuthLoginInAdmin(){
+    //Backend--Only chủ cửa hàng-------------------------------------------------------
+    public function AuthLoginChu(){
         $NV_MA = Session::get('NV_MA');
+        $CV_MA = DB::table('nhan_vien')->where('NV_MA',$NV_MA)->first();
         if($NV_MA){
-            return Redirect::to('dashboard');
+            if($CV_MA->CV_MA != 1){
+                return Redirect::to('dashboard')->send();
+            }
         }else{
             return Redirect::to('admin')->send();
         }
     }
     
-    public function all_khachhang(){ //Hien thi tat ca khach hang
-        $this->AuthLoginInAdmin(); 
+    public function all_khachhang(){
+        $this->AuthLoginChu(); 
         $all_khachhang = DB::table('khach_hang')
         ->orderby('khach_hang.KH_MA','desc')->get();
         $manager_khachhang = view('admin.all_khachhang')->with('all_khachhang', $all_khachhang);

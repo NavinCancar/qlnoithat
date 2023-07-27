@@ -10,25 +10,28 @@ session_start();
 
 use Illuminate\Http\Request;
 
-class Chucvu extends Controller
-{
-    public function AuthLogin(){
+class JobController extends Controller
+{//Backend--Only chủ cửa hàng-------------------------------------------------------
+
+    public function AuthLoginChu(){
         $NV_MA = Session::get('NV_MA');
+        $CV_MA = DB::table('nhan_vien')->where('NV_MA',$NV_MA)->first();
         if($NV_MA){
-            return Redirect::to('dashboard');
+            if($CV_MA->CV_MA != 1){
+                return Redirect::to('dashboard')->send();
+            }
         }else{
             return Redirect::to('admin')->send();
         }
     }
 
     public function add_chucvu(){
-        $this->AuthLogin();
+        $this->AuthLoginChu();
         return view('admin.add_chucvu');
-
     }
 
-    public function all_chucvu(){ //Hien thi tat ca
-        $this->AuthLogin();
+    public function all_chucvu(){
+        $this->AuthLoginChu();
         $all_chucvu = DB::table('chuc_vu')->get();
         $manager_chucvu = view('admin.all_chucvu')->with('all_chucvu', $all_chucvu);
                 
@@ -37,8 +40,8 @@ class Chucvu extends Controller
         return view('admin-layout')->with('admin.all_chucvu', $manager_chucvu);
     }
 
-    public function save_chucvu(Request $request){//thêm thể loại sách
-        $this->AuthLogin();
+    public function save_chucvu(Request $request){
+        $this->AuthLoginChu();
         $data = array();
         //$data['CV_MA'] = $request->ma_product_desc;
         $data['CV_TEN'] = $request->chucvu_product_name;
@@ -46,34 +49,30 @@ class Chucvu extends Controller
         DB::table('chuc_vu')->insert($data);
         Session::put('message','Thêm chức vụ thành công');
         return Redirect::to('add-chucvu');
-
-
     }
 
     public function edit_chucvu($CV_MA){
-        $this->AuthLogin();
+        $this->AuthLoginChu();
         $edit_chucvu = DB::table('chuc_vu')->where('CV_MA',$CV_MA)->get();
         $manager_chucvu = view('admin.edit_chucvu')->with('edit_chucvu', $edit_chucvu);
         return view('admin-layout')->with('admin.edit_chucvu', $manager_chucvu);
     }
 
     public function update_chucvu(Request $request, $CV_MA){
-        $this->AuthLogin();
+        $this->AuthLoginChu();
         $data = array();
         //$data['CV_MA'] = $request->ma_product_desc;
         $data['CV_TEN'] = $request->chucvu_product_name;
         DB::table('chuc_vu')->where('CV_MA',$CV_MA)->update($data);
         Session::put('message','Cập nhật chức vụ thành công');
         return Redirect::to('all-chucvu');
-
     }
 
     public function delete_chucvu($CV_MA){
-        $this->AuthLogin();
+        $this->AuthLoginChu();
         DB::table('chuc_vu')->where('CV_MA',$CV_MA)->delete();
         Session::put('message','Xóa chức vụ thành công');
         return Redirect::to('all-chucvu');
-
     }
 }
 

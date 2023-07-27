@@ -71,7 +71,7 @@
                                             @endforeach
                                             </tbody>
                                         </table>
-                                        <a href="{{URL::to('/add-chitiet-lonhap/'.$ct -> LN_MA)}}"><button type="button" name="add_chitiet_lonhap"  style="width:100%" class="btn btn-success">Cập nhật thêm chi tiết lô nhập</button></a>
+                                        <a href="{{URL::to('/add-chitiet-lonhap/'.$edit_value->LN_MA)}}"><button type="button" name="add_chitiet_lonhap"  style="width:100%" class="btn btn-success">Cập nhật thêm chi tiết lô nhập</button></a>
                                     </div>
                                 </div>
                             </form>

@@ -12,6 +12,8 @@ session_start();
 
 class HomeController extends Controller
 {
+    //Frontend------------------------------------------------------------------------
+
     public function index(){
         $all_category_product = DB::table('loai_noi_that')->get();
 
@@ -29,7 +31,6 @@ class HomeController extends Controller
     }
 
     public function all_product(){
-
         $all_category_product = DB::table('loai_noi_that')->get();
 
         $all_product = DB::table('noi_that') 
@@ -41,7 +42,6 @@ class HomeController extends Controller
     
     //Tìm kiếm sản phẩm
     public function search(Request $request){
-
         $keywords = $request ->keywords_submit;
 
         $all_category_product = DB::table('loai_noi_that')->get();
@@ -52,8 +52,7 @@ class HomeController extends Controller
         ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
         ->where('noi_that.NT_TEN', 'like', '%'.$keywords.'%')
         ->orWhere('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
-        ->where('nha_cung_cap.NCC_TEN', 'like', '%'.$keywords.'%')
-        ->get();
+        ->where('nha_cung_cap.NCC_TEN', 'like', '%'.$keywords.'%')->get();
 
         return view('pages.product.search')->with('category', $all_category_product)
         ->with('search_product', $search_product);

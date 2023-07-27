@@ -1,6 +1,6 @@
 @extends('admin-layout')
 @section('admin-content')
-<div class="row">
+        <div class="row">
             <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
@@ -92,27 +92,23 @@
                                 <button type="submit" name="add_employee"  style="width:100%" class="btn btn-success">Thêm nhân viên</button>
                             </form>
                             </div>
-
                         </div>
                     </section>
 
-                    <script>
+<script>
+    const fileInput = document.getElementById('file-input-f');
+    const imgPreview = document.getElementById('img-preview');
 
-const fileInput = document.getElementById('file-input-f');
-const imgPreview = document.getElementById('img-preview');
+    fileInput.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
 
-fileInput.addEventListener('change', (event) => {
-  const file = event.target.files[0];
-  const reader = new FileReader();
+    reader.addEventListener('load', (event) => {
+        imgPreview.src = event.target.result;
+    });
 
-  reader.addEventListener('load', (event) => {
-    imgPreview.src = event.target.result;
-  });
-
-  reader.readAsDataURL(file);
-});
-
-
+    reader.readAsDataURL(file);
+    });
 </script>
 @endsection
             

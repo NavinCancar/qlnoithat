@@ -71,7 +71,7 @@
                                             @endforeach
                                             </tbody>
                                         </table>
-                                        <a href="{{URL::to('/add-chitiet-loxuat/'.$ct -> LX_MA)}}"><button type="button" name="add_chitiet_loxuat"  style="width:100%" class="btn btn-success">Cập nhật thêm chi tiết lô xuất</button></a>
+                                        <a href="{{URL::to('/add-chitiet-loxuat/'.$edit_value->LX_MA)}}"><button type="button" name="add_chitiet_loxuat"  style="width:100%" class="btn btn-success">Cập nhật thêm chi tiết lô xuất</button></a>
                                     </div>
                                 </div>
                             </form>

@@ -133,15 +133,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<!-- noi_that -->
 						<li><a href="{{URL::to('/add-product')}}">Thêm nội thất</a></li>
 						<li><a href="{{URL::to('/all-product')}}">Liệt kê nội thất</a></li>
-						<!-- hinh_anh_noi_that 
-						<li><a href="{{URL::to('/add-product-image')}}">Thêm ảnh nội thất</a></li>
-						<li><a href="{{URL::to('/all-product-image')}}">Liệt kê ảnh nội thất</a></li>-->
-						<!-- tac_gia  
-						<li><a href="{{URL::to('/add-tacgia-product')}}">Thêm tác giả</a></li> 
-						<li><a href="{{URL::to('/all-tacgia-product')}}">Liệt kê tác giả</a></li>-->
-						<!-- co_tac_gia  
-						<li><a href="{{URL::to('/add-tacgia-cuasach')}}">Thêm tác giả của nội thất</a></li>
-						<li><a href="{{URL::to('/all-tacgia-cuasach')}}">Liệt kê tác giả của nội thất</a></li>-->
                     </ul>  
                 </li>
 				<li class="sub-menu">
@@ -153,9 +144,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<!-- loai_noi_that -->
 						<li><a href="{{URL::to('/add-category-product')}}">Thêm loại nội thất</a></li>
 						<li><a href="{{URL::to('/all-category-product')}}">Liệt kê loại nội thất</a></li>
-						<!-- cua_sach 
-						<li><a href="{{URL::to('/add-cttheloai-cuasach')}}">Thêm chi tiết loại nội thất</a></li>
-						<li><a href="{{URL::to('/all-cttheloai-cuasach')}}">Liệt kê chi tiết loại nội thất</a></li>-->
                     </ul>
                 </li>
 				<li class="sub-menu">
@@ -176,8 +164,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </a>
                     <ul class="sub">
 						<li><a href="{{URL::to('/trang-thai/tat-ca')}}">Liệt kê các đơn đặt hàng</a></li> <!-- in cả nội thất? số lượng? đơn giá? -->
-						<!--<li><a href="{{URL::to('/all-lktt-trangthaiddh')}}">Liệt kê thông tin sửa đổi trạng thái đơn đặt hàng</a></li> duoc_quan_ly_boi--> 
-						<!--<li><a href="{{URL::to('/all-nguoixuly')}}">Liệt kê người xử lý đơn hàng</a></li> duoc_xu_ly--> 
                     </ul>
                 </li>
 				<li class="sub-menu">
@@ -190,15 +176,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<!-- lo_nhap -->
 						<li><a href="{{URL::to('/add-lonhap')}}">Thêm lô nhập</a></li> 
 						<li><a href="{{URL::to('/all-lonhap')}}">Liệt kê lô nhập</a></li>
-						<!-- chi_tiet_lo_nhap 
-						<li><a href="{{URL::to('/add-chitiet-lonhap')}}">Thêm chi tiết lô nhập</a></li> 
-						<li><a href="{{URL::to('/all-chitiet-lonhap')}}">Liệt kê chi tiết lô nhập</a></li>-->
 						<!-- lo_xuat -->
 						<li><a href="{{URL::to('/add-loxuat')}}">Thêm lô xuất</a></li> 
 						<li><a href="{{URL::to('/all-loxuat')}}">Liệt kê lô xuất</a></li>
-						<!-- chi_tiet_lo_xuat 
-						<li><a href="{{URL::to('/add-chitiet-loxuat')}}">Thêm chi tiết lô xuất</a></li> 
-						<li><a href="{{URL::to('/all-chitiet-loxuat')}}">Liệt kê chi tiết lô xuất</a></li>-->
                     </ul>
                 </li>
 				<li class="sub-menu">
@@ -233,8 +213,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>Thống kê</span>
                     </a>
                 </li>
-                
-            </ul>            </div>
+            </ul>      
+		</div>
 			
         <!-- sidebar menu end-->
     </div>
@@ -243,7 +223,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--main content start-->
 <section id="main-content">
 	<section class="wrapper">
-         @yield('admin-content')
+        @yield('admin-content')
     </section>
  <!-- footer 
 		  <div class="footer">

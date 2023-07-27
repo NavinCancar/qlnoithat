@@ -12,7 +12,7 @@
           Session::put('message',null);
       }
     ?>
-        <?php
+    <?php
 				$count= Session::get('count_employee');
 							if ($count) {
 								echo "Tổng số dòng dữ liệu: ".$count;
