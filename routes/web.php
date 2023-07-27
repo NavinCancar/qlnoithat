@@ -144,15 +144,16 @@ Route::post('/save-lonhap', 'App\Http\Controllers\Lonhap@save_lonhap'); ///
 Route::post('/update-lonhap/{LN_MA}', 'App\Http\Controllers\Lonhap@update_lonhap'); ///
 
 //chitiet lonhap
-Route::get('/add-chitiet-lonhap', 'App\Http\Controllers\Chitietlonhap@add_chitiet_lonhap'); ///
-Route::get('/edit-chitiet-lonhap/lo={LN_MA}&sach={NT_MA}', 'App\Http\Controllers\Chitietlonhap@edit_chitiet_lonhap'); ///
-Route::get('/delete-chitiet-lonhap/lo={LN_MA}&sach={NT_MA}', 'App\Http\Controllers\Chitietlonhap@delete_chitiet_lonhap'); ///
-Route::get('/all-chitiet-lonhap', 'App\Http\Controllers\Chitietlonhap@all_chitiet_lonhap'); ///
+Route::get('/show-chitiet-lonhap/{LN_MA}', 'App\Http\Controllers\Lonhap@show_chitiet_lonhap'); ///
+Route::get('/add-chitiet-lonhap/{LN_MA}', 'App\Http\Controllers\Lonhap@add_chitiet_lonhap'); ///
+Route::get('/edit-chitiet-lonhap/lo={LN_MA}&nothat={NT_MA}', 'App\Http\Controllers\Lonhap@edit_chitiet_lonhap');
+Route::get('/delete-chitiet-lonhap/lo={LN_MA}&nothat={NT_MA}', 'App\Http\Controllers\Lonhap@delete_chitiet_lonhap');
+//Route::get('/all-chitiet-lonhap', 'App\Http\Controllers\Lonhap@all_chitiet_lonhap'); 
 
-Route::post('/save-chitiet-lonhap', 'App\Http\Controllers\Chitietlonhap@save_chitiet_lonhap'); ///
-Route::post('/update-chitiet-lonhap/lo={LN_MA}&sach={NT_MA}', 'App\Http\Controllers\Chitietlonhap@update_chitiet_lonhap'); ///
+Route::post('/save-chitiet-lonhap/{LN_MA}', 'App\Http\Controllers\Lonhap@save_chitiet_lonhap'); ///
+Route::post('/update-chitiet-lonhap/lo={LN_MA}&nothat={NT_MA}', 'App\Http\Controllers\Lonhap@update_chitiet_lonhap'); 
 
-//lonxuat
+//loxuat
 Route::get('/add-loxuat', 'App\Http\Controllers\Loxuat@add_loxuat'); ///
 Route::get('/edit-loxuat/{LX_MA}', 'App\Http\Controllers\Loxuat@edit_loxuat'); ///
 Route::get('/delete-loxuat/{LX_MA}', 'App\Http\Controllers\Loxuat@delete_loxuat'); ///
@@ -162,13 +163,14 @@ Route::post('/save-loxuat', 'App\Http\Controllers\Loxuat@save_loxuat'); ///
 Route::post('/update-loxuat/{LX_MA}', 'App\Http\Controllers\Loxuat@update_loxuat'); ///
 
 //chitiet loxuat
-Route::get('/add-chitiet-loxuat', 'App\Http\Controllers\Chitietloxuat@add_chitiet_loxuat'); ///
-Route::get('/edit-chitiet-loxuat/lo={LX_MA}&sach={NT_MA}', 'App\Http\Controllers\Chitietloxuat@edit_chitiet_loxuat'); ///
-Route::get('/delete-chitiet-loxuat/lo={LX_MA}&sach={NT_MA}', 'App\Http\Controllers\Chitietloxuat@delete_chitiet_loxuat'); ///
-Route::get('/all-chitiet-loxuat', 'App\Http\Controllers\Chitietloxuat@all_chitiet_loxuat'); ///
+Route::get('/show-chitiet-loxuat/{LX_MA}', 'App\Http\Controllers\Loxuat@show_chitiet_loxuat'); ///
+Route::get('/add-chitiet-loxuat/{LX_MA}', 'App\Http\Controllers\Loxuat@add_chitiet_loxuat');  ///
+Route::get('/edit-chitiet-loxuat/lo={LX_MA}&nothat={NT_MA}', 'App\Http\Controllers\Loxuat@edit_chitiet_loxuat');  ///
+Route::get('/delete-chitiet-loxuat/lo={LX_MA}&nothat={NT_MA}', 'App\Http\Controllers\Loxuat@delete_chitiet_loxuat'); ///
+//Route::get('/all-chitiet-loxuat', 'App\Http\Controllers\Loxuat@all_chitiet_loxuat');
 
-Route::post('/save-chitiet-loxuat', 'App\Http\Controllers\Chitietloxuat@save_chitiet_loxuat'); ///
-Route::post('/update-chitiet-loxuat/lo={LX_MA}&sach={NT_MA}', 'App\Http\Controllers\Chitietloxuat@update_chitiet_loxuat'); ///
+Route::post('/save-chitiet-loxuat/{LX_MA}', 'App\Http\Controllers\Loxuat@save_chitiet_loxuat');  ///
+Route::post('/update-chitiet-loxuat/lo={LX_MA}&nothat={NT_MA}', 'App\Http\Controllers\Loxuat@update_chitiet_loxuat');  ///
 
 //Thống kê
 Route::get('/thong-ke', 'App\Http\Controllers\AdminController@thong_ke'); ///
@@ -218,21 +220,21 @@ Route::get('/all-khachhang', 'App\Http\Controllers\CostumerController@all_khachh
 //tacgia cuasach
 
 /*Route::get('/add-tacgia-cuasach', 'App\Http\Controllers\TacGiaCuaSach@add_tacgia_cuasach');
-Route::get('/edit-tacgia-cuasach/sach={NT_MA}&tacgia={TG_MA}', 'App\Http\Controllers\TacGiaCuaSach@edit_tacgia_cuasach');
-Route::get('/delete-tacgia-cuasach/sach={NT_MA}&tacgia={TG_MA}', 'App\Http\Controllers\TacGiaCuaSach@delete_tacgia_cuasach');
+Route::get('/edit-tacgia-cuasach/nothat={NT_MA}&tacgia={TG_MA}', 'App\Http\Controllers\TacGiaCuaSach@edit_tacgia_cuasach');
+Route::get('/delete-tacgia-cuasach/nothat={NT_MA}&tacgia={TG_MA}', 'App\Http\Controllers\TacGiaCuaSach@delete_tacgia_cuasach');
 Route::get('/all-tacgia-cuasach', 'App\Http\Controllers\TacGiaCuaSach@all_tacgia_cuasach');
 
 Route::post('/save-tacgia-cuasach', 'App\Http\Controllers\TacGiaCuaSach@save_tacgia_cuasach');
-Route::post('/update-tacgia-cuasach/sach={NT_MA}&tacgia={TG_MA}', 'App\Http\Controllers\TacGiaCuaSach@update_tacgia_cuasach');*/
+Route::post('/update-tacgia-cuasach/nothat={NT_MA}&tacgia={TG_MA}', 'App\Http\Controllers\TacGiaCuaSach@update_tacgia_cuasach');*/
 
 //theloai cuasach
 /*Route::get('/add-cttheloai-cuasach', 'App\Http\Controllers\ChiTietTLSach@add_cttheloai_cuasach');
-Route::get('/edit-cttheloai-cuasach/sach={NT_MA}&theloai={LNT_MA}', 'App\Http\Controllers\ChiTietTLSach@edit_cttheloai_cuasach');
-Route::get('/delete-cttheloai-cuasach/sach={NT_MA}&theloai={LNT_MA}', 'App\Http\Controllers\ChiTietTLSach@delete_cttheloai_cuasach');
+Route::get('/edit-cttheloai-cuasach/nothat={NT_MA}&theloai={LNT_MA}', 'App\Http\Controllers\ChiTietTLSach@edit_cttheloai_cuasach');
+Route::get('/delete-cttheloai-cuasach/nothat={NT_MA}&theloai={LNT_MA}', 'App\Http\Controllers\ChiTietTLSach@delete_cttheloai_cuasach');
 Route::get('/all-cttheloai-cuasach', 'App\Http\Controllers\ChiTietTLSach@all_cttheloai_cuasach');
 
 Route::post('/save-cttheloai-cuasach', 'App\Http\Controllers\ChiTietTLSach@save_cttheloai_cuasach');
-Route::post('/update-cttheloai-cuasach/sach={NT_MA}&theloai={LNT_MA}', 'App\Http\Controllers\ChiTietTLSach@update_cttheloai_cuasach');*/
+Route::post('/update-cttheloai-cuasach/nothat={NT_MA}&theloai={LNT_MA}', 'App\Http\Controllers\ChiTietTLSach@update_cttheloai_cuasach');*/
 
 //ton kho
 Route::get('/ton-kho', 'App\Http\Controllers\ProductController@ton_kho'); ///
@@ -240,7 +242,5 @@ Route::get('/ton-kho', 'App\Http\Controllers\ProductController@ton_kho'); ///
 //Cart k hiển thị vì bị tắt ảnh bìa => mua trúng vẫn bị duyệt?
 //Bộ lọc
 //Đổi mật khẩu
-//Xoá khách
 //Check controller
 //Cho phép khách huỷ đơn
-//Báo đỏ nội thất thiếu hàng

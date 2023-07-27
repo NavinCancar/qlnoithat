@@ -38,6 +38,7 @@
             <td>{{$pro->LN_NGAYNHAP}}</td> 
             <td>{{$pro->LN_NOIDUNG}}</td>
             <td>
+              <a href="{{URL::to('/show-chitiet-lonhap/'.$pro -> LN_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-info-circle text-primary text-active"></i></a>
               <a href="{{URL::to('/edit-lonhap/'.$pro -> LN_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
               <a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-lonhap/'.$pro -> LN_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
             </td>

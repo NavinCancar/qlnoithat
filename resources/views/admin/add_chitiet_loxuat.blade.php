@@ -14,45 +14,28 @@
                                 Session::put('message',null); 
                             }
                             ?>
+                            @foreach($lo as $key => $malo)
                             <div class="position-center">
-                                <form role="form" action="{{URL::to('/save-chitiet-loxuat')}}" method="post">
-                                    {{csrf_field() }}
-                                <div class="form-group"> 
-                                    <label for="exampleInputEmail1">Mã lô xuất</label>
-                                      <select name="loxuat_product_name" class="form-control input-sm m-bot15" required="">
-                                        @foreach($loxuat_product as $key => $maloxuat)
-                                            <option value="{{$maloxuat->LX_MA}}">{{$maloxuat->LX_MA}}</option> 
-                                            
-                                        @endforeach
-                                            
-                                    </select>
-                                </div>
-
-                                <div class="form-group"> 
-                                    <label for="exampleInputEmail1">Nội thất xuất</label>
-                                      <select name="maNT_product_name" class="form-control input-sm m-bot15" required="">
-                                        @foreach($noithat as $key => $nt)
-                                            <option value="{{$nt->NT_MA}}">{{$nt->NT_TEN}}</option> 
-                                            
-                                        @endforeach
-                                            
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Số lượng</label>
-                                    <input type="text" name="soluong_product_name" class="form-control" id="exampleInputEmail1" placeholder="Số lượng" required=""  pattern="[0-9]+">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Giá</label>
-                                    <input type="text" name="gia_product_name" class="form-control" id="exampleInputEmail1" placeholder="Giá" required=""  pattern="[0-9]+">
-                                </div>
-                                
-                                <button type="submit" name="add_chitiet_loxuat"  style="width:100%" class="btn btn-success">Thêm chi tiết lô xuất</button>
-                            </form>
+                                <form role="form" action="{{URL::to('/save-chitiet-loxuat/'.$malo->LX_MA)}}" method="post">
+                                        {{csrf_field() }}
+                                    <div class="form-group"> 
+                                        <label for="exampleInputEmail1">Mã nội thất xuất</label>
+                                        <input type="number" name="mant_product_name" class="form-control" id="result" required="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Số lượng</label>
+                                        <input type="text" name="soluong_product_name" class="form-control"   required="" pattern="[0-9]+">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Giá</label>
+                                        <input type="text" name="gia_product_name" class="form-control" id="exampleInputEmail1"  required="" pattern="[0-9]+">
+                                    </div>
+                                    
+                                    <button type="submit" name="add_chitiet_loxuat"  style="width:100%" class="btn btn-success">Thêm chi tiết lô xuất</button>
+                                </form>
                             </div>
-
+                            @endforeach
                         </div>
                     </section>
 @endsection
-            

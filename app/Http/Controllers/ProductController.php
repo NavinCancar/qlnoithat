@@ -301,4 +301,5 @@ class ProductController extends Controller
             Session::put('count_product',$count_product);
             return view('admin-layout')->with('admin.dashboard.ton_kho', $manager_product);
         }
+        
 }

@@ -16,7 +16,7 @@
                             }
                             ?>
                             <div class="position-center">
-                                <form role="form" action="{{URL::to('/update-chitiet-loxuat/lo='.$edit_value->LX_MA.'&sach='.$edit_value->NT_MA)}}" method="post">
+                                <form role="form" action="{{URL::to('/update-chitiet-loxuat/lo='.$edit_value->LX_MA.'&nothat='.$edit_value->NT_MA)}}" method="post">
                                     {{csrf_field() }}
                                     <div class="form-group"> 
                                     <label for="exampleInputEmail1">Mã lô xuất</label>
@@ -39,7 +39,7 @@
 
                                 <div class="form-group"> 
                                     <label for="exampleInputEmail1">Tên nội thất xuất</label>
-                                      <select disabled name="maNT_product_name" class="form-control input-sm m-bot15" required="">
+                                      <select disabled name="mant_product_name" class="form-control input-sm m-bot15" required="">
                                         @foreach($noithat as $key => $nt)
                                             
                                                

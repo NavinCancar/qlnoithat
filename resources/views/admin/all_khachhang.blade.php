@@ -16,11 +16,6 @@
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-            <th style="width:20px;">
-              <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
-              </label>
-            </th>
             <th>Mã khách hàng</th>
             <th>Họ tên</th>
             <th>Số điện thoại</th>
@@ -28,13 +23,11 @@
             <th>Giới tính</th>
             <th>Email</th>
             <th>Đường dẫn ảnh</th>
-
           </tr>
         </thead>
         <tbody>
         @foreach($all_khachhang as $key => $pro)
           <tr>
-            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td>{{$pro->KH_MA }}</td>
             <td>{{$pro->KH_HOTEN}}</td> 
             <td>{{$pro->KH_SODIENTHOAI}}</td>

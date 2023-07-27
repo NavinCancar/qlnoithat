@@ -47,22 +47,26 @@
         </thead>
         <tbody>
         @foreach($all_product as $key => $pro)
-          <tr>
+        <?php
+          //Số lượng tồn
+          $ddh = DB::table('chi_tiet_don_dat_hang')
+          ->where('NT_MA', $pro->NT_MA)->sum('CTDDH_SOLUONG');
+          $nhap = DB::table('chi_tiet_lo_nhap')
+          ->where('NT_MA', $pro->NT_MA)->sum('CTLN_SOLUONG');
+          $xuat = DB::table('chi_tiet_lo_xuat')
+          ->where('NT_MA', $pro->NT_MA)->sum('CTLX_SOLUONG');
+          $slton=$nhap-$xuat-$ddh;
+        ?>
+          @if ($slton<=50) <tr style="background-color:#FCDAD5" >
+            @else <tr>
+            @endif
             <td>{{$pro->NT_MA }}</td>
             <td>{{$pro->NT_TEN}}</td>
             <td>{{$pro->NCC_TEN }}</td>
             <td>{{$pro->LNT_TEN }}</td>
             <td>
                   <?php
-                  //Số lượng tồn
-                    $ddh = DB::table('chi_tiet_don_dat_hang')
-                    ->where('NT_MA', $pro->NT_MA)->sum('CTDDH_SOLUONG');
-                    $nhap = DB::table('chi_tiet_lo_nhap')
-                    ->where('NT_MA', $pro->NT_MA)->sum('CTLN_SOLUONG');
-                    $xuat = DB::table('chi_tiet_lo_xuat')
-                    ->where('NT_MA', $pro->NT_MA)->sum('CTLX_SOLUONG');
-
-                    echo($nhap-$xuat-$ddh);
+                    echo($slton);
                   ?>
             </td>
           </tr>
