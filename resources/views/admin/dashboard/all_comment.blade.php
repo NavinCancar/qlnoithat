@@ -36,7 +36,7 @@
                 <td>{{$dg->KH_HOTEN}}</td>
                 <td>{{$dg->DG_NOIDUNG}}</td>
                 <td>
-				<?php
+				          <?php
                     // Create connection
                     $conn = new mysqli('localhost', 'root', '', 'qlnoithat');
                     // Check connection
@@ -52,10 +52,10 @@
                     }
                     $x = 1;
                     for ($x = 1; $x <= $dg; $x++) {
-                    echo '<i class="fa fa-star"></i>';
+                    echo '<i class="fa fa-star" style="color: goldenrod;"></i>';
                     }
-                    ?>
-				</td>
+                  ?>
+				        </td>
                 <td>
                     <a href="{{URL::to('/chi-tiet-san-pham/'.$mant)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-google text-warning text-active"></i></a>
                     <a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-danhgia/'.$madg)}}" class="active styling-edit" ui-toggle-class="">

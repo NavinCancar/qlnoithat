@@ -96,7 +96,9 @@ class CartController extends Controller
 
         //Số lượng tồn
         $ddh = DB::table('chi_tiet_don_dat_hang')
-            ->where('NT_MA', $request->productid_hidden)->sum('CTDDH_SOLUONG');
+        ->join('don_dat_hang','chi_tiet_don_dat_hang.DDH_MA','=','don_dat_hang.DDH_MA')
+        ->where('TT_MA', '!=', 5)
+        ->where('NT_MA', $request->productid_hidden)->sum('CTDDH_SOLUONG');
 
         $nhap = DB::table('chi_tiet_lo_nhap')
             ->where('NT_MA', $request->productid_hidden)->sum('CTLN_SOLUONG');

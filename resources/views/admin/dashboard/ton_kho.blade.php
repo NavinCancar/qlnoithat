@@ -50,6 +50,8 @@
         <?php
           //Số lượng tồn
           $ddh = DB::table('chi_tiet_don_dat_hang')
+          ->join('don_dat_hang','chi_tiet_don_dat_hang.DDH_MA','=','don_dat_hang.DDH_MA')
+          ->where('TT_MA', '!=', 5)
           ->where('NT_MA', $pro->NT_MA)->sum('CTDDH_SOLUONG');
           $nhap = DB::table('chi_tiet_lo_nhap')
           ->where('NT_MA', $pro->NT_MA)->sum('CTLN_SOLUONG');

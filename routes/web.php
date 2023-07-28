@@ -219,10 +219,9 @@ Route::post('/update-hinhthuc-thanhtoan/{HTTT_MA}', 'App\Http\Controllers\Paymen
 Route::get('/all-khachhang', 'App\Http\Controllers\CostumerController@all_khachhang'); 
 
 //Cart k hiển thị vì bị tắt ảnh bìa => mua trúng vẫn bị duyệt?
-//Đơn nào bị huỷ thì vô lai kho, tiền đơn bị trừ khỏi doanh thu
 
 //Bộ lọc (giá, cho noithat...)
-//Chia trang
+//Chia trang page number
 //Phân quyền giao diện
 
 //Doanh thu hằng tháng (Báo cáo doanh thu)

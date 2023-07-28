@@ -22,21 +22,14 @@
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-            <th style="width:20px;">
-              <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
-              </label>
-            </th>
             <th>Mã chức vụ</th>
             <th>Tên chức vụ</th>
-            
             <th style="width:30px;"></th>
           </tr>
         </thead>
         <tbody>
         @foreach($all_chucvu as $key => $cate_pro)
           <tr>
-            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td>{{$cate_pro->CV_MA}}</td>
             <td>{{$cate_pro->CV_TEN}}</td>
             <td>

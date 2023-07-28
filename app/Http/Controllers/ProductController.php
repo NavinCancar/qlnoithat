@@ -65,6 +65,8 @@ class ProductController extends Controller
         //Số lượng tồn
 
         $ddh = DB::table('chi_tiet_don_dat_hang')
+            ->join('don_dat_hang','chi_tiet_don_dat_hang.DDH_MA','=','don_dat_hang.DDH_MA')
+            ->where('TT_MA', '!=', 5)
             ->where('NT_MA', $NT_MA)->sum('CTDDH_SOLUONG');
         Session::put('ban',$ddh);
 

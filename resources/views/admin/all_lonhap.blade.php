@@ -16,23 +16,16 @@
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-            <th style="width:20px;">
-              <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
-              </label>
-            </th>
             <th>Mã lô nhập</th>
             <th>Nhân viên phụ trách</th>
             <th>Ngày nhập</th>
             <th>Nội dung</th>
-            
             <th style="width:50px;"></th>
           </tr>
         </thead>
         <tbody>
         @foreach($all_lonhap as $key => $pro)
           <tr>
-            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td>{{$pro->LN_MA }}</td>
             <td>{{$pro->NV_HOTEN}}</td>
             <td>{{$pro->LN_NGAYNHAP}}</td> 

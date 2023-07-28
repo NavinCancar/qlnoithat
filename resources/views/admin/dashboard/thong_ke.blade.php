@@ -31,6 +31,11 @@
     height: 17em;
     text-decoration: none;
 }
+
+#pie-chart {
+  font-family: Arial, sans-serif;
+}
+
 </style>
 
 <div class="row">
@@ -102,7 +107,7 @@
                     WHERE h.HANT_DUONGDAN LIKE '%-1%'
                     AND d.DDH_NGAYDAT BETWEEN '".$TGBDau."' AND '".$TGKThuc."'
                     GROUP by n.NT_MA HAVING SUM(ctddh_soluong) = (SELECT max(tongsoluong) FROM (SELECT c.NT_MA, SUM(ctddh_soluong) tongsoluong FROM chi_tiet_don_dat_hang c JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA WHERE d.DDH_NGAYDAT BETWEEN '"
-                    .$TGBDau."' AND '".$TGKThuc."' GROUP BY (c.NT_MA)) sum_nt)";
+                    .$TGBDau."' AND '".$TGKThuc."' GROUP BY (c.NT_MA)) sum_nt) ORDER by n.NT_TEN";
                     $result = mysqli_query($connect, $query);
                     /*$row = mysqli_fetch_array($result);
                     echo '<pre>';
@@ -117,7 +122,7 @@
                             <a href="chi-tiet-san-pham/'. $row["NT_MA"].'"><img class="img-fluid mb-3 anh" src="public/frontend/img/noithat/'.$row["HANT_DUONGDAN"].'" alt=""></a>
                             <br>
                             <h4 class="text-center">'.$row["NT_TEN"].'</h4>
-                            <h4 class="text-center">'.number_format($row["NT_GIA"]).' đ</h4>   
+                            <h4 class="text-center">'.number_format($row["NT_GIA"]).' VNĐ</h4>   
                             <h5 class="text-center">Số lượng bán: '.$row["tong"].'</h5>     
                             </div>
                         </section>
@@ -142,7 +147,7 @@
                     WHERE h.HANT_DUONGDAN LIKE '%-1%'
                     AND d.DDH_NGAYDAT BETWEEN '".$TGBDau."' AND '".$TGKThuc."'
                     GROUP by n.NT_MA HAVING SUM(ctddh_soluong) = (SELECT min(tongsoluong) FROM (SELECT c.NT_MA, SUM(ctddh_soluong) tongsoluong FROM chi_tiet_don_dat_hang c JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA WHERE d.DDH_NGAYDAT BETWEEN '"
-                    .$TGBDau."' AND '".$TGKThuc."' GROUP BY (c.NT_MA)) sum_nt)";
+                    .$TGBDau."' AND '".$TGKThuc."' GROUP BY (c.NT_MA)) sum_nt) ORDER by n.NT_TEN";
                     $result = mysqli_query($connect, $query);
                     /*$row = mysqli_fetch_array($result);
                     echo '<pre>';
@@ -157,7 +162,7 @@
                             <a href="chi-tiet-san-pham/'. $row["NT_MA"].'"><img class="img-fluid mb-3 anh" src="public/frontend/img/noithat/'.$row["HANT_DUONGDAN"].'" alt=""></a>
                             <br>
                             <h4 class="text-center">'.$row["NT_TEN"].'</h4>
-                            <h4 class="text-center">'.number_format($row["NT_GIA"]).' đ</h4>
+                            <h4 class="text-center">'.number_format($row["NT_GIA"]).' VNĐ</h4>
                             <h5 class="text-center">Số lượng bán: '.$row["tong"].'</h5>          
                             </div>
                         </section>
@@ -181,7 +186,7 @@
                                         JOIN chi_tiet_don_dat_hang c on n.NT_MA = c.NT_MA 
                                         JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA
                                         WHERE d.DDH_NGAYDAT BETWEEN '".$TGBDau."' AND '".$TGKThuc."'
-                                        GROUP by n.NT_MA)";
+                                        GROUP by n.NT_MA) ORDER by n.NT_TEN";
                     $result = mysqli_query($connect, $query);
                     /*$row = mysqli_fetch_array($result);
                     echo '<pre>';
@@ -192,12 +197,8 @@
                         echo '
                         <div class="col-lg-4">
                         <section class="panel">
-                            <div class="panel-body khung">
-                            <a href="chi-tiet-san-pham/'. $row["NT_MA"].'"><img class="img-fluid mb-3 anh" src="public/frontend/img/noithat/'.$row["HANT_DUONGDAN"].'" alt=""></a>
-                            <br>
-                            <h4 class="text-center">'.$row["NT_TEN"].'</h4>
-                            <h4 class="text-center">'.number_format($row["NT_GIA"]).' đ</h4>
-                            <h5 class="text-center">Số lượng bán: 0</h5>          
+                            <div class="panel-body">
+                            <a href="chi-tiet-san-pham/'. $row["NT_MA"].'"><h4 class="text-center" style="color: gray;">'.$row["NT_TEN"].'</h4></a>
                             </div>
                         </section>
                         </div>';

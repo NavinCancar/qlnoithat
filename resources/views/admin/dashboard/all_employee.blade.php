@@ -22,11 +22,6 @@
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-            <th style="width:20px;">
-              <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
-              </label>
-            </th>
             <th>Mã nhân viên</th>
             <th>Tên nhân viên</th>
             <th>Chức vụ</th>
@@ -43,7 +38,6 @@
         <tbody>
         @foreach($all_employee as $key => $emp)
           <tr>
-            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td>{{$emp->NV_MA }}</td>
             <td>{{$emp->NV_HOTEN}}</td>
             <td>{{$emp->CV_TEN }}</td>
