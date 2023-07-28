@@ -253,6 +253,38 @@ class CostumerController extends Controller
         return Redirect::to('tai-khoan');
     }
 
+    //Mật khẩu
+    public function change_password_account(){
+        $this->AuthLogin();
+        $all_category_product = DB::table('loai_noi_that')->get();
+        return view('pages.account.change_password_account')->with('category', $all_category_product);
+    }
+
+    public function update_password_account(Request $request){
+        $this->AuthLogin();
+        $data = array();
+        $KH_MA = Session::get('KH_MA');
+        $KH= DB::table('khach_hang')->where('KH_MA',$KH_MA)->first();
+        if ($KH->KH_MATKHAU!=$request->KH_MATKHAUCU){
+            Session::put('message','Mật khẩu cũ sai, vui lòng kiểm tra lại!');
+            return Redirect::to('doi-mat-khau');
+        }
+        if ($request->KH_MATKHAUMOI1!=$request->KH_MATKHAUMOI2){
+            Session::put('message','Mật khẩu nhập lại sai, vui lòng kiểm tra lại!');
+            return Redirect::to('doi-mat-khau');
+        }
+        if ($request->KH_MATKHAUMOI1==$request->KH_MATKHAUCU){
+            Session::put('message','Mật khẩu cũ và mật khẩu mới phải khác nhau, vui lòng kiểm tra lại!');
+            return Redirect::to('doi-mat-khau');
+        }
+        $data['KH_MATKHAU'] = $request->KH_MATKHAUMOI1;
+
+        DB::table('khach_hang')->where('KH_MA',$KH_MA)->update($data);
+        Session::put('message','Đổi mật khẩu thành công');
+        return Redirect::to('doi-mat-khau');
+    }
+
+
     //Backend--Only chủ cửa hàng-------------------------------------------------------
     public function AuthLoginChu(){
         $NV_MA = Session::get('NV_MA');

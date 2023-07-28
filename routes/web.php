@@ -57,6 +57,7 @@ Route::post('/update-location/{DCGH_MA}', 'App\Http\Controllers\CostumerControll
 Route::get('/show-all-bill','App\Http\Controllers\CartController@show_all_bill'); 
 Route::get('/show-detail-bill/{DDH_MA}','App\Http\Controllers\CartController@show_detail_bill'); 
 Route::get('/show-detail-order','App\Http\Controllers\CartController@show_detail_order'); 
+Route::get('/huy-don/{DDH_MA}','App\Http\Controllers\CartController@cancel_order'); 
 
 Route::post('/order','App\Http\Controllers\CartController@order'); 
 Route::post('/search-in-order', 'App\Http\Controllers\CartController@search_in_order'); 
@@ -64,8 +65,10 @@ Route::post('/search-in-order', 'App\Http\Controllers\CartController@search_in_o
 //Account
 Route::get('/tai-khoan', 'App\Http\Controllers\CostumerController@show_account'); 
 Route::get('/cap-nhat-tai-khoan', 'App\Http\Controllers\CostumerController@edit_account'); 
+Route::get('/doi-mat-khau', 'App\Http\Controllers\CostumerController@change_password_account'); 
 
 Route::post('/update-tai-khoan', 'App\Http\Controllers\CostumerController@update_account'); 
+Route::post('/update-mat-khau', 'App\Http\Controllers\CostumerController@update_password_account'); 
 //---------------------------------------------------------------------------------------------------------
 
 
@@ -218,12 +221,9 @@ Route::get('/all-khachhang', 'App\Http\Controllers\CostumerController@all_khachh
 //Cart k hiển thị vì bị tắt ảnh bìa => mua trúng vẫn bị duyệt?
 //Đơn nào bị huỷ thì vô lai kho, tiền đơn bị trừ khỏi doanh thu
 
-//Bộ lọc
+//Bộ lọc (giá, cho noithat...)
 //Chia trang
 //Phân quyền giao diện
-
-//Đổi mật khẩu khách
-//Cho phép khách huỷ đơn
 
 //Doanh thu hằng tháng (Báo cáo doanh thu)
 //Ql vận đơn giao hàng=>QL đơn đặt hàng

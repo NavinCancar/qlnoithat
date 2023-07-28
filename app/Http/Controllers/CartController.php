@@ -294,4 +294,16 @@ class CartController extends Controller
         return view('pages.cart.search_in_order')->with('category', $all_category_product)
         ->with('all_DDH', $all_DDH)->with('group_DDH', $group_DDH);
     }
+
+    public function cancel_order($DDH_MA){
+        $this->AuthLogin();
+        
+        $data = array();
+        $data['TT_MA'] = 5;
+
+        DB::table('don_dat_hang')->where('DDH_MA', $DDH_MA)->update($data);
+        Session::put('message','Huỷ đơn hàng thành công');
+        
+        return Redirect::to('show-detail-bill/'.$DDH_MA);
+    }
 }

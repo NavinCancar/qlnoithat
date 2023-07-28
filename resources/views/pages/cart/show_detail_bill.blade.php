@@ -5,7 +5,13 @@
   <div class="panel panel-default">
             <h2 class="text-center font-weight-bold pt-3">Thông tin chi tiết đơn đặt hàng</h2>
             <hr class="mx-auto">
-   
+            <?php
+            $message = Session::get('message');
+            if($message){
+                echo '<span class="text-alert text-warning">'.$message.'</span>';
+                Session::put('message',null);
+            }
+        ?>
     <div class="position-center">
     @foreach($all_DDH as $key => $all_DDH)
         <form role="form" action="#"  method="post" enctype= "multipart/form-data">
@@ -110,8 +116,11 @@
                     <div class="form-group center">
                         <label for="exampleInputEmail1"><b>Hình ảnh chuyển khoản:</b></label><br>
                         <input type="text" name="DDH_MA" hidden value="{{$all_DDH->DDH_DUONGDANHINHANHCHUYENKHOAN}}" class="form-control" id="exampleInputEmail1">
-                        <img src="../../qlnoithat/public/frontend/img/minhchung/{{$all_DDH->DDH_DUONGDANHINHANHCHUYENKHOAN}}" height="250px">
+                        <img src="../../qlnoithat/public/frontend/img/minhchung/{{$all_DDH->DDH_DUONGDANHINHANHCHUYENKHOAN}}" height="220px">
                     </div>
+                    @endif
+                    @if($all_DDH->TT_MA<=3)
+                    <a onclick="return confirm('Bạn có chắc chắn muốn huỷ đơn hàng này không?')" href="{{URL::to('/huy-don/'.$all_DDH->DDH_MA)}}"><button type="button" style="width:100%;" class="btn btn-danger btn-sm">Huỷ đơn</button></a>
                     @endif
                     <a href="{{URL::to('/show-all-bill')}}"><button type="button" style="width:100%;" class="btn btn-dark btn-sm">Quay về</button></a>
                 </div>

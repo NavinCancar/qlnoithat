@@ -94,6 +94,7 @@
                                         echo '</button>
                                         <ul class="dropdown-menu">';
                                         echo'<li><a class="dropdown-item"  href="'.URL::to('/tai-khoan').'"><i class=" fa fa-user-circle"></i>Tài khoản</a></li>';
+                                        echo'<li><a class="dropdown-item"  href="'.URL::to('/doi-mat-khau').'"><i class=" fa fa-lock"></i>Đổi mật khẩu</a></li>';
                                         echo'<li><a class="dropdown-item"  href="'.URL::to('/dia-chi-giao-hang').'"><i class="fa  fa-location-dot"></i> Địa chỉ giao hàng</a></li>';
                                         echo'<li><a class="dropdown-item"  href="'.URL::to('/logout').'"><i class="fa fa-key"></i>Đăng xuất</a></li>';
                                     echo '</ul>

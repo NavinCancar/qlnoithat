@@ -4,12 +4,12 @@
             <h2 class="font-weight-bold pt-3">Giỏ hàng</h2>
             <hr class="mx-auto">
         <?php
-      $message = Session::get('message');
-      if($message){
-          echo '<span class="text-alert text-warning">'.$message.'</span>';
-          Session::put('message',null);
-      }
-    ?>
+            $message = Session::get('message');
+            if($message){
+                echo '<span class="text-alert text-warning">'.$message.'</span>';
+                Session::put('message',null);
+            }
+        ?>
         </section>
         <?php
         //$c= Cart::content();
