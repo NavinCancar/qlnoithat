@@ -162,4 +162,29 @@ class OrderController extends Controller
         Session::put('message','Cập nhật trạng thái đơn đặt hàng thành công');
         return Redirect::to('/trang-thai/tat-ca');
     }
+
+    //Đánh giá
+    public function all_comment(){
+        $this->AuthLogin();
+
+        $danh_gia = DB::table('danh_gia')
+        ->join('khach_hang','khach_hang.KH_MA','=','danh_gia.KH_MA')
+        ->orderby('DG_MA','desc')->get();
+
+        $countdg = DB::table('danh_gia')
+        ->join('khach_hang','khach_hang.KH_MA','=','danh_gia.KH_MA')->count();
+    
+        Session::put('countdg',$countdg);
+
+        return view('admin.dashboard.all_comment')->with('danh_gia', $danh_gia);
+    }
+
+    public function delete_comment($DG_MA){
+        $this->AuthLogin();
+
+        $danh_gia = DB::table('danh_gia')->where('DG_MA',$DG_MA)->delete();
+        Session::put('message','Xoá đánh giá thành công');
+
+        return Redirect::to('/danh-gia');
+    }
 }

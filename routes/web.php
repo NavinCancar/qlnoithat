@@ -117,6 +117,7 @@ Route::post('/search-product', 'App\Http\Controllers\ProductController@search_pr
 Route::post('/update-image/{NT_MA}', 'App\Http\Controllers\ProductController@update_image'); 
 
 //Employee
+Route::get('/change-password', 'App\Http\Controllers\EmployeeController@change_password'); //--All
 Route::get('/show-employee', 'App\Http\Controllers\EmployeeController@show_employee'); //--All
 Route::get('/add-employee', 'App\Http\Controllers\EmployeeController@add_employee'); 
 Route::get('/edit-employee/{NV_MA}', 'App\Http\Controllers\EmployeeController@edit_employee'); //--All
@@ -125,6 +126,7 @@ Route::get('/all-employee', 'App\Http\Controllers\EmployeeController@all_employe
 
 Route::post('/save-employee', 'App\Http\Controllers\EmployeeController@save_employee'); 
 Route::post('/update-employee/{NV_MA}', 'App\Http\Controllers\EmployeeController@update_employee'); //--All
+Route::post('/update-password', 'App\Http\Controllers\EmployeeController@update_password'); //--All
 
 //Lô nhập --+KKho
 Route::get('/add-lonhap', 'App\Http\Controllers\ImportController@add_lonhap'); 
@@ -162,7 +164,7 @@ Route::get('/delete-chitiet-loxuat/lo={LX_MA}&nothat={NT_MA}', 'App\Http\Control
 Route::post('/save-chitiet-loxuat/{LX_MA}', 'App\Http\Controllers\ExportController@save_chitiet_loxuat');  
 Route::post('/update-chitiet-loxuat/lo={LX_MA}&nothat={NT_MA}', 'App\Http\Controllers\ExportController@update_chitiet_loxuat');  
 
-//ton kho
+//Tồn kho
 Route::get('/ton-kho', 'App\Http\Controllers\ProductController@ton_kho'); 
 
 //Thống kê
@@ -181,6 +183,10 @@ Route::post('/search-all-order', 'App\Http\Controllers\OrderController@search_al
 Route::get('/update-status-order/{DDH_MA}', 'App\Http\Controllers\OrderController@update_status_order'); 
 
 Route::post('/update_status/ddh={DDH_MA}&tt={TT_MA}', 'App\Http\Controllers\OrderController@update_status'); 
+
+//Đánh giá --+BHang
+Route::get('/danh-gia', 'App\Http\Controllers\OrderController@all_comment'); 
+Route::get('/delete-danhgia/{DG_MA}', 'App\Http\Controllers\OrderController@delete_comment'); 
 
 //Phí ship
 Route::get('/show_feeship', 'App\Http\Controllers\AdminController@show_feeship'); 
@@ -210,10 +216,15 @@ Route::post('/update-hinhthuc-thanhtoan/{HTTT_MA}', 'App\Http\Controllers\Paymen
 Route::get('/all-khachhang', 'App\Http\Controllers\CostumerController@all_khachhang'); 
 
 //Cart k hiển thị vì bị tắt ảnh bìa => mua trúng vẫn bị duyệt?
+//Đơn nào bị huỷ thì vô lai kho, tiền đơn bị trừ khỏi doanh thu
+
 //Bộ lọc
-//Đổi mật khẩu
-//Check controller
-//Cho phép khách huỷ đơn
-//Quản lý bình luận
-//Doanh thu hằng tháng
 //Chia trang
+//Phân quyền giao diện
+
+//Đổi mật khẩu khách
+//Cho phép khách huỷ đơn
+
+//Doanh thu hằng tháng (Báo cáo doanh thu)
+//Ql vận đơn giao hàng=>QL đơn đặt hàng
+

@@ -101,6 +101,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </a>
             <ul class="dropdown-menu extended logout">
 				<li><a href="{{URL::to('/show-employee')}}"><i class=" fa fa-user"></i>Tài khoản</a></li>
+				<li><a href="{{URL::to('/change-password')}}"><i class=" fa fa-lock "></i>Đổi mật khẩu</a></li>
                 <li><a href="{{URL::to('/log-out')}}"><i class="fa fa-key"></i>Đăng xuất</a></li>
             </ul>
         </li>
@@ -160,10 +161,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-clipboard"></i>
-                        <span>Quản lý đơn đặt hàng</span>
+                        <span>Đơn đặt hàng và đánh giá</span>
                     </a>
                     <ul class="sub">
 						<li><a href="{{URL::to('/trang-thai/tat-ca')}}">Liệt kê các đơn đặt hàng</a></li> <!-- in cả nội thất? số lượng? đơn giá? -->
+                    </ul>
+					<ul class="sub">
+						<li><a href="{{URL::to('/danh-gia')}}">Liệt kê các đánh giá</a></li> <!-- in cả nội thất? số lượng? đơn giá? -->
                     </ul>
                 </li>
 				<li class="sub-menu">

@@ -35,6 +35,11 @@ class EmployeeController extends Controller
 
     //--All
 
+    public function change_password(){
+        $this->AuthLogin();
+        return view('admin.dashboard.change_password');
+    }
+
     public function show_employee(){
         $this->AuthLogin();
         $NV_MA = Session::get('NV_MA');
@@ -90,6 +95,29 @@ class EmployeeController extends Controller
         return Redirect::to('all-employee');
     }
 
+    public function update_password(Request $request){
+        $this->AuthLogin();
+        $data = array();
+        $NV_MA = Session::get('NV_MA');
+        $NV= DB::table('nhan_vien')->where('NV_MA',$NV_MA)->first();
+        if ($NV->NV_MATKHAU!=$request->NV_MATKHAUCU){
+            Session::put('message','Mật khẩu cũ sai, vui lòng kiểm tra lại!');
+            return Redirect::to('change-password');
+        }
+        if ($request->NV_MATKHAUMOI1!=$request->NV_MATKHAUMOI2){
+            Session::put('message','Mật khẩu nhập lại sai, vui lòng kiểm tra lại!');
+            return Redirect::to('change-password');
+        }
+        if ($request->NV_MATKHAUMOI1==$request->NV_MATKHAUCU){
+            Session::put('message','Mật khẩu cũ và mật khẩu mới phải khác nhau, vui lòng kiểm tra lại!');
+            return Redirect::to('change-password');
+        }
+        $data['NV_MATKHAU'] = $request->NV_MATKHAUMOI1;
+
+        DB::table('nhan_vien')->where('NV_MA',$NV_MA)->update($data);
+        Session::put('message','Đổi mật khẩu thành công');
+        return Redirect::to('change-password');
+    }
 
     //--Only chủ cửa hàng
 
