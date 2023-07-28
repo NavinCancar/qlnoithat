@@ -214,7 +214,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li class="sub-menu">
                     <a href="{{URL::to('/thong-ke')}}">
                         <i class="fa fa-bar-chart-o"></i>
-                        <span>Thống kê</span>
+                        <span>Báo cáo - thống kê</span>
                     </a>
                 </li>
             </ul>      

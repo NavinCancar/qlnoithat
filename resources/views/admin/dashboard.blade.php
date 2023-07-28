@@ -119,7 +119,12 @@
 						<i class="fa fa-usd"></i>
 					</div>
 					<div class="col-md-10 market-update-left">
-						<h4>Tổng doanh thu</h4>
+						<h4>Tổng doanh thu của tháng 
+						<?php
+							$date_array = getdate();
+							echo $date_array['mon'];
+						?>
+						</h4>
 						<h3>
 							<?php
 								$dtl= Session::get('DOANH_THU_L');
@@ -149,8 +154,5 @@
 
 		   <div class="clearfix"> </div>
 		</div>	
-	
-
-
 		<!-- //market-->
 @endsection

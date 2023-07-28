@@ -777,7 +777,7 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
 /*--market--*/
 .panel-heading {
     position: relative;
-    height: 57px;
+    /*height: 57px;*/
     line-height: 57px;
     letter-spacing: 0.2px;
     color: #000;
@@ -1543,6 +1543,9 @@ h2.typoh2 {
 }
 }
 @media (max-width:480px){
+.panel-heading {
+    line-height: 30px;
+}
 .grid_5 h3, .grid_5 h2, .grid_5 h1, .grid_5 h4, .grid_5 h5, h3.hdg, h3.bars {
 	font-size: 1.2em;
 }

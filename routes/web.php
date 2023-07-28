@@ -170,7 +170,7 @@ Route::post('/update-chitiet-loxuat/lo={LX_MA}&nothat={NT_MA}', 'App\Http\Contro
 //Tồn kho
 Route::get('/ton-kho', 'App\Http\Controllers\ProductController@ton_kho'); 
 
-//Thống kê
+//Thống kê 
 Route::get('/thong-ke', 'App\Http\Controllers\AdminController@thong_ke'); 
 
 Route::post('/thong-ke-thoi-gian', 'App\Http\Controllers\AdminController@thong_ke_tg'); 
@@ -224,6 +224,6 @@ Route::get('/all-khachhang', 'App\Http\Controllers\CostumerController@all_khachh
 //Chia trang page number
 //Phân quyền giao diện
 
-//Doanh thu hằng tháng (Báo cáo doanh thu)
-//Ql vận đơn giao hàng=>QL đơn đặt hàng
+//Báo cáo doanh thu
+//Ql vận đơn giao hàng
 

@@ -63,10 +63,14 @@ class AdminController extends Controller
         Session::put('SO_NHAN_VIEN',$emp);
 
         //Doanh thu
-        $ddh_dtt = DB::table('don_dat_hang')
-        ->where('TT_MA', 4)->sum('ddh_tongtien');
+        $homnay=Carbon::now('Asia/Ho_Chi_Minh');
 
-        $ctlx = DB::table('chi_tiet_lo_xuat')->sum('CTLX_GIA');
+        $ddh_dtt = DB::table('don_dat_hang')->where('TT_MA', 4)
+        ->whereMonth('DDH_NGAYDAT', $homnay)->whereYear('DDH_NGAYDAT', $homnay)->sum('ddh_tongtien');
+
+        $ctlx = DB::table('chi_tiet_lo_xuat')
+        ->join('lo_xuat','lo_xuat.LX_MA','=','chi_tiet_lo_xuat.LX_MA')
+        ->whereMonth('LX_NGAYXUAT', $homnay)->whereYear('LX_NGAYXUAT', $homnay)->sum('CTLX_GIA');
 
         Session::put('DOANH_THU_L',$ctlx);
         Session::put('DOANH_THU_S',$ddh_dtt);
