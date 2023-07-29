@@ -22,7 +22,7 @@ class CategoryProduct extends Controller
         ->join('loai_noi_that', 'loai_noi_that.LNT_MA', '=', 'noi_that.LNT_MA')
         ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
         ->where('loai_noi_that.LNT_MA', $LNT_MA)
-        ->orderby('noi_that.NT_NGAYTAO','desc')->get();
+        ->orderby('noi_that.NT_NGAYTAO','desc')->paginate(12);;
 
         $category_name = DB::table('loai_noi_that')->where('loai_noi_that.LNT_MA', $LNT_MA )->get();
        /* echo '<pre>';

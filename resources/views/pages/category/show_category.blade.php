@@ -59,20 +59,42 @@
             </ul>
         </div>
          <!--icon thu tu-->
-         <nav aria-label="...">
-            <ul class="pagination mt-5">
-              <li class="page-item disabled">
-                <a class="page-link ">Previous</a>
-              </li>
-              <li class="page-item "><a class="page-link bg-active shop-nav" href="#">1</a></li>
-              <li class="page-item" aria-current="page">
-                <a class="page-link shop-nav" href="#">2</a>
-              </li>
-              <li class="page-item"><a class="page-link shop-nav" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link shop-nav" href="#">Next</a>
-              </li>
-            </ul>
-          </nav>
+         <nav aria-label="Page navigation">
+          <ul class="justify-content-center pagination mt-5">
+              {{-- Previous Page Link --}}
+              @if ($category_by_id->onFirstPage())
+                  <li class="page-item disabled">
+                      <a class="page-link" href="#">Previous</a>
+                  </li>
+              @else
+                  <li class="page-item">
+                      <a class="page-link shop-nav" href="{{ $category_by_id->previousPageUrl() }}">Previous</a>
+                  </li>
+              @endif
+              {{-- Pagination Elements --}}
+              @for ($key=0; $key+1<=$category_by_id->lastPage(); $key++)
+                    @if ($category_by_id->currentPage() === $key + 1)
+                        <li class="page-item">
+                            <a class="page-link bg-active shop-nav" href="{{ $category_by_id->url($key + 1) }}">{{ $key + 1 }}</a>
+                        </li>
+                    @else
+                        <li class="page-item">
+                            <a class="page-link shop-nav" href="{{ $category_by_id->url($key + 1) }}">{{ $key + 1 }}</a>
+                        </li>
+                    @endif
+              @endfor
+          
+              {{-- Next Page Link --}}
+              @if ($category_by_id->hasMorePages())
+                  <li class="page-item">
+                      <a class="page-link shop-nav" href="{{ $category_by_id->nextPageUrl() }}">Next</a>
+                  </li>
+              @else
+                  <li class="page-item disabled">
+                      <a class="page-link" href="#">Next</a>
+                  </li>
+              @endif
+          </ul>
+      </nav>
     </section>
 @endsection

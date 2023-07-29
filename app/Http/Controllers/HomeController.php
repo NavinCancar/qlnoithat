@@ -36,7 +36,7 @@ class HomeController extends Controller
         $all_product = DB::table('noi_that') 
         ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
         ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
-        ->orderby('noi_that.NT_NGAYTAO','desc')->limit(16)->get();
+        ->orderby('noi_that.NT_NGAYTAO','desc')->paginate(12);
         return view('pages.show-all-product')->with('category', $all_category_product)->with('all_product', $all_product);
     }
     

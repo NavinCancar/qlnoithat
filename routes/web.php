@@ -16,59 +16,59 @@ use Illuminate\Support\Facades\Route;
 //Frontend-----------------------------------------------------------------------------------------------
 
 //Giao diện
-Route::get('/','App\Http\Controllers\HomeController@index');
-Route::get('/trang-chu', 'App\Http\Controllers\HomeController@index');
-Route::get('/danh-muc-san-pham/tat-ca', 'App\Http\Controllers\HomeController@all_product');
+Route::get('/','App\Http\Controllers\HomeController@index'); ///
+Route::get('/trang-chu', 'App\Http\Controllers\HomeController@index'); ///
+Route::get('/danh-muc-san-pham/tat-ca', 'App\Http\Controllers\HomeController@all_product'); ///ok
 
-Route::post('/tim-kiem', 'App\Http\Controllers\HomeController@search');
+Route::post('/tim-kiem', 'App\Http\Controllers\HomeController@search'); ///
 
 //Danh mục loại nội thất
-Route::get('/danh-muc-san-pham/{LNT_MA}', 'App\Http\Controllers\CategoryProduct@show_category_home');
-Route::get('/chi-tiet-san-pham/{NT_MA}', 'App\Http\Controllers\ProductController@detail_product');
+Route::get('/danh-muc-san-pham/{LNT_MA}', 'App\Http\Controllers\CategoryProduct@show_category_home'); ///ok
+Route::get('/chi-tiet-san-pham/{NT_MA}', 'App\Http\Controllers\ProductController@detail_product'); ///
 
-Route::post('/danh-gia/{NT_MA}', 'App\Http\Controllers\ProductController@danh_gia');
+Route::post('/danh-gia/{NT_MA}', 'App\Http\Controllers\ProductController@danh_gia'); ///
 
 //Login
-Route::get('/dang-nhap','App\Http\Controllers\CostumerController@dang_nhap');
-Route::get('/logout', 'App\Http\Controllers\CostumerController@logout');
+Route::get('/dang-nhap','App\Http\Controllers\CostumerController@dang_nhap'); ///
+Route::get('/logout', 'App\Http\Controllers\CostumerController@logout'); ///
 
-Route::post('/costumer-check', 'App\Http\Controllers\CostumerController@trang_chu');
+Route::post('/costumer-check', 'App\Http\Controllers\CostumerController@trang_chu'); ///
 
 //Sign up
-Route::post('/dang-ky', 'App\Http\Controllers\CostumerController@signup');
+Route::post('/dang-ky', 'App\Http\Controllers\CostumerController@signup'); ///
 
 //Cart
-Route::get('/show-cart','App\Http\Controllers\CartController@show_cart');
-Route::get('/delete-cart/{NT_MA}', 'App\Http\Controllers\CartController@delete_cart');
+Route::get('/show-cart','App\Http\Controllers\CartController@show_cart'); ///
+Route::get('/delete-cart/{NT_MA}', 'App\Http\Controllers\CartController@delete_cart'); ///
 
-Route::post('/save-cart','App\Http\Controllers\CartController@save_cart');
-Route::post('/update-cart', 'App\Http\Controllers\CartController@update_cart');
+Route::post('/save-cart','App\Http\Controllers\CartController@save_cart'); ///
+Route::post('/update-cart', 'App\Http\Controllers\CartController@update_cart'); ///
 
 //Location: Địa chỉ giao hàng
-Route::get('/dia-chi-giao-hang','App\Http\Controllers\CostumerController@all_location'); 
-Route::get('/them-dia-chi-giao-hang','App\Http\Controllers\CostumerController@add_location'); 
-Route::get('/sua-dia-chi-giao-hang/{DCGH_MA}', 'App\Http\Controllers\CostumerController@edit_location'); 
-Route::get('/xoa-dia-chi-giao-hang/{DCGH_MA}', 'App\Http\Controllers\CostumerController@delete_location'); 
+Route::get('/dia-chi-giao-hang','App\Http\Controllers\CostumerController@all_location'); ///
+Route::get('/them-dia-chi-giao-hang','App\Http\Controllers\CostumerController@add_location'); ///
+Route::get('/sua-dia-chi-giao-hang/{DCGH_MA}', 'App\Http\Controllers\CostumerController@edit_location'); ///  
+Route::get('/xoa-dia-chi-giao-hang/{DCGH_MA}', 'App\Http\Controllers\CostumerController@delete_location'); ///
 
-Route::post('/save-location', 'App\Http\Controllers\CostumerController@save_location'); 
-Route::post('/update-location/{DCGH_MA}', 'App\Http\Controllers\CostumerController@update_location'); 
+Route::post('/save-location', 'App\Http\Controllers\CostumerController@save_location'); ///
+Route::post('/update-location/{DCGH_MA}', 'App\Http\Controllers\CostumerController@update_location'); ///
 
 //Đơn đặt hàng
-Route::get('/show-all-bill','App\Http\Controllers\CartController@show_all_bill'); 
-Route::get('/show-detail-bill/{DDH_MA}','App\Http\Controllers\CartController@show_detail_bill'); 
-Route::get('/show-detail-order','App\Http\Controllers\CartController@show_detail_order'); 
-Route::get('/huy-don/{DDH_MA}','App\Http\Controllers\CartController@cancel_order'); 
+Route::get('/show-all-bill','App\Http\Controllers\CartController@show_all_bill'); ///ok
+Route::get('/show-detail-bill/{DDH_MA}','App\Http\Controllers\CartController@show_detail_bill'); ///
+Route::get('/show-detail-order','App\Http\Controllers\CartController@show_detail_order'); ///
+Route::get('/huy-don/{DDH_MA}','App\Http\Controllers\CartController@cancel_order'); ///
 
-Route::post('/order','App\Http\Controllers\CartController@order'); 
-Route::post('/search-in-order', 'App\Http\Controllers\CartController@search_in_order'); 
+Route::post('/order','App\Http\Controllers\CartController@order'); ///
+Route::post('/search-in-order', 'App\Http\Controllers\CartController@search_in_order'); ///
 
 //Account
-Route::get('/tai-khoan', 'App\Http\Controllers\CostumerController@show_account'); 
-Route::get('/cap-nhat-tai-khoan', 'App\Http\Controllers\CostumerController@edit_account'); 
-Route::get('/doi-mat-khau', 'App\Http\Controllers\CostumerController@change_password_account'); 
+Route::get('/tai-khoan', 'App\Http\Controllers\CostumerController@show_account'); ///
+Route::get('/cap-nhat-tai-khoan', 'App\Http\Controllers\CostumerController@edit_account'); ///
+Route::get('/doi-mat-khau', 'App\Http\Controllers\CostumerController@change_password_account'); ///
 
-Route::post('/update-tai-khoan', 'App\Http\Controllers\CostumerController@update_account'); 
-Route::post('/update-mat-khau', 'App\Http\Controllers\CostumerController@update_password_account'); 
+Route::post('/update-tai-khoan', 'App\Http\Controllers\CostumerController@update_account'); ///
+Route::post('/update-mat-khau', 'App\Http\Controllers\CostumerController@update_password_account'); ///
 //---------------------------------------------------------------------------------------------------------
 
 
@@ -82,20 +82,20 @@ Route::post('/update-mat-khau', 'App\Http\Controllers\CostumerController@update_
 //Backend---------------------------------------------------------------------------------------------------
 
 //Giao diện --All
-Route::get('/admin', 'App\Http\Controllers\AdminController@index');
-Route::get('/dashboard', 'App\Http\Controllers\AdminController@show_dashboard');
-Route::get('/log-out', 'App\Http\Controllers\AdminController@logout');
+Route::get('/admin', 'App\Http\Controllers\AdminController@index'); ///
+Route::get('/dashboard', 'App\Http\Controllers\AdminController@show_dashboard'); ///
+Route::get('/log-out', 'App\Http\Controllers\AdminController@logout'); ///
 
-Route::post('/admin-dashboard', 'App\Http\Controllers\AdminController@dashboard');
+Route::post('/admin-dashboard', 'App\Http\Controllers\AdminController@dashboard'); ///
 
 //Category Product: Loại nội thất
-Route::get('/add-category-product', 'App\Http\Controllers\CategoryProduct@add_category_product'); 
-Route::get('/edit-category-product/{LNT_MA}', 'App\Http\Controllers\CategoryProduct@edit_category_product'); 
-Route::get('/delete-category-product/{LNT_MA}', 'App\Http\Controllers\CategoryProduct@delete_category_product'); 
+Route::get('/add-category-product', 'App\Http\Controllers\CategoryProduct@add_category_product'); ///
+Route::get('/edit-category-product/{LNT_MA}', 'App\Http\Controllers\CategoryProduct@edit_category_product'); ///
+Route::get('/delete-category-product/{LNT_MA}', 'App\Http\Controllers\CategoryProduct@delete_category_product'); ///
 Route::get('/all-category-product', 'App\Http\Controllers\CategoryProduct@all_category_product');  
 
-Route::post('/save-category-product', 'App\Http\Controllers\CategoryProduct@save_category_product'); 
-Route::post('/update-category-product/{LNT_MA}', 'App\Http\Controllers\CategoryProduct@update_category_product'); 
+Route::post('/save-category-product', 'App\Http\Controllers\CategoryProduct@save_category_product'); ///
+Route::post('/update-category-product/{LNT_MA}', 'App\Http\Controllers\CategoryProduct@update_category_product'); ///
 
 //Brand Product: Nhà cung cấp
 Route::get('/add-brand-product', 'App\Http\Controllers\BrandProduct@add_brand_product'); 
@@ -223,6 +223,7 @@ Route::get('/all-khachhang', 'App\Http\Controllers\CostumerController@all_khachh
 //Bộ lọc (giá, cho noithat...)
 //Chia trang page number
 //Phân quyền giao diện
+//x2 admin-layout
 
 //Báo cáo doanh thu
 //Ql vận đơn giao hàng

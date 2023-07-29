@@ -137,7 +137,7 @@ class CartController extends Controller
         $all_category_product = DB::table('loai_noi_that')->get();
         $all_DDH=  DB::table('don_dat_hang')
         ->join('trang_thai','don_dat_hang.TT_MA','=','trang_thai.TT_MA')
-        ->where('don_dat_hang.KH_MA', $KH_MA)->orderby('don_dat_hang.DDH_NGAYDAT','desc')->get();
+        ->where('don_dat_hang.KH_MA', $KH_MA)->orderby('don_dat_hang.DDH_NGAYDAT','desc')->paginate(5);
         $group_DDH = DB::table('don_dat_hang')
         ->join('chi_tiet_don_dat_hang','don_dat_hang.DDH_MA','=','chi_tiet_don_dat_hang.DDH_MA')
         ->join('noi_that','noi_that.NT_MA','=','chi_tiet_don_dat_hang.NT_MA')
