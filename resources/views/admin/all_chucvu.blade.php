@@ -14,9 +14,9 @@
     ?>
         <?php
 				$count= Session::get('count_chucvu');
-							if ($count) {
-								echo "Tổng số dòng dữ liệu: ".$count;
-							}
+				if ($count) {
+					echo "<p style='padding:15px'>Tổng số dòng dữ liệu: ".$count.'</p>';
+				}
 		?>
     <div class="table-responsive">
       <table class="table table-striped b-t b-light">

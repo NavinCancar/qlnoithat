@@ -122,7 +122,7 @@
 						<h4>Tổng doanh thu của tháng 
 						<?php
 							$date_array = getdate();
-							echo $date_array['mon'];
+							echo $date_array['mon'].'/'.$date_array['year'];
 						?>
 						</h4>
 						<h3>

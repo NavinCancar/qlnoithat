@@ -12,6 +12,12 @@
           Session::put('message',null);
       }
     ?>
+    <?php
+				$count= Session::get('count_lonhap');
+				if ($count) {
+					echo "<p style='padding:15px'>Tổng số dòng dữ liệu: ".$count.'</p>';
+				}
+		?>
     <div class="table-responsive">
       <table class="table table-striped b-t b-light">
         <thead>

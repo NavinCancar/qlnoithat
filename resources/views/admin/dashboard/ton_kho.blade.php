@@ -16,9 +16,9 @@
         ?>
         <?php
             $count= Session::get('count_product');
-                  if ($count) {
-                    echo "Tổng số dòng dữ liệu: ".$count;
-                  }
+            if ($count) {
+              echo "<p>Tổng số dòng dữ liệu: ".$count.'</p>';
+            }
         ?>
       </div>
       <div class="col-sm-4">
