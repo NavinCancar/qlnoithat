@@ -124,7 +124,7 @@ class ProductController extends Controller
         $all_product = DB::table('noi_that')
         ->join('nha_cung_cap','nha_cung_cap.NCC_MA','=','noi_that.NCC_MA')
         ->join('loai_noi_that','loai_noi_that.LNT_MA','=','noi_that.LNT_MA')
-        ->orderby('noi_that.NT_MA','desc')->get();
+        ->orderby('noi_that.NT_MA','desc')->paginate(10);
 
         $img_product = DB::table('noi_that')
         ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
@@ -324,7 +324,7 @@ class ProductController extends Controller
         $all_product = DB::table('noi_that')
         ->join('nha_cung_cap','nha_cung_cap.NCC_MA','=','noi_that.NCC_MA')
         ->join('loai_noi_that','loai_noi_that.LNT_MA','=','noi_that.LNT_MA')
-        ->orderby('NT_MA','desc')->get();
+        ->orderby('NT_MA','desc')->paginate(10);
         $manager_product = view('admin.dashboard.ton_kho')->with('all_product', $all_product);
         $count_product = DB::table('noi_that')->count('NT_MA');
         Session::put('count_product',$count_product);

@@ -43,21 +43,39 @@
     </div>
     <footer class="panel-footer">
       <div class="row">
-        
         <div class="col-sm-5 text-center">
-          <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
+          <small class="text-muted inline m-t-sm m-b-sm">
+            {{ "Showing ". $all_hinhthuc_thanhtoan->firstItem() ."-". $all_hinhthuc_thanhtoan->lastItem() ." of ". $all_hinhthuc_thanhtoan->total() ." items" }}
+          </small>
         </div>
-        <div class="col-sm-7 text-right text-center-xs">                
-          <ul class="pagination pagination-sm m-t-none m-b-none">
-            <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-            <li><a href="">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="">4</a></li>
-            
-            <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
-          </ul>
-        </div>
+        <nav aria-label="Page navigation">
+          <div class="col-sm-7 text-right text-center-xs">
+            <ul class="pagination pagination-sm m-t-none m-b-none">
+              {{-- Previous Page Link --}}
+              @if ($all_hinhthuc_thanhtoan->onFirstPage())
+                <li style="pointer-events: none;"><a href="#" style="background-color: #ddd">Previous</a></li>
+              @else
+                <li><a href="{{ $all_hinhthuc_thanhtoan->previousPageUrl() }}">Previous</a></li>
+              @endif
+
+              {{-- Pagination Elements --}}
+              @for ($key=0; $key+1<=$all_hinhthuc_thanhtoan->lastPage(); $key++)
+                @if ($all_hinhthuc_thanhtoan->currentPage() === $key + 1)
+                  <li><a href="{{ $all_hinhthuc_thanhtoan->url($key + 1) }}" style="color:#fff; background-color: #8b5c7e">{{ $key + 1 }}</a></li>
+                @else
+                  <li><a href="{{ $all_hinhthuc_thanhtoan->url($key + 1) }}">{{ $key + 1 }}</a></li>
+                @endif
+              @endfor
+                
+              {{-- Next Page Link --}}
+              @if ($all_hinhthuc_thanhtoan->hasMorePages())
+                <li><a href="{{ $all_hinhthuc_thanhtoan->nextPageUrl() }}">Next</a></li>
+              @else
+                <li style="pointer-events: none;"><a href="#" style="background-color: #ddd">Next</a></li>
+              @endif
+            </ul>
+          </div>
+        </nav>
       </div>
     </footer>
   </div>

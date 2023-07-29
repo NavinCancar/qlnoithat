@@ -39,7 +39,7 @@ class ImportController extends Controller
 
         $all_lonhap = DB::table('lo_nhap')
         ->join('nhan_vien','nhan_vien.NV_MA','=','lo_nhap.NV_MA')
-        ->orderby('LN_MA','desc')->get();
+        ->orderby('LN_MA','desc')->paginate(10);
         $manager_lonhap = view('admin.all_lonhap')->with('all_lonhap', $all_lonhap);
         //->with('all_lonhap', $all_lonhap);
         return view('admin-layout')->with('admin.all_lonhap', $manager_lonhap); 

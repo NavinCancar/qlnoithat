@@ -55,7 +55,7 @@ class CategoryProduct extends Controller
 
     public function all_category_product(){
         $this->AuthLoginChu();
-        $all_category_product = DB::table('loai_noi_that')->get();
+        $all_category_product = DB::table('loai_noi_that')->paginate(10);
         $manager_category_product = view('admin.all_category_product')->with('all_category_product', $all_category_product);
                 
         $count_category_product = DB::table('loai_noi_that')->count('LNT_MA');

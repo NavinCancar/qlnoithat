@@ -48,8 +48,7 @@ class OrderController extends Controller
 
         $all_DDH=  DB::table('don_dat_hang')
         ->join('trang_thai', 'trang_thai.TT_MA', '=', 'don_dat_hang.TT_MA')
-        ->orderby('don_dat_hang.DDH_MA','desc')->get();
-
+        ->orderby('don_dat_hang.DDH_MA','desc')->paginate(10);
         $group_DDH = DB::table('don_dat_hang')
         ->join('chi_tiet_don_dat_hang','don_dat_hang.DDH_MA','=','chi_tiet_don_dat_hang.DDH_MA')
         ->join('noi_that','noi_that.NT_MA','=','chi_tiet_don_dat_hang.NT_MA')->get();
@@ -69,7 +68,7 @@ class OrderController extends Controller
         $status_by_id = DB::table('don_dat_hang')
         ->join('trang_thai', 'trang_thai.TT_MA', '=', 'don_dat_hang.TT_MA')
         ->orderby('don_dat_hang.DDH_MA','desc')
-        ->where('trang_thai.TT_MA', $TT_MA)->get();
+        ->where('trang_thai.TT_MA', $TT_MA)->paginate(10);
 
         $status_count = DB::table('don_dat_hang')
         ->join('trang_thai', 'trang_thai.TT_MA', '=', 'don_dat_hang.TT_MA')
@@ -169,7 +168,7 @@ class OrderController extends Controller
 
         $danh_gia = DB::table('danh_gia')
         ->join('khach_hang','khach_hang.KH_MA','=','danh_gia.KH_MA')
-        ->orderby('DG_MA','desc')->get();
+        ->orderby('DG_MA','desc')->paginate(10);
 
         $countdg = DB::table('danh_gia')
         ->join('khach_hang','khach_hang.KH_MA','=','danh_gia.KH_MA')->count();

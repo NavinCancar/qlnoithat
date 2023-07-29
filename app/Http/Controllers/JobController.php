@@ -32,7 +32,7 @@ class JobController extends Controller
 
     public function all_chucvu(){
         $this->AuthLoginChu();
-        $all_chucvu = DB::table('chuc_vu')->get();
+        $all_chucvu = DB::table('chuc_vu')->paginate(10);
         $manager_chucvu = view('admin.all_chucvu')->with('all_chucvu', $all_chucvu);
                 
         $count_chucvu = DB::table('chuc_vu')->count('CV_MA');

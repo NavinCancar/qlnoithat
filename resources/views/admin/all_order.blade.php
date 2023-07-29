@@ -62,33 +62,33 @@
                 </tr>
         </thead>
         <tbody>
-         @foreach($all_DDH as $key => $all_DDH)
-            @if ($all_DDH->TT_TEN == "Đã đặt hàng nhưng chưa xử lý") <tr style="background-color:#FCDAD5" >
-            @elseif ($all_DDH->TT_TEN == "Đã nhận hàng") <tr style="background-color:#C9E4D6" >
+         @foreach($all_DDH as $key => $all_don)
+            @if ($all_don->TT_TEN == "Đã đặt hàng nhưng chưa xử lý") <tr style="background-color:#FCDAD5" >
+            @elseif ($all_don->TT_TEN == "Đã nhận hàng") <tr style="background-color:#C9E4D6" >
             @else <tr>
             @endif
-                  <td>{{$all_DDH->DDH_MA}}</td>
-                  <td>{{$all_DDH->DDH_NGAYDAT}}</td>
+                  <td>{{$all_don->DDH_MA}}</td>
+                  <td>{{$all_don->DDH_NGAYDAT}}</td>
                   <td>
                       @foreach($group_DDH as $key => $nhom_DDH)
-                          @if($nhom_DDH->DDH_MA==$all_DDH->DDH_MA)
+                          @if($nhom_DDH->DDH_MA==$all_don->DDH_MA)
                               <p style='width: 100%;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'>{{$nhom_DDH->NT_TEN}}</p>
                           @endif
                       @endforeach
                   </td>
                   <td>
                       @foreach($group_DDH as $key => $nhom_DDH)
-                          @if($nhom_DDH->DDH_MA==$all_DDH->DDH_MA)
+                          @if($nhom_DDH->DDH_MA==$all_don->DDH_MA)
                               <p style='width: 100%;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'>{{$nhom_DDH->CTDDH_SOLUONG}}</p>
                           @endif
                       @endforeach
                   </td>
-                  <td>{{number_format($all_DDH->DDH_TONGTIEN)}} đ</td>
-                  <td>{{$all_DDH->TT_TEN}}</td>
+                  <td>{{number_format($all_don->DDH_TONGTIEN)}} đ</td>
+                  <td>{{$all_don->TT_TEN}}</td>
 
                   <td>
-                    <a href="{{URL::to('/show-detail/'.$all_DDH->DDH_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-info-circle text-primary text-active"></i></a>
-                    <a href="{{URL::to('/update-status-order/'.$all_DDH->DDH_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-caret-square-o-up  text-success text-active"></i></a>
+                    <a href="{{URL::to('/show-detail/'.$all_don->DDH_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-info-circle text-primary text-active"></i></a>
+                    <a href="{{URL::to('/update-status-order/'.$all_don->DDH_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-caret-square-o-up  text-success text-active"></i></a>
                   </td>
               </tr>
               @endforeach
@@ -97,21 +97,39 @@
     </div>
     <footer class="panel-footer">
       <div class="row">
-
         <div class="col-sm-5 text-center">
-          <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
+          <small class="text-muted inline m-t-sm m-b-sm">
+            {{ "Showing ". $all_DDH->firstItem() ."-". $all_DDH->lastItem() ." of ". $all_DDH->total() ." items" }}
+          </small>
         </div>
-        <div class="col-sm-7 text-right text-center-xs">
-          <ul class="pagination pagination-sm m-t-none m-b-none">
-            <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-            <li><a href="">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="">4</a></li>
+        <nav aria-label="Page navigation">
+          <div class="col-sm-7 text-right text-center-xs">
+            <ul class="pagination pagination-sm m-t-none m-b-none">
+              {{-- Previous Page Link --}}
+              @if ($all_DDH->onFirstPage())
+                <li style="pointer-events: none;"><a href="#" style="background-color: #ddd">Previous</a></li>
+              @else
+                <li><a href="{{ $all_DDH->previousPageUrl() }}">Previous</a></li>
+              @endif
 
-            <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
-          </ul>
-        </div>
+              {{-- Pagination Elements --}}
+              @for ($key=0; $key+1<=$all_DDH->lastPage(); $key++)
+                @if ($all_DDH->currentPage() === $key + 1)
+                  <li><a href="{{ $all_DDH->url($key + 1) }}" style="color:#fff; background-color: #8b5c7e">{{ $key + 1 }}</a></li>
+                @else
+                  <li><a href="{{ $all_DDH->url($key + 1) }}">{{ $key + 1 }}</a></li>
+                @endif
+              @endfor
+                
+              {{-- Next Page Link --}}
+              @if ($all_DDH->hasMorePages())
+                <li><a href="{{ $all_DDH->nextPageUrl() }}">Next</a></li>
+              @else
+                <li style="pointer-events: none;"><a href="#" style="background-color: #ddd">Next</a></li>
+              @endif
+            </ul>
+          </div>
+        </nav>
       </div>
     </footer>
   </div>

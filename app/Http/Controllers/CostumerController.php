@@ -301,7 +301,7 @@ class CostumerController extends Controller
     public function all_khachhang(){
         $this->AuthLoginChu(); 
         $all_khachhang = DB::table('khach_hang')
-        ->orderby('khach_hang.KH_MA','desc')->get();
+        ->orderby('khach_hang.KH_MA','desc')->paginate(10);
         $manager_khachhang = view('admin.all_khachhang')->with('all_khachhang', $all_khachhang);
         return view('admin-layout')->with('admin.all_khachhang', $manager_khachhang); 
     }

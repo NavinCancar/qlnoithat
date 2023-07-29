@@ -20,7 +20,7 @@
             <th>Nhân viên phụ trách</th>
             <th>Ngày xuất</th>
             <th>Nội dung</th>
-            <th style="width:50px;"></th>
+            <th style="width:90px;"></th>
           </tr>
         </thead>
         <tbody>
@@ -42,21 +42,39 @@
     </div>
     <footer class="panel-footer">
       <div class="row">
-        
         <div class="col-sm-5 text-center">
-          <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 lô</small>
+          <small class="text-muted inline m-t-sm m-b-sm">
+            {{ "Showing ". $all_loxuat->firstItem() ."-". $all_loxuat->lastItem() ." of ". $all_loxuat->total() ." items" }}
+          </small>
         </div>
-        <div class="col-sm-7 text-right text-center-xs">                
-          <ul class="pagination pagination-sm m-t-none m-b-none">
-            <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-            <li><a href="">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="">4</a></li>
-            
-            <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
-          </ul>
-        </div>
+        <nav aria-label="Page navigation">
+          <div class="col-sm-7 text-right text-center-xs">
+            <ul class="pagination pagination-sm m-t-none m-b-none">
+              {{-- Previous Page Link --}}
+              @if ($all_loxuat->onFirstPage())
+                <li style="pointer-events: none;"><a href="#" style="background-color: #ddd">Previous</a></li>
+              @else
+                <li><a href="{{ $all_loxuat->previousPageUrl() }}">Previous</a></li>
+              @endif
+
+              {{-- Pagination Elements --}}
+              @for ($key=0; $key+1<=$all_loxuat->lastPage(); $key++)
+                @if ($all_loxuat->currentPage() === $key + 1)
+                  <li><a href="{{ $all_loxuat->url($key + 1) }}" style="color:#fff; background-color: #8b5c7e">{{ $key + 1 }}</a></li>
+                @else
+                  <li><a href="{{ $all_loxuat->url($key + 1) }}">{{ $key + 1 }}</a></li>
+                @endif
+              @endfor
+                
+              {{-- Next Page Link --}}
+              @if ($all_loxuat->hasMorePages())
+                <li><a href="{{ $all_loxuat->nextPageUrl() }}">Next</a></li>
+              @else
+                <li style="pointer-events: none;"><a href="#" style="background-color: #ddd">Next</a></li>
+              @endif
+            </ul>
+          </div>
+        </nav>
       </div>
     </footer>
   </div>

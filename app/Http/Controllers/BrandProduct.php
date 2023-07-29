@@ -32,7 +32,7 @@ class BrandProduct extends Controller
 
     public function all_brand_product(){
         $this->AuthLoginChu();
-        $all_brand_product = DB::table('nha_cung_cap')->get();
+        $all_brand_product = DB::table('nha_cung_cap')->paginate(10);
         $manager_brand_product = view('admin.all_brand_product')->with('all_brand_product', $all_brand_product);
         
         $count_brand_product = DB::table('nha_cung_cap')->count('NCC_MA');

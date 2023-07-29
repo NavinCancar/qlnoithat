@@ -32,7 +32,7 @@ class PaymentController extends Controller
 
     public function all_hinhthuc_thanhtoan(){
         $this->AuthLoginChu();
-        $all_hinhthuc_thanhtoan = DB::table('hinh_thuc_thanh_toan')->get();
+        $all_hinhthuc_thanhtoan = DB::table('hinh_thuc_thanh_toan')->paginate(10);
         $manager_hinhthuc_thanhtoan = view('admin.all_hinhthuc_thanhtoan')->with('all_hinhthuc_thanhtoan', $all_hinhthuc_thanhtoan);
                 
         $count_hinhthuc_thanhtoan = DB::table('hinh_thuc_thanh_toan')->count('HTTT_MA');

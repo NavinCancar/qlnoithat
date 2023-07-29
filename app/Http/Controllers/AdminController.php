@@ -135,7 +135,7 @@ class AdminController extends Controller
         $this->AuthLoginChu();
         $count_feeship = DB::table('tinh_thanh_pho')->count('TTP_MA');
         Session::put('count_feeship',$count_feeship);
-        $dc = DB::table('tinh_thanh_pho')-> orderby('TTP_TEN') ->get();
+        $dc = DB::table('tinh_thanh_pho')-> orderby('TTP_TEN')->paginate(10);
         return view('admin.dashboard.show_feeship')->with('dc',$dc);
     }
     

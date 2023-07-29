@@ -38,7 +38,7 @@ class ExportController extends Controller
 
         $all_loxuat = DB::table('lo_xuat')
         ->join('nhan_vien','nhan_vien.NV_MA','=','lo_xuat.NV_MA')
-        ->orderby('LX_MA','desc')->get();
+        ->orderby('LX_MA','desc')->paginate(10);
         $manager_loxuat = view('admin.all_loxuat')->with('all_loxuat', $all_loxuat);
         return view('admin-layout')->with('admin.all_loxuat', $manager_loxuat); 
     }
