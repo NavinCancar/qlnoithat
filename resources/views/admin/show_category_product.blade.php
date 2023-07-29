@@ -2,9 +2,11 @@
 @section('admin-content')
 <div class="table-agile-info">
   <div class="panel panel-default">
+  @foreach($loai as $key => $name)
     <div class="panel-heading">
-      Liệt kê nội thất
+        {{ $name->LNT_TEN }}
     </div>
+    @endforeach
     <div class="row w3-res-tb">
       <div class="col-sm-4">
       <?php
@@ -34,7 +36,7 @@
       <div class="col-sm-3 m-b-xs text-right">
         <div class="btn-group" style="width: 100%;">
           <a data-toggle="dropdown" href="#" class="btn btn-default btn-block">
-            <p style="white-space: normal ;">PHÂN THEO LOẠI NỘI THẤT <i class="fa fa-angle-down "></i></p>
+              <p style="white-space: normal ;">PHÂN THEO LOẠI NỘI THẤT <i class="fa fa-angle-down "></i></p>
           </a>
           <ul class="dropdown-menu">
               <li><a class="dropdown-item  text-center" href="{{ URL::to('/all-product')}}">- - Tất cả loại nội thất - -</a></li>
@@ -68,7 +70,7 @@
             <td>
               @foreach($img_product as $key => $img)
                 @if ($pro->NT_MA == $img->NT_MA)
-                  <img src="public/frontend/img/noithat/{{$img->HANT_DUONGDAN}}" width="100">
+                  <img src="../public/frontend/img/noithat/{{$img->HANT_DUONGDAN}}" width="100">
                 @endif
               @endforeach
             </td>

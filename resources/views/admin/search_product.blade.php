@@ -3,11 +3,11 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Liệt kê nội thất
+      KẾT QUẢ TÌM KIẾM  NỘI THẤT
     </div>
     <div class="row w3-res-tb">
-      <div class="col-sm-7 m-b-xs">
-        <?php
+      <div class="col-sm-4">
+      <?php
           $message = Session::get('message');
           if($message){
               echo '<span class="text-alert text-warning">'.$message.'</span></br>';
@@ -17,21 +17,32 @@
         <?php
             $count= Session::get('count_product');
             if ($count) {
-              echo "Tổng số dòng dữ liệu: ".$count;
-              }
+              echo "<p>Tổng số dòng dữ liệu: ".$count.'</p>';
+            }
         ?>
       </div>
-      <div class="col-sm-2">
-        <p>Tìm nội thất:</p>
-      </div>
-      <div class="col-sm-3">
-        <div class="input-group">
+      <div class="col-sm-5">
+        <div class="input-group d-flex">
         <form class="d-flex" action="{{ URL::to('/search-product') }}" method="POST">
-          {{ csrf_field() }}
-            <input type="text" class="input-sm form-control" name="keywords_submit" style="width: 70%; margin: 0 10px" placeholder="Nhập nội thất cần tìm...">
+            {{ csrf_field() }}
+            <span>Tìm nội thất:</span>
+            <input type="text" class="input-sm form-control" name="keywords_submit" style="width: auto; float:none" placeholder="Nhập nội thất cần tìm...">
             <button type="submit" class="btn btn-sm btn-default"><i class="fa fa-search icon-white"></i></a></button>
           </form>
         </div>
+      </div>
+      <div class="col-sm-3 m-b-xs text-right">
+        <div class="btn-group" style="width: 100%;">
+          <a data-toggle="dropdown" href="#" class="btn btn-default btn-block">
+            <p style="white-space: normal ;">PHÂN THEO LOẠI NỘI THẤT <i class="fa fa-angle-down "></i></p>
+          </a>
+          <ul class="dropdown-menu">
+              <li><a class="dropdown-item  text-center" href="{{ URL::to('/all-product')}}">- - Tất cả loại nội thất - -</a></li>
+              @foreach($all_loai as $key => $loai)
+              <li><a class="dropdown-item text-center" href="{{ URL::to('/phan-theo-loai/'. $loai->LNT_MA) }}">{{ $loai->LNT_TEN }}</a></li>
+              @endforeach
+          </ul>
+        </div>             
       </div>
     </div>
     <div class="table-responsive">

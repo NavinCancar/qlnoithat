@@ -111,6 +111,7 @@ Route::get('/add-product', 'App\Http\Controllers\ProductController@add_product')
 Route::get('/edit-product/{NT_MA}', 'App\Http\Controllers\ProductController@edit_product'); ///
 Route::get('/delete-product/{NT_MA}', 'App\Http\Controllers\ProductController@delete_product'); ///
 Route::get('/all-product', 'App\Http\Controllers\ProductController@all_product'); //--All ///ok
+Route::get('/phan-theo-loai/{LNT_MA}', 'App\Http\Controllers\ProductController@show_category_product'); //--All ///ok
 Route::get('/product-detail/{NT_MA}', 'App\Http\Controllers\ProductController@product_detail'); ///
 Route::get('/delete-image/{HANT_MA}', 'App\Http\Controllers\ProductController@delete_image'); ///
 
@@ -220,7 +221,7 @@ Route::get('/all-khachhang', 'App\Http\Controllers\CostumerController@all_khachh
 
 //Cart k hiển thị vì bị tắt ảnh bìa => mua trúng vẫn bị duyệt?
 
-//Bộ lọc (giá, cho noithat...)
+//Bộ lọc (giá)
 //Phân quyền giao diện
 //x2 admin-layout
 

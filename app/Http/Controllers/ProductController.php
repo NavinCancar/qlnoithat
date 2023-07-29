@@ -120,6 +120,7 @@ class ProductController extends Controller
 
     public function all_product(){ //All
         $this->AuthLogin();
+        $all_loai = DB::table('loai_noi_that')->orderby('LNT_TEN')->get();
 
         $all_product = DB::table('noi_that')
         ->join('nha_cung_cap','nha_cung_cap.NCC_MA','=','noi_that.NCC_MA')
@@ -130,11 +131,35 @@ class ProductController extends Controller
         ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
         ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')->get();
 
-        $manager_product = view('admin.all_product')->with('all_product', $all_product)->with('img_product', $img_product);
+        $manager_product = view('admin.all_product')->with('all_product', $all_product)
+        ->with('all_loai', $all_loai)->with('img_product', $img_product);
                 
         $count_product = DB::table('noi_that')->count('NT_MA');
         Session::put('count_product',$count_product);
         return view('admin-layout')->with('admin.all_product', $manager_product);
+    }
+
+    public function show_category_product($LNT_MA){ //All
+        $this->AuthLogin();
+        $all_loai = DB::table('loai_noi_that')->orderby('LNT_TEN')->get();
+        $loai = DB::table('loai_noi_that')->where('loai_noi_that.LNT_MA', $LNT_MA)->get();
+
+        $all_product = DB::table('noi_that')
+        ->join('nha_cung_cap','nha_cung_cap.NCC_MA','=','noi_that.NCC_MA')
+        ->join('loai_noi_that','loai_noi_that.LNT_MA','=','noi_that.LNT_MA')
+        ->where('loai_noi_that.LNT_MA', $LNT_MA)
+        ->orderby('noi_that.NT_MA','desc')->paginate(10);
+
+        $img_product = DB::table('noi_that')
+        ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
+        ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')->get();
+
+        $manager_product = view('admin.show_category_product')->with('all_product', $all_product)
+        ->with('all_loai', $all_loai)->with('loai', $loai)->with('img_product', $img_product);
+                
+        $count_product = DB::table('noi_that')->count('NT_MA');
+        Session::put('count_product',$count_product);
+        return view('admin-layout')->with('admin.show_category_product', $manager_product);
     }
 
     //--Only chủ cửa hàng--------------------------------
@@ -237,6 +262,7 @@ class ProductController extends Controller
 
     public function delete_product($NT_MA){
         $this->AuthLoginChu();
+        DB::table('hinh_anh_noi_that')->where('NT_MA',$NT_MA)->delete();
         DB::table('noi_that')->where('NT_MA',$NT_MA)->delete();
         Session::put('message','Xóa nội thất thành công');
         return Redirect::to('all-product');
@@ -248,6 +274,7 @@ class ProductController extends Controller
         $keywords = $request ->keywords_submit;
     
         $all_category_product = DB::table('loai_noi_that')->get();
+        $all_loai = DB::table('loai_noi_that')->orderby('LNT_TEN')->get();
 
         $search_product = DB::table('noi_that')
         ->join('nha_cung_cap','nha_cung_cap.NCC_MA','=','noi_that.NCC_MA')
@@ -260,7 +287,7 @@ class ProductController extends Controller
         ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
         ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')->get();
     
-        return view('admin.search_product')->with('category', $all_category_product)
+        return view('admin.search_product')->with('category', $all_category_product)->with('all_loai', $all_loai)
         ->with('search_product', $search_product)->with('img_product', $img_product);
     }
 

@@ -2,14 +2,14 @@
 @section('admin-content')
 <div class="table-agile-info">
   <div class="panel panel-default">
-    @foreach($status_name as $key => $name)
+  @foreach($status_name as $key => $name)
     <div class="panel-heading">
         {{ $name->TT_TEN }}
     </div>
     @endforeach
 
     <div class="row w3-res-tb">
-      <div class="col-sm-6">
+      <div class="col-sm-4">
         <?php
           $message = Session::get('message');
           if($message){
@@ -24,23 +24,20 @@
           }
         ?>
       </div>
-      <div class="col-sm-3">
-      <p>Mã đơn hàng cần tìm:</p>
-      </div>
-      <div class="col-sm-3">
-        <div class="input-group">
+      <div class="col-sm-5">
+        <div class="input-group d-flex">
             <form class="d-flex" action="{{ URL::to('/search-all-order') }}" method="POST">
             {{ csrf_field() }}
-            <input type="text" class="input-sm form-control" name="keywords_submit" style="width: 70%; margin: 0 10px" placeholder="Nhập mã đơn cần tìm...">
+            <span>Mã đơn hàng cần tìm:</span>
+            <input type="text" class="input-sm form-control" name="keywords_submit" style="width: auto; float:none" placeholder="Nhập mã đơn cần tìm...">
             <button type="submit" class="btn btn-sm btn-default"><i class="fa fa-search icon-white"></i></a></button>
           </form>
         </div>
       </div>
-      <div class="col-sm-12 m-b-xs text-right">
-        <div class="btn-group">
-          <a data-toggle="dropdown" href="#" class="btn btn-success">
-              XEM THEO TRẠNG THÁI
-              <i class="fa fa-angle-down "></i>
+      <div class="col-sm-3 m-b-xs text-right">
+        <div class="btn-group" style="width: 100%;">
+          <a data-toggle="dropdown" href="#" class="btn btn-default btn-block">
+            <p style="white-space: normal ;">XEM THEO TRẠNG THÁI <i class="fa fa-angle-down "></i></p>
           </a>
           <ul class="dropdown-menu">
               <li><a class="dropdown-item  text-center" href="{{ URL::to('/trang-thai/tat-ca')}}">- - Tất cả trạng thái - -</a></li>

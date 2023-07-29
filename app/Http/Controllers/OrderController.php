@@ -158,7 +158,7 @@ class OrderController extends Controller
         $data['TT_MA'] = $request->TT_MA;
         DB::table('don_dat_hang')->where('DDH_MA', $request->DDH_MA)->update($data);
 
-        Session::put('message','Cập nhật trạng thái đơn đặt hàng thành công');
+        Session::put('message','Cập nhật trạng thái đơn hàng thành công');
         return Redirect::to('/trang-thai/tat-ca');
     }
 
