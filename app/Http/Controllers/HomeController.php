@@ -48,16 +48,42 @@ class HomeController extends Controller
         ->with('hot_product', $hot_product)->with('exp_product', $exp_product)->with('cheap_product', $cheap_product);
     }
 
-    public function all_product(){
+    public function all_product($chuoi){
         $all_category_product = DB::table('loai_noi_that')->get();
-
-        $all_product = DB::table('noi_that') 
-        ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
-        ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
-        ->orderby('noi_that.NT_NGAYTAO','desc')->paginate(12);
+        if($chuoi=="thap-len-cao"){
+            $all_product = DB::table('noi_that') 
+            ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
+            ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
+            ->orderby('noi_that.NT_GIA')->paginate(12);
+        }
+        else if($chuoi=="cao-xuong-thap"){
+            $all_product = DB::table('noi_that') 
+            ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
+            ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
+            ->orderby('noi_that.NT_GIA','desc')->paginate(12);
+        }
+        else if($chuoi=="cu-nhat"){
+            $all_product = DB::table('noi_that') 
+            ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
+            ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
+            ->orderby('noi_that.NT_NGAYTAO')->paginate(12);
+        }
+        else{
+            $all_product = DB::table('noi_that') 
+            ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
+            ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
+            ->orderby('noi_that.NT_NGAYTAO','desc')->paginate(12);
+        }
+        Session::put('chuoi_gia',$chuoi);
         return view('pages.show-all-product')->with('category', $all_category_product)->with('all_product', $all_product);
     }
     
+    public function loc_gia(Request $request, $chuoidai){
+        Session::put('GiaThapNhat',$request ->GiaThapNhat);
+        Session::put('GiaCaoNhat',$request ->GiaCaoNhat);
+        return Redirect::to('danh-muc-san-pham/'.$chuoidai);
+    }
+
     //Tìm kiếm sản phẩm
     public function search(Request $request){
         $keywords = $request ->keywords_submit;

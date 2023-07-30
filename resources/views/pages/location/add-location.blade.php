@@ -44,10 +44,6 @@
                     <button type="submit" style="width:100%" class="btn btn-info btn-sm" name="save_location">Thêm địa chỉ giao hàng</button>
                 </div>
             </div>
-
-            
-
-            
         </form>
     </div>
 

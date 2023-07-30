@@ -70,11 +70,11 @@
                                     Danh mục sản phẩm
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{ URL::to('/danh-muc-san-pham/tat-ca')}}">- - Tất cả sản phẩm - -</a></li>
+                                    <li><a class="dropdown-item" href="{{ URL::to('/danh-muc-san-pham/tat-ca&moi-nhat')}}">- - Tất cả sản phẩm - -</a></li>
 
                                     @foreach($category as $key => $cate)
 
-                                    <li><a class="dropdown-item" href="{{ URL::to('/danh-muc-san-pham/'. $cate->LNT_MA) }}">{{ $cate->LNT_TEN }}</a></li>
+                                    <li><a class="dropdown-item" href="{{ URL::to('/danh-muc-san-pham/'. $cate->LNT_MA.'&moi-nhat') }}">{{ $cate->LNT_TEN }}</a></li>
 
                                     @endforeach
                                 </ul>

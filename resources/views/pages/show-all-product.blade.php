@@ -5,9 +5,23 @@
             <h2 class="font-weight-bold">SẢN PHẨM</h2>
             <hr>
         </div>
+        <?php
+            $chuoi_gia = Session::get('chuoi_gia');
+            if($chuoi_gia){}
+            else{$chuoi_gia="moi-nhat";}
+
+            $GiaThapNhat = Session::get('GiaThapNhat');
+            if($GiaThapNhat){}
+            else{$GiaThapNhat="0";}
+
+            $GiaCaoNhat = Session::get('GiaCaoNhat');
+            if($GiaCaoNhat){}
+            else{$GiaCaoNhat="1000000000000";}
+        ?>
         <div class="row mx-auto container-fluid col-lg-9 col-md-12 col-12">
             @foreach($all_product as $key => $product)
-            <div class="product text-center col-lg-3 col-md-4 col-12">
+                @if($product->NT_GIA >= $GiaThapNhat && $product->NT_GIA <= $GiaCaoNhat)
+                <div class="product text-center col-lg-3 col-md-4 col-12">
 
                     <img class="img-fluid mb-3" src="../public/frontend/img/noithat/{{$product->HANT_DUONGDAN}}" alt="">
 
@@ -37,17 +51,45 @@
                     <h4 class="p-price">{{number_format($product->NT_GIA)}} đ</h4>
                     <a href="{{ URL::to('/chi-tiet-san-pham/'. $product->NT_MA) }}"><button class="buy-btn">XEM NGAY</button></a>
                 </div>
+                @endif
             @endforeach
         </div>
+        <!--Bộ lọc-->
         <div class=" col-lg-3 col-md-12 col-12">
             <ul class="list-group rounded-2">
                 <li class="list-group-item center disabled text-bg-dark" ><h4>Danh mục sản phẩm</h4></li>
-                <li class="list-group-item bg-active"  ><a class="shop-list" href="{{ URL::to('/danh-muc-san-pham/tat-ca')}}" >- - Tất cả sản phẩm - -</a></li>
+                <li class="list-group-item bg-active"  ><a class="shop-list" href="{{ URL::to('/danh-muc-san-pham/tat-ca&'.$chuoi_gia)}}" >- - Tất cả sản phẩm - -</a></li>
                 @foreach($category as $key => $cate)
-                <li class="list-group-item"><a class="shop-list" href="{{ URL::to('/danh-muc-san-pham/'. $cate->LNT_MA) }}">{{ $cate->LNT_TEN }}</a></li>
+                <li class="list-group-item"><a class="shop-list" href="{{ URL::to('/danh-muc-san-pham/'. $cate->LNT_MA.'&'.$chuoi_gia) }}">{{ $cate->LNT_TEN }}</a></li>
                 @endforeach
             </ul>
+            <ul class="list-group rounded-2 pt-5">
+                <li class="list-group-item center disabled text-bg-dark" ><h4>Bộ lọc</h4></li>
+                <li class="list-group-item <?php if($chuoi_gia=='moi-nhat') echo'bg-active';?>"><a class="shop-list" href="{{ URL::to('/danh-muc-san-pham/tat-ca&moi-nhat')}}" >Mới nhất</a></li>
+                <li class="list-group-item <?php if($chuoi_gia=='cu-nhat') echo'bg-active';?>"><a class="shop-list" href="{{ URL::to('/danh-muc-san-pham/tat-ca&cu-nhat')}}" >Cũ nhất</a></li>
+                <li class="list-group-item <?php if($chuoi_gia=='thap-len-cao') echo'bg-active';?>"><a class="shop-list" href="{{ URL::to('/danh-muc-san-pham/tat-ca&thap-len-cao')}}" >Sắp xếp từ thấp lên cao</a></li>
+                <li class="list-group-item <?php if($chuoi_gia=='cao-xuong-thap') echo'bg-active';?>"><a class="shop-list" href="{{ URL::to('/danh-muc-san-pham/tat-ca&cao-xuong-thap')}}" >Sắp xếp từ cao xuống thấp</a></li>
+            </ul>
+            <ul class="list-group rounded-2 pt-5">
+                <li class="list-group-item center disabled text-bg-dark" ><h4>Lọc theo khoảng giá</h4></li>
+                <li class="list-group-item">
+                    <form role="form" action="{{URL::to('/loc-gia&tat-ca&'.$chuoi_gia)}}"  method="post" enctype= "multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="d-flex">
+                            <span>Từ&emsp;</span>
+                            <input type="number" name="GiaThapNhat" class="form-control" placeholder="Mức giá thấp nhất" required="" min="0">
+                        </div>
+                        <div class="d-flex">
+                            <span>Đến&ensp;</span>
+                            <input type="number" name="GiaCaoNhat" class="form-control" placeholder="Mức giá cao nhất" required="" min="0">
+                        </div>
+                        <button type="submit" style="width:100%" class="btn btn-dark btn-sm">Tiến hành lọc</button>
+                    </form>
+                </li>
+            </ul>
         </div>
+
+        
         <!--icon thu tu-->
         <nav aria-label="Page navigation">
           <ul class="justify-content-center pagination mt-5">
@@ -88,6 +130,11 @@
       </nav>
 
     </section>
+    
+    <?php
+        Session::put('GiaCaoNhat',null);
+        Session::put('GiaThapNhat',null);
+    ?>
 @endsection
 <!--
         <nav aria-label="Page navigation">

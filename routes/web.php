@@ -18,12 +18,13 @@ use Illuminate\Support\Facades\Route;
 //Giao diện
 Route::get('/','App\Http\Controllers\HomeController@index'); ///
 Route::get('/trang-chu', 'App\Http\Controllers\HomeController@index'); ///
-Route::get('/danh-muc-san-pham/tat-ca', 'App\Http\Controllers\HomeController@all_product'); ///ok
+//Route::get('/danh-muc-san-pham/tat-ca', 'App\Http\Controllers\HomeController@all_product'); ///ok
+Route::get('/danh-muc-san-pham/tat-ca&{chuoi}', 'App\Http\Controllers\HomeController@all_product'); ///ok
 
 Route::post('/tim-kiem', 'App\Http\Controllers\HomeController@search'); ///
-
+Route::post('/loc-gia&{chuoidai}', 'App\Http\Controllers\HomeController@loc_gia'); ///
 //Danh mục loại nội thất
-Route::get('/danh-muc-san-pham/{LNT_MA}', 'App\Http\Controllers\CategoryProduct@show_category_home'); ///ok
+Route::get('/danh-muc-san-pham/{LNT_MA}&{chuoi}', 'App\Http\Controllers\CategoryProduct@show_category_home'); ///ok
 Route::get('/chi-tiet-san-pham/{NT_MA}', 'App\Http\Controllers\ProductController@detail_product'); ///
 
 Route::post('/danh-gia/{NT_MA}', 'App\Http\Controllers\ProductController@danh_gia'); ///
