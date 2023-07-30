@@ -147,7 +147,7 @@ class OrderController extends Controller
         $edit_order = DB::table('don_dat_hang')->where('DDH_MA',$DDH_MA)->get();
 
         $manager_order = view('admin.dashboard.update_status_order')->with('edit_order', $edit_order)->with('trangthai',$trangthai);
-        return view('admin-layout')->with('admin.dashboard.update_status_order', $manager_order);
+        return view('admin-layout-detail')->with('admin.dashboard.update_status_order', $manager_order);
     }
 
     public function update_status(Request $request, $DDH_MA, $TT_MA){

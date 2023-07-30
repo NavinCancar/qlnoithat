@@ -67,7 +67,7 @@ class ExportController extends Controller
         $nvien = DB::table('nhan_vien')->orderby('NV_MA')->get();
         $edit_loxuat = DB::table('lo_xuat')->where('LX_MA',$LX_MA)->get();       
         $manager_loxuat = view('admin.edit_loxuat')->with('nvien', $nvien)->with('edit_loxuat',$edit_loxuat);
-        return view('admin-layout')->with('admin.edit_loxuat', $manager_loxuat);
+        return view('admin-layout-detail')->with('admin.edit_loxuat', $manager_loxuat);
     }
 
     public function update_loxuat(Request $request, $LX_MA){
@@ -108,7 +108,7 @@ class ExportController extends Controller
         $manager_loxuat = view('admin.show_chitiet_loxuat')->with('nvien', $nvien)->with('edit_loxuat', $edit_loxuat)
         ->with('all_chitiet_loxuat',$all_chitiet_loxuat);
         
-        return view('admin-layout')->with('admin.edit_loxuat', $manager_loxuat);
+        return view('admin-layout-detail')->with('admin.edit_loxuat', $manager_loxuat);
     }
 
     public function add_chitiet_loxuat($LX_MA){ 
@@ -173,7 +173,7 @@ class ExportController extends Controller
         $loxuat_product = DB::table('lo_xuat')->orderby('LX_MA')->get(); 
         $edit_loxuat = DB::table('chi_tiet_lo_xuat')->where('LX_MA',$LX_MA)->where('NT_MA',$NT_MA)->get();
         $manager_product = view('admin.edit_chitiet_loxuat')->with('edit_loxuat', $edit_loxuat)->with('noithat',$noithat)->with('loxuat_product',$loxuat_product);
-        return view('admin-layout')->with('admin.edit_chitiet_loxuat', $manager_product);
+        return view('admin-layout-detail')->with('admin.edit_chitiet_loxuat', $manager_product);
     }
 
     public function update_chitiet_loxuat(Request $request, $LX_MA, $NT_MA){

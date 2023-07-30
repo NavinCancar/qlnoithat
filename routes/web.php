@@ -222,9 +222,6 @@ Route::get('/all-khachhang', 'App\Http\Controllers\CostumerController@all_khachh
 
 //Ngưng bán sp bằng cách tạo lô xuất để xoá hết hàng
 
-//Phân quyền giao diện
-//x2 admin-layout
-
 //Báo cáo doanh thu
 //Ql vận đơn giao hàng
 

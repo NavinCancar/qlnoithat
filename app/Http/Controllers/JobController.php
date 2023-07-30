@@ -55,7 +55,7 @@ class JobController extends Controller
         $this->AuthLoginChu();
         $edit_chucvu = DB::table('chuc_vu')->where('CV_MA',$CV_MA)->get();
         $manager_chucvu = view('admin.edit_chucvu')->with('edit_chucvu', $edit_chucvu);
-        return view('admin-layout')->with('admin.edit_chucvu', $manager_chucvu);
+        return view('admin-layout-detail')->with('admin.edit_chucvu', $manager_chucvu);
     }
 
     public function update_chucvu(Request $request, $CV_MA){

@@ -8,7 +8,7 @@ https://fontawesome.com/v4/icons/
 <!DOCTYPE html>
 <head>
 <title>Relax - Trang quản trị bán nội thất</title>
-<link rel="shortcut icon" href="{{('public/frontend/img/logo1.png')}}" type="image/x-icon" />
+<link rel="shortcut icon" href="{{('../public/frontend/img/logo1.png')}}" type="image/x-icon" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -80,7 +80,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 			
-                <img alt='' src="public/backend/images/nhanvien/
+                <img alt='' src="../public/backend/images/nhanvien/
 					<?php
 						$avt= Session::get('NV_DUONGDANANHDAIDIEN');
 						if ($avt) {

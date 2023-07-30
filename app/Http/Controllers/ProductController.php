@@ -159,7 +159,7 @@ class ProductController extends Controller
                 
         $count_product = DB::table('noi_that')->count('NT_MA');
         Session::put('count_product',$count_product);
-        return view('admin-layout')->with('admin.show_category_product', $manager_product);
+        return view('admin-layout-detail')->with('admin.show_category_product', $manager_product);
     }
 
     //--Only chủ cửa hàng--------------------------------
@@ -205,7 +205,7 @@ class ProductController extends Controller
         $manager_product = view('admin.product_detail')->with('edit_product', $edit_product)
         ->with('brand_product',$brand_product)->with('type_product',$type_product)
         ->with('cover_img',$cover_img)->with('another_img',$another_img);
-        return view('admin-layout')->with('admin.edit_product', $manager_product);
+        return view('admin-layout-detail')->with('admin.edit_product', $manager_product);
     }
 
 
@@ -238,7 +238,7 @@ class ProductController extends Controller
         $type_product = DB::table('loai_noi_that')->orderby('LNT_MA')->get();
         $edit_product = DB::table('noi_that')->where('NT_MA',$NT_MA)->get();
         $manager_product = view('admin.edit_product')->with('edit_product', $edit_product)->with('brand_product',$brand_product)->with('type_product',$type_product);
-        return view('admin-layout')->with('admin.edit_product', $manager_product);
+        return view('admin-layout-detail')->with('admin.edit_product', $manager_product);
     }
 
     public function update_product(Request $request, $NT_MA){

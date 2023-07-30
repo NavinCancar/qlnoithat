@@ -70,7 +70,7 @@ class ImportController extends Controller
         $edit_lonhap = DB::table('lo_nhap')->where('LN_MA',$LN_MA)->get();       
         $manager_lonhap = view('admin.edit_lonhap')->with('nvien', $nvien)->with('edit_lonhap', $edit_lonhap);
         
-        return view('admin-layout')->with('admin.edit_lonhap', $manager_lonhap);
+        return view('admin-layout-detail')->with('admin.edit_lonhap', $manager_lonhap);
     }
 
     public function update_lonhap(Request $request, $LN_MA){
@@ -111,7 +111,7 @@ class ImportController extends Controller
         $manager_lonhap = view('admin.show_chitiet_lonhap')->with('nvien', $nvien)
         ->with('edit_lonhap', $edit_lonhap)->with('all_chitiet_lonhap',$all_chitiet_lonhap);
         
-        return view('admin-layout')->with('admin.edit_lonhap', $manager_lonhap);
+        return view('admin-layout-detail')->with('admin.edit_lonhap', $manager_lonhap);
     }
 
     public function add_chitiet_lonhap($LN_MA){ 
@@ -157,7 +157,7 @@ class ImportController extends Controller
         $lonhap_product = DB::table('lo_nhap')->orderby('LN_MA')->get(); 
         $edit_lonhap = DB::table('chi_tiet_lo_nhap')->where('LN_MA',$LN_MA)->where('NT_MA',$NT_MA)->get();
         $manager_product = view('admin.edit_chitiet_lonhap')->with('edit_lonhap', $edit_lonhap)->with('noithat',$noithat)->with('lonhap_product',$lonhap_product);
-        return view('admin-layout')->with('admin.edit_chitiet_lonhap', $manager_product);
+        return view('admin-layout-detail')->with('admin.edit_chitiet_lonhap', $manager_product);
     }
 
     public function update_chitiet_lonhap(Request $request, $LN_MA, $NT_MA){

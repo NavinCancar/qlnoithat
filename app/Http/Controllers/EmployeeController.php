@@ -64,7 +64,7 @@ class EmployeeController extends Controller
             Session::put('NV_MA_get',$NV_MA_get);
             Session::put('CV_MA_get',$CV_MA_get->CV_MA);
             $manager_employee = view('admin.dashboard.edit_employee')->with('edit_employee', $edit_employee)->with('position',$position);
-            return view('admin-layout')->with('admin.dashboard.edit_employee', $manager_employee);
+            return view('admin-layout-detail')->with('admin.dashboard.edit_employee', $manager_employee);
         }    
     }
 

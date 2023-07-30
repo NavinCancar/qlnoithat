@@ -19,6 +19,7 @@
             if ($count) {
               echo "<p>Tổng số dòng dữ liệu: ".$count.'</p>';
             }
+            $cv= Session::get('CV_MA_User');
         ?>
       </div>
       <div class="col-sm-5">
@@ -78,10 +79,14 @@
             <td>{{$pro->NT_NGAYTAO}}</td>
             <td>{{$pro->NT_NGAYCAPNHAT}}</td>
             <td>
-              <a href="{{URL::to('/product-detail/'.$pro -> NT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-info-circle text-primary text-active"></i></a>
+              @if($cv==1)
+                <a href="{{URL::to('/product-detail/'.$pro -> NT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-info-circle text-primary text-active"></i></a>
+              @endif
               <a href="{{URL::to('/chi-tiet-san-pham/'.$pro -> NT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-google text-warning text-active"></i></a>
-              <a href="{{URL::to('/edit-product/'.$pro -> NT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
-              <a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-product/'.$pro -> NT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
+              @if($cv==1)
+                <a href="{{URL::to('/edit-product/'.$pro -> NT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
+                <a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-product/'.$pro -> NT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
+              @endif            
             </td>
           </tr>
          @endforeach

@@ -55,7 +55,7 @@ class PaymentController extends Controller
         $this->AuthLoginChu();
         $edit_hinhthuc_thanhtoan = DB::table('hinh_thuc_thanh_toan')->where('HTTT_MA',$HTTT_MA)->get();
         $manager_hinhthuc_thanhtoan = view('admin.edit_hinhthuc_thanhtoan')->with('edit_hinhthuc_thanhtoan', $edit_hinhthuc_thanhtoan);
-        return view('admin-layout')->with('admin.edit_hinhthuc_thanhtoan', $manager_hinhthuc_thanhtoan);
+        return view('admin-layout-detail')->with('admin.edit_hinhthuc_thanhtoan', $manager_hinhthuc_thanhtoan);
     }
 
     public function update_hinhthuc_thanhtoan(Request $request, $HTTT_MA){

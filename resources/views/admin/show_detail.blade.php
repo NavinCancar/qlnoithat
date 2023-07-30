@@ -1,4 +1,4 @@
-@extends('admin-layout')
+@extends('admin-layout-detail')
 @section('admin-content')
 
 <div class="table-agile-info">

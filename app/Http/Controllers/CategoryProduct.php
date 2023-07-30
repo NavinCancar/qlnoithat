@@ -115,7 +115,7 @@ class CategoryProduct extends Controller
         $this->AuthLoginChu();
         $edit_category_product = DB::table('loai_noi_that')->where('LNT_MA',$LNT_MA)->get();
         $manager_category_product = view('admin.edit_category_product')->with('edit_category_product', $edit_category_product);
-        return view('admin-layout')->with('admin.edit_category_product', $manager_category_product);
+        return view('admin-layout-detail')->with('admin.edit_category_product', $manager_category_product);
     }
 
     public function update_category_product(Request $request, $LNT_MA){

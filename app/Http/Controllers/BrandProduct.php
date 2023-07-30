@@ -59,7 +59,7 @@ class BrandProduct extends Controller
         $this->AuthLoginChu();
         $edit_brand_product = DB::table('nha_cung_cap')->where('NCC_MA',$NCC_MA)->get();
         $manager_brand_product = view('admin.edit_brand_product')->with('edit_brand_product', $edit_brand_product);
-        return view('admin-layout')->with('admin.edit_brand_product', $manager_brand_product);
+        return view('admin-layout-detail')->with('admin.edit_brand_product', $manager_brand_product);
     }
 
     public function update_brand_product(Request $request, $NCC_MA){
