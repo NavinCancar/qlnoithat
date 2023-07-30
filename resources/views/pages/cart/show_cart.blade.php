@@ -40,7 +40,7 @@
                         <h5 style='width: 100%;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'>{{$cart_pro->NT_TEN}}</h5>
                     </td>
                     <td>
-                        <h5><span id="donGia1">{{number_format($cart_pro->NT_GIA)}}</span> đ</h5>
+                        <h5><span id="donGia1">{{number_format($cart_pro->NT_GIA)}}</span> VNĐ</h5>
                     </td>
                     <td>
                         <form action="{{URL::to('/update-cart')}}" method="POST">
@@ -52,7 +52,7 @@
                         </form>
                     </td>
                     <td>
-                        <h5><span id="tongGia1"></span> {{number_format($cart_pro->CTGH_SOLUONG*$cart_pro->NT_GIA)}} đ</h5>
+                        <h5><span id="tongGia1"></span> {{number_format($cart_pro->CTGH_SOLUONG*$cart_pro->NT_GIA)}} VNĐ</h5>
                     </td>
                     <?php
                         $tong = $tong + $cart_pro->CTGH_SOLUONG*$cart_pro->NT_GIA;

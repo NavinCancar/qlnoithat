@@ -53,7 +53,7 @@
                                 @endif
                             @endforeach
                         </td>
-                        <td>{{number_format($all_DDH->DDH_TONGTIEN)}}</td>
+                        <td style='width: 100%;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'>{{number_format($all_DDH->DDH_TONGTIEN)}} VNĐ</td>
                         <td style='width: 100%;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'>{{$all_DDH->TT_TEN}}</td>
                         <!--<td style='width: 100%;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'>{{$all_DDH->TT_TEN}}</td>-->
                         <td><a href="{{URL::to('/show-detail-bill/'.$all_DDH->DDH_MA)}}"><button type = "submit" class="btn btn-outline-dark btn-sm">Xem chi tiết</button></a></td>

@@ -16,12 +16,22 @@ class CategoryProduct extends Controller
     // Danh mục sản phẩm trang chủ
     public function show_category_home($LNT_MA,$chuoi){
         $all_category_product = DB::table('loai_noi_that')->get();
+        
+        $GiaThapNhat = Session::get('GiaThapNhat');
+        if($GiaThapNhat){}
+        else{$GiaThapNhat="0";}
+
+        $GiaCaoNhat = Session::get('GiaCaoNhat');
+        if($GiaCaoNhat){}
+        else{$GiaCaoNhat="1000000000000";}
+
         if($chuoi=="thap-len-cao"){
             $category_by_id = DB::table('noi_that')
             ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
             ->join('loai_noi_that', 'loai_noi_that.LNT_MA', '=', 'noi_that.LNT_MA')
             ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
             ->where('loai_noi_that.LNT_MA', $LNT_MA)
+            ->whereBetween('noi_that.NT_GIA', [$GiaThapNhat, $GiaCaoNhat])
             ->orderby('noi_that.NT_GIA')->paginate(12);
         }
         else if($chuoi=="cao-xuong-thap"){
@@ -30,6 +40,7 @@ class CategoryProduct extends Controller
             ->join('loai_noi_that', 'loai_noi_that.LNT_MA', '=', 'noi_that.LNT_MA')
             ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
             ->where('loai_noi_that.LNT_MA', $LNT_MA)
+            ->whereBetween('noi_that.NT_GIA', [$GiaThapNhat, $GiaCaoNhat])
             ->orderby('noi_that.NT_GIA','desc')->paginate(12);
         }
         else if($chuoi=="cu-nhat"){
@@ -38,6 +49,7 @@ class CategoryProduct extends Controller
             ->join('loai_noi_that', 'loai_noi_that.LNT_MA', '=', 'noi_that.LNT_MA')
             ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
             ->where('loai_noi_that.LNT_MA', $LNT_MA)
+            ->whereBetween('noi_that.NT_GIA', [$GiaThapNhat, $GiaCaoNhat])
             ->orderby('noi_that.NT_NGAYTAO')->paginate(12);
         }
         else{
@@ -46,12 +58,13 @@ class CategoryProduct extends Controller
             ->join('loai_noi_that', 'loai_noi_that.LNT_MA', '=', 'noi_that.LNT_MA')
             ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
             ->where('loai_noi_that.LNT_MA', $LNT_MA)
+            ->whereBetween('noi_that.NT_GIA', [$GiaThapNhat, $GiaCaoNhat])
             ->orderby('noi_that.NT_NGAYTAO','desc')->paginate(12);
         }
         $category_name = DB::table('loai_noi_that')->where('loai_noi_that.LNT_MA', $LNT_MA )->get();
-       /* echo '<pre>';
-        print_r ($category_by_id);
-        echo '</pre>';*/
+        
+        Session::put('GiaCaoNhat',null);
+        Session::put('GiaThapNhat',null);
         Session::put('chuoi_gia',$chuoi);
         return view('pages.category.show_category')->with('category', $all_category_product)
         ->with('category_by_id', $category_by_id)->with('category_name', $category_name);

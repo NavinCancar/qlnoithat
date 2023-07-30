@@ -9,18 +9,9 @@
             $chuoi_gia = Session::get('chuoi_gia');
             if($chuoi_gia){}
             else{$chuoi_gia="moi-nhat";}
-
-            $GiaThapNhat = Session::get('GiaThapNhat');
-            if($GiaThapNhat){}
-            else{$GiaThapNhat="0";}
-
-            $GiaCaoNhat = Session::get('GiaCaoNhat');
-            if($GiaCaoNhat){}
-            else{$GiaCaoNhat="1000000000000";}
         ?>
         <div class="row mx-auto container-fluid col-lg-9 col-md-12 col-12">
             @foreach($all_product as $key => $product)
-                @if($product->NT_GIA >= $GiaThapNhat && $product->NT_GIA <= $GiaCaoNhat)
                 <div class="product text-center col-lg-3 col-md-4 col-12">
 
                     <img class="img-fluid mb-3" src="../public/frontend/img/noithat/{{$product->HANT_DUONGDAN}}" alt="">
@@ -48,10 +39,9 @@
                         ?>
                     </div>
                     <h5 class="p-name">{{$product->NT_TEN}}</h5>
-                    <h4 class="p-price">{{number_format($product->NT_GIA)}} đ</h4>
+                    <h4 class="p-price">{{number_format($product->NT_GIA)}} VNĐ</h4>
                     <a href="{{ URL::to('/chi-tiet-san-pham/'. $product->NT_MA) }}"><button class="buy-btn">XEM NGAY</button></a>
                 </div>
-                @endif
             @endforeach
         </div>
         <!--Bộ lọc-->
@@ -130,11 +120,6 @@
       </nav>
 
     </section>
-    
-    <?php
-        Session::put('GiaCaoNhat',null);
-        Session::put('GiaThapNhat',null);
-    ?>
 @endsection
 <!--
         <nav aria-label="Page navigation">

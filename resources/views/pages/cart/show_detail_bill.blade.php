@@ -73,7 +73,7 @@
                         <h5 style='width: 100%;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'>{{$cart_pro->NT_TEN}}</h5>
                     </td>
                     <td>
-                        <h5><span id="donGia1">{{number_format($cart_pro->CTDDH_DONGIA)}}</span> đ</h5>
+                        <h5><span id="donGia1">{{number_format($cart_pro->CTDDH_DONGIA)}}</span> VNĐ</h5>
                     </td>
                     <td>
                         <form action="{{URL::to('/update-cart')}}" method="POST">
@@ -83,7 +83,7 @@
                         </form>
                     </td>
                     <td>
-                        <h5><span id="tongGia1"></span> {{number_format($cart_pro->CTDDH_SOLUONG*$cart_pro->CTDDH_DONGIA)}} đ</h5>
+                        <h5><span id="tongGia1"></span> {{number_format($cart_pro->CTDDH_SOLUONG*$cart_pro->CTDDH_DONGIA)}} VNĐ</h5>
                     </td>
                 </tr>
                 @endforeach

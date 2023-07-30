@@ -307,7 +307,7 @@
                     ?>
                     </div>
                 <h5 class="p-name">{{$relate->NT_TEN}}</h5>
-                <h4 class="p-price">{{number_format($relate->NT_GIA)}}</h4>
+                <h4 class="p-price">{{number_format($relate->NT_GIA)}} VNĐ</h4>
                 <a href="{{ URL::to('/chi-tiet-san-pham/'. $relate->NT_MA) }}"><button class="buy-btn">XEM NGAY</button></a>
             </div>
             @endforeach

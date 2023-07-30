@@ -34,7 +34,7 @@
                         ?>
                     </div>
                     <h5 class="p-name">{{$product->NT_TEN}}</h5>
-                    <h4 class="p-price">{{number_format($product->NT_GIA)}} đ</h4>
+                    <h4 class="p-price">{{number_format($product->NT_GIA)}} VNĐ</h4>
 
                     <a href="{{ URL::to('/chi-tiet-san-pham/'. $product->NT_MA) }}"><button class="buy-btn">MUA NGAY</button></a>
                 </div>

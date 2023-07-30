@@ -50,31 +50,46 @@ class HomeController extends Controller
 
     public function all_product($chuoi){
         $all_category_product = DB::table('loai_noi_that')->get();
+
+        $GiaThapNhat = Session::get('GiaThapNhat');
+        if($GiaThapNhat){}
+        else{$GiaThapNhat="0";}
+
+        $GiaCaoNhat = Session::get('GiaCaoNhat');
+        if($GiaCaoNhat){}
+        else{$GiaCaoNhat="1000000000000";}
+
         if($chuoi=="thap-len-cao"){
             $all_product = DB::table('noi_that') 
             ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
             ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
+            ->whereBetween('noi_that.NT_GIA', [$GiaThapNhat, $GiaCaoNhat])
             ->orderby('noi_that.NT_GIA')->paginate(12);
         }
         else if($chuoi=="cao-xuong-thap"){
             $all_product = DB::table('noi_that') 
             ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
             ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
+            ->whereBetween('noi_that.NT_GIA', [$GiaThapNhat, $GiaCaoNhat])
             ->orderby('noi_that.NT_GIA','desc')->paginate(12);
         }
         else if($chuoi=="cu-nhat"){
             $all_product = DB::table('noi_that') 
             ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
             ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
+            ->whereBetween('noi_that.NT_GIA', [$GiaThapNhat, $GiaCaoNhat])
             ->orderby('noi_that.NT_NGAYTAO')->paginate(12);
         }
         else{
             $all_product = DB::table('noi_that') 
             ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
             ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
+            ->whereBetween('noi_that.NT_GIA', [$GiaThapNhat, $GiaCaoNhat])
             ->orderby('noi_that.NT_NGAYTAO','desc')->paginate(12);
         }
         Session::put('chuoi_gia',$chuoi);
+        Session::put('GiaCaoNhat',null);
+        Session::put('GiaThapNhat',null);
         return view('pages.show-all-product')->with('category', $all_category_product)->with('all_product', $all_product);
     }
     

@@ -93,7 +93,7 @@
                         ?>
                     </div>
                     <h5 class="p-name">{{$hot->NT_TEN}}</h5>
-                    <h4 class="p-price">{{number_format($hot->NT_GIA)}} đ</h4>
+                    <h4 class="p-price">{{number_format($hot->NT_GIA)}} VNĐ</h4>
                     <a href="{{ URL::to('/chi-tiet-san-pham/'. $hot->NT_MA) }}"><button class="buy-btn">XEM NGAY</button></a>
                 </div>
                 @endforeach
@@ -139,7 +139,7 @@
                         ?>
                     </div>
                     <h5 class="p-name">{{$product->NT_TEN}}</h5>
-                    <h4 class="p-price">{{number_format($product->NT_GIA)}} đ</h4>
+                    <h4 class="p-price">{{number_format($product->NT_GIA)}} VNĐ</h4>
                     <a href="{{ URL::to('/chi-tiet-san-pham/'. $product->NT_MA) }}"><button class="buy-btn">XEM NGAY</button></a>
                 </div>
                 @endforeach
@@ -192,7 +192,7 @@
                         ?>
                     </div>
                     <h5 class="p-name">{{$product->NT_TEN}}</h5>
-                    <h4 class="p-price">{{number_format($product->NT_GIA)}} đ</h4>
+                    <h4 class="p-price">{{number_format($product->NT_GIA)}} VNĐ</h4>
                     <a href="{{ URL::to('/chi-tiet-san-pham/'. $product->NT_MA) }}"><button class="buy-btn">XEM NGAY</button></a>
                 </div>
                 @endforeach
@@ -235,7 +235,7 @@
                         ?>
                     </div>
                     <h5 class="p-name">{{$product->NT_TEN}}</h5>
-                    <h4 class="p-price">{{number_format($product->NT_GIA)}} đ</h4>
+                    <h4 class="p-price">{{number_format($product->NT_GIA)}} VNĐ</h4>
                     <a href="{{ URL::to('/chi-tiet-san-pham/'. $product->NT_MA) }}"><button class="buy-btn">XEM NGAY</button></a>
                 </div>
                 @endforeach
