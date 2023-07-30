@@ -55,7 +55,10 @@ class ExportController extends Controller
 
         DB::table('lo_xuat')->insert($data);
         Session::put('message','Thêm lô thành công');
-        return Redirect::to('add-loxuat');
+        
+        $Lo=DB::table('lo_xuat')-> where('NV_MA',$request->manv_product_name)->orderby('LX_MA','desc')->first();
+        $LX_MA=$Lo->LX_MA;
+        return Redirect::to('show-chitiet-loxuat/'.$LX_MA);
     }
 
     public function edit_loxuat($LX_MA){
@@ -121,13 +124,42 @@ class ExportController extends Controller
         $data['NT_MA'] = $request->mant_product_name; 
         $data['CTLX_SOLUONG'] = $request->soluong_product_name; 
         $data['CTLX_GIA'] = $request->gia_product_name; 
-
+    
+        //Check mã đã nhập
         $check=DB::table('chi_tiet_lo_xuat')
         ->where('LX_MA', $LX_MA)->where('NT_MA', $request->mant_product_name)->count();
 
         if($check!=0){
             Session::put('message','Nội thất đã được thêm rồi, vui lòng chọn nội thất khác!');
             return Redirect::to('add-chitiet-loxuat/'.$LX_MA);
+        }
+
+        //Check mã tồn tại
+        $check=DB::table('noi_that')->where('NT_MA', $request->mant_product_name)->count();
+
+        if($check!=1){
+            Session::put('message','Nội thất không tồn tại trong hệ thống, vui lòng kiểm tra lại!');
+            return Redirect::to('add-chitiet-loxuat/'.$LX_MA);
+        }
+
+        //Check số lượng tồn
+        $ddh = DB::table('chi_tiet_don_dat_hang')
+        ->join('don_dat_hang','chi_tiet_don_dat_hang.DDH_MA','=','don_dat_hang.DDH_MA')
+        ->where('TT_MA', '!=', 5)
+        ->where('NT_MA', $request->mant_product_name)->sum('CTDDH_SOLUONG');
+
+        $nhap = DB::table('chi_tiet_lo_nhap')
+            ->where('NT_MA', $request->mant_product_name)->sum('CTLN_SOLUONG');
+        $xuat = DB::table('chi_tiet_lo_xuat')
+            ->where('NT_MA', $request->mant_product_name)->sum('CTLX_SOLUONG');
+
+        if ($nhap-$xuat-$ddh<$request->soluong_product_name){
+            Session::put('message','Số lượng nhập lớn hơn số lượng tồn, nội thất chỉ còn tồn: '.$nhap-$xuat-$ddh);
+            return Redirect::to('add-chitiet-loxuat/'.$LX_MA);
+        }
+
+        if ($nhap-$xuat-$ddh-$request->soluong_product_name==0){
+            DB::table('chi_tiet_gio_hang')->where('NT_MA', $request->mant_product_name)->delete();
         }
 
         DB::table('chi_tiet_lo_xuat')->insert($data);

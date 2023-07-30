@@ -151,8 +151,6 @@
                                         <div class="col-sm-6">
                                             <button type="submit" name="update_cover_img" style="width:100%" class="btn btn-success btn-sm">Thêm/cập nhật ảnh bìa</button>
                                             @if($cover_img_check != 0)
-                                            <a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-image/'.$cover->HANT_MA)}}" class="active styling-edit" ui-toggle-class="">
-                                                <button type="button" style="width:100%;margin-top: 10px;margin-bottom: 10px" class="btn btn-danger btn-sm">Xóa ảnh bìa</button></a>
                                                 <span> (Mã: {{$cover->HANT_MA}}, đường dẫn: {{$cover->HANT_DUONGDAN}}) </span>
                                             @endif
                                         </div>
@@ -208,7 +206,7 @@
                                                 <input type="text" name="HANT_TEN" class="form-control" id="exampleInputEmail1" required=""  value="<?php echo $NT_MA.'-' ?>" pattern = "^(?!.*-1)\d+-\d+$">
                                             </div>
                                             
-                                            <button type="submit" name="update_another_img" style="width:100%" class="btn btn-info btn-sm">Thêm/cập nhật ảnh khác</button>
+                                            <button type="submit" name="update_another_img" style="width:100%" class="btn btn-success btn-sm">Thêm/cập nhật ảnh khác</button>
                                         </div>
                                     </div>
                                 </form>

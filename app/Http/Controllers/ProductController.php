@@ -327,6 +327,10 @@ class ProductController extends Controller
         $this->AuthLoginChu();
         $NT=DB::table('hinh_anh_noi_that')->where('HANT_MA',$HANT_MA)->first();
         $NT_MA=$NT->NT_MA;
+        if($NT->HANT_TEN==$NT->NT_MA.'-1'){
+            Session::put('message','Chỉ có thể cập nhật ảnh bìa nội thất, không thể xoá!');
+            return Redirect::to('product-detail/'.$NT_MA);
+        }
         DB::table('hinh_anh_noi_that')->where('HANT_MA',$HANT_MA)->delete();
         Session::put('message','Xóa hình ảnh nội thất thành công');
         return Redirect::to('product-detail/'.$NT_MA);

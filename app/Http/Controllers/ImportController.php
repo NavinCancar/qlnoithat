@@ -57,7 +57,10 @@ class ImportController extends Controller
 
         DB::table('lo_nhap')->insert($data);
         Session::put('message','Thêm lô thành công');
-        return Redirect::to('add-lonhap');
+
+        $Lo=DB::table('lo_nhap')-> where('NV_MA',$request->manv_product_name)->orderby('LN_MA','desc')->first();
+        $LN_MA=$Lo->LN_MA;
+        return Redirect::to('show-chitiet-lonhap/'.$LN_MA);
     }
 
     public function edit_lonhap($LN_MA){
@@ -126,11 +129,20 @@ class ImportController extends Controller
         $data['CTLN_SOLUONG'] = $request->soluong_product_name; 
         $data['CTLN_GIA'] = $request->gia_product_name; 
 
+        //Check mã đã nhập
         $check=DB::table('chi_tiet_lo_nhap')
         ->where('LN_MA', $LN_MA)->where('NT_MA', $request->mant_product_name)->count();
 
         if($check!=0){
             Session::put('message','Nội thất đã được thêm rồi, vui lòng chọn nội thất khác!');
+            return Redirect::to('add-chitiet-lonhap/'.$LN_MA);
+        }
+        
+        //Check mã tồn tại
+        $check=DB::table('noi_that')->where('NT_MA', $request->mant_product_name)->count();
+
+        if($check!=1){
+            Session::put('message','Nội thất không tồn tại trong hệ thống, vui lòng kiểm tra lại!');
             return Redirect::to('add-chitiet-lonhap/'.$LN_MA);
         }
 

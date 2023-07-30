@@ -4,7 +4,7 @@
             <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            Cập nhật lô xuất
+                            Chi tiết lô xuất
                         </header>
                         <div class="panel-body">
                         @foreach($edit_loxuat as $key => $edit_value)

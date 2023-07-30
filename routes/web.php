@@ -220,9 +220,8 @@ Route::post('/update-hinhthuc-thanhtoan/{HTTT_MA}', 'App\Http\Controllers\Paymen
 //Khách hàng
 Route::get('/all-khachhang', 'App\Http\Controllers\CostumerController@all_khachhang'); ///ok
 
-//Cart k hiển thị vì bị tắt ảnh bìa => mua trúng vẫn bị duyệt?
+//Ngưng bán sp bằng cách tạo lô xuất để xoá hết hàng
 
-//Bộ lọc (giá)
 //Phân quyền giao diện
 //x2 admin-layout
 
