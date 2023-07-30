@@ -17,6 +17,24 @@ class HomeController extends Controller
     public function index(){
         $all_category_product = DB::table('loai_noi_that')->get();
 
+        $hot_product = DB::table('noi_that')
+        ->join(DB::raw('(select `noi_that`.`NT_MA`, sum(`chi_tiet_don_dat_hang`.`CTDDH_SOLUONG`) as soluongban from `noi_that` 
+                        inner join `chi_tiet_don_dat_hang` on `chi_tiet_don_dat_hang`.`NT_MA` = `noi_that`.`NT_MA` 
+                        inner join `don_dat_hang` on `don_dat_hang`.`DDH_MA` = `chi_tiet_don_dat_hang`.`DDH_MA` 
+                        where `don_dat_hang`.`TT_MA` != 5 group by `noi_that`.`NT_MA`) j'), 
+                'j.NT_MA', '=', 'noi_that.NT_MA')
+        ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
+        ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
+        ->orderby('soluongban','desc')->limit(8)->get();
+        /*echo '<pre>';
+        print_r ($hot_product);
+        echo '</pre>';
+
+        select `noi_that`.`NT_MA`, sum(`chi_tiet_don_dat_hang`.`CTDDH_SOLUONG`) from `noi_that` 
+        inner join `chi_tiet_don_dat_hang` on `chi_tiet_don_dat_hang`.`NT_MA` = `noi_that`.`NT_MA` 
+        inner join `don_dat_hang` on `don_dat_hang`.`DDH_MA` = `chi_tiet_don_dat_hang`.`DDH_MA` 
+        where `don_dat_hang`.`TT_MA` != 5 group by `noi_that`.`NT_MA`;*/
+        
         $all_product = DB::table('noi_that') -> join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
         ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
         ->orderby('noi_that.NT_NGAYTAO','desc')->limit(8)->get();
@@ -27,7 +45,7 @@ class HomeController extends Controller
         ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
         ->orderby('noi_that.NT_GIA')->limit(8)->get();
         return view('pages.home')->with('category', $all_category_product)->with('all_product', $all_product)
-        ->with('exp_product', $exp_product)->with('cheap_product', $cheap_product);
+        ->with('hot_product', $hot_product)->with('exp_product', $exp_product)->with('cheap_product', $cheap_product);
     }
 
     public function all_product(){

@@ -23,7 +23,7 @@
 <div class="row">
             <div class="col-lg-12">
                 <section class="panel">
-                    <header class="panel-heading">
+                    <header class="panel-heading" style="margin-bottom: 10px;">
                                 Bảng báo cáo - thống kê (
                                     <?php
                                     $connect = mysqli_connect("localhost", "root", "", "qlnoithat");
@@ -33,6 +33,7 @@
                                     ?>
                                 )
                     </header>
+                    <i style="padding:15px">Doanh thu tính những sản phẩm đã đến tay khách hàng, thống kê tính xu hướng mua (chỉ loại bỏ trường hợp bị huỷ hàng)</i>
                     <div class="panel-body">
                         <form role="form" action="{{URL::to('/thong-ke-thoi-gian')}}" method="post">
                                 {{csrf_field() }}
@@ -123,7 +124,7 @@
 
                 <section class="panel">
                     <header class="panel-heading" >
-                        - Nội thất bán nhiều nhất -
+                        - Thống kê nội thất bán nhiều nhất -
                     </header><br>
                     <div class="row">
                     <?php
@@ -133,9 +134,16 @@
                     JOIN chi_tiet_don_dat_hang c on n.NT_MA = c.NT_MA 
                     JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA
                     WHERE h.HANT_DUONGDAN LIKE '%-1%'
+                    AND d.TT_MA != 5
                     AND d.DDH_NGAYDAT BETWEEN '".$TGBDau."' AND '".$TGKThuc."'
-                    GROUP by n.NT_MA HAVING SUM(ctddh_soluong) = (SELECT max(tongsoluong) FROM (SELECT c.NT_MA, SUM(ctddh_soluong) tongsoluong FROM chi_tiet_don_dat_hang c JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA WHERE d.DDH_NGAYDAT BETWEEN '"
-                    .$TGBDau."' AND '".$TGKThuc."' GROUP BY (c.NT_MA)) sum_nt) ORDER by n.NT_TEN";
+                    GROUP by n.NT_MA HAVING SUM(ctddh_soluong) = (SELECT max(tongsoluong) 
+                                                                FROM (SELECT c.NT_MA, SUM(ctddh_soluong) tongsoluong 
+                                                                    FROM chi_tiet_don_dat_hang c 
+                                                                    JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA 
+                                                                    WHERE d.DDH_NGAYDAT BETWEEN '".$TGBDau."' AND '".$TGKThuc."' 
+                                                                    AND d.TT_MA != 5
+                                                                    GROUP BY (c.NT_MA)) sum_nt) 
+                    ORDER by n.NT_TEN";
                     $result = mysqli_query($connect, $query);
                     /*$row = mysqli_fetch_array($result);
                     echo '<pre>';
@@ -163,7 +171,7 @@
 
                 <section class="panel">
                     <header class="panel-heading" >
-                        - Nội thất bán ít nhất -
+                        - Thống kê nội thất bán ít nhất -
                     </header><br>
                     <div class="row">
                     <?php
@@ -173,9 +181,16 @@
                     JOIN chi_tiet_don_dat_hang c on n.NT_MA = c.NT_MA 
                     JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA
                     WHERE h.HANT_DUONGDAN LIKE '%-1%'
+                    AND d.TT_MA != 5
                     AND d.DDH_NGAYDAT BETWEEN '".$TGBDau."' AND '".$TGKThuc."'
-                    GROUP by n.NT_MA HAVING SUM(ctddh_soluong) = (SELECT min(tongsoluong) FROM (SELECT c.NT_MA, SUM(ctddh_soluong) tongsoluong FROM chi_tiet_don_dat_hang c JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA WHERE d.DDH_NGAYDAT BETWEEN '"
-                    .$TGBDau."' AND '".$TGKThuc."' GROUP BY (c.NT_MA)) sum_nt) ORDER by n.NT_TEN";
+                    GROUP by n.NT_MA HAVING SUM(ctddh_soluong) = (SELECT min(tongsoluong) 
+                                                                FROM (SELECT c.NT_MA, SUM(ctddh_soluong) tongsoluong 
+                                                                    FROM chi_tiet_don_dat_hang c 
+                                                                    JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA 
+                                                                    WHERE d.DDH_NGAYDAT BETWEEN '".$TGBDau."' AND '".$TGKThuc."'
+                                                                    AND d.TT_MA != 5 
+                                                                    GROUP BY (c.NT_MA)) sum_nt) 
+                    ORDER by n.NT_TEN";
                     $result = mysqli_query($connect, $query);
                     /*$row = mysqli_fetch_array($result);
                     echo '<pre>';
@@ -203,7 +218,7 @@
             
                 <section class="panel">
                     <header class="panel-heading" >
-                        - Nội thất không bán được -
+                        - Thống kê nội thất không bán được -
                     </header><br>
                     <div class="row">
                     <?php
@@ -214,7 +229,9 @@
                                         JOIN chi_tiet_don_dat_hang c on n.NT_MA = c.NT_MA 
                                         JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA
                                         WHERE d.DDH_NGAYDAT BETWEEN '".$TGBDau."' AND '".$TGKThuc."'
-                                        GROUP by n.NT_MA) ORDER by n.NT_TEN";
+                                        AND d.TT_MA != 5
+                                        GROUP by n.NT_MA) 
+                    ORDER by n.NT_TEN";
                     $result = mysqli_query($connect, $query);
                     /*$row = mysqli_fetch_array($result);
                     echo '<pre>';
@@ -248,7 +265,7 @@ $query = "SELECT * FROM DON_DAT_HANG ORDER BY DDH_NGAYDAT";
         $query = "SELECT * FROM DON_DAT_HANG  WHERE DDH_NGAYDAT BETWEEN '". $TGBDau ."' AND '".  $TGKThuc."' ORDER BY DDH_NGAYDAT";     
     }*/
 
-$query = "SELECT * FROM DON_DAT_HANG  WHERE DDH_NGAYDAT BETWEEN '". $TGBDau ."' AND '".  $TGKThuc."' ORDER BY DDH_NGAYDAT";
+$query = "SELECT * FROM DON_DAT_HANG  WHERE DDH_NGAYDAT BETWEEN '". $TGBDau ."' AND '".  $TGKThuc."' AND TT_MA != 5 ORDER BY DDH_NGAYDAT";
 $result = mysqli_query($connect, $query);
 $chart_data = '';
 while($row = mysqli_fetch_array($result))
@@ -271,12 +288,12 @@ Morris.Donut({
   element: 'pie-chart',
   data: [
     <?php
-            
         $query ="SELECT l.*, SUM(ctddh_soluong) tong FROM loai_noi_that l
         JOIN noi_that n on n.LNT_MA = l.LNT_MA 
         JOIN chi_tiet_don_dat_hang c on n.NT_MA = c.NT_MA 
         JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA
         WHERE d.DDH_NGAYDAT BETWEEN '".$TGBDau."' AND '".$TGKThuc."'
+        AND d.TT_MA != 5
         GROUP by l.LNT_MA ORDER BY tong;";
         $result = mysqli_query($connect, $query);
             /*$row = mysqli_fetch_array($result);

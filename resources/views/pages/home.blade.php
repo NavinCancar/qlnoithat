@@ -1,6 +1,6 @@
  @extends('welcome')
  @section('content')
- <div class="row mx-auto">
+ <div class="row mx-auto pt-2 pb-5">
         <div style="background-color:#fff" class="center">
             <img src="{{('public/frontend/img/banner/bannertop.png')}}" id="top_banner_phone" alt="" height="100%"/>
         </div>
@@ -59,8 +59,54 @@
             </div>
         </div>
  <!-- Mat hang -->
-        <section id="clothes" class="my-5">
-            <div class="container text-center mt-5 py-5">
+ <section id="clothes" class="my-5">
+            <div class="container text-center mt-5 py-1">
+                <h3>NỘI THẤT HOT NHẤT</h3>
+                <hr class="mx-auto">
+            </div>    
+               
+            <div class="row mx-auto container-fluid">
+                @foreach($hot_product as $key => $hot)
+                <div class="product text-center col-lg-3 col-md-4 col-12">
+                    <img class="img-fluid mb-3" src="public/frontend/img/noithat/{{$hot->HANT_DUONGDAN}}" alt="">
+
+                    <div class="star">
+                        <?php
+                        // Create connection
+                        $conn = new mysqli('localhost', 'root', '', 'qlnoithat');
+                        // Check connection
+                        if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                        }
+                        $point = "select ROUND(AVG(DG_DIEM)) dg, COUNT('DG_MA') sl from Danh_gia group by NT_MA having NT_MA ='".$hot->NT_MA."'";
+                        $result = $conn->query($point);
+                        $dg=0; $sl=0;
+                        while ($row = $result->fetch_assoc()) {
+                            $dg= $row['dg']."<br>";
+                            $sl= $row['sl'];
+                        }
+                        $x = 1;
+                        for ($x = 1; $x <= $dg; $x++) {
+                        echo '<i class="fas fa-star"></i>';
+                        } 
+                        echo '<i> ('.$sl.')</i>';
+                        ?>
+                    </div>
+                    <h5 class="p-name">{{$hot->NT_TEN}}</h5>
+                    <h4 class="p-price">{{number_format($hot->NT_GIA)}} đ</h4>
+                    <a href="{{ URL::to('/chi-tiet-san-pham/'. $hot->NT_MA) }}"><button class="buy-btn">XEM NGAY</button></a>
+                </div>
+                @endforeach
+            </div>
+        </section>
+            <div class="banner-nho">
+                <section id="banner" class="my-5 py-5">
+                    <div class="container-fluid">
+                    </div>
+                </section>
+            </div>
+            <section id="clothes" class="my-5">
+            <div class="container text-center mt-5 py-1">
                 <h3>NỘI THẤT MỚI</h3>
                 <hr class="mx-auto">
             </div>    
@@ -99,12 +145,6 @@
                 @endforeach
             </div>
         </section>
-            <div class="banner-nho">
-                <section id="banner" class="my-5 py-5">
-                    <div class="container-fluid">
-                    </div>
-                </section>
-            </div>
             <style>
                 #re {
                 display: block;
