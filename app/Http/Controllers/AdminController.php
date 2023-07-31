@@ -73,7 +73,7 @@ class AdminController extends Controller
         ->whereMonth('LX_NGAYXUAT', $homnay)->whereYear('LX_NGAYXUAT', $homnay)->sum('CTLX_GIA');
 
         Session::put('DOANH_THU_L',$ctlx);
-        Session::put('DOANH_THU_S',$ddh_dtt);
+        Session::put('DOANH_THU_B',$ddh_dtt);
             
     	return view('admin.dashboard');
     }

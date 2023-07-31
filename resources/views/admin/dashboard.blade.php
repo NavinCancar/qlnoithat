@@ -128,17 +128,17 @@
 						<h3>
 							<?php
 								$dtl= Session::get('DOANH_THU_L');
-								$dts= Session::get('DOANH_THU_S');
-								$dt = $dtl+$dts;
-								if ($dtl+$dts) {
-									echo number_format($dtl+$dts);
+								$dtb= Session::get('DOANH_THU_B');
+								$dt = $dtl+$dtb;
+								if ($dtl+$dtb) {
+									echo number_format($dtl+$dtb);
 								}
 							?>
 						VNĐ</h3>
 						<h4>- Bán nội thất:
 							<?php
-								if ($dts) {
-									echo number_format($dts);
+								if ($dtb) {
+									echo number_format($dtb);
 								}
 							?> VNĐ <br>- Bán lại nội thất:
 							<?php
