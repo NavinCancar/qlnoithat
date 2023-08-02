@@ -43,7 +43,7 @@
             <td>{{$emp->CV_TEN }}</td>
             <td>{{$emp->NV_SODIENTHOAI}}</td>
             <td>{{$emp->NV_DIACHI}}</td>
-            <td>{{$emp->NV_NGAYSINH}}</td>
+            <td>{{date('d/m/Y', strtotime($emp->NV_NGAYSINH))}}</td>
             <td>{{$emp->NV_GIOITINH}}</td>
             <td>{{$emp->NV_EMAIL}}</td>
             <td><img src="public/backend/images/nhanvien/{{$emp->NV_DUONGDANANHDAIDIEN}}" height="100" width="100"></td>

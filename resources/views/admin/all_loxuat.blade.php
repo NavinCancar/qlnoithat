@@ -34,7 +34,7 @@
           <tr>
             <td>{{$pro->LX_MA }}</td>
             <td>{{$pro->NV_HOTEN}}</td>
-            <td>{{$pro->LX_NGAYXUAT}}</td> 
+            <td>{{date('d/m/Y H:i:s', strtotime($pro->LX_NGAYXUAT))}}</td> 
             <td>{{$pro->LX_NOIDUNG}}</td>
             <td>
               <a href="{{URL::to('/show-chitiet-loxuat/'.$pro -> LX_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-info-circle text-primary text-active"></i></a>

@@ -32,7 +32,7 @@
         <tbody>
         @foreach($danh_gia as $key => $dg)
             <tr class="">
-				<td>{{$dg->DG_THOIGIAN}}</td>
+				        <td>{{date('d/m/Y H:i:s', strtotime($dg->DG_THOIGIAN))}}</td>
                 <td>{{$dg->KH_HOTEN}}</td>
                 <td>{{$dg->DG_NOIDUNG}}</td>
                 <td>

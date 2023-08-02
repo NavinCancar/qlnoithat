@@ -240,7 +240,7 @@
                 <div class="media">
                     <a class="pull-left" href="#"><img class="media-object rounded-circle" src="../public/frontend/img/khachhang/{{$dg->KH_DUONGDANANHDAIDIEN}}" alt=""></a>
                     <div class="media-body ">
-                        <h4 class="media-heading">{{$dg->KH_HOTEN}}<span class="list-unstyled list-inline media-detail pull-right"> {{$dg->DG_THOIGIAN}}</span></h4>
+                        <h4 class="media-heading">{{$dg->KH_HOTEN}}<span class="list-unstyled list-inline media-detail pull-right"> {{date('d/m/Y H:i:s', strtotime($dg->DG_THOIGIAN))}}</span></h4>
                         <p>{{$dg->DG_NOIDUNG}}</p>
                         <ul class="list-unstyled list-inline media-detail pull-left">
                         <div class="star">

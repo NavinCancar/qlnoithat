@@ -64,7 +64,7 @@
         @foreach($id_status as $key => $all_DDH)
               <tr>
                   <td>{{$all_DDH->DDH_MA}}</td>
-                  <td>{{$all_DDH->DDH_NGAYDAT}}</td>
+                  <td>{{date('d/m/Y H:i:s', strtotime($all_DDH->DDH_NGAYDAT))}}</td>
                   <td>
                       @foreach($group_DDH as $key => $nhom_DDH)
                           @if($nhom_DDH->DDH_MA==$all_DDH->DDH_MA)

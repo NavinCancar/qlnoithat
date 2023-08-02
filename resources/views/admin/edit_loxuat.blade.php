@@ -20,7 +20,7 @@
                                     {{csrf_field() }}
                                     <div class="form-group">
                                     <label for="exampleInputEmail1">Ngày xuất lô </label>
-                                    <input type="text" value="{{$edit_value->LX_NGAYXUAT}}" name="ngayxuat_product_name" class="form-control" id="exampleInputEmail1" placeholder="Tên tác giả" required="">
+                                    <input type="datetime-local" value="{{$edit_value->LX_NGAYXUAT}}" name="ngayxuat_product_name" class="form-control" id="exampleInputEmail1" placeholder="Tên tác giả" required="">
                                 </div>
                                 <div class="form-group">
                                     

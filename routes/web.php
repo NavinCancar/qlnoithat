@@ -181,6 +181,7 @@ Route::post('/thong-ke-thoi-gian', 'App\Http\Controllers\AdminController@thong_k
 Route::get('/trang-thai/tat-ca', 'App\Http\Controllers\OrderController@all_status'); ///ok
 Route::get('/danh-muc-trang-thai/{TT_MA}', 'App\Http\Controllers\OrderController@show_status_order'); ///ok
 Route::get('/show-detail/{DDH_MA}','App\Http\Controllers\OrderController@show_detail'); ///
+Route::get('/print-bill/{DDH_MA}','App\Http\Controllers\OrderController@print_bill'); //
 
 Route::post('/search-all-order', 'App\Http\Controllers\OrderController@search_all_order'); ///
 

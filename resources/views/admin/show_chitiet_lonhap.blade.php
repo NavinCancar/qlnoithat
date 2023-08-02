@@ -23,7 +23,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Ngày nhập lô</label>
-                                    <input type="text" value="{{$edit_value->LN_NGAYNHAP}}" readonly name="ngaynhap_product_name" class="form-control" id="exampleInputEmail1" placeholder="Tên tác giả" required="">
+                                    <input type="text" value="{{date('d/m/Y H:i:s', strtotime($edit_value->LN_NGAYNHAP))}}" readonly name="ngaynhap_product_name" class="form-control" id="exampleInputEmail1" placeholder="Tên tác giả" required="">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Nội dung lô</label>

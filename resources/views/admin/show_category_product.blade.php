@@ -78,8 +78,8 @@
             <td>{{$pro->LNT_TEN }}</td>
             <td>{{$pro->NCC_TEN }}</td>
             <td>{{number_format($pro->NT_GIA)}} VNĐ</td>
-            <td>{{$pro->NT_NGAYTAO}}</td>
-            <td>{{$pro->NT_NGAYCAPNHAT}}</td>
+            <td>{{date('d/m/Y H:i:s', strtotime($pro->NT_NGAYTAO))}}</td>
+            <td>{{date('d/m/Y H:i:s', strtotime($pro->NT_NGAYCAPNHAT))}}</td>
             <td>
               @if($cv==1)
                 <a href="{{URL::to('/product-detail/'.$pro -> NT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-info-circle text-primary text-active"></i></a>

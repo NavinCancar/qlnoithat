@@ -37,7 +37,7 @@
             <td>{{$pro->KH_MA }}</td>
             <td>{{$pro->KH_HOTEN}}</td> 
             <td>{{$pro->KH_SODIENTHOAI}}</td>
-            <td>{{$pro->KH_NGAYSINH}}</td>
+            <td>{{date('d/m/Y', strtotime($pro->KH_NGAYSINH))}}</td>
             <td>{{$pro->KH_GIOITINH}}</td>
             <td>{{$pro->KH_EMAIL}}</td>
             <td>{{$pro->KH_DUONGDANANHDAIDIEN}}</td>

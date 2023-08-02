@@ -71,7 +71,7 @@
               </div>
               <div class="form-group">
                   <label for="exampleInputEmail1"><b>Ngày đặt:</b></label>
-                  <input type="date-time" name="DDH_MA" disabled value="{{$all_DDH->DDH_NGAYDAT}}" class="form-control" id="exampleInputEmail1">
+                  <input type="date-time" name="DDH_MA" disabled value="{{date('d/m/Y H:i:s', strtotime($all_DDH->DDH_NGAYDAT))}}" class="form-control" id="exampleInputEmail1">
               </div>
               <div class="form-group">
                   <label for="exampleInputEmail1"><b>Phí ship:</b></label>
@@ -98,6 +98,9 @@
               @endif
             <br>
           </form>
+          @if($all_DDH->TT_MA!=1)
+          <a target="_blank" href="{{URL::to('/print-bill/'.$all_DDH->DDH_MA)}}"><button type="button" style="width:100%" class="btn btn-success">In vận đơn giao hàng</button></a>
+          @endif
       @endforeach
       </div>
     </div>
