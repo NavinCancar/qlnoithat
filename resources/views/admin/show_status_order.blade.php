@@ -79,7 +79,7 @@
                           @endif
                       @endforeach
                   </td>
-                  <td>{{number_format($all_DDH->DDH_TONGTIEN)}} đ</td>
+                  <td>{{number_format($all_DDH->DDH_TONGTIEN)}} VNĐ</td>
 
                   <td>
                     <a href="{{URL::to('/show-detail/'.$all_DDH->DDH_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-info-circle text-primary text-active"></i></a>

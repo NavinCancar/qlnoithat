@@ -26,7 +26,7 @@
                 <div class="col-md-4 col-sm-12">
                     <div class="form-group">
                         <label for="exampleInputEmail1"><b>Ngày đặt:</b></label>
-                        <input type="text" name="DDH_MA" disabled value="{{$all_DDH->DDH_NGAYDAT}}" class="form-control" id="exampleInputEmail1">
+                        <input type="text" name="DDH_MA" disabled value="{{date('d/m/Y H:i:s', strtotime($all_DDH->DDH_NGAYDAT))}}" class="form-control" id="exampleInputEmail1">
                     </div>
                 </div>
                 <div class="col-md-5 col-sm-12">
@@ -100,15 +100,15 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1"><b>Phí ship:</b></label>
-                        <input type="text" name="DDH_MA" disabled value="{{$all_DDH->DDH_PHISHIPTHUCTE}}" class="form-control" id="exampleInputEmail1">
+                        <input type="text" name="DDH_MA" disabled value="{{number_format($all_DDH->DDH_PHISHIPTHUCTE)}} VNĐ" class="form-control" id="exampleInputEmail1">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1"><b>Thuế VAT:</b></label>
-                        <input type="text" name="DDH_MA" disabled value="{{$all_DDH->DDH_THUEVAT}}" class="form-control" id="exampleInputEmail1">
+                        <input type="text" name="DDH_MA" disabled value="{{$all_DDH->DDH_THUEVAT}}%" class="form-control" id="exampleInputEmail1">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1"><b>Tổng tiền:</b></label>
-                        <input type="text" name="DDH_MA" disabled value="{{number_format($all_DDH->DDH_TONGTIEN)}}" class="form-control" id="exampleInputEmail1">
+                        <input type="text" name="DDH_MA" disabled value="{{number_format($all_DDH->DDH_TONGTIEN)}} VNĐ" class="form-control" id="exampleInputEmail1">
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-12">

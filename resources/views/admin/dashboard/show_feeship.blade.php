@@ -31,7 +31,7 @@
                     @foreach($dc as $key => $dchi)
                     <tr>
                         <td>{{$dchi->TTP_TEN }}</td>
-                        <td>{{number_format($dchi->TTP_CHIPHIGIAOHANG)}} đ</td>
+                        <td>{{number_format($dchi->TTP_CHIPHIGIAOHANG)}} VNĐ</td>
                         <td>
                         <a href="{{URL::to('/edit_feeship/'.$dchi -> TTP_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
                         </td>

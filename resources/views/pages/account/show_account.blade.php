@@ -31,7 +31,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1"><b>Ngày sinh:</b></label>
-                        <input type="text" name="KH_NGAYSINH" disabled value="{{$account_info->KH_NGAYSINH}}" class="form-control" id="exampleInputEmail1">
+                        <input type="text" name="KH_NGAYSINH" disabled value="{{date('d/m/Y', strtotime($account_info->KH_NGAYSINH))}}" class="form-control" id="exampleInputEmail1">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1"><b>Giới tính:</b></label>

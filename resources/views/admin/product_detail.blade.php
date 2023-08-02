@@ -51,7 +51,7 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Giá</label>
                                     <div style="display: flex; align-items: baseline;">
-                                        <input readonly type="text" name="NT_GIA" class="form-control" id="exampleInputEmail1" required="" value="{{$edit_value->NT_GIA}}" pattern="[0-9]+">
+                                        <input readonly type="text" name="NT_GIA" class="form-control" id="exampleInputEmail1" required="" value="{{number_format($edit_value->NT_GIA)}}" pattern="[0-9]+">
                                         <span style="margin-left: 10px;">VNĐ</span>
                                     </div>
                                 </div>

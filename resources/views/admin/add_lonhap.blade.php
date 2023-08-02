@@ -23,7 +23,7 @@
                                 </div>-->
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Ngày nhập lô</label>
-                                    <input type="Date" name="ngaynhap_product_name" class="form-control" id="exampleInputEmail1" placeholder="Ngày nhập lô" required="">
+                                    <input type="datetime-local" name="ngaynhap_product_name" class="form-control" id="exampleInputEmail1" placeholder="Ngày nhập lô" required="">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Nội dung lô</label>

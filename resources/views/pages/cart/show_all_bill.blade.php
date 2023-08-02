@@ -9,7 +9,7 @@
                     <div class="pt-1" style="text-align: left">Tìm các đơn đặt hàng cũ:</div>
                 </div>
                 <div class="col-sm-9 d-flex">
-                    <input class="form-control me-2" type="text" name="keywords_submit" placeholder="Nhập nội thất cần tìm...">
+                    <input class="form-control me-2" type="text" name="keywords_submit" placeholder="Nhập đơn hàng cần tìm...">
                     <button class="btn btn-link" type="submit"><i class="fa fa-search icon-white"></i></a></button>
                 </div>       
             </form>

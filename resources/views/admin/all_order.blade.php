@@ -81,7 +81,7 @@
                           @endif
                       @endforeach
                   </td>
-                  <td>{{number_format($all_don->DDH_TONGTIEN)}} đ</td>
+                  <td>{{number_format($all_don->DDH_TONGTIEN)}} VNĐ</td>
                   <td>{{$all_don->TT_TEN}}</td>
 
                   <td>
