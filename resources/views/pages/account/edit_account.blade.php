@@ -59,7 +59,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1"><b>Ngày sinh:</b></label>
-                        <input type="date" name="KH_NGAYSINH" value="{{$account_info->KH_NGAYSINH}}" class="form-control" id="exampleInputEmail1" required="">
+                        <input type="date" name="KH_NGAYSINH" value="{{$account_info->KH_NGAYSINH}}" class="form-control" id="exampleInputEmail1"  max="<?php echo date('Y-m-d', strtotime('-15 years')); ?>" required="">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1"><b>Giới tính:</b></label>

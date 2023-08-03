@@ -32,7 +32,7 @@ class PaymentController extends Controller
 
     public function all_hinhthuc_thanhtoan(){
         $this->AuthLoginChu();
-        $all_hinhthuc_thanhtoan = DB::table('hinh_thuc_thanh_toan')->paginate(10);
+        $all_hinhthuc_thanhtoan = DB::table('hinh_thuc_thanh_toan')->orderby('HTTT_MA')->paginate(10);
         $manager_hinhthuc_thanhtoan = view('admin.all_hinhthuc_thanhtoan')->with('all_hinhthuc_thanhtoan', $all_hinhthuc_thanhtoan);
                 
         $count_hinhthuc_thanhtoan = DB::table('hinh_thuc_thanh_toan')->count('HTTT_MA');
@@ -45,6 +45,15 @@ class PaymentController extends Controller
         $data = array();
         //$data['HTTT_MA'] = $request->hinhthuc_thanhtoan_desc;
         $data['HTTT_TEN'] = $request->hinhthuc_thanhtoan_name;
+
+        //Kiểm tra unique
+        $check_unique = DB::table('hinh_thuc_thanh_toan')->get();
+        foreach($check_unique as $key => $unique){
+            if(strtolower($unique->HTTT_TEN)==strtolower($request->hinhthuc_thanhtoan_name)){
+                Session::put('message','Tên hình thức thanh toán không thể trùng');
+                return Redirect::to('add-hinhthuc-thanhtoan');
+            }
+        }
 
         DB::table('hinh_thuc_thanh_toan')->insert($data);
         Session::put('message','Thêm hình thức thanh toán đơn đặt hàng thành công');
@@ -63,6 +72,16 @@ class PaymentController extends Controller
         $data = array();
         //$data['HTTT_MA'] = $request->hinhthuc_thanhtoan_desc;
         $data['HTTT_TEN'] = $request->hinhthuc_thanhtoan_name;
+
+        //Kiểm tra unique
+        $check_unique = DB::table('hinh_thuc_thanh_toan')->get();
+        foreach($check_unique as $key => $unique){
+            if(strtolower($unique->HTTT_TEN)==strtolower($request->hinhthuc_thanhtoan_name)){
+                Session::put('message','Tên hình thức thanh toán không thể trùng');
+                return Redirect::to('all-hinhthuc-thanhtoan');
+            }
+        }
+
         DB::table('hinh_thuc_thanh_toan')->where('HTTT_MA',$HTTT_MA)->update($data);
         Session::put('message','Cập nhật hình thức thanh toán thành công');
         return Redirect::to('all-hinhthuc-thanhtoan');

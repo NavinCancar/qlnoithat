@@ -81,6 +81,29 @@ class EmployeeController extends Controller
         $data['NV_GIOITINH'] = $request->NV_GIOITINH;
         $data['NV_EMAIL'] = $request->NV_EMAIL;
 
+        //Nơi trả về
+        $NV_MA_HT = Session::get('NV_MA');
+        $CV_MA = DB::table('nhan_vien')->where('NV_MA',$NV_MA_HT)->first();
+        if($NV_MA_HT){
+            if($CV_MA->CV_MA != 1){
+                $return='show-employee';
+            }
+            else $return='all-employee';
+        }
+
+        //Kiểm tra unique
+        $check_unique = DB::table('nhan_vien')->get();
+        foreach($check_unique as $key => $unique){
+            if($unique->NV_MA!=$NV_MA && strtolower($unique->NV_SODIENTHOAI)==strtolower($request->NV_SODIENTHOAI)){
+                Session::put('message','Số điện thoại nhân viên không thể trùng');
+                return Redirect::to($return);
+            }
+            if($unique->NV_MA!=$NV_MA && strtolower($unique->NV_EMAIL)==strtolower($request->NV_EMAIL)){
+                Session::put('message','Email nhân viên không thể trùng');
+                return Redirect::to($return);
+            }
+        }
+
         $get_image= $request->file('NV_DUONGDANANHDAIDIEN');
         if($get_image){
             $new_image =  $NV_MA.'.'.$get_image->getClientOriginalExtension();
@@ -92,7 +115,7 @@ class EmployeeController extends Controller
         echo '</pre>';*/
         DB::table('nhan_vien')->where('NV_MA',$NV_MA)->update($data);
         Session::put('message','Cập nhật nhân viên thành công');
-        return Redirect::to('all-employee');
+        return Redirect::to($return);
     }
 
     public function update_password(Request $request){
@@ -153,6 +176,20 @@ class EmployeeController extends Controller
         $data['NV_GIOITINH'] = $request->NV_GIOITINH;
         $data['NV_EMAIL'] = $request->NV_EMAIL;
         $data['NV_DUONGDANANHDAIDIEN'] = 'macdinh.png';
+
+        //Kiểm tra unique
+        $check_unique = DB::table('nhan_vien')->get();
+        foreach($check_unique as $key => $unique){
+            if(strtolower($unique->NV_SODIENTHOAI)==strtolower($request->NV_SODIENTHOAI)){
+                Session::put('message','Số điện thoại nhân viên không thể trùng');
+                return Redirect::to('add-employee');
+            }
+            if(strtolower($unique->NV_EMAIL)==strtolower($request->NV_EMAIL)){
+                Session::put('message','Email nhân viên không thể trùng');
+                return Redirect::to('add-employee');
+            }
+        }
+
         DB::table('nhan_vien')->insert($data);
 
         $NV=DB::table('nhan_vien')->where('NV_SODIENTHOAI', $request->NV_SODIENTHOAI)->orderby('NV_MA', 'desc')->first();

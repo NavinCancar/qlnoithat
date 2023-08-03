@@ -92,7 +92,7 @@ class CategoryProduct extends Controller
 
     public function all_category_product(){
         $this->AuthLoginChu();
-        $all_category_product = DB::table('loai_noi_that')->paginate(10);
+        $all_category_product = DB::table('loai_noi_that')->orderby('LNT_MA')->paginate(10);
         $manager_category_product = view('admin.all_category_product')->with('all_category_product', $all_category_product);
                 
         $count_category_product = DB::table('loai_noi_that')->count('LNT_MA');
@@ -105,6 +105,15 @@ class CategoryProduct extends Controller
         $data = array();
         //$data['LNT_MA'] = $request->category_product_desc;
         $data['LNT_TEN'] = $request->category_product_name;
+
+        //Kiểm tra unique
+        $check_unique = DB::table('loai_noi_that')->get();
+        foreach($check_unique as $key => $unique){
+            if(strtolower($unique->LNT_TEN)==strtolower($request->category_product_name)){
+                Session::put('message','Tên loại nội thất không thể trùng');
+                return Redirect::to('add-category-product');
+            }
+        }
 
         DB::table('loai_noi_that')->insert($data);
         Session::put('message','Thêm loại nội thất thành công');
@@ -123,6 +132,16 @@ class CategoryProduct extends Controller
         $data = array();
         //$data['LNT_MA'] = $request->category_product_desc;
         $data['LNT_TEN'] = $request->category_product_name;
+
+        //Kiểm tra unique
+        $check_unique = DB::table('loai_noi_that')->get();
+        foreach($check_unique as $key => $unique){
+            if(strtolower($unique->LNT_TEN)==strtolower($request->category_product_name)){
+                Session::put('message','Tên loại nội thất không thể trùng');
+                return Redirect::to('all-category-product');
+            }
+        }
+
         DB::table('loai_noi_that')->where('LNT_MA',$LNT_MA)->update($data);
         Session::put('message','Cập nhật loại nội thất thành công');
         return Redirect::to('all-category-product');

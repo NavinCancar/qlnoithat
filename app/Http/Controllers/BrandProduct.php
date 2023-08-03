@@ -49,7 +49,19 @@ class BrandProduct extends Controller
         $data['NCC_DIACHI'] = $request->brand_product_address;
         $data['NCC_EMAIL'] = $request->brand_product_email;
         
-
+        //Kiểm tra unique
+        $check_unique = DB::table('nha_cung_cap')->get();
+        foreach($check_unique as $key => $unique){
+            if(strtolower($unique->NCC_SODIENTHOAI)==strtolower($request->brand_product_phone)){
+                Session::put('message','Số điện thoại nhà cung cấp không thể trùng');
+                return Redirect::to('add-brand-product');
+            }
+            if(strtolower($unique->NCC_EMAIL)==strtolower($request->brand_product_email)){
+                Session::put('message','Email nhà cung cấp không thể trùng');
+                return Redirect::to('add-brand-product');
+            }
+        }
+        
         DB::table('nha_cung_cap')->insert($data);
         Session::put('message','Thêm nhà cung cấp thành công');
         return Redirect::to('add-brand-product');
@@ -72,6 +84,20 @@ class BrandProduct extends Controller
         $data['NCC_SODIENTHOAI'] = $request->brand_product_phone;
         $data['NCC_DIACHI'] = $request->brand_product_address;
         $data['NCC_EMAIL'] = $request->brand_product_email;
+
+        //Kiểm tra unique
+        $check_unique = DB::table('nha_cung_cap')->get();
+        foreach($check_unique as $key => $unique){
+            if($unique->NCC_MA!=$NCC_MA && strtolower($unique->NCC_SODIENTHOAI)==strtolower($request->brand_product_phone)){
+                Session::put('message','Số điện thoại nhà cung cấp không thể trùng');
+                return Redirect::to('all-brand-product');
+            }
+            if($unique->NCC_MA!=$NCC_MA && strtolower($unique->NCC_EMAIL)==strtolower($request->brand_product_email)){
+                Session::put('message','Email nhà cung cấp không thể trùng');
+                return Redirect::to('all-brand-product');
+            }
+        }
+        
         DB::table('nha_cung_cap')->where('NCC_MA',$NCC_MA)->update($data);
         Session::put('message','Cập nhật nhà cung cấp thành công');
         return Redirect::to('all-brand-product');

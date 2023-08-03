@@ -72,11 +72,16 @@ class CostumerController extends Controller
         $data['KH_GIOITINH'] = $request->KH_GIOITINH;
         $data['KH_EMAIL'] = $request->KH_EMAIL;
         $data['KH_DUONGDANANHDAIDIEN'] = 'macdinh.png';
-        //Dò sđt trùng
+
+        //Dò trùng
         $dskh=DB::table('khach_hang')->get();
         foreach ($dskh as $ds){
-            if ($ds->KH_SODIENTHOAI==$request->KH_SODIENTHOAI) {
+            if (strtolower($ds->KH_SODIENTHOAI)==strtolower($request->KH_SODIENTHOAI)) {
                 Session::put('message2','Số điện thoại này đã có trong hệ thống, vui lòng đăng ký bằng số khác!');
+                return Redirect::to('/dang-nhap');
+            }
+            if (strtolower($ds->KH_EMAIL) ==strtolower($request->KH_EMAIL) ) {
+                Session::put('message2','Email này đã có trong hệ thống, vui lòng đăng ký bằng số khác!');
                 return Redirect::to('/dang-nhap');
             }
         }
@@ -238,13 +243,16 @@ class CostumerController extends Controller
             $data['KH_DUONGDANANHDAIDIEN'] = $new_image;
         }
         
-        //Dò sđt trùng
-        $SDT=DB::table('khach_hang')->where('KH_MA',$KH_MA)->first();
+        //Dò trùng
 
         $dskh=DB::table('khach_hang')->get();
         foreach ($dskh as $ds){
-            if ($ds->KH_SODIENTHOAI==$request->KH_SODIENTHOAI && $request->KH_SODIENTHOAI!=$SDT->KH_SODIENTHOAI) {
+            if (strtolower($ds->KH_SODIENTHOAI)==strtolower($request->KH_SODIENTHOAI) && $ds->KH_MA!=$KH_MA) {
                 Session::put('message','Cập nhật thất bại. Số điện thoại này đã có trong hệ thống!');
+                return Redirect::to('tai-khoan');
+            }
+            if (strtolower($ds->KH_EMAIL) ==strtolower($request->KH_EMAIL)  && $ds->KH_MA !=$KH_MA ) {
+                Session::put('message','Cập nhật thất bại. Email này đã có trong hệ thống!');
                 return Redirect::to('tai-khoan');
             }
         }

@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Ngày sinh</label>
-                                    <input type="date" name="NV_NGAYSINH" class="form-control" id="exampleInputEmail1" placeholder="Tên nhân viên" required="">
+                                    <input type="date" name="NV_NGAYSINH" class="form-control" id="exampleInputEmail1" placeholder="Tên nhân viên"  max="<?php echo date('Y-m-d', strtotime('-18 years')); ?>" required="">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Giới tính</label>

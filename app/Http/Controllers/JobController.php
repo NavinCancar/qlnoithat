@@ -32,7 +32,7 @@ class JobController extends Controller
 
     public function all_chucvu(){
         $this->AuthLoginChu();
-        $all_chucvu = DB::table('chuc_vu')->paginate(10);
+        $all_chucvu = DB::table('chuc_vu')->orderby('CV_MA')->paginate(10);
         $manager_chucvu = view('admin.all_chucvu')->with('all_chucvu', $all_chucvu);
                 
         $count_chucvu = DB::table('chuc_vu')->count('CV_MA');
@@ -45,6 +45,15 @@ class JobController extends Controller
         $data = array();
         //$data['CV_MA'] = $request->ma_product_desc;
         $data['CV_TEN'] = $request->chucvu_product_name;
+
+        //Kiểm tra unique
+        $check_unique = DB::table('chuc_vu')->get();
+        foreach($check_unique as $key => $unique){
+            if(strtolower($unique->CV_TEN)==strtolower($request->chucvu_product_name)){
+                Session::put('message','Tên chức vụ không thể trùng');
+                return Redirect::to('add-chucvu');
+            }
+        }
 
         DB::table('chuc_vu')->insert($data);
         Session::put('message','Thêm chức vụ thành công');
@@ -63,6 +72,16 @@ class JobController extends Controller
         $data = array();
         //$data['CV_MA'] = $request->ma_product_desc;
         $data['CV_TEN'] = $request->chucvu_product_name;
+
+        //Kiểm tra unique
+        $check_unique = DB::table('chuc_vu')->get();
+        foreach($check_unique as $key => $unique){
+            if(strtolower($unique->CV_TEN)==strtolower($request->chucvu_product_name)){
+                Session::put('message','Tên chức vụ không thể trùng');
+                return Redirect::to('all-chucvu');
+            }
+        }
+        
         DB::table('chuc_vu')->where('CV_MA',$CV_MA)->update($data);
         Session::put('message','Cập nhật chức vụ thành công');
         return Redirect::to('all-chucvu');
