@@ -105,6 +105,16 @@ class BrandProduct extends Controller
 
     public function delete_brand_product($NCC_MA){
         $this->AuthLoginChu();
+
+        $checkforeign = DB::table('nha_cung_cap')
+        ->join('noi_that','nha_cung_cap.NCC_MA','=','noi_that.NCC_MA')
+        ->where('nha_cung_cap.NCC_MA',$NCC_MA)->count();
+
+        if($checkforeign != 0){
+            Session::put('message','Có nội thất thuộc nhà cung cấp này, nhà cung cấp này không thể xoá');
+            return Redirect::to('all-brand-product');
+        }
+
         DB::table('nha_cung_cap')->where('NCC_MA',$NCC_MA)->delete();
         Session::put('message','Xóa nhà cung cấp thành công');
         return Redirect::to('all-brand-product');

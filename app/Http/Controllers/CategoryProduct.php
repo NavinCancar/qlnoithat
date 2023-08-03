@@ -149,6 +149,16 @@ class CategoryProduct extends Controller
 
     public function delete_category_product($LNT_MA){
         $this->AuthLoginChu();
+        
+        $checkforeign = DB::table('loai_noi_that')
+        ->join('noi_that','loai_noi_that.LNT_MA','=','noi_that.LNT_MA')
+        ->where('loai_noi_that.LNT_MA',$LNT_MA)->count();
+
+        if($checkforeign != 0){
+            Session::put('message','Có nội thất thuộc loại nội thất này, loại nội thất này không thể xoá');
+            return Redirect::to('all-category-product');
+        }
+
         DB::table('loai_noi_that')->where('LNT_MA',$LNT_MA)->delete();
         Session::put('message','Xóa loại nội thất thành công');
         return Redirect::to('all-category-product');

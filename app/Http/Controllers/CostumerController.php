@@ -194,8 +194,17 @@ class CostumerController extends Controller
 
     public function delete_location($DCGH_MA){
         $this->AuthLogin();
+
+        $checkforeign = DB::table('dia_chi_giao_hang')
+        ->join('don_dat_hang','dia_chi_giao_hang.DCGH_MA','=','don_dat_hang.DCGH_MA')
+        ->where('dia_chi_giao_hang.DCGH_MA',$DCGH_MA)->count();
+
+        if($checkforeign != 0){
+            Session::put('message','Có đơn hàng tồn tại vào địa chỉ này, địa chỉ này không thể xoá');
+            return Redirect::to('dia-chi-giao-hang');
+        }
+
         DB::table('dia_chi_giao_hang')->where('DCGH_MA',$DCGH_MA)->delete();
-        
         Session::put('message','Xóa địa chỉ giao hàng thành công');
         return Redirect::to('dia-chi-giao-hang');
     }

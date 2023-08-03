@@ -89,6 +89,16 @@ class PaymentController extends Controller
 
     public function delete_hinhthuc_thanhtoan($HTTT_MA){
         $this->AuthLoginChu();
+
+        $checkforeign = DB::table('hinh_thuc_thanh_toan')
+        ->join('don_dat_hang','hinh_thuc_thanh_toan.HTTT_MA','=','don_dat_hang.HTTT_MA')
+        ->where('hinh_thuc_thanh_toan.HTTT_MA',$HTTT_MA)->count();
+
+        if($checkforeign != 0){
+            Session::put('message','Có đơn hàng tồn tại vào hình thức này, hình thức này này không thể xoá');
+            return Redirect::to('all-hinhthuc-thanhtoan');
+        }
+
         DB::table('hinh_thuc_thanh_toan')->where('HTTT_MA',$HTTT_MA)->delete();
         Session::put('message','Xóa hình thức thanh toán thành công');
         return Redirect::to('all-hinhthuc-thanhtoan');

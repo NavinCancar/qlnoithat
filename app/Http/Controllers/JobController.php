@@ -89,6 +89,16 @@ class JobController extends Controller
 
     public function delete_chucvu($CV_MA){
         $this->AuthLoginChu();
+        
+        $checkforeign = DB::table('chuc_vu')
+        ->join('nhan_vien','chuc_vu.CV_MA','=','nhan_vien.CV_MA')
+        ->where('chuc_vu.CV_MA',$CV_MA)->count();
+
+        if($checkforeign != 0){
+            Session::put('message','Có nhân viên đảm nhiệm chức vụ này, chức vụ này không thể xoá');
+            return Redirect::to('all-chucvu');
+        }
+
         DB::table('chuc_vu')->where('CV_MA',$CV_MA)->delete();
         Session::put('message','Xóa chức vụ thành công');
         return Redirect::to('all-chucvu');

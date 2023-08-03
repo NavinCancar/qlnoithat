@@ -87,7 +87,16 @@ class ImportController extends Controller
 
     public function delete_lonhap($LN_MA){
         $this->AuthLogin();
-        DB::table('chi_tiet_lo_nhap')->where('LN_MA',$LN_MA)->delete();
+        
+        $checkforeign = DB::table('lo_nhap')
+        ->join('chi_tiet_lo_nhap','chi_tiet_lo_nhap.LN_MA','=','lo_nhap.LN_MA')
+        ->where('lo_nhap.LN_MA',$LN_MA)->count();
+
+        if($checkforeign != 0){
+            Session::put('message','Lô nhập này có chứa chi tiết, lô nhập này không thể xoá');
+            return Redirect::to('all-lonhap');
+        }
+
         DB::table('lo_nhap')->where('LN_MA',$LN_MA)->delete();
         
         Session::put('message','Xóa lô nhập thành công');

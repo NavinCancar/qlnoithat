@@ -262,6 +262,38 @@ class ProductController extends Controller
 
     public function delete_product($NT_MA){
         $this->AuthLoginChu();
+        
+
+        
+        $checkforeign1 = DB::table('noi_that')
+        ->join('chi_tiet_lo_nhap','chi_tiet_lo_nhap.NT_MA','=','noi_that.NT_MA')
+        ->where('noi_that.NT_MA',$NT_MA)->count();
+
+        if($checkforeign1 != 0){
+            Session::put('message','Có chi tiết lô nhập phụ thuộc nội thất này, nội thất này không thể xoá');
+            return Redirect::to('all-product');
+        }
+
+        $checkforeign2 = DB::table('noi_that')
+        ->join('chi_tiet_lo_xuat','chi_tiet_lo_xuat.NT_MA','=','noi_that.NT_MA')
+        ->where('noi_that.NT_MA',$NT_MA)->count();
+
+        if($checkforeign2 != 0){
+            Session::put('message','Có chi tiết lô xuất phụ thuộc nội thất này, nội thất này không thể xoá');
+            return Redirect::to('all-product');
+        }
+
+        $checkforeign3 = DB::table('noi_that')
+        ->join('chi_tiet_don_dat_hang','chi_tiet_don_dat_hang.NT_MA','=','noi_that.NT_MA')
+        ->where('noi_that.NT_MA',$NT_MA)->count();
+
+        if($checkforeign3 != 0){
+            Session::put('message','Có chi tiết đơn đặt hàng phụ thuộc nội thất này, nội thất này không thể xoá');
+            return Redirect::to('all-product');
+        }
+
+        DB::table('chi_tiet_gio_hang')->where('NT_MA',$NT_MA)->delete();
+        DB::table('danh_gia')->where('NT_MA',$NT_MA)->delete();
         DB::table('hinh_anh_noi_that')->where('NT_MA',$NT_MA)->delete();
         DB::table('noi_that')->where('NT_MA',$NT_MA)->delete();
         Session::put('message','Xóa nội thất thành công');

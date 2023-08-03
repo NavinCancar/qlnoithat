@@ -84,7 +84,16 @@ class ExportController extends Controller
 
     public function delete_loxuat($LX_MA){
         $this->AuthLogin();
-        DB::table('chi_tiet_lo_xuat')->where('LX_MA',$LX_MA)->delete();
+
+        $checkforeign = DB::table('lo_xuat')
+        ->join('chi_tiet_lo_xuat','chi_tiet_lo_xuat.LX_MA','=','lo_xuat.LX_MA')
+        ->where('lo_xuat.LX_MA',$LX_MA)->count();
+
+        if($checkforeign != 0){
+            Session::put('message','Lô xuất này có chứa chi tiết, lô xuất này không thể xoá');
+            return Redirect::to('all-loxuat');
+        }
+
         DB::table('lo_xuat')->where('LX_MA',$LX_MA)->delete();
         
         Session::put('message','Xóa lô xuất thành công');

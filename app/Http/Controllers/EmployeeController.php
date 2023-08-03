@@ -208,6 +208,25 @@ class EmployeeController extends Controller
 
     public function delete_employee($NV_MA){
         $this->AuthLoginChu();
+
+        $checkforeign1 = DB::table('nhan_vien')
+        ->join('lo_nhap','lo_nhap.NV_MA','=','nhan_vien.NV_MA')
+        ->where('nhan_vien.NV_MA',$NV_MA)->count();
+
+        if($checkforeign1 != 0){
+            Session::put('message','Có lô nhập phụ thuộc nhân viên này, nhân viên này không thể xoá');
+            return Redirect::to('all-employee');
+        }
+
+        $checkforeign2 = DB::table('nhan_vien')
+        ->join('lo_xuat','lo_xuat.NV_MA','=','nhan_vien.NV_MA')
+        ->where('nhan_vien.NV_MA',$NV_MA)->count();
+
+        if($checkforeign2 != 0){
+            Session::put('message','Có lô xuất phụ thuộc nhân viên này, nhân viên này không thể xoá');
+            return Redirect::to('all-employee');
+        }
+
         DB::table('nhan_vien')->where('NV_MA',$NV_MA)->delete();
         Session::put('message','Xóa nhân viên thành công');
         return Redirect::to('all-employee');
