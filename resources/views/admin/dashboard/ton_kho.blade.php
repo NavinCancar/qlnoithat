@@ -6,7 +6,7 @@
       Liệt kê nội thất tồn kho
     </div>
     <div class="row w3-res-tb">
-      <div class="col-sm-5 m-b-xs">
+      <div class="col-sm-7 m-b-xs">
         <?php
           $message = Session::get('message');
           if($message){
@@ -19,16 +19,19 @@
             if ($count) {
               echo "<p>Tổng số dòng dữ liệu: ".$count.'</p>';
             }
+
+            $ktra=0;
+            $ktrasl = Session::get('ktrasl');
+            Session::put('ktrasl',0);
+            if($ktrasl) $ktra=$ktrasl;
         ?>
       </div>
-      <div class="col-sm-4">
-        <p style="text-align: right;">Tìm nội thất:</p>
-      </div>
-      <div class="col-sm-3">
-        <div class="input-group">
-        <form class="d-flex" action="{{ URL::to('/search-product') }}" method="POST">
-          {{ csrf_field() }}
-            <input type="text" class="input-sm form-control" name="keywords_submit" style="width: 70%; margin: 0 10px" placeholder="Nhập nội thất cần tìm...">
+      <div class="col-sm-5">
+        <div class="input-group d-flex">
+          <form class="d-flex" action="{{ URL::to('/kiem-tra-ton-kho') }}" method="POST">
+            {{ csrf_field() }}
+            <span>Tìm nội thất ít hơn:</span>
+            <input type="number" class="input-sm form-control" name="soluong" style="width: auto; float:none" min="0">
             <button type="submit" class="btn btn-sm btn-default"><i class="fa fa-search icon-white"></i></a></button>
           </form>
         </div>
@@ -59,7 +62,7 @@
           ->where('NT_MA', $pro->NT_MA)->sum('CTLX_SOLUONG');
           $slton=$nhap-$xuat-$ddh;
         ?>
-          @if ($slton<=50) <tr style="background-color:#FCDAD5" >
+          @if ($slton<=$ktra) <tr style="background-color:#FCDAD5" >
             @else <tr>
             @endif
             <td>{{$pro->NT_MA }}</td>

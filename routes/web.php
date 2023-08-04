@@ -172,6 +172,8 @@ Route::post('/update-chitiet-loxuat/lo={LX_MA}&nothat={NT_MA}', 'App\Http\Contro
 //Tồn kho
 Route::get('/ton-kho', 'App\Http\Controllers\ProductController@ton_kho'); ///ok
 
+Route::post('/kiem-tra-ton-kho', 'App\Http\Controllers\ProductController@kiem_tra_ton_kho'); ///
+
 //Thống kê 
 Route::get('/thong-ke', 'App\Http\Controllers\AdminController@thong_ke'); ///
 

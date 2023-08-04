@@ -336,7 +336,7 @@ class OrderController extends Controller
     public function update_status_order($DDH_MA){
         $this->AuthLogin();
 
-        $trangthai = DB::table('TRANG_THAI')->get(); 
+        $trangthai = DB::table('TRANG_THAI')->orderby('TT_MA')->get(); 
         $edit_order = DB::table('don_dat_hang')->where('DDH_MA',$DDH_MA)->get();
 
         $manager_order = view('admin.dashboard.update_status_order')->with('edit_order', $edit_order)->with('trangthai',$trangthai);

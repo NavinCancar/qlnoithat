@@ -393,4 +393,10 @@ class ProductController extends Controller
         Session::put('count_product',$count_product);
         return view('admin-layout')->with('admin.dashboard.ton_kho', $manager_product);
     }
+
+    public function kiem_tra_ton_kho(Request $request){
+        $this->AuthLoginChuKho();
+        Session::put('ktrasl',$request->soluong);
+        return Redirect::to('ton-kho');
+    }
 }

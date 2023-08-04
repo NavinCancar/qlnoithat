@@ -186,7 +186,7 @@ class CartController extends Controller
         ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
         ->where('khach_hang.KH_MA', $KH_MA)->get();
 
-        $HTTT = DB::table('hinh_thuc_thanh_toan')->get();
+        $HTTT = DB::table('hinh_thuc_thanh_toan')->orderby('HTTT_MA')->get();
 
         return view('pages.cart.show_detail_order')->with('category', $all_category_product)
         ->with('DCGH', $DCGH)->with('CTGH', $CTGH)->with('HTTT', $HTTT);
