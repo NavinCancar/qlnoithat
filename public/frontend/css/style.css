@@ -58,7 +58,7 @@ button:hover {
 hr{
     width: 30px;
     height: 2px;
-    background-color: #ff7f50;
+    background-color: #014737;
 }
 .center{
 	text-align: center;
@@ -95,7 +95,7 @@ hr{
 .navbar i:hover,
 .navbar i.active,
 .navbar-light .navbar-nav .nav-link.active{
-    color:  #ff7f50;
+    color:  #31c48d; /*ff7f50*/
 }
 .navbar i{
     font-size:  1.2rem;
@@ -123,7 +123,7 @@ hr{
 @media only screen and (max-width:991px){
     body > nav > div > button:hover,
     body > nav > div > button:focus{
-        background-color: coral;
+        background-color: #31c48d; /*coral*/
         
     }
     body > nav > div > button:hover #bar,
@@ -174,7 +174,7 @@ hr{
     
 }
 #home span{
-    color: coral;
+    color: #31c48d;
 }
 #new .one img{
     width: 100%;
@@ -247,7 +247,7 @@ hr{
     opacity: 0.7;
 }
 .product .buy-btn{
-    background: coral;
+    background: #31c48d;
     transform: translateY(20px);
     opacity: 0;
     transition: 0.3s all;
@@ -322,7 +322,7 @@ footer .copyright a{
 }
 footer .copyright a:hover{
     color: #fff;
-    background-color: #fb774f;
+    background-color: #0e9f6e;
     
 }
 li a{
@@ -347,7 +347,7 @@ li a{
 }
 
 #cart-container table thead td{
-    background: #fd8c66;
+    background: #0e9f6e; /*fd8c66*/
     color: #fff;
     border: none;
     padding: 6px 0;
@@ -393,7 +393,7 @@ li a{
 
 #cart-bottom .coupon h5,
 #cart-bottom .total h5 {
-    background: #fd8c66;
+    background: #0e9f6e;
     color: #fff;
     border: none;
     padding: 6px 12px;
@@ -447,7 +447,7 @@ li a{
 
 .shop-list:hover{
     font-weight: bold;
-    color: coral;
+    color: #31c48d;
 }
 
 .shop-nav{
@@ -458,7 +458,7 @@ li a{
 
 .shop-nav:hover{
     font-weight: bold;
-    color: coral;
+    color: #31c48d;
 }
 
 /*product*/
@@ -467,7 +467,7 @@ li a{
 }
 
 .dropdown-item:hover{
-    background-color: #fb774f;
+    background-color: #31c48d;
     font-weight: bold;
 }
 
@@ -497,7 +497,7 @@ li a{
   }
   
   .login-form form button, .signup-form form button {
-    background: coral;
+    background: #31c48d;
     border: medium none;
     border-radius: 0;
     color: #FFFFFF;
@@ -519,7 +519,7 @@ li a{
   
   
   .or{
-      background: coral;
+      background: #31c48d;
       border-radius: 40px;
       color: #FFFFFF;
       font-size: 16px;
