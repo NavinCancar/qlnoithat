@@ -61,7 +61,7 @@
               {{-- Pagination Elements --}}
               @for ($key=0; $key+1<=$all_hinhthuc_thanhtoan->lastPage(); $key++)
                 @if ($all_hinhthuc_thanhtoan->currentPage() === $key + 1)
-                  <li><a href="{{ $all_hinhthuc_thanhtoan->url($key + 1) }}" style="color:#fff; background-color: #8b5c7e">{{ $key + 1 }}</a></li>
+                  <li><a href="{{ $all_hinhthuc_thanhtoan->url($key + 1) }}" style="color:#fff; background-color: #ffbd0b">{{ $key + 1 }}</a></li>
                 @else
                   <li><a href="{{ $all_hinhthuc_thanhtoan->url($key + 1) }}">{{ $key + 1 }}</a></li>
                 @endif

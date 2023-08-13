@@ -497,7 +497,7 @@ li a{
   }
   
   .login-form form button, .signup-form form button {
-    background: #ffbd0b;
+    background: #35a2a1;
     border: medium none;
     border-radius: 0;
     color: #FFFFFF;
@@ -519,7 +519,7 @@ li a{
   
   
   .or{
-      background: #ffbd0b;
+      background: #35a2a1;
       border-radius: 40px;
       color: #FFFFFF;
       font-size: 16px;

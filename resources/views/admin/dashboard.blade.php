@@ -1,7 +1,7 @@
 @extends('admin-layout')
 @section('admin-content')
 <!-- //market-->
-<div  style="box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); background: RGB(189, 140, 153); text-align: center; color: #fff; font-family: Arial, sans-serif; font-weight: bold;">
+<div  style="box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); background: #3fc0be; text-align: center; color: #fff; font-family: Arial, sans-serif; font-weight: bold;">
       <br><h1>Trang quản trị bán nội thất</h1><br>
 </div>
 		<div class="market-updates">
@@ -11,7 +11,7 @@
                         <i class="fa fa-shopping-cart"></i>
 					</div>
 					 <div class="col-md-8 market-update-left">
-					 <h4>Tổng số đơn hàng đã đặt</h4>
+					 <h4>Tổng số đơn hàng</h4>
 					<h3>
 						<?php
 							$ddh= Session::get('SO_DDH');
@@ -97,7 +97,7 @@
 			<style>
 			.market-update-block.clr-block-5 {
 				margin: 0 0 1.5em ;
-				background: #e6c81c;
+				background: #f6d903 ;
 				box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 				transition: 0.5s all;
 			-webkit-transition: 0.5s all;
@@ -106,7 +106,7 @@
 			}
 
 			.market-update-block.clr-block-5:hover {
-				background:#8b5c7e;
+				background:#ffbd0b;
 				transition: 0.5s all;
 			-webkit-transition: 0.5s all;
 			-moz-transition: 0.5s all;

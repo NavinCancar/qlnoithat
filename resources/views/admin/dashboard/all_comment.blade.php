@@ -86,7 +86,7 @@
               {{-- Pagination Elements --}}
               @for ($key=0; $key+1<=$danh_gia->lastPage(); $key++)
                 @if ($danh_gia->currentPage() === $key + 1)
-                  <li><a href="{{ $danh_gia->url($key + 1) }}" style="color:#fff; background-color: #8b5c7e">{{ $key + 1 }}</a></li>
+                  <li><a href="{{ $danh_gia->url($key + 1) }}" style="color:#fff; background-color: #ffbd0b">{{ $key + 1 }}</a></li>
                 @else
                   <li><a href="{{ $danh_gia->url($key + 1) }}">{{ $key + 1 }}</a></li>
                 @endif

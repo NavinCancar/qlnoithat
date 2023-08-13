@@ -110,7 +110,7 @@
               {{-- Pagination Elements --}}
               @for ($key=0; $key+1<=$id_status->lastPage(); $key++)
                 @if ($id_status->currentPage() === $key + 1)
-                  <li><a href="{{ $id_status->url($key + 1) }}" style="color:#fff; background-color: #8b5c7e">{{ $key + 1 }}</a></li>
+                  <li><a href="{{ $id_status->url($key + 1) }}" style="color:#fff; background-color: #ffbd0b">{{ $key + 1 }}</a></li>
                 @else
                   <li><a href="{{ $id_status->url($key + 1) }}">{{ $key + 1 }}</a></li>
                 @endif
