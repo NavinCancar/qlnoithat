@@ -58,7 +58,7 @@ button:hover {
 hr{
     width: 30px;
     height: 2px;
-    background-color: #014737;
+    background-color: #ec4c36;
 }
 .center{
 	text-align: center;
@@ -95,7 +95,7 @@ hr{
 .navbar i:hover,
 .navbar i.active,
 .navbar-light .navbar-nav .nav-link.active{
-    color:  #31c48d; /*ff7f50*/
+    color:  #ffbd0b; /*ff7f50*/
 }
 .navbar i{
     font-size:  1.2rem;
@@ -118,12 +118,12 @@ hr{
     color: #fff;
 }
 #top_banner_phone{
-    width: 60%;
+    width: 55%;
 }
 @media only screen and (max-width:991px){
     body > nav > div > button:hover,
     body > nav > div > button:focus{
-        background-color: #31c48d; /*coral*/
+        background-color: #ffbd0b; /*coral*/
         
     }
     body > nav > div > button:hover #bar,
@@ -174,7 +174,7 @@ hr{
     
 }
 #home span{
-    color: #31c48d;
+    color: #ffbd0b;
 }
 #new .one img{
     width: 100%;
@@ -247,7 +247,7 @@ hr{
     opacity: 0.7;
 }
 .product .buy-btn{
-    background: #31c48d;
+    background: #35a2a1;
     transform: translateY(20px);
     opacity: 0;
     transition: 0.3s all;
@@ -322,7 +322,7 @@ footer .copyright a{
 }
 footer .copyright a:hover{
     color: #fff;
-    background-color: #0e9f6e;
+    background-color: #35a2a1;
     
 }
 li a{
@@ -347,7 +347,7 @@ li a{
 }
 
 #cart-container table thead td{
-    background: #0e9f6e; /*fd8c66*/
+    background: #35a2a1; /*fd8c66*/
     color: #fff;
     border: none;
     padding: 6px 0;
@@ -393,7 +393,7 @@ li a{
 
 #cart-bottom .coupon h5,
 #cart-bottom .total h5 {
-    background: #0e9f6e;
+    background: #35a2a1;
     color: #fff;
     border: none;
     padding: 6px 12px;
@@ -447,7 +447,7 @@ li a{
 
 .shop-list:hover{
     font-weight: bold;
-    color: #31c48d;
+    color: #ffbd0b;
 }
 
 .shop-nav{
@@ -458,7 +458,7 @@ li a{
 
 .shop-nav:hover{
     font-weight: bold;
-    color: #31c48d;
+    color: #ffbd0b;
 }
 
 /*product*/
@@ -467,7 +467,7 @@ li a{
 }
 
 .dropdown-item:hover{
-    background-color: #31c48d;
+    background-color: #ffbd0b;
     font-weight: bold;
 }
 
@@ -497,7 +497,7 @@ li a{
   }
   
   .login-form form button, .signup-form form button {
-    background: #31c48d;
+    background: #ffbd0b;
     border: medium none;
     border-radius: 0;
     color: #FFFFFF;
@@ -519,7 +519,7 @@ li a{
   
   
   .or{
-      background: #31c48d;
+      background: #ffbd0b;
       border-radius: 40px;
       color: #FFFFFF;
       font-size: 16px;

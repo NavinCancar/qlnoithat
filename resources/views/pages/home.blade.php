@@ -1,10 +1,11 @@
  @extends('welcome')
  @section('content')
- <div class="row mx-auto pt-2 pb-5">
+ <div class="row mx-auto pt-1 pb-5">
         <div style="background-color:#fff" class="center">
-            <img src="{{('public/frontend/img/banner/bannertop.png')}}" id="top_banner_phone" alt="" height="100%"/>
+            <img src="{{('public/frontend/img/banner/bannertop.png')}}" id="top_banner_phone" alt="" width="100%"/>
         </div>
-            <div class="col-sm-8 pt-2">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10 ">
                 <!-- Carousel -->
                 <div id="demo" class="carousel slide " data-bs-ride="carousel">
 
@@ -40,21 +41,6 @@
                         data-bs-slide="next">
                         <span class="carousel-control-next-icon"></span>
                     </button>
-                </div>
-            </div>
-
-            <div class="row col-sm-4 banner-nho">
-                <div class="pt-2">
-                    <a href="#">
-                        <img class="border_radius_normal rounded-2" style="width: 100%;"
-                            src="{{('public/frontend/img/banner/banner4.png')}}" />
-                    </a>
-                </div>
-                <div class="pt-2">
-                    <a href="#">
-                        <img class="border_radius_normal rounded-2" style="width: 100%;"
-                            src="{{('public/frontend/img/banner/banner5.png')}}" />
-                    </a>
                 </div>
             </div>
         </div>
