@@ -99,7 +99,7 @@
             <br>
           </form>
           @if($all_DDH->TT_MA!=1)
-          <a target="_blank" href="{{URL::to('/print-bill/'.$all_DDH->DDH_MA)}}"><button type="button" style="width:100%" class="btn btn-success">In vận hoá đơn</button></a>
+          <a target="_blank" href="{{URL::to('/print-bill/'.$all_DDH->DDH_MA)}}"><button type="button" style="width:100%" class="btn btn-success">In hoá đơn</button></a>
           @endif
       @endforeach
       </div>
