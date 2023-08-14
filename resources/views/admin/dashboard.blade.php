@@ -106,7 +106,7 @@
 			}
 
 			.market-update-block.clr-block-5:hover {
-				background:#ffbd0b;
+				background:#1e5858a2;
 				transition: 0.5s all;
 			-webkit-transition: 0.5s all;
 			-moz-transition: 0.5s all;

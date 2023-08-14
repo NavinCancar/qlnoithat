@@ -54,6 +54,9 @@ body a:hover{
 .leftside-navigation,.right-stat-bar{
     height: 100%;
 }
+.leftside-navigation{
+    background-color: #1e5858a2;
+}
 .right-stat-bar ul {
     list-style-type: none;
     padding-left: 0;
@@ -717,28 +720,28 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
   -o-transition: 0.5s all;
 }
 .market-update-block.clr-block-1:hover {
-    background: #ffbd0b;
+    background: #1e5858a2;
    transition: 0.5s all;
   -webkit-transition: 0.5s all;
   -moz-transition: 0.5s all;
   -o-transition: 0.5s all;
 }
 .market-update-block.clr-block-2:hover {
-    background: #ffbd0b;
+    background: #1e5858a2;
    transition: 0.5s all;
   -webkit-transition: 0.5s all;
   -moz-transition: 0.5s all;
   -o-transition: 0.5s all;
 }
 .market-update-block.clr-block-3:hover {
-    background:#ffbd0b;
+    background:#1e5858a2;
     transition: 0.5s all;
   -webkit-transition: 0.5s all;
   -moz-transition: 0.5s all;
   -o-transition: 0.5s all;
 }
 .market-update-block.clr-block-4:hover {
-    background:#ffbd0b;
+    background:#1e5858a2;
     transition: 0.5s all;
   -webkit-transition: 0.5s all;
   -moz-transition: 0.5s all;
@@ -1636,8 +1639,8 @@ ul.bs-glyphicons-list {
     box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
 .table-agile-info{
-	background: #ffffffcc;
-    padding: 2em;
+	background: #ffffff00;
+    padding: 1em;
     border-radius: 4px;
     -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
     box-shadow: 0 1px 1px rgba(0,0,0,.05);

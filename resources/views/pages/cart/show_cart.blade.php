@@ -21,12 +21,12 @@
             <table width="100%">
                 <thead>
                     <tr>
-                        <td style="width: 55px;">Xoá</td>
                         <td>Ảnh</td>
                         <td>Nội thất</td>
                         <td>Giá</td>
                         <td>Số lượng</td>
                         <td>Tổng</td>
+                        <td style="width: 50px;">Xoá</td>
                     </tr>
                 </thead>
 
@@ -34,7 +34,6 @@
                 <?php $tong =0; ?>
                 @foreach($all_cart_product as $key => $cart_pro)
                 <tr>
-                    <td><a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-cart/'.$cart_pro->NT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fas fa-trash-alt"></i></a></td>
                     <td ><img src="../qlnoithat/public/frontend/img/noithat/{{$cart_pro->HANT_DUONGDAN}}" alt=""></td>
                     <td>
                         <h5 style='width: 100%;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'>{{$cart_pro->NT_TEN}}</h5>
@@ -54,6 +53,7 @@
                     <td>
                         <h5><span id="tongGia1"></span> {{number_format($cart_pro->CTGH_SOLUONG*$cart_pro->NT_GIA)}} VNĐ</h5>
                     </td>
+                    <td><a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-cart/'.$cart_pro->NT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fas fa-x" style="color: #ec4c36; font-size: large;"></i></a></td>
                     <?php
                         $tong = $tong + $cart_pro->CTGH_SOLUONG*$cart_pro->NT_GIA;
                     ?>
