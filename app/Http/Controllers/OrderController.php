@@ -143,7 +143,7 @@ class OrderController extends Controller
 
 
 
-    //In vận đơn giao hàng
+    //In hoá đơn giao hàng
     public function print_bill($DDH_MA){
         $this->AuthLogin();
         
@@ -173,7 +173,7 @@ class OrderController extends Controller
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Vận đơn giao hàng</title>
+            <title>Hoá đơn giao hàng</title>
             <style>
                 body {
                     font-family: DejaVu Sans;
@@ -217,21 +217,12 @@ class OrderController extends Controller
             </style>
         </head>
         <body>
-            <h2>VẬN ĐƠN GIAO HÀNG</h2>
+            <h2>HOÁ ĐƠN</h2>
             
             <div class="invoice-details">
-                <h3>Thông tin vận đơn</h3>
+                <h3>Thông tin hoá đơn</h3>
                 
                 <table>
-                    <tr>
-                        <th>Mã đơn hàng:</th>
-                        <td>'.$DDH_MA.'</td>
-                    </tr>
-                    <tr>
-                        <th>Ngày tạo đơn hàng:</th>
-                        <td>'. date('d/m/Y H:i:s', strtotime($all_DDH->DDH_NGAYDAT)).'</td>
-
-                    </tr>
                     <tr>
                         <th>Người gửi hàng:</th>
                         <td class="shipper-details">
