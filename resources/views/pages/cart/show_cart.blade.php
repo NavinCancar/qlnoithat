@@ -1,5 +1,11 @@
 @extends('welcome')
 @section('content')
+<style>
+  .change-btn {
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+</style>
 <section id="blog-home" class="pr-5 mt-3 container center">
             <h2 class="font-weight-bold pt-3">Giỏ hàng</h2>
             <hr class="mx-auto">
@@ -43,11 +49,12 @@
                     </td>
                     <td>
                         <form action="{{URL::to('/update-cart')}}" method="POST">
-                            {{ csrf_field() }}
-                                                
-                            <input class="w-25 pl-1" name="qty" value="{{$cart_pro->CTGH_SOLUONG}}" type="number" min="1" id="amount1">
+                            {{ csrf_field() }}     
+                            <button type="button" class="change-btn" onclick="changeQty(this, -1)">-</button>
+                            <input class="w-25 pl-1" name="qty" value="{{$cart_pro->CTGH_SOLUONG}}" type="number" min="1" id="amount1">         
+                            <button type="button" class="change-btn" onclick="changeQty(this, 1)">+</button>
                             <input name="productid_hidden" type="hidden"  value="{{$cart_pro->NT_MA}}" />
-                            <button type = "submit" class="btn btn-outline-dark btn-sm">Cập nhật</button>
+                            <!--<button type = "submit" class="btn btn-outline-dark btn-sm">Cập nhật</button>-->
                         </form>
                     </td>
                     <td>
@@ -90,7 +97,8 @@
                     text-transform: uppercase;
                     color: #fff;
                     background-color: #000;
-                    /*background: url(https://t4.ftcdn.net/jpg/01/26/08/21/240_F_126082169_KlqWhWjl4QZRtrt9TzwZLt8U8qcBfrsq.jpg);*/
+                    /*background: url(https://cdn.dribbble.com/users/4908/screenshots/2787171/invoice-animation-dribbble.gif);*/
+                    background: url({{('public/frontend/img/bill.png')}});
                     border: none;
                     border-radius: 4px;
                     cursor: pointer;
@@ -137,8 +145,37 @@
                 </style>
                 <a href="{{URL::to('/show-all-bill')}}"><button class="code-btn">
                 <span>Xem các đơn hàng cũ</span>
-                <i class="fas fa-angle-double-right"></i>
+                <!--<i class="fas fa-angle-double-right"></i>-->
                 </button></a>
             </div>
         </section>
+        <script>
+            //Nút +, -
+            function changeQty(button, change) {
+                var inputElement = button.parentNode.querySelector('input[type="number"]');
+                var inputValue = parseInt(inputElement.value);
+
+                if (isNaN(inputValue)) {
+                inputValue = 1;
+                }
+
+                var newValue = inputValue + change;
+                newValue = newValue < 1 ? 1 : newValue;
+
+                inputElement.value = newValue;
+                inputElement.dispatchEvent(new Event('input'));
+            }
+
+            //Tự động submit khi đổi qty
+            // Get all input elements with the name "qty"
+            var qtyInputs = document.querySelectorAll('input[name="qty"]');
+
+            // Add event listener to each qty input
+            qtyInputs.forEach(function(input) {
+                input.addEventListener('input', function() {
+                this.closest('form').submit();
+                });
+            });
+        </script>
+
 @endsection

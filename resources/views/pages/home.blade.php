@@ -133,10 +133,10 @@
         </section>
             <style>
                 #re {
-                display: block;
+                    display: block;
                 }
                 #dat {
-                display: none;
+                    display: none;
                 }
             </style>
             <button class ="btn btn-dark" id="toggle-btn">

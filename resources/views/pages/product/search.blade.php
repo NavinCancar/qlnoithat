@@ -2,10 +2,10 @@
  @section('content')
 <section id="featured" class="my-3 py-3 row" >
     <div class="container mt-3 py-3">
-        <h2 class="font-weight-bold">Kết quả tìm kiếm</h2>
+        <h3 class="font-weight-bold">Kết quả tìm kiếm</h3>
         <hr>
     </div>
-        <div class="row mx-auto container-fluid col-lg-9 col-md-12 col-12">
+        <div class="row mx-auto container-fluid col-lg-9 col-md-10 col-12">
             @foreach($search_product as $key => $product)
             <div class="product text-center col-lg-3 col-md-4 col-12">
                 

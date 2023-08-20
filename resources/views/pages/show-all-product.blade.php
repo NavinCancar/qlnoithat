@@ -1,9 +1,9 @@
 @extends('all-product')
 @section('content')
 <section id="featured" class="my-3 py-3 row" >
-        <div class="container mt-3 py-3">
-            <h2 class="font-weight-bold">SẢN PHẨM</h2>
-            <hr>
+        <div class="container mt-3 py-3 center">
+            <h3>SẢN PHẨM</h3>
+            <hr class="mx-auto">
         </div>
         <?php
             $chuoi_gia = Session::get('chuoi_gia');

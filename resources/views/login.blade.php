@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-sm-5 col-sm-offset-1">
                         <div class="login-form"><!--login form-->
-                            <h2 class="font-weight-bold">Đăng nhập</h2>
+                            <h3 class="font-weight-bold">Đăng nhập</h3>
                             <hr>
                             <?php
                                 $message= Session::get('message');
@@ -34,7 +34,7 @@
 
                     <div class="col-sm-5">
                         <div class="signup-form"><!--sign up form-->
-                            <h2 class="font-weight-bold">Đăng ký</h2>
+                            <h3 class="font-weight-bold">Đăng ký</h3>
                             <hr>
                             <?php
                                 $message2= Session::get('message2');

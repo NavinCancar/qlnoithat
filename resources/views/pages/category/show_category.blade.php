@@ -3,7 +3,7 @@
 <section id="featured" class="my-3 py-3 row" >
         <div class="container mt-3 py-3">
             @foreach($category_name as $key => $name)
-            <h2 class="font-weight-bold">{{ $name->LNT_TEN }}</h2>
+            <h3 class="font-weight-bold">{{ $name->LNT_TEN }}</h3>
             <?php
               $LNT_MA=$name->LNT_MA;
             ?>

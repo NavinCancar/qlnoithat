@@ -41,7 +41,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--logo start-->
 <div class="brand">
     <a href="{{URL::to('/dashboard')}}" class="logo">
-        RELAX
+		<img src="{{('public/frontend/img/logo5.png')}}" style="height:100%">
     </a>
     <div class="sidebar-toggle-box">
         <div class="fa fa-bars"></div>

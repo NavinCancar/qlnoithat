@@ -55,7 +55,7 @@
                         <li class="nav-item">
                             <form class="d-flex" action="{{ URL::to('/tim-kiem') }}" method="POST">
                                 {{ csrf_field() }}
-                                <input class="form-control me-2" type="text" name="keywords_submit" placeholder="Nhập nội thất cần tìm...">
+                                <input class="form-control me-2 rounded-pill" type="text" name="keywords_submit" placeholder="Nhập nội thất cần tìm...">
                                 <button class="btn btn-link" type="submit"><i class="fa fa-search icon-white"></i></a></button>
                             </form>
                         </li>

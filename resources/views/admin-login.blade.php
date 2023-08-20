@@ -24,8 +24,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <div class="log-w3">
 <div class="w3layouts-main">
-	<h1 class="text-center">RELAX</h1>
+	<div style="background-color:white; border-top-left-radius: 90px;">
+	<!--<h1 class="text-center" style="padding-top:10px">RELAX</h1>-->
+	<img src="{{('public/frontend/img/logo4.png')}}" style="width:150px; padding-top:10px;padding-bottom:5px; margin-left:30%">
 	<h2>Đăng nhập</h2>
+	</div>
+	
 		<form action="{{URL::to('/admin-dashboard')}}" method="post">
 			{{csrf_field()}}
 			<input type="text" class="ggg" name="admin_email" placeholder="Nhập email" required="">

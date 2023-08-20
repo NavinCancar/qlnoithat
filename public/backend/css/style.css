@@ -2368,13 +2368,15 @@ ul.inbox-pagination li {
     letter-spacing: 2px;
     text-transform: uppercase;
     padding-bottom: 15px;
-	    text-align: center;
+	text-align: center;
 }
 .w3layouts-main {
     width: 30%;
     margin:5em auto;
-    background:rgba(119, 152, 171, 0.27);
-    padding: 42px 35px;
+    background:rgba(119, 152, 171, 0.27); /*rgba(119, 152, 171, 0.27)*/
+    padding: 40px 40px 60px 40px;
+    border-bottom-right-radius: 30%;
+    border-top-left-radius: 30%;
 }
 /*--//header--*/
 /*--login--*/
