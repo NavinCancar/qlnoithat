@@ -27,22 +27,20 @@
         //print_r ($c);
         //echo '</pre>';
         ?>
-        <section id="cart-container" class="container my-5">
-            <div class="table-responsive">
-                <table class="table b-t b-light table-responsive-sm">
-                    <thead>
-                        <tr>
-                            <td style="width: 40px">Mã</td>
-                            <td style="width: 100px">Ngày đặt</td>
-                            <td>Nội thất</td>
-                            <td style="width: 100px">Tổng tiền</td>
-                            <td>Trạng thái</td>
-                            <td style="width: 110px"></td>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                    @foreach($all_DDH as $key => $all_don)
+        <div class="table-responsive mt-4">
+            <table class="table b-t b-light table-responsive-md text-center">
+                <thead style="background-color:#35A2A146;">
+                <tr>
+                    <th style="width: 40px">Mã</th>
+                    <th style="width: 100px">Ngày đặt</th>
+                    <th>Nội thất</th>
+                    <th style="width: 100px">Tổng tiền</th>
+                    <th>Trạng thái</th>
+                    <th style="width: 110px"></th>
+                </tr>
+                </thead>
+                <tbody>	
+                @foreach($all_DDH as $key => $all_don)
                     <tr>
                         <td>{{$all_don->DDH_MA}}</td>
                         <td><?php echo  date('d/m/Y', strtotime($all_don->DDH_NGAYDAT)) ?></td>
@@ -58,12 +56,13 @@
                         <!--<td style='width: 100%;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'>{{$all_don->TT_TEN}}</td>-->
                         <td><a href="{{URL::to('/show-detail-bill/'.$all_don->DDH_MA)}}"><button type = "submit" class="btn btn-outline-dark btn-sm">Xem chi tiết</button></a></td>
                     </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-            </div>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+
             <nav aria-label="Page navigation">
-                <ul class="justify-content-center pagination mt-5">
+                <ul class="justify-content-center pagination mt-3">
                     {{-- Previous Page Link --}}
                     @if ($all_DDH->onFirstPage())
                         <li class="page-item disabled">

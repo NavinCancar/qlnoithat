@@ -23,30 +23,25 @@
         //print_r ($c);
         //echo '</pre>';
         ?>
-        <section id="cart-container" class="container my-5">
-            <table width="100%">
-                <thead>
-                    <tr>
-                        <td>Ảnh</td>
-                        <td>Nội thất</td>
-                        <td>Giá</td>
-                        <td>Số lượng</td>
-                        <td>Tổng</td>
-                        <td style="width: 50px;">Xoá</td>
-                    </tr>
-                </thead>
-
-                <tbody>
-                <?php $tong =0; ?>
+        <div class="table-responsive mt-2">
+        <table class="table b-t b-light table-responsive-md text-center">
+            <thead style="background-color:#35A2A146;">
+            <tr>
+                <th>Ảnh</th>
+                <th>Nội thất</th>
+                <th>Giá</th>
+                <th style="width: 200px;">Số lượng</th>
+                <th>Tổng</th>
+                <th style="width: 50px;">Xoá</th>
+            </tr>
+            </thead>
+            <tbody>	
+            <?php $tong =0; ?>
                 @foreach($all_cart_product as $key => $cart_pro)
                 <tr>
-                    <td ><img src="../qlnoithat/public/frontend/img/noithat/{{$cart_pro->HANT_DUONGDAN}}" alt=""></td>
-                    <td>
-                        <h5 style='width: 100%;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'>{{$cart_pro->NT_TEN}}</h5>
-                    </td>
-                    <td>
-                        <h5><span id="donGia1">{{number_format($cart_pro->NT_GIA)}}</span> VNĐ</h5>
-                    </td>
+                    <td><img src="../qlnoithat/public/frontend/img/noithat/{{$cart_pro->HANT_DUONGDAN}}" style='width: 120px;' alt=""></td>
+                    <td><h5 style='width: 100%;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'>{{$cart_pro->NT_TEN}}</h5></td>
+                    <td><h5><span id="donGia1">{{number_format($cart_pro->NT_GIA)}}</span> VNĐ</h5></td>
                     <td>
                         <form action="{{URL::to('/update-cart')}}" method="POST">
                             {{ csrf_field() }}     
@@ -57,34 +52,28 @@
                             <!--<button type = "submit" class="btn btn-outline-dark btn-sm">Cập nhật</button>-->
                         </form>
                     </td>
-                    <td>
-                        <h5><span id="tongGia1"></span> {{number_format($cart_pro->CTGH_SOLUONG*$cart_pro->NT_GIA)}} VNĐ</h5>
-                    </td>
+                    <td><h5><span id="tongGia1"></span> {{number_format($cart_pro->CTGH_SOLUONG*$cart_pro->NT_GIA)}} VNĐ</h5></td>
                     <td><a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-cart/'.$cart_pro->NT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fas fa-x" style="color: #ec4c36; font-size: large;"></i></a></td>
                     <?php
                         $tong = $tong + $cart_pro->CTGH_SOLUONG*$cart_pro->NT_GIA;
                     ?>
                 </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </section>
-
+            @endforeach
+            </tbody>
+        </table>
+        </div>
+        
         <section id="cart-bottom" class="container">
         <div class="row">
-            <div class="total col-lg-8 col-md-8 col-12">
-                <div>
-                    <h5>Tổng giỏ hàng</h5>
-                    <div class="d-flex justify-content-between">
-                        <h6>Tổng tiền</h6>
-                        <p><span id="total"></span>
-                        <?php echo number_format($tong); ?> VNĐ
-                        </p>
-                    </div>
-                    <a href="{{URL::to('/show-detail-order')}}"><button class="ml-auto" onclick="buy()">Đặt hàng</button></a>
+            <div class=" col-lg-8 col-md-8 col-12">
+                <div class="d-flex justify-content-between">
+                    <h4>Tổng giỏ hàng:</h4>
+                    <h3><?php echo number_format($tong); ?> VNĐ</h3>
                 </div>
+                <hr class="mx-auto" style="width:100%">
+                <a href="{{URL::to('/show-detail-order')}}"><button class="btn btn-block btn-blue" onclick="buy()">Đặt hàng ngay!</button></a>
             </div>
-            <div class="total col-lg-4 col-md-4 col-12">
+            <div class=" col-lg-4 col-md-4 col-12">
                 <style>
                     .code-btn {
                     width: 100%;

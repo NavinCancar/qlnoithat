@@ -53,43 +53,30 @@
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1"><b>Nội thất đặt:</b></label>
-                <section id="cart-container" class="container my-2">
-            <table width="100%">
-                <thead>
-                    <tr>
-                        <td>Ảnh</td>
-                        <td>Nội thất</td>
-                        <td>Đơn giá</td>
-                        <td>Số lượng</td>
-                        <td>Tổng</td>
-                    </tr>
-                </thead>
-
-                <tbody>
-                @foreach($group_DDH as $key => $cart_pro)
-                <tr>
-                    <td ><img src="../../qlnoithat/public/frontend/img/noithat/{{$cart_pro->HANT_DUONGDAN}}" alt=""></td>
-                    <td>
-                        <h5 style='width: 100%;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'>{{$cart_pro->NT_TEN}}</h5>
-                    </td>
-                    <td>
-                        <h5><span id="donGia1">{{number_format($cart_pro->CTDDH_DONGIA)}}</span> VNĐ</h5>
-                    </td>
-                    <td>
-                        <form action="{{URL::to('/update-cart')}}" method="POST">
-                            {{ csrf_field() }}
-                                                
-                            <input class="w-25 pl-1" disabled name="qty" value="{{$cart_pro->CTDDH_SOLUONG}}" type="number" min="1" id="amount1">
-                        </form>
-                    </td>
-                    <td>
-                        <h5><span id="tongGia1"></span> {{number_format($cart_pro->CTDDH_SOLUONG*$cart_pro->CTDDH_DONGIA)}} VNĐ</h5>
-                    </td>
-                </tr>
-                @endforeach
-                    </tbody>
-                </table>
-            </section>
+                <div class="table-responsive mt-1">
+                    <table class="table b-t b-light table-responsive-md text-center">
+                        <thead style="background-color:#35A2A146;">
+                        <tr>
+                            <th>Ảnh</th>
+                            <th>Nội thất</th>
+                            <th>Đơn giá</th>
+                            <th style="width: 170px;">Số lượng</th>
+                            <th>Tổng</th>
+                        </tr>
+                        </thead>
+                        <tbody>	
+                        @foreach($group_DDH as $key => $cart_pro)
+                            <tr>
+                                <td><img src="../../qlnoithat/public/frontend/img/noithat/{{$cart_pro->HANT_DUONGDAN}}" style='width: 120px;' alt=""></td>
+                                <td><h5 style='width: 100%;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'>{{$cart_pro->NT_TEN}}</h5></td>
+                                <td><h5><span id="donGia1">{{number_format($cart_pro->CTDDH_DONGIA)}}</span> VNĐ</h5></td>
+                                <td><input class="w-25 pl-1" disabled name="qty" value="{{$cart_pro->CTDDH_SOLUONG}}" type="number" min="1" id="amount1"></td>
+                                <td><h5><span id="tongGia1"></span> {{number_format($cart_pro->CTDDH_SOLUONG*$cart_pro->CTDDH_DONGIA)}} VNĐ</h5></td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <div class="row">
