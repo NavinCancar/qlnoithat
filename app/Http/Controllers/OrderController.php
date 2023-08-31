@@ -120,8 +120,8 @@ class OrderController extends Controller
         $this->AuthLogin();
         $all_category_product = DB::table('loai_noi_that')->get();
         $all_DDH=  DB::table('don_dat_hang')
-        ->join('khach_hang','khach_hang.KH_MA','=','don_dat_hang.KH_MA')
         ->join('dia_chi_giao_hang','dia_chi_giao_hang.DCGH_MA','=','don_dat_hang.DCGH_MA')
+        ->join('khach_hang','khach_hang.KH_MA','=','dia_chi_giao_hang.KH_MA')
         ->join('hinh_thuc_thanh_toan','hinh_thuc_thanh_toan.HTTT_MA','=','don_dat_hang.HTTT_MA')
         ->join('tinh_thanh_pho','dia_chi_giao_hang.TTP_MA','=','tinh_thanh_pho.TTP_MA')
         ->where('don_dat_hang.DDH_MA', $DDH_MA)->get();
@@ -156,8 +156,8 @@ class OrderController extends Controller
     public function print_bill_convert($DDH_MA){
 
 		$all_DDH=  DB::table('don_dat_hang')
-        ->join('khach_hang','khach_hang.KH_MA','=','don_dat_hang.KH_MA')
         ->join('dia_chi_giao_hang','dia_chi_giao_hang.DCGH_MA','=','don_dat_hang.DCGH_MA')
+        ->join('khach_hang','khach_hang.KH_MA','=','dia_chi_giao_hang.KH_MA')
         ->join('hinh_thuc_thanh_toan','hinh_thuc_thanh_toan.HTTT_MA','=','don_dat_hang.HTTT_MA')
         ->join('tinh_thanh_pho','dia_chi_giao_hang.TTP_MA','=','tinh_thanh_pho.TTP_MA')
         ->where('don_dat_hang.DDH_MA', $DDH_MA)->first();

@@ -153,12 +153,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li class="sub-menu">
                     <a href="javascript:;">
 						<i class="fa fa-archive"></i>
-                        <span>Quản lý nhà cung cấp nội thất</span>
+                        <span>Quản lý xưởng chế tác</span>
                     </a>
                     <ul class="sub">
-						<!-- nha_cung_cap -->
-						<li><a href="{{URL::to('/add-brand-product')}}">Thêm nhà cung cấp</a></li>
-						<li><a href="{{URL::to('/all-brand-product')}}">Liệt kê nhà cung cấp</a></li>
+						<!-- xuong_che_tac -->
+						<li><a href="{{URL::to('/add-brand-product')}}">Thêm xưởng chế tác</a></li>
+						<li><a href="{{URL::to('/all-brand-product')}}">Liệt kê xưởng chế tác</a></li>
                     </ul>
                 </li>
 				@endif

@@ -43,7 +43,7 @@
           <tr>
             <th>Mã nội thất</th>
             <th>Tên nội thất</th>
-            <th>Nhà cung cấp</th>
+            <th>Xưởng chế tác</th>
             <th>Loại nội thất</th>
             <th>Số lượng tồn</th>
           </tr>
@@ -67,7 +67,7 @@
             @endif
             <td>{{$pro->NT_MA }}</td>
             <td>{{$pro->NT_TEN}}</td>
-            <td>{{$pro->NCC_TEN }}</td>
+            <td>{{$pro->XCT_TEN }}</td>
             <td>{{$pro->LNT_TEN }}</td>
             <td>
                   <?php

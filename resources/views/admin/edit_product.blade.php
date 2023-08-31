@@ -75,13 +75,13 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Nhà cung cấp</label>
-                                      <select name="NCC_MA" class="form-control input-sm m-bot15">
+                                    <label for="exampleInputPassword1">Xưởng chế tác</label>
+                                      <select name="XCT_MA" class="form-control input-sm m-bot15">
                                         @foreach($brand_product as $key => $brand)
-                                            @if($brand->NCC_MA==$edit_value->NCC_MA)
-                                            <option selected value="{{$brand->NCC_MA}}">{{$brand->NCC_TEN}}</option>
+                                            @if($brand->XCT_MA==$edit_value->XCT_MA)
+                                            <option selected value="{{$brand->XCT_MA}}">{{$brand->XCT_TEN}}</option>
                                             @else
-                                            <option value="{{$brand->NCC_MA}}">{{$brand->NCC_TEN}}</option>
+                                            <option value="{{$brand->XCT_MA}}">{{$brand->XCT_TEN}}</option>
                                             @endif
                                         @endforeach
                                     </select>

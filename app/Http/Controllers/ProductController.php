@@ -23,7 +23,7 @@ class ProductController extends Controller
         ->where('NT_MA', $NT_MA)->orderby('hinh_anh_noi_that.HANT_DUONGDAN')->get();
 
         $details_product = DB::table('noi_that')
-        ->join('nha_cung_cap','nha_cung_cap.NCC_MA','=','noi_that.NCC_MA')
+        ->join('xuong_che_tac','xuong_che_tac.XCT_MA','=','noi_that.XCT_MA')
         ->join('loai_noi_that','loai_noi_that.LNT_MA','=','noi_that.LNT_MA')
         ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
         ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
@@ -33,7 +33,7 @@ class ProductController extends Controller
         $LNT_MA= $LNT->LNT_MA;
 
         $related_product = DB::table('noi_that')
-        ->join('nha_cung_cap','nha_cung_cap.NCC_MA','=','noi_that.NCC_MA')
+        ->join('xuong_che_tac','xuong_che_tac.XCT_MA','=','noi_that.XCT_MA')
         ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
         ->join('loai_noi_that', 'loai_noi_that.LNT_MA', '=', 'noi_that.LNT_MA')
         ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
@@ -57,7 +57,8 @@ class ProductController extends Controller
         Session::put('kh',$KH_MA);
         
         $binh_luan=  DB::table('khach_hang')
-        ->join('don_dat_hang','khach_hang.KH_MA','=','don_dat_hang.KH_MA')
+        ->join('dia_chi_giao_hang','dia_chi_giao_hang.KH_MA','=','khach_hang.KH_MA')
+        ->join('don_dat_hang','dia_chi_giao_hang.DCGH_MA','=','don_dat_hang.DCGH_MA')
         ->join('chi_tiet_don_dat_hang','chi_tiet_don_dat_hang.DDH_MA','=','don_dat_hang.DDH_MA')
         ->where('TT_MA', 4)
         ->where('NT_MA', $NT_MA)->get();
@@ -123,7 +124,7 @@ class ProductController extends Controller
         $all_loai = DB::table('loai_noi_that')->orderby('LNT_TEN')->get();
 
         $all_product = DB::table('noi_that')
-        ->join('nha_cung_cap','nha_cung_cap.NCC_MA','=','noi_that.NCC_MA')
+        ->join('xuong_che_tac','xuong_che_tac.XCT_MA','=','noi_that.XCT_MA')
         ->join('loai_noi_that','loai_noi_that.LNT_MA','=','noi_that.LNT_MA')
         ->orderby('noi_that.NT_MA','desc')->paginate(10);
 
@@ -145,7 +146,7 @@ class ProductController extends Controller
         $loai = DB::table('loai_noi_that')->where('loai_noi_that.LNT_MA', $LNT_MA)->get();
 
         $all_product = DB::table('noi_that')
-        ->join('nha_cung_cap','nha_cung_cap.NCC_MA','=','noi_that.NCC_MA')
+        ->join('xuong_che_tac','xuong_che_tac.XCT_MA','=','noi_that.XCT_MA')
         ->join('loai_noi_that','loai_noi_that.LNT_MA','=','noi_that.LNT_MA')
         ->where('loai_noi_that.LNT_MA', $LNT_MA)
         ->orderby('noi_that.NT_MA','desc')->paginate(10);
@@ -177,14 +178,14 @@ class ProductController extends Controller
 
     public function add_product(){
         $this->AuthLoginChu();
-        $brand_product = DB::table('nha_cung_cap')->orderby('NCC_MA')->get();
+        $brand_product = DB::table('xuong_che_tac')->orderby('XCT_MA')->get();
         $type_product = DB::table('loai_noi_that')->orderby('LNT_MA')->get();
         return view('admin.add_product')->with('brand_product', $brand_product)->with('type_product', $type_product);
     }
 
     public function product_detail($NT_MA){
         $this->AuthLoginChu();
-        $brand_product = DB::table('nha_cung_cap')->orderby('NCC_MA')->get();
+        $brand_product = DB::table('xuong_che_tac')->orderby('XCT_MA')->get();
         $type_product = DB::table('loai_noi_that')->orderby('LNT_MA')->get();
         $edit_product = DB::table('noi_that')->where('NT_MA',$NT_MA)->get();
 
@@ -213,7 +214,7 @@ class ProductController extends Controller
         $this->AuthLoginChu();
         $data = array();
         //$data['NT_MA'] = $request->product_desc;
-        $data['NCC_MA'] = $request->NCC_MA;
+        $data['XCT_MA'] = $request->XCT_MA;
         $data['LNT_MA'] = $request->LNT_MA;
         $data['NT_TEN'] = $request->NT_TEN;
         $data['NT_CHIEUDAI'] = $request->NT_CHIEUDAI;
@@ -234,7 +235,7 @@ class ProductController extends Controller
 
     public function edit_product($NT_MA){
         $this->AuthLoginChu();
-        $brand_product = DB::table('nha_cung_cap')->orderby('NCC_MA')->get();
+        $brand_product = DB::table('xuong_che_tac')->orderby('XCT_MA')->get();
         $type_product = DB::table('loai_noi_that')->orderby('LNT_MA')->get();
         $edit_product = DB::table('noi_that')->where('NT_MA',$NT_MA)->get();
         $manager_product = view('admin.edit_product')->with('edit_product', $edit_product)->with('brand_product',$brand_product)->with('type_product',$type_product);
@@ -245,7 +246,7 @@ class ProductController extends Controller
         $this->AuthLoginChu();
         $data = array();
         //$data['NT_MA'] = $request->product_desc;
-        $data['NCC_MA'] = $request->NCC_MA;
+        $data['XCT_MA'] = $request->XCT_MA;
         $data['LNT_MA'] = $request->LNT_MA;
         $data['NT_TEN'] = $request->NT_TEN;
         $data['NT_CHIEUDAI'] = $request->NT_CHIEUDAI;
@@ -309,10 +310,10 @@ class ProductController extends Controller
         $all_loai = DB::table('loai_noi_that')->orderby('LNT_TEN')->get();
 
         $search_product = DB::table('noi_that')
-        ->join('nha_cung_cap','nha_cung_cap.NCC_MA','=','noi_that.NCC_MA')
+        ->join('xuong_che_tac','xuong_che_tac.XCT_MA','=','noi_that.XCT_MA')
         ->join('loai_noi_that','loai_noi_that.LNT_MA','=','noi_that.LNT_MA')
         ->where('noi_that.NT_TEN', 'like', '%'.$keywords.'%')
-        ->orWhere('nha_cung_cap.NCC_TEN', 'like', '%'.$keywords.'%')
+        ->orWhere('xuong_che_tac.XCT_TEN', 'like', '%'.$keywords.'%')
         ->orderby('noi_that.NT_MA','desc')->get();
 
         $img_product = DB::table('noi_that')
@@ -385,7 +386,7 @@ class ProductController extends Controller
         $this->AuthLoginChuKho();
     
         $all_product = DB::table('noi_that')
-        ->join('nha_cung_cap','nha_cung_cap.NCC_MA','=','noi_that.NCC_MA')
+        ->join('xuong_che_tac','xuong_che_tac.XCT_MA','=','noi_that.XCT_MA')
         ->join('loai_noi_that','loai_noi_that.LNT_MA','=','noi_that.LNT_MA')
         ->orderby('NT_MA','desc')->paginate(10);
         $manager_product = view('admin.dashboard.ton_kho')->with('all_product', $all_product);

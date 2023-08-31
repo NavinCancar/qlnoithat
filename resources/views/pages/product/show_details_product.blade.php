@@ -84,7 +84,7 @@
                 <p><span class="bold">Kích cỡ:</span> Dài: {{$value->NT_CHIEUDAI}} mm | Rộng: {{$value->NT_CHIEURONG}} mm | Cao: {{$value->NT_CHIEUCAO}} mm |</p>
                 <p><span class="bold">Chất liệu: </span>{{$value->NT_MOTACHATLIEU}}</p>
                 <p><span class="bold">Loại nội thất: </span>{{$value->LNT_TEN}}</p>
-                <p><span class="bold">Nhà cung cấp: </span>{{$value->NCC_TEN}}</p>
+                <p><span class="bold">Xưởng chế tác: </span>{{$value->XCT_TEN}}</p>
                 
             </div>
         @endforeach

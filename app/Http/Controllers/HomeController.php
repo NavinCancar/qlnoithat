@@ -106,12 +106,12 @@ class HomeController extends Controller
         $all_category_product = DB::table('loai_noi_that')->get();
 
         $search_product = DB::table('noi_that')
-        ->join('nha_cung_cap','nha_cung_cap.NCC_MA','=','noi_that.NCC_MA')
+        ->join('xuong_che_tac','xuong_che_tac.XCT_MA','=','noi_that.XCT_MA')
         ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
         ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
         ->where('noi_that.NT_TEN', 'like', '%'.$keywords.'%')
         ->orWhere('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
-        ->where('nha_cung_cap.NCC_TEN', 'like', '%'.$keywords.'%')->get();
+        ->where('xuong_che_tac.XCT_TEN', 'like', '%'.$keywords.'%')->get();
 
         return view('pages.product.search')->with('category', $all_category_product)
         ->with('search_product', $search_product);

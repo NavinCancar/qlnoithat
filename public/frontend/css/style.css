@@ -476,10 +476,10 @@ li a{
 /*Login*/
   
   .login-form form input, .signup-form form input {
-    background: #F0F0E9;
-    border: medium none;
+    background: #fff;
+    border: 1px solid #b8b8b8;
     display: block;
-
+    border-radius: 5px;
     height: 40px;
     margin-bottom: 10px;
     outline: medium none;

@@ -56,7 +56,7 @@
             <th>Tên nội thất</th>
             <th>Ảnh nội thất</th>
             <th>Loại nội thất</th>
-            <th>Nhà cung cấp</th>
+            <th>Xưởng chế tác</th>
             <th>Giá nội thất</th>
             <th>Ngày tạo</th>
             <th>Ngày cập nhật</th>
@@ -76,7 +76,7 @@
               @endforeach
             </td>
             <td>{{$pro->LNT_TEN }}</td>
-            <td>{{$pro->NCC_TEN }}</td>
+            <td>{{$pro->XCT_TEN }}</td>
             <td>{{number_format($pro->NT_GIA)}} VNĐ</td>
             <td>{{date('d/m/Y H:i:s', strtotime($pro->NT_NGAYTAO))}}</td>
             <td>{{date('d/m/Y H:i:s', strtotime($pro->NT_NGAYCAPNHAT))}}</td>

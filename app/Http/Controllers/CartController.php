@@ -137,11 +137,13 @@ class CartController extends Controller
         $all_category_product = DB::table('loai_noi_that')->get();
         $all_DDH=  DB::table('don_dat_hang')
         ->join('trang_thai','don_dat_hang.TT_MA','=','trang_thai.TT_MA')
-        ->where('don_dat_hang.KH_MA', $KH_MA)->orderby('don_dat_hang.DDH_NGAYDAT','desc')->paginate(5);
+        ->join('dia_chi_giao_hang','dia_chi_giao_hang.DCGH_MA','=','don_dat_hang.DCGH_MA')
+        ->where('dia_chi_giao_hang.KH_MA', $KH_MA)->orderby('don_dat_hang.DDH_NGAYDAT','desc')->paginate(5);
         $group_DDH = DB::table('don_dat_hang')
         ->join('chi_tiet_don_dat_hang','don_dat_hang.DDH_MA','=','chi_tiet_don_dat_hang.DDH_MA')
         ->join('noi_that','noi_that.NT_MA','=','chi_tiet_don_dat_hang.NT_MA')
-        ->where('don_dat_hang.KH_MA', $KH_MA)->get();
+        ->join('dia_chi_giao_hang','dia_chi_giao_hang.DCGH_MA','=','don_dat_hang.DCGH_MA')
+        ->where('dia_chi_giao_hang.KH_MA', $KH_MA)->get();
         
         return view('pages.cart.show_all_bill')->with('category', $all_category_product)
         ->with('all_DDH', $all_DDH)->with('group_DDH', $group_DDH);
@@ -206,7 +208,6 @@ class CartController extends Controller
         $data = array();
 
         $data['HTTT_MA'] = $request->HTTT_MA;
-        $data['KH_MA'] = $KH_MA;
         $data['DCGH_MA'] = $request->DCGH_MA;
         $data['TT_MA'] = 1;
         $data['DDH_NGAYDAT'] = $now;
@@ -284,14 +285,16 @@ class CartController extends Controller
         ->join('trang_thai','don_dat_hang.TT_MA','=','trang_thai.TT_MA')
         ->join('chi_tiet_don_dat_hang','don_dat_hang.DDH_MA','=','chi_tiet_don_dat_hang.DDH_MA')
         ->join('noi_that','noi_that.NT_MA','=','chi_tiet_don_dat_hang.NT_MA')
-        ->where('don_dat_hang.KH_MA', $KH_MA)
+        ->join('dia_chi_giao_hang','dia_chi_giao_hang.DCGH_MA','=','don_dat_hang.DCGH_MA')
+        ->where('dia_chi_giao_hang.KH_MA', $KH_MA)
         ->where('noi_that.NT_TEN', 'like', '%'.$keywords.'%')
         ->orderby('don_dat_hang.DDH_NGAYDAT','desc')->get();
         
         $group_DDH = DB::table('don_dat_hang')
         ->join('chi_tiet_don_dat_hang','don_dat_hang.DDH_MA','=','chi_tiet_don_dat_hang.DDH_MA')
         ->join('noi_that','noi_that.NT_MA','=','chi_tiet_don_dat_hang.NT_MA')
-        ->where('don_dat_hang.KH_MA', $KH_MA)->get();
+        ->join('dia_chi_giao_hang','dia_chi_giao_hang.DCGH_MA','=','don_dat_hang.DCGH_MA')
+        ->where('dia_chi_giao_hang.KH_MA', $KH_MA)->get();
 
         return view('pages.cart.search_in_order')->with('category', $all_category_product)
         ->with('all_DDH', $all_DDH)->with('group_DDH', $group_DDH);

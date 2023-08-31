@@ -3,7 +3,7 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Liệt kê nhà cung cấp
+      Liệt kê xưởng chế tác
     </div>
     <?php
       $message = Session::get('message');
@@ -23,7 +23,7 @@
         <thead>
           <tr>
             <th>Mã</th>
-            <th>Tên nhà cung cấp</th>
+            <th>Tên xưởng chế tác</th>
             <th>Số điện thoại</th>
             <th>Địa chỉ</th>
             <th>Email</th>
@@ -34,14 +34,14 @@
         <tbody>
         @foreach($all_brand_product as $key => $brand_pro)
           <tr>
-            <td>{{$brand_pro->NCC_MA}}</td>
-            <td>{{$brand_pro->NCC_TEN}}</td>
-            <td>{{$brand_pro->NCC_SODIENTHOAI}}</td>
-            <td>{{$brand_pro->NCC_DIACHI}}</td>
-            <td>{{$brand_pro->NCC_EMAIL}}</td>
+            <td>{{$brand_pro->XCT_MA}}</td>
+            <td>{{$brand_pro->XCT_TEN}}</td>
+            <td>{{$brand_pro->XCT_SODIENTHOAI}}</td>
+            <td>{{$brand_pro->XCT_DIACHI}}</td>
+            <td>{{$brand_pro->XCT_EMAIL}}</td>
             <td>
-              <a href="{{URL::to('/edit-brand-product/'.$brand_pro -> NCC_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
-              <a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-brand-product/'.$brand_pro -> NCC_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
+              <a href="{{URL::to('/edit-brand-product/'.$brand_pro -> XCT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
+              <a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-brand-product/'.$brand_pro -> XCT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
             </td>
           </tr>
          @endforeach
