@@ -220,8 +220,18 @@ Route::get('/all-hinhthuc-thanhtoan', 'App\Http\Controllers\PaymentController@al
 Route::post('/save-hinhthuc-thanhtoan', 'App\Http\Controllers\PaymentController@save_hinhthuc_thanhtoan'); 
 Route::post('/update-hinhthuc-thanhtoan/{HTTT_MA}', 'App\Http\Controllers\PaymentController@update_hinhthuc_thanhtoan'); 
 
+//Trạng thái
+Route::get('/add-trangthai', 'App\Http\Controllers\StateController@add_trangthai'); 
+Route::get('/edit-trangthai/{TT_MA}', 'App\Http\Controllers\StateController@edit_trangthai'); 
+Route::get('/delete-trangthai/{TT_MA}', 'App\Http\Controllers\StateController@delete_trangthai'); 
+Route::get('/all-trangthai', 'App\Http\Controllers\StateController@all_trangthai'); 
+
+Route::post('/save-trangthai', 'App\Http\Controllers\StateController@save_trangthai'); 
+Route::post('/update-trangthai/{TT_MA}', 'App\Http\Controllers\StateController@update_trangthai'); 
+
 //Khách hàng
 Route::get('/all-khachhang', 'App\Http\Controllers\CostumerController@all_khachhang'); 
+Route::get('/show-detail-costumer/{KH_MA}', 'App\Http\Controllers\CostumerController@show_khachhang'); 
 
 //Ngưng bán sp bằng cách tạo lô xuất để xoá hết hàng
 

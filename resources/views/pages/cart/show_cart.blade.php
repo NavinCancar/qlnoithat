@@ -30,7 +30,7 @@
                 <th>Ảnh</th>
                 <th>Nội thất</th>
                 <th>Giá</th>
-                <th style="width: 200px;">Số lượng</th>
+                <th style="width: 220px;">Số lượng</th>
                 <th>Tổng</th>
                 <th style="width: 50px;">Xoá</th>
             </tr>

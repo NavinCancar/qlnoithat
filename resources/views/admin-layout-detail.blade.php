@@ -210,7 +210,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-credit-card-alt"></i>
-                        <span>Phí ship và thanh toán</span>
+                        <span>Phí ship, thanh toán và trạng thái</span>
                     </a>
                     <ul class="sub">
 						<li><a href="{{URL::to('/show_feeship')}}">Quản lý phí ship</a></li>
@@ -218,6 +218,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<!-- hinh_thuc_thanh_toan --> 
 						<li><a href="{{URL::to('/add-hinhthuc-thanhtoan')}}">Thêm hình thức thanh toán</a></li>
 						<li><a href="{{URL::to('/all-hinhthuc-thanhtoan')}}">Liệt kê hình thức thanh toán</a></li>
+						
+						<!-- trang_thai --> 
+						<li><a href="{{URL::to('/add-trangthai')}}">Thêm trạng thái</a></li>
+						<li><a href="{{URL::to('/all-trangthai')}}">Liệt kê trạng thái</a></li>
                     </ul>
                 </li>
 				<li class="sub-menu">

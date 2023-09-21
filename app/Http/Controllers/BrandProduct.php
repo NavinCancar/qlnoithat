@@ -77,8 +77,7 @@ class BrandProduct extends Controller
     public function update_brand_product(Request $request, $XCT_MA){
         $this->AuthLoginChu();
         $data = array();
-        //$data['tên trong csdl'] = $request->phần name trong form nhập;
-
+        
         //$data['XCT_MA'] = $request->brand_product_id;
         $data['XCT_TEN'] = $request->brand_product_name; 
         $data['XCT_SODIENTHOAI'] = $request->brand_product_phone;

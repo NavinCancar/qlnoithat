@@ -325,4 +325,29 @@ class CostumerController extends Controller
         $manager_khachhang = view('admin.all_khachhang')->with('all_khachhang', $all_khachhang);
         return view('admin-layout')->with('admin.all_khachhang', $manager_khachhang); 
     }
+
+    public function show_khachhang($KH_MA){
+        $this->AuthLoginChu(); 
+        $all_KH=  DB::table('khach_hang')
+        ->join('gio_hang','gio_hang.KH_MA','=','khach_hang.KH_MA')
+        ->where('khach_hang.KH_MA', $KH_MA)->get();
+
+        $GH= DB::table('gio_hang')
+        ->where('gio_hang.KH_MA', $KH_MA)->first();
+
+        $group_GH = DB::table('gio_hang')
+        ->join('chi_tiet_gio_hang','gio_hang.GH_MA','=','chi_tiet_gio_hang.GH_MA')
+        ->join('noi_that','noi_that.NT_MA','=','chi_tiet_gio_hang.NT_MA')
+        ->join('hinh_anh_noi_that','noi_that.NT_MA','=','hinh_anh_noi_that.NT_MA')
+        ->where('hinh_anh_noi_that.HANT_DUONGDAN', 'like', '%-1%')
+        ->where('gio_hang.GH_MA', $GH->GH_MA)->get();
+
+        $group_DC = DB::table('khach_hang')
+        ->join('dia_chi_giao_hang','khach_hang.KH_MA','=','dia_chi_giao_hang.KH_MA')
+        ->join('tinh_thanh_pho','tinh_thanh_pho.TTP_MA','=','dia_chi_giao_hang.TTP_MA')
+        ->where('khach_hang.KH_MA', $KH_MA)->get();
+
+        return view('admin.show_detail_costumer')->with('all_KH', $all_KH)
+        ->with('group_GH', $group_GH)->with('group_DC', $group_DC); 
+    }
 }

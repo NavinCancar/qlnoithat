@@ -84,15 +84,6 @@ class CartController extends Controller
         $all_cart_product = DB::table('gio_hang')
         ->join('khach_hang','gio_hang.KH_MA','=','khach_hang.KH_MA')
         ->where('khach_hang.KH_MA', $KH_MA)->first();
-        
-        /*$data = array();
-        $data['GH_MA'] = $all_cart_product->GH_MA;
-        $data['NT_MA'] = $request->productid_hidden;
-        $data['CTGH_SOLUONG'] = $request->qty;
-        
-        echo '<pre>';
-        print_r ($data);
-        echo '</pre>';*/
 
         //Số lượng tồn
         $ddh = DB::table('chi_tiet_don_dat_hang')
@@ -105,10 +96,13 @@ class CartController extends Controller
         $xuat = DB::table('chi_tiet_lo_xuat')
             ->where('NT_MA', $request->productid_hidden)->sum('CTLX_SOLUONG');
 
-        if ($nhap-$xuat-$ddh>=$request->qty){
+        if ($nhap-$xuat-$ddh>=$request->qty && $request->qty>0){
             DB::table('gio_hang')->where('GH_MA', $all_cart_product->GH_MA)->update(['GH_NGAYCAPNHATLANCUOI' => Carbon::now('Asia/Ho_Chi_Minh')]);
             DB::table('chi_tiet_gio_hang')->where('GH_MA', $all_cart_product->GH_MA)->where('NT_MA', $request->productid_hidden)->update(['CTGH_SOLUONG' => $request->qty]);
         }
+
+        elseif ($request->qty<1){Session::put('message','Số lượng yêu cầu cần lớn hơn 0');}
+        
         else{
             Session::put('message','Số lượng yêu cầu cần nhỏ hơn hoặc bằng số lượng tồn kho: '.$nhap-$xuat-$ddh.'');
         }

@@ -29,6 +29,7 @@
             <th>Giới tính</th>
             <th>Email</th>
             <th>Đường dẫn ảnh</th>
+            <th style="width:30px;"></th>
           </tr>
         </thead>
         <tbody>
@@ -41,6 +42,7 @@
             <td>{{$pro->KH_GIOITINH}}</td>
             <td>{{$pro->KH_EMAIL}}</td>
             <td>{{$pro->KH_DUONGDANANHDAIDIEN}}</td>
+            <td><a href="{{URL::to('/show-detail-costumer/'.$pro->KH_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-info-circle text-primary text-active"></i></a></td>
           </tr>
          @endforeach
         </tbody>
