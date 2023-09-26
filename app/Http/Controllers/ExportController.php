@@ -167,10 +167,6 @@ class ExportController extends Controller
             return Redirect::to('add-chitiet-loxuat/'.$LX_MA);
         }
 
-        if ($nhap-$xuat-$ddh-$request->soluong_product_name==0){
-            DB::table('chi_tiet_gio_hang')->where('NT_MA', $request->mant_product_name)->delete();
-        }
-
         DB::table('chi_tiet_lo_xuat')->insert($data);
         Session::put('message','Thêm chi tiết lô xuất thành công');
         return Redirect::to('show-chitiet-loxuat/'.$LX_MA);
@@ -193,9 +189,25 @@ class ExportController extends Controller
         $data['CTLX_SOLUONG'] = $request->soluong_product_name; 
         $data['CTLX_GIA'] = $request->gia_product_name;
 
+        //Check số lượng tồn
+        $ddh = DB::table('chi_tiet_don_dat_hang')
+        ->join('don_dat_hang','chi_tiet_don_dat_hang.DDH_MA','=','don_dat_hang.DDH_MA')
+        ->where('TT_MA', '!=', 5)
+        ->where('NT_MA', $NT_MA)->sum('CTDDH_SOLUONG');
+
+        $nhap = DB::table('chi_tiet_lo_nhap')
+            ->where('NT_MA', $NT_MA)->sum('CTLN_SOLUONG');
+        $xuat = DB::table('chi_tiet_lo_xuat')
+            ->where('NT_MA', $NT_MA)->sum('CTLX_SOLUONG');
+
+        if ($nhap-$xuat-$ddh<$request->soluong_product_name){
+            Session::put('message','Số lượng nhập lớn hơn số lượng tồn, nội thất chỉ còn tồn: '.$nhap-$xuat-$ddh);
+            return Redirect::to('show-chitiet-loxuat/'.$LX_MA);
+        }
+
         DB::table('chi_tiet_lo_xuat')->where('LX_MA',$LX_MA)->where('NT_MA',$NT_MA)->update($data);
         Session::put('message','Cập nhật chi tiết lô xuất thành công');
-       return Redirect::to('show-chitiet-loxuat/'.$LX_MA);
+        return Redirect::to('show-chitiet-loxuat/'.$LX_MA);
     }
 
     public function delete_chitiet_loxuat($LX_MA, $NT_MA){

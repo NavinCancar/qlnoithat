@@ -115,9 +115,20 @@
                     <header class="panel-heading">
                         - Thống kê theo loại nội thất -
                     </header>
+                    <style>
+                    #pie-chart {
+                        font-family: inherit  !important;
+                        font: inherit  !important;
+                    }
+                    text[font="10px &quot;Arial&quot;"],
+                    tspan[style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"] {
+                        font: inherit  !important;
+                    }
+
+                    </style>
                     <div class="panel-body">                    
                         <div class="panel">
-                        <div id="pie-chart" style="font:Arial" style="height:80%"></div>
+                        <div id="pie-chart" style="height:80%"></div>
                         </div>
                     </div>
                 </section>

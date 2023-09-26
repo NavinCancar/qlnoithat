@@ -27,7 +27,7 @@
             <form class="d-flex" action="{{ URL::to('/search-all-order') }}" method="POST">
             {{ csrf_field() }}
             <span>Mã đơn hàng cần tìm:</span>
-            <input type="text" class="input-sm form-control" name="keywords_submit" style="width: auto; float:none" placeholder="Nhập mã đơn cần tìm...">
+            <input type="number" class="input-sm form-control" name="keywords_submit" style="width: auto; float:none" placeholder="Nhập mã đơn cần tìm...">
             <button type="submit" class="btn btn-sm btn-default"><i class="fa fa-search icon-white"></i></a></button>
           </form>
         </div>
