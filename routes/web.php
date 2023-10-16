@@ -127,6 +127,7 @@ Route::get('/show-employee', 'App\Http\Controllers\EmployeeController@show_emplo
 Route::get('/add-employee', 'App\Http\Controllers\EmployeeController@add_employee'); 
 Route::get('/edit-employee/{NV_MA}', 'App\Http\Controllers\EmployeeController@edit_employee'); //--All 
 Route::get('/delete-employee/{NV_MA}', 'App\Http\Controllers\EmployeeController@delete_employee'); 
+Route::get('/recovery-employee/{NV_MA}', 'App\Http\Controllers\EmployeeController@recovery_employee'); 
 Route::get('/all-employee', 'App\Http\Controllers\EmployeeController@all_employee'); 
 
 Route::post('/save-employee', 'App\Http\Controllers\EmployeeController@save_employee'); 

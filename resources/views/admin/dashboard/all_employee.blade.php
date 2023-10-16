@@ -37,7 +37,9 @@
         </thead>
         <tbody>
         @foreach($all_employee as $key => $emp)
-          <tr>
+          @if ($emp->NV_TRANGTHAI == 0) <tr style="background-color:#FCDAD5" >
+          @else <tr>
+          @endif
             <td>{{$emp->NV_MA }}</td>
             <td>{{$emp->NV_HOTEN}}</td>
             <td>{{$emp->CV_TEN }}</td>
@@ -48,8 +50,11 @@
             <td>{{$emp->NV_EMAIL}}</td>
             <td><img src="public/backend/images/nhanvien/{{$emp->NV_DUONGDANANHDAIDIEN}}" height="100" width="100"></td>
             <td>
-              <a href="{{URL::to('/edit-employee/'.$emp -> NV_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
-              <a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-employee/'.$emp -> NV_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
+              @if ($emp->NV_TRANGTHAI == 0) <a onclick="return confirm('Bạn có chắc chắn muốn khôi phục tài khoản này không?')" href="{{URL::to('/recovery-employee/'.$emp -> NV_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-rotate-left text-success text"></i></a>
+              @else 
+                <a href="{{URL::to('/edit-employee/'.$emp -> NV_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
+                <a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-employee/'.$emp -> NV_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
+              @endif
             </td>
           </tr>
          @endforeach

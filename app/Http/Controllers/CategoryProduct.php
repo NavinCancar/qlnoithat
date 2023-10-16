@@ -136,7 +136,7 @@ class CategoryProduct extends Controller
         //Kiểm tra unique
         $check_unique = DB::table('loai_noi_that')->get();
         foreach($check_unique as $key => $unique){
-            if(strtolower($unique->LNT_TEN)==strtolower($request->category_product_name)){
+            if($unique->LNT_MA!=$LNT_MA && strtolower($unique->LNT_TEN)==strtolower($request->category_product_name)){
                 Session::put('message','Tên loại nội thất không thể trùng');
                 return Redirect::to('all-category-product');
             }

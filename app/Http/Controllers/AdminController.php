@@ -84,12 +84,19 @@ class AdminController extends Controller
 
         $result = DB::table('nhan_vien')->where('NV_EMAIL', $admin_email)->where('NV_MATKHAU', $admin_password)->first();
         if($result){
-            Session::put('NV_HOTEN',$result->NV_HOTEN);
-            Session::put('NV_MA',$result->NV_MA);
-            Session::put('CV_MA_User',$result->CV_MA);
-            Session::put('NV_DUONGDANANHDAIDIEN',$result->NV_DUONGDANANHDAIDIEN);
-            return Redirect::to('/dashboard');
-        }else{
+            if($result->NV_TRANGTHAI == 1){
+                Session::put('NV_HOTEN',$result->NV_HOTEN);
+                Session::put('NV_MA',$result->NV_MA);
+                Session::put('CV_MA_User',$result->CV_MA);
+                Session::put('NV_DUONGDANANHDAIDIEN',$result->NV_DUONGDANANHDAIDIEN);
+                return Redirect::to('/dashboard');
+            }
+            else{
+                Session::put('message','Nhân viên này đã bị xoá!');
+                return Redirect::to('/admin');
+            }
+        }
+        else{
             Session::put('message','Mật khẩu hoặc tài khoản sai. Vui lòng nhập lại!');
             return Redirect::to('/admin');
         }
