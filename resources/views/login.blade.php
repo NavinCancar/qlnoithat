@@ -10,14 +10,14 @@
                             <?php
                                 $message= Session::get('message');
                                 if($message){
-                                    echo '<div class="text-danger mb-3">'. $message .'</div>';
+                                    echo '<div class="text-notice mb-3">'. $message .'</div>';
                                     Session::put('message', null);
                                 }
                             ?>
                             
                             <form action="{{URL::to('/costumer-check')}}" method="post">
                                 {{ csrf_field() }}
-                                <input type="text" class="ggg" name="sdt" placeholder="Nhập số điện thoại" required="">
+                                <input type="text" class="ggg" name="sdt" placeholder="Nhập số điện thoại" required="" pattern="[0-9]{10,11}">
 			                    <input type="password" class="ggg" name="password" placeholder="Nhập password" required="">
                                 <span>
                                     <input type="checkbox" class="checkbox">
@@ -25,11 +25,14 @@
                                 </span>
                                 <button type="submit" class="btn btn-default">Đăng nhập</button>
                             </form>
+                            
+                            <p class="pt-4">Bạn là nhân viên? <a href="{{URL::to('/admin')}}" style="color: #35a2a1;">Chuyển hướng đến trang admin!</a></p>
+                            
                         </div><!--/login form-->
                     </div>
 
                     <div class="col-sm-2">
-                        <h2 class="or form-center">OR</h2>
+                        <h2 class="form-center"><img src="public/frontend/img/or.png" alt="" width="100%"></h2>
                     </div>
 
                     <div class="col-sm-5">
@@ -39,7 +42,7 @@
                             <?php
                                 $message2= Session::get('message2');
                                 if($message2){
-                                    echo '<div class="text-danger mb-3">'. $message2 .'</div>';
+                                    echo '<div class="text-notice mb-3">'. $message2 .'</div>';
                                     Session::put('message2', null);
                                 }
                             ?>
@@ -77,5 +80,4 @@
                 </div>
             </div>
         </section><!--/form-->
-
 @endsection

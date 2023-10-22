@@ -50,7 +50,7 @@
                         echo '<i> ('.$sl.')</i>';
                     ?>
                 </div>
-                <form action="{{URL::to('/save-cart')}}" method="POST">
+                <form action="{{URL::to('/save-cart')}}" method="POST"  class="mb-4">
                     {{ csrf_field() }}
                     <?php
                     $ton = Session::get('ton');
@@ -75,7 +75,7 @@
                 <?php
                             $message = Session::get('message');
                             if($message){
-                                echo '<span class="text-alert text-warning">'.$message.'</span>';
+                                echo '<div class="text-notice mb-3">'.$message.'</div>';
                                 Session::put('message',null);
                             }
                 ?>

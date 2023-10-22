@@ -42,7 +42,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<?php
 		$message= Session::get('message');
 		if($message){
-			echo '<p style="color:red;">'. $message .'</p>';
+			echo '<div class="text-notice mb-3">'.$message.'</div>';
 			Session::put('message', null);
 		}
 		?>

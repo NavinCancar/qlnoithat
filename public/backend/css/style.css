@@ -3154,3 +3154,18 @@ div#graph1, div#graph4, div#graph5, div#graph6, div#graph7, div#graph8, div#grap
     padding: 0;
 }
 }
+
+
+.text-notice {
+    color: #fff;
+    background-color: #35a2a0dc;
+    padding: 5px;
+    border-radius: 10px;
+    text-align: center;
+    }
+
+.text-notice::before {
+    content: "Thông báo: ";
+    font-weight: bold;
+    font-size: 16px;
+    }

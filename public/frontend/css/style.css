@@ -544,3 +544,17 @@ li a{
     border-color: #FFFFFF;
     color: #1d1d1d;
   }
+
+  .text-notice {
+    color: #fff;
+    background-color: #ffbe0bce;
+    padding: 5px;
+    border-radius: 10px;
+    text-align: center;
+    }
+
+.text-notice::before {
+    content: "Thông báo: ";
+    font-weight: bold;
+    font-size: 16px;
+    }
