@@ -177,7 +177,7 @@
             <p>Relax Ⓒ All Rights Recieved</p>
         </div>
         <div id='top-buttom_image'>
-            <a href='#' title='Lên đầu trang'><img style='opacity: 0.2; position:fixed; bottom:3%; right:3%; clip:inherit; width:6%;' alt='Lên đầu trang' src="{{('../public/frontend/img/back-top.jpg')}}"/></a><br/>
+            <a href='#' title='Lên đầu trang'><img style=' position:fixed; bottom:3%; right:3%; clip:inherit; width:6%; width: 50px; border-radius: 5px' alt='Lên đầu trang' src="{{('../public/frontend/img/back-top.jpg')}}"/></a><br/>
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>

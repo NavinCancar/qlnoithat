@@ -15,12 +15,6 @@
               Session::put('message',null);
           }
         ?>
-        <?php
-          $count= Session::get('count_order'); 
-          if ($count) {
-            echo "<p style='padding-top:2px'>Tổng số dòng dữ liệu: ".$count.'</p>';
-          }
-        ?>
       </div>
       <div class="col-sm-5">
         <div class="input-group d-flex">

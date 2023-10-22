@@ -3162,6 +3162,7 @@ div#graph1, div#graph4, div#graph5, div#graph6, div#graph7, div#graph8, div#grap
     padding: 5px;
     border-radius: 10px;
     text-align: center;
+    margin-bottom: 20px;
     }
 
 .text-notice::before {

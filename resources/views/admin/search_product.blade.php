@@ -15,10 +15,6 @@
           }
         ?>
         <?php
-            $count= Session::get('count_product');
-            if ($count) {
-              echo "<p>Tổng số dòng dữ liệu: ".$count.'</p>';
-            }
             $cv= Session::get('CV_MA_User');
         ?>
       </div>

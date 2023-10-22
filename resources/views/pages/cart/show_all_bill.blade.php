@@ -66,11 +66,11 @@
                     {{-- Previous Page Link --}}
                     @if ($all_DDH->onFirstPage())
                         <li class="page-item disabled">
-                            <a class="page-link" href="#">Previous</a>
+                            <a class="page-link" href="#">Trước</a>
                         </li>
                     @else
                         <li class="page-item">
-                            <a class="page-link shop-nav" href="{{ $all_DDH->previousPageUrl() }}">Previous</a>
+                            <a class="page-link shop-nav" href="{{ $all_DDH->previousPageUrl() }}">Trước</a>
                         </li>
                     @endif
                     {{-- Pagination Elements --}}
@@ -89,11 +89,11 @@
                     {{-- Next Page Link --}}
                     @if ($all_DDH->hasMorePages())
                         <li class="page-item">
-                            <a class="page-link shop-nav" href="{{ $all_DDH->nextPageUrl() }}">Next</a>
+                            <a class="page-link shop-nav" href="{{ $all_DDH->nextPageUrl() }}">Sau</a>
                         </li>
                     @else
                         <li class="page-item disabled">
-                            <a class="page-link" href="#">Next</a>
+                            <a class="page-link" href="#">Sau</a>
                         </li>
                     @endif
                 </ul>

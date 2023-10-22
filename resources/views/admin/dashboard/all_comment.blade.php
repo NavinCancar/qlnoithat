@@ -12,12 +12,6 @@
           Session::put('message',null);
       }
     ?>
-    <?php
-		$count= Session::get('countdg');
-    if ($count) {
-      echo "<p style='padding:15px'>Tổng số dòng dữ liệu: ".$count.'</p>';
-    }
-	?>
     <div class="table-responsive">
       <table class="table table-striped b-t b-light">
         <thead>
@@ -70,7 +64,7 @@
       <div class="row">
         <div class="col-sm-5 text-center">
           <small class="text-muted inline m-t-sm m-b-sm">
-            {{ "Showing ". $danh_gia->firstItem() ."-". $danh_gia->lastItem() ." of ". $danh_gia->total() ." items" }}
+            {{ "Hiển thị ". $danh_gia->firstItem() ."-". $danh_gia->lastItem() ." trong ". $danh_gia->total() ." dòng dữ liệu" }}
           </small>
         </div>
         <nav aria-label="Page navigation">
@@ -78,9 +72,9 @@
             <ul class="pagination pagination-sm m-t-none m-b-none">
               {{-- Previous Page Link --}}
               @if ($danh_gia->onFirstPage())
-                <li style="pointer-events: none;"><a href="#" style="background-color: #ddd">Previous</a></li>
+                <li style="pointer-events: none;"><a href="#" style="background-color: #ddd">Trước</a></li>
               @else
-                <li><a href="{{ $danh_gia->previousPageUrl() }}">Previous</a></li>
+                <li><a href="{{ $danh_gia->previousPageUrl() }}">Trước</a></li>
               @endif
 
               {{-- Pagination Elements --}}
@@ -94,9 +88,9 @@
                 
               {{-- Next Page Link --}}
               @if ($danh_gia->hasMorePages())
-                <li><a href="{{ $danh_gia->nextPageUrl() }}">Next</a></li>
+                <li><a href="{{ $danh_gia->nextPageUrl() }}">Sau</a></li>
               @else
-                <li style="pointer-events: none;"><a href="#" style="background-color: #ddd">Next</a></li>
+                <li style="pointer-events: none;"><a href="#" style="background-color: #ddd">Sau</a></li>
               @endif
             </ul>
           </div>

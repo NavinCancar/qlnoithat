@@ -12,12 +12,6 @@
           Session::put('message',null);
       }
     ?>
-    <?php
-				$count= Session::get('count_loxuat');
-				if ($count) {
-					echo "<p style='padding:15px'>Tổng số dòng dữ liệu: ".$count.'</p>';
-				}
-		?>
     <div class="table-responsive">
       <table class="table table-striped b-t b-light">
         <thead>
@@ -50,7 +44,7 @@
       <div class="row">
         <div class="col-sm-5 text-center">
           <small class="text-muted inline m-t-sm m-b-sm">
-            {{ "Showing ". $all_loxuat->firstItem() ."-". $all_loxuat->lastItem() ." of ". $all_loxuat->total() ." items" }}
+            {{ "Hiển thị ". $all_loxuat->firstItem() ."-". $all_loxuat->lastItem() ." trong ". $all_loxuat->total() ." dòng dữ liệu" }}
           </small>
         </div>
         <nav aria-label="Page navigation">
@@ -58,9 +52,9 @@
             <ul class="pagination pagination-sm m-t-none m-b-none">
               {{-- Previous Page Link --}}
               @if ($all_loxuat->onFirstPage())
-                <li style="pointer-events: none;"><a href="#" style="background-color: #ddd">Previous</a></li>
+                <li style="pointer-events: none;"><a href="#" style="background-color: #ddd">Trước</a></li>
               @else
-                <li><a href="{{ $all_loxuat->previousPageUrl() }}">Previous</a></li>
+                <li><a href="{{ $all_loxuat->previousPageUrl() }}">Trước</a></li>
               @endif
 
               {{-- Pagination Elements --}}
@@ -74,9 +68,9 @@
                 
               {{-- Next Page Link --}}
               @if ($all_loxuat->hasMorePages())
-                <li><a href="{{ $all_loxuat->nextPageUrl() }}">Next</a></li>
+                <li><a href="{{ $all_loxuat->nextPageUrl() }}">Sau</a></li>
               @else
-                <li style="pointer-events: none;"><a href="#" style="background-color: #ddd">Next</a></li>
+                <li style="pointer-events: none;"><a href="#" style="background-color: #ddd">Sau</a></li>
               @endif
             </ul>
           </div>

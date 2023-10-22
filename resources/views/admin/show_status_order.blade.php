@@ -17,12 +17,6 @@
               Session::put('message',null);
           }
         ?>
-        <?php
-          $count= Session::get('count_order'); 
-          if ($count) {
-            echo "<p style='padding-top:2px'>Tổng số dòng dữ liệu: ".$count.'</p>';
-          }
-        ?>
       </div>
       <div class="col-sm-5">
         <div class="input-group d-flex">
@@ -94,7 +88,7 @@
       <div class="row">
         <div class="col-sm-5 text-center">
           <small class="text-muted inline m-t-sm m-b-sm">
-            {{ "Showing ". $id_status->firstItem() ."-". $id_status->lastItem() ." of ". $id_status->total() ." items" }}
+            {{ "Hiển thị ". $id_status->firstItem() ."-". $id_status->lastItem() ." trong ". $id_status->total() ." dòng dữ liệu" }}
           </small>
         </div>
         <nav aria-label="Page navigation">
@@ -102,9 +96,9 @@
             <ul class="pagination pagination-sm m-t-none m-b-none">
               {{-- Previous Page Link --}}
               @if ($id_status->onFirstPage())
-                <li style="pointer-events: none;"><a href="#" style="background-color: #ddd">Previous</a></li>
+                <li style="pointer-events: none;"><a href="#" style="background-color: #ddd">Trước</a></li>
               @else
-                <li><a href="{{ $id_status->previousPageUrl() }}">Previous</a></li>
+                <li><a href="{{ $id_status->previousPageUrl() }}">Trước</a></li>
               @endif
 
               {{-- Pagination Elements --}}
@@ -118,9 +112,9 @@
                 
               {{-- Next Page Link --}}
               @if ($id_status->hasMorePages())
-                <li><a href="{{ $id_status->nextPageUrl() }}">Next</a></li>
+                <li><a href="{{ $id_status->nextPageUrl() }}">Sau</a></li>
               @else
-                <li style="pointer-events: none;"><a href="#" style="background-color: #ddd">Next</a></li>
+                <li style="pointer-events: none;"><a href="#" style="background-color: #ddd">Sau</a></li>
               @endif
             </ul>
           </div>
