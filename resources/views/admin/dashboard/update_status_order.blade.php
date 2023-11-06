@@ -1,5 +1,6 @@
 @extends('admin-layout-detail')
 @section('admin-content')
+<?php $cv= Session::get('CV_MA_User'); ?>
 <div class="row">
             <div class="col-lg-12">
                     <section class="panel">
@@ -22,13 +23,16 @@
                                       <select name="TT_MA" class="form-control input-sm m-bot15" required="">
 
                                         @foreach($trangthai as $key => $tt)
-                                            
-                                            @if($tt->TT_MA==$edit_value->TT_MA)
-                                            <option selected value="{{$tt->TT_MA}}">{{$tt->TT_TEN}}</option>
-                                            @elseif($tt->TT_MA<$edit_value->TT_MA)
-
+                                            @if($tt->TT_MA==5 && $cv==3)
                                             @else
-                                            <option value="{{$tt->TT_MA}}">{{$tt->TT_TEN}}</option>
+
+                                                @if($tt->TT_MA==$edit_value->TT_MA)
+                                                <option selected value="{{$tt->TT_MA}}">{{$tt->TT_TEN}}</option>
+                                                @elseif($tt->TT_MA<$edit_value->TT_MA)
+
+                                                @else
+                                                <option value="{{$tt->TT_MA}}">{{$tt->TT_TEN}}</option>
+                                                @endif
                                             @endif
                                         @endforeach
                                     </select>

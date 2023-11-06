@@ -47,7 +47,7 @@
         @foreach($all_product as $key => $pro)
         <?php
           //Số lượng tồn
-          $ddh = DB::table('chi_tiet_don_dat_hang')
+          /*$ddh = DB::table('chi_tiet_don_dat_hang')
           ->join('don_dat_hang','chi_tiet_don_dat_hang.DDH_MA','=','don_dat_hang.DDH_MA')
           ->where('TT_MA', '!=', 5)
           ->where('NT_MA', $pro->NT_MA)->sum('CTDDH_SOLUONG');
@@ -56,8 +56,10 @@
           $xuat = DB::table('chi_tiet_lo_xuat')
           ->where('NT_MA', $pro->NT_MA)->sum('CTLX_SOLUONG');
           $slton=$nhap-$xuat-$ddh;
-        ?>
           @if ($slton<=$ktra) <tr style="background-color:#FCDAD5" >
+          */
+        ?>
+          @if ($pro->so_luong_ton_kho<=$ktra) <tr style="background-color:#FCDAD5" >
             @else <tr>
             @endif
             <td>{{$pro->NT_MA }}</td>
@@ -66,8 +68,9 @@
             <td>{{$pro->LNT_TEN }}</td>
             <td>
                   <?php
-                    echo($slton);
+                    //echo($slton);
                   ?>
+                  {{$pro->so_luong_ton_kho }}
             </td>
           </tr>
          @endforeach

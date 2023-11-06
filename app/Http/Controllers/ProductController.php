@@ -385,10 +385,23 @@ class ProductController extends Controller
     public function ton_kho(){
         $this->AuthLoginChuKho();
     
+        /*$all_product = DB::table('noi_that')
+        ->join('xuong_che_tac','xuong_che_tac.XCT_MA','=','noi_that.XCT_MA')
+        ->join('loai_noi_that','loai_noi_that.LNT_MA','=','noi_that.LNT_MA')
+        ->orderby('NT_MA','desc')->paginate(10);*/
         $all_product = DB::table('noi_that')
         ->join('xuong_che_tac','xuong_che_tac.XCT_MA','=','noi_that.XCT_MA')
         ->join('loai_noi_that','loai_noi_that.LNT_MA','=','noi_that.LNT_MA')
-        ->orderby('NT_MA','desc')->paginate(10);
+        ->select('noi_that.*', 'xuong_che_tac.XCT_TEN', 'loai_noi_that.LNT_TEN', 
+            DB::raw('(SELECT SUM(CTLN_SOLUONG) FROM chi_tiet_lo_nhap WHERE NT_MA = noi_that.NT_MA) 
+            - COALESCE((SELECT SUM(CTLX_SOLUONG) FROM chi_tiet_lo_xuat WHERE NT_MA = noi_that.NT_MA), 0) 
+            - COALESCE((SELECT SUM(CTDDH_SOLUONG) FROM chi_tiet_don_dat_hang JOIN don_dat_hang 
+                ON chi_tiet_don_dat_hang.DDH_MA = don_dat_hang.DDH_MA WHERE TT_MA != 5 
+                AND chi_tiet_don_dat_hang.NT_MA = noi_that.NT_MA), 0) 
+            as so_luong_ton_kho'))
+        ->orderBy('so_luong_ton_kho')
+        ->paginate(10);
+
         $manager_product = view('admin.dashboard.ton_kho')->with('all_product', $all_product);
         $count_product = DB::table('noi_that')->count('NT_MA');
         Session::put('count_product',$count_product);

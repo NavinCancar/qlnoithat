@@ -133,6 +133,8 @@ class AdminController extends Controller
         if ($request->TGBDau && $request->TGKThuc && $request->TGBDau<=$request->TGKThuc && $request->TGKThuc<=$homnay ){
             Session::put('TGBDau', $request->TGBDau);
             Session::put('TGKThuc', $request->TGKThuc);
+            Session::put('TGBDauvalue', $request->TGBDau);
+            Session::put('TGKThucvalue', $request->TGKThuc);
             return view('admin.dashboard.thong_ke');
         }
         Session::put('message','Xin kiểm tra lại dữ liệu đầu vào');

@@ -106,7 +106,7 @@
                         <img src="../../qlnoithat/public/frontend/img/minhchung/{{$all_DDH->DDH_DUONGDANHINHANHCHUYENKHOAN}}" height="220px">
                     </div>
                     @endif
-                    @if($all_DDH->TT_MA<=3)
+                    @if($all_DDH->TT_MA==1)
                     <a onclick="return confirm('Bạn có chắc chắn muốn huỷ đơn hàng này không?')" href="{{URL::to('/huy-don/'.$all_DDH->DDH_MA)}}"><button type="button" style="width:100%;" class="btn btn-danger btn-sm">Huỷ đơn</button></a>
                     @endif
                     <a href="{{URL::to('/show-all-bill')}}"><button type="button" style="width:100%;" class="btn btn-dark btn-sm">Quay về</button></a>

@@ -39,8 +39,28 @@
                                 {{csrf_field() }}
                             <div class="form-group row">
                                 <div class="col-sm-3"><label for="exampleInputEmail1">Tính theo thời gian:</label></div>
-                                <div class="col-sm-3">Từ: &nbsp;&nbsp;&nbsp;&nbsp; <input type="date" name="TGBDau" required=""></div>
-                                <div class="col-sm-3">Đến: &nbsp;&nbsp; <input type="date" name="TGKThuc" required=""></div>
+                                <div class="col-sm-3">Từ: &nbsp;&nbsp;&nbsp;&nbsp; 
+                                    <input type="date" name="TGBDau" required=""
+                                    <?php
+                                        $TGBDauvalue = Session::get('TGBDauvalue');
+                                        if($TGBDauvalue){
+                                            echo 'value="'.$TGBDauvalue.'"';
+                                            Session::put('TGBDauvalue',null);
+                                        }
+                                    ?>
+                                    >
+                                </div>
+                                <div class="col-sm-3">Đến: &nbsp;&nbsp; 
+                                    <input type="date" name="TGKThuc" required=""
+                                    <?php
+                                        $TGKThucvalue = Session::get('TGKThucvalue');
+                                        if($TGKThucvalue){
+                                            echo 'value="'.$TGKThucvalue.'"';
+                                            Session::put('TGKThucvalue',null);
+                                        }
+                                    ?>
+                                    >
+                                </div>
                                 <div class="col-sm-3"><button type="submit" class="btn btn-success">Tính toán</button></div>
                                 
                             </div>
@@ -55,14 +75,15 @@
                     </div>
                 </section>
                 <?php
+                //BETWEEN '" . $TGBDau . " 00:00:00' AND '" . $TGKThuc . " 23:59:59'
                     $ddh_dtt = DB::table('don_dat_hang')
-                    ->where('TT_MA', 4)->whereBetween('DDH_NGAYDAT', [$TGBDau, $TGKThuc])->sum('ddh_tongtien');
+                    ->where('TT_MA', 4)->whereBetween('DDH_NGAYDAT', [$TGBDau . ' 00:00:00', $TGKThuc . ' 23:59:59'])->sum('ddh_tongtien');
             
                     $ctlx = DB::table('chi_tiet_lo_xuat')->join('lo_xuat','lo_xuat.LX_MA','=','chi_tiet_lo_xuat.LX_MA')
-                    ->whereBetween('LX_NGAYXUAT', [$TGBDau, $TGKThuc])->sum('CTLX_GIA');
+                    ->whereBetween('LX_NGAYXUAT', [$TGBDau . ' 00:00:00', $TGKThuc . ' 23:59:59'])->sum('CTLX_GIA');
 
                     $ctln = DB::table('chi_tiet_lo_nhap')->join('lo_nhap','lo_nhap.LN_MA','=','chi_tiet_lo_nhap.LN_MA')
-                    ->whereBetween('LN_NGAYNHAP', [$TGBDau, $TGKThuc])->sum('CTLN_GIA');
+                    ->whereBetween('LN_NGAYNHAP', [$TGBDau . ' 00:00:00', $TGKThuc . ' 23:59:59'])->sum('CTLN_GIA');
                 ?>
                 <section class="panel"> 
                     <header class="panel-heading">
@@ -146,15 +167,15 @@
                     JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA
                     WHERE h.HANT_DUONGDAN LIKE '%-1%'
                     AND d.TT_MA != 5
-                    AND d.DDH_NGAYDAT BETWEEN '".$TGBDau."' AND '".$TGKThuc."'
+                    AND d.DDH_NGAYDAT BETWEEN '" . $TGBDau . " 00:00:00' AND '" . $TGKThuc . " 23:59:59'
                     GROUP by n.NT_MA HAVING SUM(ctddh_soluong) = (SELECT max(tongsoluong) 
                                                                 FROM (SELECT c.NT_MA, SUM(ctddh_soluong) tongsoluong 
                                                                     FROM chi_tiet_don_dat_hang c 
                                                                     JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA 
-                                                                    WHERE d.DDH_NGAYDAT BETWEEN '".$TGBDau."' AND '".$TGKThuc."' 
+                                                                    WHERE d.DDH_NGAYDAT BETWEEN '" . $TGBDau . " 00:00:00' AND '" . $TGKThuc . " 23:59:59'
                                                                     AND d.TT_MA != 5
                                                                     GROUP BY (c.NT_MA)) sum_nt) 
-                    ORDER by n.NT_TEN";
+                    ORDER by n.NT_TEN LIMIT 3";
                     $result = mysqli_query($connect, $query);
                     /*$row = mysqli_fetch_array($result);
                     echo '<pre>';
@@ -194,7 +215,7 @@ $query = "SELECT * FROM DON_DAT_HANG ORDER BY DDH_NGAYDAT";
         $query = "SELECT * FROM DON_DAT_HANG  WHERE DDH_NGAYDAT BETWEEN '". $TGBDau ."' AND '".  $TGKThuc."' ORDER BY DDH_NGAYDAT";     
     }*/
 
-$query = "SELECT * FROM DON_DAT_HANG  WHERE DDH_NGAYDAT BETWEEN '". $TGBDau ."' AND '".  $TGKThuc."' AND TT_MA != 5 ORDER BY DDH_NGAYDAT";
+$query = "SELECT * FROM DON_DAT_HANG  WHERE DDH_NGAYDAT BETWEEN '" . $TGBDau . " 00:00:00' AND '" . $TGKThuc . " 23:59:59' AND TT_MA != 5 ORDER BY DDH_NGAYDAT";
 $result = mysqli_query($connect, $query);
 $chart_data = '';
 while($row = mysqli_fetch_array($result))
@@ -221,7 +242,7 @@ Morris.Donut({
         JOIN noi_that n on n.LNT_MA = l.LNT_MA 
         JOIN chi_tiet_don_dat_hang c on n.NT_MA = c.NT_MA 
         JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA
-        WHERE d.DDH_NGAYDAT BETWEEN '".$TGBDau."' AND '".$TGKThuc."'
+        WHERE d.DDH_NGAYDAT BETWEEN '" . $TGBDau . " 00:00:00' AND '" . $TGKThuc . " 23:59:59'
         AND d.TT_MA != 5
         GROUP by l.LNT_MA ORDER BY tong;";
         $result = mysqli_query($connect, $query);
