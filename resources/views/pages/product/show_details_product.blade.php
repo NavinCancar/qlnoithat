@@ -308,7 +308,18 @@
                     </div>
                 <h5 class="p-name">{{$relate->NT_TEN}}</h5>
                 <h4 class="p-price">{{number_format($relate->NT_GIA)}} VNĐ</h4>
-                <a href="{{ URL::to('/chi-tiet-san-pham/'. $relate->NT_MA) }}"><button class="buy-btn">XEM NGAY</button></a>
+                
+                <div class="row">
+                        <a href="{{ URL::to('/chi-tiet-san-pham/'. $relate->NT_MA) }}" class="col-5 p-0" style="text-decoration: none;">
+                            <button class="buy-btn btn-block "><i class="fa-solid fa-eye"></i> XEM</button>
+                        </a>
+                        <form action="{{URL::to('/save-cart')}}" method="POST" class="col-7 p-0">
+                            {{ csrf_field() }}
+                            <input name="qty" type="hidden" value="1">
+                            <input name="productid_hidden" type="hidden" value="{{$relate->NT_MA}}" />
+                            <button type="submit" class="cart-btn btn-block"><i class="fa-solid fa-shopping-cart"></i> THÊM GIỎ</button>
+                        </form>
+                    </div>
             </div>
             @endforeach
         </div>

@@ -39,10 +39,14 @@
             <?php $tong =0; ?>
                 @foreach($all_cart_product as $key => $cart_pro)
                 <tr>
-                    <td><img src="../qlnoithat/public/frontend/img/noithat/{{$cart_pro->HANT_DUONGDAN}}" style='width: 120px;' alt=""></td>
-                    <td><h5 style='width: 100%;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'>{{$cart_pro->NT_TEN}}</h5></td>
-                    <td><h5><span id="donGia1">{{number_format($cart_pro->NT_GIA)}}</span> VNĐ</h5></td>
                     <td>
+                        <a href="{{ URL::to('/chi-tiet-san-pham/'. $cart_pro->NT_MA) }}">
+                            <img src="../qlnoithat/public/frontend/img/noithat/{{$cart_pro->HANT_DUONGDAN}}" style='width: 120px;' alt="">
+                        </a>
+                    </td>
+                    <td class="align-middle"><h5 style='width: 100%;white-space: nowrap; overflow: hidden;text-overflow: ellipsis;'>{{$cart_pro->NT_TEN}}</h5></td>
+                    <td  class="align-middle"><h5><span id="donGia1">{{number_format($cart_pro->NT_GIA)}}</span> VNĐ</h5></td>
+                    <td class="align-middle">
                         <form action="{{URL::to('/update-cart')}}" method="POST">
                             {{ csrf_field() }}     
                             <button type="button" class="change-btn" onclick="changeQty(this, -1)">-</button>
@@ -52,8 +56,8 @@
                             <!--<button type = "submit" class="btn btn-outline-dark btn-sm">Cập nhật</button>-->
                         </form>
                     </td>
-                    <td><h5><span id="tongGia1"></span> {{number_format($cart_pro->CTGH_SOLUONG*$cart_pro->NT_GIA)}} VNĐ</h5></td>
-                    <td><a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-cart/'.$cart_pro->NT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fas fa-x" style="color: #ec4c36; font-size: large;"></i></a></td>
+                    <td class="align-middle"><h5><span id="tongGia1"></span> {{number_format($cart_pro->CTGH_SOLUONG*$cart_pro->NT_GIA)}} VNĐ</h5></td>
+                    <td class="align-middle"><a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="{{URL::to('/delete-cart/'.$cart_pro->NT_MA)}}" class="active styling-edit" ui-toggle-class=""><i class="fas fa-x" style="color: #ec4c36; font-size: large;"></i></a></td>
                     <?php
                         $tong = $tong + $cart_pro->CTGH_SOLUONG*$cart_pro->NT_GIA;
                     ?>

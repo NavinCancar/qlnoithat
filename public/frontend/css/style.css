@@ -256,9 +256,19 @@ hr{
     opacity: 0;
     transition: 0.3s all;
 }
-.product:hover .buy-btn{
+.product:hover .buy-btn, .product:hover .cart-btn{
     transform: translateY(0px);
     opacity: 1;
+}
+
+.product .cart-btn{
+    padding-top: 8px;
+    padding-bottom: 8px;
+    color: #2e291a;
+    background: #ffbd0b;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: 0.3s all;
 }
 
 #banner{

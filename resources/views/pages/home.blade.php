@@ -80,7 +80,17 @@
                     </div>
                     <h5 class="p-name">{{$hot->NT_TEN}}</h5>
                     <h4 class="p-price">{{number_format($hot->NT_GIA)}} VNĐ</h4>
-                    <a href="{{ URL::to('/chi-tiet-san-pham/'. $hot->NT_MA) }}"><button class="buy-btn">XEM NGAY</button></a>
+                    <div class="row">
+                        <a href="{{ URL::to('/chi-tiet-san-pham/'. $hot->NT_MA) }}" class="col-5 p-0" style="text-decoration: none;">
+                            <button class="buy-btn btn-block "><i class="fa-solid fa-eye"></i> XEM</button>
+                        </a>
+                        <form action="{{URL::to('/save-cart')}}" method="POST" class="col-7 p-0">
+                            {{ csrf_field() }}
+                            <input name="qty" type="hidden" value="1">
+                            <input name="productid_hidden" type="hidden" value="{{$hot->NT_MA}}" />
+                            <button type="submit" class="cart-btn btn-block"><i class="fa-solid fa-shopping-cart"></i> THÊM GIỎ</button>
+                        </form>
+                    </div>
                 </div>
                 @endforeach
             </div>
@@ -126,7 +136,18 @@
                     </div>
                     <h5 class="p-name">{{$product->NT_TEN}}</h5>
                     <h4 class="p-price">{{number_format($product->NT_GIA)}} VNĐ</h4>
-                    <a href="{{ URL::to('/chi-tiet-san-pham/'. $product->NT_MA) }}"><button class="buy-btn">XEM NGAY</button></a>
+                    <div class="row">
+                        <a href="{{ URL::to('/chi-tiet-san-pham/'. $product->NT_MA) }}" class="col-5 p-0" style="text-decoration: none;">
+                            <button class="buy-btn btn-block "><i class="fa-solid fa-eye"></i> XEM</button>
+                        </a>
+                        <form action="{{URL::to('/save-cart')}}" method="POST" class="col-7 p-0">
+                            {{ csrf_field() }}
+                            <input name="qty" type="hidden" value="1">
+                            <input name="productid_hidden" type="hidden" value="{{$product->NT_MA}}" />
+                            <button type="submit" class="cart-btn btn-block"><i class="fa-solid fa-shopping-cart"></i> THÊM GIỎ</button>
+                        </form>
+                    </div>
+                </form>
                 </div>
                 @endforeach
             </div>
@@ -179,7 +200,18 @@
                     </div>
                     <h5 class="p-name">{{$product->NT_TEN}}</h5>
                     <h4 class="p-price">{{number_format($product->NT_GIA)}} VNĐ</h4>
-                    <a href="{{ URL::to('/chi-tiet-san-pham/'. $product->NT_MA) }}"><button class="buy-btn">XEM NGAY</button></a>
+                    
+                    <div class="row">
+                        <a href="{{ URL::to('/chi-tiet-san-pham/'. $product->NT_MA) }}" class="col-5 p-0" style="text-decoration: none;">
+                            <button class="buy-btn btn-block "><i class="fa-solid fa-eye"></i> XEM</button>
+                        </a>
+                        <form action="{{URL::to('/save-cart')}}" method="POST" class="col-7 p-0">
+                            {{ csrf_field() }}
+                            <input name="qty" type="hidden" value="1">
+                            <input name="productid_hidden" type="hidden" value="{{$product->NT_MA}}" />
+                            <button type="submit" class="cart-btn btn-block"><i class="fa-solid fa-shopping-cart"></i> THÊM GIỎ</button>
+                        </form>
+                    </div>
                 </div>
                 @endforeach
             </div>
@@ -222,7 +254,17 @@
                     </div>
                     <h5 class="p-name">{{$product->NT_TEN}}</h5>
                     <h4 class="p-price">{{number_format($product->NT_GIA)}} VNĐ</h4>
-                    <a href="{{ URL::to('/chi-tiet-san-pham/'. $product->NT_MA) }}"><button class="buy-btn">XEM NGAY</button></a>
+                    <div class="row">
+                        <a href="{{ URL::to('/chi-tiet-san-pham/'. $product->NT_MA) }}" class="col-5 p-0" style="text-decoration: none;">
+                            <button class="buy-btn btn-block "><i class="fa-solid fa-eye"></i> XEM</button>
+                        </a>
+                        <form action="{{URL::to('/save-cart')}}" method="POST" class="col-7 p-0">
+                            {{ csrf_field() }}
+                            <input name="qty" type="hidden" value="1">
+                            <input name="productid_hidden" type="hidden" value="{{$product->NT_MA}}" />
+                            <button type="submit" class="cart-btn btn-block"><i class="fa-solid fa-shopping-cart"></i> THÊM GIỎ</button>
+                        </form>
+                    </div>
                 </div>
                 @endforeach
             </div>
