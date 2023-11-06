@@ -76,14 +76,16 @@
                         <input type="file" name="DDH_DUONGDANHINHANHCHUYENKHOAN" class="form-control" id="exampleInputEmail1" >
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-3 col-sm-12 pt-4" >
-                    <button type="submit" style="width:100%" class="btn btn-info btn-sm">Xác nhận đặt hàng</button>
-                    <br><a href="{{URL::to('/show-cart')}}"><button type="button" style="width:100%" class="btn btn-dark btn-sm">Quay về</button></a>
+                <div class="col-lg-4 col-md-3 col-sm-12 center" >
+                    <label for="exampleInputEmail1" class="m-0"><b>Chuyển khoản đến Fancy:</b></label>
+                    <img src="{{('public/frontend/img/QR.png')}}" width="200px">
                 </div>
+                <button type="submit" style="width:100%" class="btn btn-info btn-sm">Xác nhận đặt hàng</button>
+                <br><a href="{{URL::to('/show-cart')}}" class="p-0"><button type="button"class="btn btn-dark btn-sm btn-block" style="width:100%" >Quay về</button></a>
+                
             </div>
         </form>
     </div>
   </div>
 </div>
-
 @endsection
