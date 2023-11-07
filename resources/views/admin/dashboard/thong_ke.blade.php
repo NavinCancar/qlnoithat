@@ -161,7 +161,7 @@
                     <div class="row">
                     <?php
             
-                    $query ="SELECT n.*, c.*, h.*, SUM(ctddh_soluong) tong FROM noi_that n 
+                    /*$query ="SELECT n.*, c.*, h.*, SUM(ctddh_soluong) tong FROM noi_that n 
                     JOIN hinh_anh_noi_that h on n.NT_MA = h.NT_MA
                     JOIN chi_tiet_don_dat_hang c on n.NT_MA = c.NT_MA 
                     JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA
@@ -175,7 +175,16 @@
                                                                     WHERE d.DDH_NGAYDAT BETWEEN '" . $TGBDau . " 00:00:00' AND '" . $TGKThuc . " 23:59:59'
                                                                     AND d.TT_MA != 5
                                                                     GROUP BY (c.NT_MA)) sum_nt) 
-                    ORDER by n.NT_TEN LIMIT 3";
+                    ORDER by n.NT_TEN LIMIT 3";*/
+                    $query ="SELECT n.*, c.*, h.*, SUM(ctddh_soluong) tong FROM noi_that n 
+                    JOIN hinh_anh_noi_that h on n.NT_MA = h.NT_MA
+                    JOIN chi_tiet_don_dat_hang c on n.NT_MA = c.NT_MA 
+                    JOIN don_dat_hang d on c.DDH_MA = d.DDH_MA
+                    WHERE h.HANT_DUONGDAN LIKE '%-1%'
+                    AND d.TT_MA != 5
+                    AND d.DDH_NGAYDAT BETWEEN '" . $TGBDau . " 00:00:00' AND '" . $TGKThuc . " 23:59:59'
+                    GROUP by n.NT_MA 
+                    ORDER by tong desc LIMIT 3";
                     $result = mysqli_query($connect, $query);
                     /*$row = mysqli_fetch_array($result);
                     echo '<pre>';
