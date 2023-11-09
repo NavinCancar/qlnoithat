@@ -46,7 +46,7 @@ class OrderController extends Controller
     //Tất cả trạng thái
     public function all_status(){
         $this->AuthLogin();
-        $all_status = DB::table('trang_thai')->get();
+        $all_status = DB::table('trang_thai')->orderby('TT_MA')->get();
 
         $all_DDH=  DB::table('don_dat_hang')
         ->join('trang_thai', 'trang_thai.TT_MA', '=', 'don_dat_hang.TT_MA')
@@ -65,7 +65,7 @@ class OrderController extends Controller
     //Danh mục trạng thái
     public function show_status_order($TT_MA){
         $this->AuthLogin();
-        $all_status = DB::table('trang_thai')->get();
+        $all_status = DB::table('trang_thai')->orderby('TT_MA')->get();
 
         $status_by_id = DB::table('don_dat_hang')
         ->join('trang_thai', 'trang_thai.TT_MA', '=', 'don_dat_hang.TT_MA')
@@ -95,7 +95,7 @@ class OrderController extends Controller
     public function search_all_order(Request $request){
         $this->AuthLogin();
 
-        $all_status = DB::table('trang_thai')->get();
+        $all_status = DB::table('trang_thai')->orderby('TT_MA')->get();
 
         $keywords = $request ->keywords_submit;
 
