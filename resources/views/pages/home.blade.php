@@ -92,6 +92,8 @@
                         </form>
                     </div>
                 </div>
+                <!--<a href="#" onclick="themVaoGioHang('{{$hot->NT_MA}}', 1);" class="btn btn-primary">test thêm giỏ</a>-->
+
                 @endforeach
             </div>
         </section>
@@ -284,6 +286,36 @@
         }
     });
 </script>
+
+<script>
+    /*function themVaoGioHang(productid_hidden, qty) {
+        // Thực hiện các thao tác cập nhật giỏ hàng ở đây
+        console.log('Mã sản phẩm:', productid_hidden);
+        console.log('Số lượng:', qty);
+
+        // Sử dụng jQuery để gửi request
+        
+        $.ajax({
+            url: '{{URL::to('/save-cart')}}',
+            type: 'POST',
+            data: {
+                productid_hidden: productid_hidden, 
+                qty: qty
+            },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(response) {
+                // Xử lý response
+            },
+            error: function(error) {
+                // Xử lý lỗi
+            }
+        });
+
+    }*/
+</script>
+
             
         
 
