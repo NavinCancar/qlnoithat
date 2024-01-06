@@ -88,7 +88,7 @@
                             {{ csrf_field() }}
                             <input name="qty" type="hidden" value="1">
                             <input name="productid_hidden" type="hidden" value="{{$hot->NT_MA}}" />
-                            <button type="submit" class="cart-btn btn-block"><i class="fa-solid fa-shopping-cart"></i> THÊM GIỎ</button>
+                            <button type="button" class="cart-btn btn-block themVaoGioHang"><i class="fa-solid fa-shopping-cart"></i> THÊM GIỎ</button>
                         </form>
                     </div>
                 </div>
@@ -287,7 +287,48 @@
     });
 </script>
 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
+    /*
+    link tham khảo: https://viblo.asia/p/jquery-ajax-va-kien-thuc-co-ban-4dbZNxny5YM 
+    link Ajax: https://api.jquery.com/category/ajax/ 
+    ajax với css: https://api.jquery.com/css/
+
+
+    -----------
+    <meta name="csrf-token" content="{{ csrf_token() }}"> Thêm vào header
+    */
+    $(document).ready(function() {
+        $('.themVaoGioHang').click(function(e) {
+            e.preventDefault();
+
+            // Find the closest form element
+            var form = $(this).closest('form');
+
+            // Get the values of productid_hidden and qty within the form
+            var productid_hidden = form.find('input[name="productid_hidden"]').val();
+            var qty = form.find('input[name="qty"]').val();
+            var _token = $('input[name="_token"]').val(); // Add this line to get the CSRF token
+
+            $.ajax({
+                url: '{{URL::to('/save-cart')}}',
+                type: 'POST',
+                data: {
+                    productid_hidden: productid_hidden,
+                    qty: qty,
+                    _token: _token // Include the CSRF token in the data
+                },
+                success: function(response) {
+                    // Handle the response here
+                    console.log(response);
+                },
+                error: function(error) {
+                    // Handle errors here
+                    console.log(error);
+                }
+            });
+        });
+    });
     /*function themVaoGioHang(productid_hidden, qty) {
         // Thực hiện các thao tác cập nhật giỏ hàng ở đây
         console.log('Mã sản phẩm:', productid_hidden);
