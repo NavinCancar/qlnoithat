@@ -297,6 +297,42 @@
 
     -----------
     <meta name="csrf-token" content="{{ csrf_token() }}"> Thêm vào header
+
+
+    ---------------Load lại sl giỏ hàng trên navbar
+
+    $(document).ready(function() {
+        $('.themVaoGioHang').click(function(e) {
+            e.preventDefault();
+
+            // Find the closest form element
+            var form = $(this).closest('form');
+
+            // Get the values of productid_hidden and qty within the form
+            var productid_hidden = form.find('input[name="productid_hidden"]').val();
+            var qty = form.find('input[name="qty"]').val();
+            var _token = $('input[name="_token"]').val(); // Add this line to get the CSRF token
+
+            $.ajax({
+                url: '{{URL::to('/save-cart')}}',
+                type: 'POST',
+                data: {
+                    productid_hidden: productid_hidden,
+                    qty: qty,
+                    _token: _token // Include the CSRF token in the data
+                },
+                success: function(response) {
+                    // Handle the response here
+                    console.log(response);
+                    $('li.sl-gio-hang').load(location.href + ' li.sl-gio-hang');
+                },
+                error: function(error) {
+                    // Handle errors here
+                    console.log(error);
+                }
+            });
+        });
+    });
     */
     $(document).ready(function() {
         $('.themVaoGioHang').click(function(e) {
